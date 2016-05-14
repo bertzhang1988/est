@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="multiple screen, some test method use static parameter" thread-count="2"  parallel="test" >
+<suite name="multiple screen, some test method use static parameter" thread-count="2"  parallel="tests" >
 <parameter name="browser" value="chrome" />
    <test name="test ofd">
    <parameter name="status" value="OFD"/>
