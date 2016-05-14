@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [ldd testing]">
+  <parameter name="browser" value="ie"/>
+  <test name="test ldd(failed)">
+    <parameter name="browser" value="ie"/>
+    <classes>
+      <class name="LDDscreen.US200091SmartEnterLDD">
+        <methods>
+          <include name="SetUp"/>
+          <include name="goback"/>
+          <include name="Close"/>
+        </methods>
+      </class> <!-- LDDscreen.US200091SmartEnterLDD -->
+      <class name="LDDscreen.US607PromptHeadloadOnDestinationChangeLDD">
+        <methods>
+          <include name="Close"/>
+          <include name="setback"/>
+          <include name="SetUp"/>
+          <include name="lddTrailerWithProsYes" invocation-numbers="0"/>
+          <include name="ldgTrailerWithProsClickNo" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- LDDscreen.US607PromptHeadloadOnDestinationChangeLDD -->
+      <class name="LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD">
+        <methods>
+          <include name="Close"/>
+          <include name="setback"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD -->
+      <class name="LDDscreen.LDDTesting">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetToLdd"/>
+          <include name="Close"/>
+        </methods>
+      </class> <!-- LDDscreen.LDDTesting -->
+    </classes>
+  </test> <!-- test ldd(failed) -->
+</suite> <!-- Failed suite [ldd testing] -->

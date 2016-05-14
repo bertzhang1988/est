@@ -1,0 +1,1917 @@
+<html>
+<head>
+<title>TestNG:  IETest</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>IETest</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>16/14/126</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Apr 19 14:41:57 CDT 2016</td>
+</tr>
+<tr><td>Total time:</td><td>299 seconds (299533 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.SetUp()'><b>SetUp</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: IE, ldg</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=xpath, value=.//*[@label=&apos;Set Status To&apos;]/div/ul}
+Session ID: 2474d42c-d6db-4a76-85b8-a160d63fab4a
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:47889/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.toString(Unknown Source)
+	at java.lang.String.valueOf(Unknown Source)
+	at java.lang.StringBuilder.append(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.toString(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:257)
+	at Page.EqpStatusPageS.ChangeStatusTo(EqpStatusPageS.java:403)
+	at Page.EqpStatusPageS.SetStatus(EqpStatusPageS.java:392)
+	at SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.SetUp(US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.java:51)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1912074167", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1912074167'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=xpath, value=.//*[@label=&apos;Set Status To&apos;]/div/ul}
+Session ID: 2474d42c-d6db-4a76-85b8-a160d63fab4a
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:47889/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.toString(Unknown Source)
+	at java.lang.String.valueOf(Unknown Source)
+	at java.lang.StringBuilder.append(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.toString(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:257)
+	at Page.EqpStatusPageS.ChangeStatusTo(EqpStatusPageS.java:403)
+	at Page.EqpStatusPageS.SetStatus(EqpStatusPageS.java:392)
+	at SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.SetUp(US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:170)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:104)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.TearDown()'><b>TearDown</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to get browser (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 12 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:670)
+	at org.openqa.selenium.remote.RemoteWebDriver.close(RemoteWebDriver.java:511)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.TearDown(US200058ValidateTrailerAtStatusingLocation.java:83)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace366903600", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace366903600'><pre>org.openqa.selenium.NoSuchWindowException: Unable to get browser (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 12 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:670)
+	at org.openqa.selenium.remote.RemoteWebDriver.close(RemoteWebDriver.java:511)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.TearDown(US200058ValidateTrailerAtStatusingLocation.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.internal.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:220)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.TearDown()'><b>TearDown</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 319, RDWY, 290079</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #319&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2208935", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2208935'><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #319&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>18</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 909, RDWY, 123153</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #909&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace132349333", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace132349333'><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #909&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>18</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 396, RDWY, 290610</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #396&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 15 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1967747005", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1967747005'><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is located at #396&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c02ab5bd-142d-4012-b3a5-5d47e3215037)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:68)
+	at sun.reflect.GeneratedMethodAccessor6.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>19</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 211, RDWY, 125809, ARV</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is currently in ARV status. Changing to LDD status is not allowed.&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c73e55b7-cb04-48a0-b543-4bb1972e5652)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c73e55b7-cb04-48a0-b543-4bb1972e5652
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:19421/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition(US200057EvaluateStatusTransitions.java:65)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1990158664", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1990158664'><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is currently in ARV status. Changing to LDD status is not allowed.&apos;) to be present in element [[InternetExplorerDriver: internet explorer on WINDOWS (c73e55b7-cb04-48a0-b543-4bb1972e5652)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: c73e55b7-cb04-48a0-b543-4bb1972e5652
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:19421/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition(US200057EvaluateStatusTransitions.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>17</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 626, RDWY, 279351</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1534955703", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1534955703'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: X12, RDWY, 125031</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace22643817", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace22643817'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 324, RDWY, 311223</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 12 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace495446095", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace495446095'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 12 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 851, RDWY, 132696</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1743101595", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1743101595'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 859, RDWY, 261086</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace425612800", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace425612800'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 653, RDWY, 119510</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 19 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace394876068", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace394876068'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 268, RDWY, 251129</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1110485240", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1110485240'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.GeneratedMethodAccessor9.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 248, HMES, 504135</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1737901183", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1737901183'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.GeneratedMethodAccessor9.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 813, RDWY, 121604</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace87369310", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace87369310'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.GeneratedMethodAccessor9.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 309, RDWY, 121389</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1983734924", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1983734924'><pre>org.openqa.selenium.NoSuchWindowException: Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 13 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+*** Element info: {Using=css selector, value=input[name^=&apos;trailerVM.trailer.locationCode_&apos;]}
+Session ID: c02ab5bd-142d-4012-b3a5-5d47e3215037
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, elementScrollBehavior=0, ignoreZoomSetting=false, enablePersistentHover=true, ie.ensureCleanSession=false, browserName=internet explorer, enableElementCacheCleanup=true, unexpectedAlertBehaviour=dismiss, version=11, pageLoadStrategy=normal, ie.usePerProcessProxy=false, cssSelectorsEnabled=true, ignoreProtectedModeSettings=false, requireWindowFocus=false, initialBrowserUrl=http://localhost:3036/, handlesAlerts=true, ie.forceCreateProcessApi=false, nativeEvents=true, browserAttachTimeout=0, ie.browserCommandLineSwitches=, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor19.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at $Proxy10.click(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:438)
+	at SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation(US200058ValidateTrailerAtStatusingLocation.java:74)
+	at sun.reflect.GeneratedMethodAccessor9.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:773)
+	at org.testng.TestRunner.run(TestRunner.java:623)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:39)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:393)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 597, RDWY, 850089</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 569, RDWY, 251340</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 480, RDWY, 126618</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 833, RDWY, 290620</td>
+<td></td>
+<td>10</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 511, RDWY, 127407</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 153, RDWY, 45614</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 642, RDWY, 896980</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@7c605a28</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 324, RDWY, 430710, CL</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 135, RDWY, 123008, ARV</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 309, RDWY, 128425, ARV</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 123, REIM, 147687, ARV</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: XX5, TCNU, 909978, ARV</td>
+<td></td>
+<td>8</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 211, RDWY, 123330, ARV</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 402, RDWY, 91310, CL</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 355, RDWY, 118432, ENR</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 841, RDWY, 129318, CL</td>
+<td></td>
+<td>7</td>
+<td>SitTest.US200057EvaluateStatusTransitions@58ee2549</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 002</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 101</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 102</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 103</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 105</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 106</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 107</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 109</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 110</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 113</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 114</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 115</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 117</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 118</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 119</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 120</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 121</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 124</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 125</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 127</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 128</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 129</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 130</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 131</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 133</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 134</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 136</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 137</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 139</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 141</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 144</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 146</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 147</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 148</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 151</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 156</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 157</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 159</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 167</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 170</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 179</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 190</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 194</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 195</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 199</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 204</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 206</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 207</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 208</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 209</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 830, RDWY, 903383</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 621, RDWY, 128228</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 135, RDWY, 251433</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 309, RDWY, 288044</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 511, RDWY, 119716</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 875, RDWY, 129677</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 811, RDWY, 896621</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 431, RDWY, 431104</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 830, RDWY, 430311</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 627, REIM, 123025</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 19880802</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 333333333</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 000000000</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 878787</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 4444444</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 888888888</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 4206</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 830092</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 98354</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 252605</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 307400</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 99134</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 915642</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 140203</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 646119</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 896231</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 100</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 104</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 108</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 111</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 112</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 116</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 122</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 123</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 126</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 132</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 135</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 138</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 140</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 143</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 145</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 149</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 150</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 152</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 153</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 154</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 155</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 158</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 165</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 172</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 177</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 178</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 180</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 183</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 184</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 186</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 187</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 188</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 191</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 198</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 201</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 202</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 203</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 205</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 211</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 213</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 216</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 218</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 220</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 223</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 230</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 232</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 237</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 243</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 244</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 245</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@19bf37e3</td></tr>
+</table><p>
+</body>
+</html>

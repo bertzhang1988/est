@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [testng code]" parallel="tests">
+  <parameter name="status" value="uad"/>
+  <parameter name="browser" value="chrome"/>
+  <test name="test MTY(failed)" parallel="tests">
+    <parameter name="status" value="mty"/>
+    <classes>
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusLocation"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+    </classes>
+  </test> <!-- test MTY(failed) -->
+</suite> <!-- Failed suite [testng code] -->

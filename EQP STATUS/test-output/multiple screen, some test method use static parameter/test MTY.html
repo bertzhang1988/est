@@ -1,0 +1,902 @@
+<html>
+<head>
+<title>TestNG:  test MTY</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>test MTY</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>155/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Apr 06 21:04:12 CDT 2016</td>
+</tr>
+<tr><td>Total time:</td><td>318 seconds (318664 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 303, RDWY, 131873, ENR</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is currently in ENR status. Changing to MTY status is not allowed.&apos;) to be present in element [[ChromeDriver: chrome on XP (99045b83ea000876e3039995ec6ade91)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.0.17&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: 99045b83ea000876e3039995ec6ade91
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir207676_1304}, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=49.0.2623.110, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition(US200057EvaluateStatusTransitions.java:65)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 10 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1716711701", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1716711701'><pre>org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;This trailer is currently in ENR status. Changing to MTY status is not allowed.&apos;) to be present in element [[ChromeDriver: chrome on XP (99045b83ea000876e3039995ec6ade91)] -&gt; xpath: html/body/div[1]/div]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.0.17&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: 99045b83ea000876e3039995ec6ade91
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir207676_1304}, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=49.0.2623.110, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition(US200057EvaluateStatusTransitions.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:124)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>15</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 525, RDWY, 561113</td>
+<td></td>
+<td>13</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 104, RDWY, 200918</td>
+<td></td>
+<td>12</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 830, RDWY, 126982</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 740, RDWY, 202216</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 402, RDWY, 559322</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 309, RDWY, 842547</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 894, RDWY, 261201</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 244, RDWY, 121130</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 152, RDWY, 132567</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyInvalidStatusLocation()'><b>VerifyInvalidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 375, RDWY, 130541</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 531, RDWY, 125244, ENR</td>
+<td></td>
+<td>12</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 431, RDWY, 133266, MTY</td>
+<td></td>
+<td>13</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 644, RDWY, 290096, ENR</td>
+<td></td>
+<td>6</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 324, RDWY, 128002, ENR</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 617, RDWY, 117683, ENR</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 857, RDWY, 124185, ENR</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 205, RDWY, 117187, ENR</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 211, RDWY, 278330, ENR</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200057EvaluateStatusTransitions.VerifyInvalidStatusTransition()'><b>VerifyInvalidStatusTransition</b><br>Test class: SitTest.US200057EvaluateStatusTransitions<br>Parameters: 158, RDWY, 211142, MTY</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200057EvaluateStatusTransitions@3866ee93</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 002</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 101</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 102</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 103</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 105</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 106</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 107</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 109</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 110</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 113</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 114</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 115</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 117</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 118</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 119</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 120</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 121</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 124</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 125</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 127</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 128</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 129</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 130</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 131</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 133</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 134</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 136</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 137</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 139</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 141</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 144</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 146</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 147</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 148</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 151</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 156</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 157</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 159</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 167</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 170</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 179</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 190</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 194</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 195</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 199</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 204</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 206</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 207</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 208</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyInvalidTerminal()'><b>VerifyInvalidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 209</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 521, RDWY, 129298</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 218, RDWY, 430837</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 123, RDWY, 211237</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 309, RDWY, 117309</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 421, RDWY, 291063</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 272, RDWY, 277908</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 841, RDWY, 126836</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 165, RDWY, 830860</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 123, RDWY, 125074</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyMaintenanceTrailer()'><b>VerifyMaintenanceTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 135, RDWY, 820279</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 19880802</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 333333333</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 000000000</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 878787</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 4444444</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyNotExistTrailer()'><b>VerifyNotExistTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 888888888</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 8159</td>
+<td></td>
+<td>1</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 145933</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 135389</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 43521</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 346</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 492512</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 647689</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 978061</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 546309</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyRetiredTrailer()'><b>VerifyRetiredTrailer</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 264114</td>
+<td></td>
+<td>0</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 309, RDWY, 119308</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 135, PENS, 612418</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 899, RDWY, 119433</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 309, RDWY, 430415</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 471, RDWY, 128231</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 153, RDWY, 129827</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 423, RDWY, 841357</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 875, EMHU, 261226</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 740, RDWY, 133647</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200058ValidateTrailerAtStatusingLocation.VerifyValidStatusLocation()'><b>VerifyValidStatusLocation</b><br>Test class: SitTest.US200058ValidateTrailerAtStatusingLocation<br>Parameters: 402, T402, 55627</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200058ValidateTrailerAtStatusingLocation@6db911d2</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 100</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 104</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 108</td>
+<td></td>
+<td>5</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 111</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 112</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 116</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 122</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 123</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 126</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 132</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 135</td>
+<td></td>
+<td>4</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 138</td>
+<td></td>
+<td>3</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 140</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 143</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 145</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 149</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 150</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 152</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 153</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 154</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 155</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 158</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 165</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 172</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 177</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 178</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 180</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 183</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 184</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 186</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 187</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 188</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 191</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 198</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 201</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 202</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 203</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 205</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 211</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 213</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 216</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 218</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 220</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 223</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 230</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 232</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 237</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 243</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 244</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+<tr>
+<td title='SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal.VerifyValidTerminal()'><b>VerifyValidTerminal</b><br>Test class: SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal<br>Parameters: 245</td>
+<td></td>
+<td>2</td>
+<td>SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal@11412a45</td></tr>
+</table><p>
+</body>
+</html>

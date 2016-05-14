@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [TestSuite]" parallel="tests">
+  <parameter name="status" value="bor"/>
+  <parameter name="browser" value="IE"/>
+  <test name="IETest(failed)" parallel="tests">
+    <parameter name="status" value="bor"/>
+    <parameter name="browser" value="IE"/>
+    <classes>
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusLocation"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="VerifyRetiredTrailer"/>
+          <include name="TearDown"/>
+          <include name="VerifyValidTerminal"/>
+          <include name="VerifyMaintenanceTrailer"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyInvalidTerminal"/>
+          <include name="VerifyNotExistTrailer"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusTransition"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+    </classes>
+  </test> <!-- IETest(failed) -->
+  <test name="ChromeTest(failed)" parallel="tests">
+    <parameter name="status" value="bor"/>
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusLocation"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="TearDown"/>
+          <include name="VerifyValidTerminal" invocation-numbers="0 3"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusTransition"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+    </classes>
+  </test> <!-- ChromeTest(failed) -->
+</suite> <!-- Failed suite [TestSuite] -->

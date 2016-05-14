@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="single screen, two browser" thread-count="2"  parallel="tests" >
+  <test name="a">
+  <parameter name="browser" value="a"/>
+    <classes>
+	   <class name="trial.trial10"></class>
+	   
+
+    </classes>
+  </test>
+  
+  <test name="b">
+  <parameter name="browser" value="b" />
+    <classes>  
+	   <class name="trial.trial10"></class>
+	   
+	    
+    </classes>
+  </test>
+ </suite>
+

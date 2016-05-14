@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [two screen, two browser]" parallel="tests">
+  <parameter name="browser" value="ie"/>
+  <test name="IETest(failed)" parallel="tests">
+    <parameter name="browser" value="ie"/>
+    <classes>
+      <class name="CPUtesting.LoadToEnrScreenTesting">
+        <methods>
+          <include name="VerifyBatchProForFoodTrailer" invocation-numbers="0"/>
+          <include name="VerifyValidTerminal" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"/>
+          <include name="VerifyBatchProForPoisonTrailer" invocation-numbers="0"/>
+          <include name="AddMultipleProsInSingleBatch" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
+          <include name="Close"/>
+          <include name="Close"/>
+          <include name="CheckShipmentAlreadyLoadedOnTrailer" invocation-numbers="0 1 2 3 7 8 9 10 11 12 13 17 18 19"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyInvalidTerminal" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"/>
+          <include name="VerifyMasterRevenueVlidation" invocation-numbers="0 1 2 3 5 6 7 9 10 11 12 13 14 16 18"/>
+          <include name="ProDigitCheck" invocation-numbers="0 1 2 3 4 5 6 8 9 10 11 12 13 14 16 17 18 19"/>
+        </methods>
+      </class> <!-- CPUtesting.LoadToEnrScreenTesting -->
+    </classes>
+  </test> <!-- IETest(failed) -->
+  <test name="ChromeTest(failed)" parallel="tests">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="CPUtesting.LoadToEnrScreenTesting">
+        <methods>
+          <include name="VerifyBatchProForFoodTrailer" invocation-numbers="0"/>
+          <include name="VerifyValidTerminal" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"/>
+          <include name="VerifyBatchProForPoisonTrailer" invocation-numbers="0"/>
+          <include name="AddMultipleProsInSingleBatch" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
+          <include name="Close"/>
+          <include name="Close"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyInvalidTerminal" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"/>
+          <include name="VerifyMasterRevenueVlidation" invocation-numbers="12 13 14 15 16 17 18 19"/>
+        </methods>
+      </class> <!-- CPUtesting.LoadToEnrScreenTesting -->
+    </classes>
+  </test> <!-- ChromeTest(failed) -->
+</suite> <!-- Failed suite [two screen, two browser] -->

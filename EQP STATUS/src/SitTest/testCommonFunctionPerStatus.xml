@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="multiple screen, some test method use static parameter" thread-count="4"  parallel="classes" >
+<parameter name="browser" value="chrome" />
+  <test name="test LDD">
+   <parameter name="status" value="ldd"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>    
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+	   <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
+      </classes>
+   </test>
+</suite>
+

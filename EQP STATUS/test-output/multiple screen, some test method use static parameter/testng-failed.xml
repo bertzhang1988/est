@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="4" guice-stage="DEVELOPMENT" name="Failed suite [multiple screen, some test method use static parameter]" parallel="classes">
+  <parameter name="status" value="cpu"/>
+  <parameter name="browser" value="chrome"/>
+  <test name="test MTY(failed)" parallel="classes">
+    <parameter name="status" value="mty"/>
+    <classes>
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200068AndUS445ValidateDestinationFacilityValid -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusTransition" invocation-numbers="4"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+    </classes>
+  </test> <!-- test MTY(failed) -->
+  <test name="test BOR(failed)" parallel="classes">
+    <parameter name="status" value="bor"/>
+    <classes>
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="VerifyMaintenanceTrailer" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200068AndUS445ValidateDestinationFacilityValid -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+    </classes>
+  </test> <!-- test BOR(failed) -->
+  <test name="test LDD(failed)" parallel="classes">
+    <parameter name="status" value="ldd"/>
+    <classes>
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="VerifyRetiredTrailer" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="VerifyMaintenanceTrailer" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyNotExistTrailer" invocation-numbers="1 2 3 4 5"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid">
+        <methods>
+          <include name="VerifyInvalidDestination" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyValidDestination"/>
+        </methods>
+      </class> <!-- SitTest.US200068AndUS445ValidateDestinationFacilityValid -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusTransition" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyInvalidStatusLocation" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+    </classes>
+  </test> <!-- test LDD(failed) -->
+  <test name="test LDG(failed)" parallel="classes">
+    <parameter name="status" value="ldg"/>
+    <classes>
+      <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
+      <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="VerifyValidDestination"/>
+        </methods>
+      </class> <!-- SitTest.US200068AndUS445ValidateDestinationFacilityValid -->
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+      <class name="SitTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- SitTest.US200058ValidateTrailerAtStatusingLocation -->
+    </classes>
+  </test> <!-- test LDG(failed) -->
+</suite> <!-- Failed suite [multiple screen, some test method use static parameter] -->

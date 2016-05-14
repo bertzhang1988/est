@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ldd testing" parallel="false" verbose="2">
+ <test name="test ldd">
+ <parameter name="browser" value="ie"/>
+    <classes>
+	   <class name="LDDscreen.LDDTesting"></class>
+	   <class name="LDDscreen.US200091SmartEnterLDD"></class>
+	   <class name="LDDscreen.US607PromptHeadloadOnDestinationChangeLDD"></class>
+	   <class name="LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD"></class>
+    </classes>
+  </test>
+ </suite>
+

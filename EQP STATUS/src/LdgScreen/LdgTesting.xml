@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ldg testing" parallel="false" verbose="2" >
+ <test name="test ldg" >
+ <parameter name="browser" value="chrome"/>
+   <groups>
+    <run>
+      <exclude name="ldg uc"/>
+    </run>
+  </groups>
+    <classes>
+	   <class name="LdgScreen.US458CheckShipmentAlreadyLoadedOnTrailer"></class>
+	   <class name="LdgScreen.US452RemoveShipment"></class>
+	   <class name="LdgScreen.US439PreventProFromLoadingAlert"></class>
+	   <class name="LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter"></class>
+	   <class name="LdgScreen.US200006FoodAndPoisWarning"></class>
+	   <class name="LdgScreen.US200004ProNumberDigitCheck"></class> 
+	   <class name="LdgScreen.US200091SmartEnterLDG"></class>
+	   <class name="LdgScreen.US607PromptHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.LDGTesting"></class> 	   
+	   <class name="LdgScreen.US2000119NewSubmitButtonLDG"></class> 
+	   <class name="LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter"></class> 	 
+	   <class name="LdgScreen.US1215QuickClose"></class> 
+    </classes>
+  </test>
+ </suite>
+

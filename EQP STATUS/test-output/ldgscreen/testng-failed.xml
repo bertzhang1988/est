@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [ldgscreen]" parallel="classes">
+  <parameter name="browser" value="Chrome"/>
+  <test name="VerifyLdgScreen(failed)" parallel="classes">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="Demo.VerifyLdgScreen">
+        <methods>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- Demo.VerifyLdgScreen -->
+      <class name="Demo.ProNumberDigitCheck">
+        <methods>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+          <include name="VerifyProDigitCheck" invocation-numbers="10"/>
+        </methods>
+      </class> <!-- Demo.ProNumberDigitCheck -->
+    </classes>
+  </test> <!-- VerifyLdgScreen(failed) -->
+</suite> <!-- Failed suite [ldgscreen] -->

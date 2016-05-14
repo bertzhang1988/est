@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LDG TESTING" thread-count="2"  parallel="tests" >
+  
+  <test name="ChromeTest">
+  <parameter name="browser" value="Chrome"/>
+    <classes>
+	   <class name="LdgScreen.LDGTesting"></class>
+	   <class name="LdgScreen.US607PromptHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.US200091SmartEnterLDG"></class>
+    </classes>
+  </test>
+  
+  <test name="IETest">
+  <parameter name="browser" value="IE" />
+    <classes>  
+	   <class name="LdgScreen.LDGTesting"></class>
+	   <class name="LdgScreen.US607PromptHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG"></class>
+	   <class name="LdgScreen.US200091SmartEnterLDG"></class>	    
+    </classes>
+  </test>
+ </suite>
+

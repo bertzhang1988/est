@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [3 screen]" parallel="classes">
+  <parameter name="browser" value="chrome"/>
+  <test name="ThreeScreen(failed)" parallel="classes">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="MTYtesting.MTYScreenTesting">
+        <methods>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="twoBlOBRDockFromONH" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- MTYtesting.MTYScreenTesting -->
+    </classes>
+  </test> <!-- ThreeScreen(failed) -->
+</suite> <!-- Failed suite [3 screen] -->

@@ -1,0 +1,94 @@
+package SitTest;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.Date;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
+import org.testng.asserts.SoftAssert;
+
+import Data.DataForUS200068AndUS445;
+import LdgScreen.DataForUSLDGLifeTest;
+import Page.CommonFunction;
+import Page.EqpStatusPageS;
+
+public class US200068AndUS445ValidateDestinationFacilityValid {
+	 private WebDriver driver;
+	 private EqpStatusPageS page;
+	 private Actions builder;
+
+@BeforeClass
+@Parameters({"browser","status"})
+public void SetUp(@Optional("chrome")String browser, @Optional("ldd")String status) throws AWTException, InterruptedException { 
+	  if (browser.equalsIgnoreCase("chrome")){
+	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
+	  driver = new ChromeDriver();            
+	  }else if(browser.equalsIgnoreCase("ie")){
+	  System.setProperty("webdriver.ie.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium\\ie32\\IEDriverServer.exe");
+	  driver=new InternetExplorerDriver();
+	  }
+	 
+	  //driver=new FirefoxDriver();
+	   page=new EqpStatusPageS(driver);
+	   driver.get(page.sit1);
+	  // driver.manage().window().maximize();
+	   page.SetStatus(status);
+	   builder = new Actions(driver);
+
+	  
+}
+
+@Test(priority=1,dataProvider = "2000.682",dataProviderClass=DataForUS200068AndUS445.class)
+public void EnterTrailerInLdgNoShipments(String terminalcd,String SCAC,String TrailerNB) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+	 page.SetLocation(terminalcd);
+	 page.EnterTrailer(SCAC,TrailerNB);}
+
+
+
+  @Test(priority=3,dataProvider="2000.68",dataProviderClass=DataForUS200068AndUS445.class)
+  public void VerifyInvalidDestination(String Destination) throws AWTException{
+	  page.DestinationField.clear();
+	  page.DestinationField.sendKeys(Destination);
+	 // page.Title.click();
+	  builder.sendKeys(Keys.TAB).build().perform();
+	  // r.keyPress(KeyEvent.VK_TAB);
+	 // r.keyRelease(KeyEvent.VK_TAB);
+  	 (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Invalid Destination, please enter valid Destination."));
+  }
+
+  @Test(priority=2,dataProvider="2000.68",dataProviderClass=DataForUS200068AndUS445.class)
+  public void VerifyValidDestination(String Destination) throws AWTException{
+	  page.DestinationField.clear();
+	  page.DestinationField.sendKeys(Destination);
+	 // page.Title.click();
+	  builder.sendKeys(Keys.TAB).build().perform();
+	  // r.keyPress(KeyEvent.VK_TAB);
+	  //r.keyRelease(KeyEvent.VK_TAB);
+	  (new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(text(), 'Invalid Destination, please enter valid Destination.')]")));
+  	 Assert.assertFalse(page.CheckErrorAndWarningMessageDisplay("Invalid Destination, please enter valid Destination."));
+  }
+  
+  @AfterClass
+  public void TearDown() {
+ 	driver.close();
+	 
+ 	  }
+
+}
