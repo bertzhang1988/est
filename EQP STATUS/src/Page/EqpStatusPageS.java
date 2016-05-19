@@ -606,15 +606,18 @@ public void SetSealQC(String Seal) throws InterruptedException{
 		 String CurrentProH=this.addHyphenToPro(Pronumber);
 		 this.AddProField.sendKeys(Pro);
 		 try{
-		 (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(this.AddProForm, CurrentProH));
+		 (new WebDriverWait(driver, 3)).until(ExpectedConditions.textToBePresentInElement(this.AddProForm, CurrentProH));
 		 }catch(Exception e){
 		  this.AddProField.click(); 
 		  builder.sendKeys(this.AddProField,Keys.TAB).build().perform();
 		 }
 		 
 		 Thread.sleep(500); 
-		 int NEW1= this.AddProForm.findElements(By.xpath("div")).size();
-	    try{ Assert.assertEquals(this.AddProForm.findElement(By.xpath("div["+NEW1+"]/div/div[2]/div")).getText(),CurrentProH); 
+		int NEW1= this.AddProForm.findElements(By.xpath("div")).size();
+	    if(	NEW1>25) 
+	    {JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(false);",this.AddProForm.findElement(By.xpath("div["+NEW1+"]/div/div[2]/div")));}
+		try{ Assert.assertEquals(this.AddProForm.findElement(By.xpath("div["+NEW1+"]/div/div[2]/div")).getText(),CurrentProH); 
 	    } catch(Exception e){
 	    System.out.println(Pronumber+" is not kick to the grid");	
 		}

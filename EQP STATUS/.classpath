@@ -55,10 +55,22 @@
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/selenium-2.48.2/libs/xalan-2.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/selenium-2.48.2/libs/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/selenium-2.48.2/libs/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-3.12-beta1-20150228.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-examples-3.12-beta1-20150228.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-3.12-beta1-20150228.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://poi.apache.org/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-examples-3.12-beta1-20150228.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://poi.apache.org/apidocs/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-excelant-3.12-beta1-20150228.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-ooxml-3.12-beta1-20150228.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-ooxml-3.12-beta1-20150228.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://poi.apache.org/apidocs/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-ooxml-schemas-3.12-beta1-20150228.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/poi-scratchpad-3.12-beta1-20150228.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uyr27b0/Desktop/selenium/selenium/poi-3.12-beta1/ooxml-lib/xmlbeans-2.6.0.jar"/>

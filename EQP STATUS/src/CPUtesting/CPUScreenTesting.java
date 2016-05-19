@@ -68,7 +68,7 @@ public class CPUScreenTesting {
 	  }	
   
   @Test(priority=1,dataProvider = "CPUScreen",dataProviderClass=DataForCPUScreenTesting.class)
-  public void SetTrailerToMtyfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+  public void SetTrailerToCPUfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();
 	  page.SetLocation(terminalcd);
 	  page.EnterTrailer(SCAC,TrailerNB); 
@@ -129,7 +129,7 @@ public class CPUScreenTesting {
   }
  
   @Test(priority=2,dataProvider = "CPUScreen",dataProviderClass=DataForCPUScreenTesting.class)
-  public void SmartEneterSetTrailerToMtyfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+  public void SmartEneterSetTrailerToCPUfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();
 	  Actions builder= new Actions(driver);
 	  page.SetLocation(terminalcd);
@@ -160,7 +160,7 @@ public class CPUScreenTesting {
   }
 	
   @Test(priority=3,dataProvider = "CPUScreen",dataProviderClass=DataForCPUScreenTesting.class)
-  public void SetTrailerToMtyNOTfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+  public void SetTrailerToCPUNOTfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();
 	  page.SetLocation(terminalcd);
 	  page.EnterTrailer(SCAC,TrailerNB); 
@@ -221,7 +221,7 @@ public class CPUScreenTesting {
   }
  
   @Test(priority=4,dataProvider = "CPUScreen",dataProviderClass=DataForCPUScreenTesting.class)
-  public void SmartEneterSetTrailerToMtyNOTfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+  public void SmartEneterSetTrailerToCPUNOTfromONH(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();
 	  Actions builder= new Actions(driver);
 	  page.SetLocation(terminalcd);

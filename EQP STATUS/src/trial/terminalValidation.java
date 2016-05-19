@@ -51,7 +51,7 @@ public void SetUp(@Optional("chrome")String browser,@Optional("ldg")String statu
 }
 
 @Test
-public void verifyInTerminal() throws IOException, AWTException, InterruptedException{
+public void verifyInvalidTerminal() throws IOException, AWTException, InterruptedException{
 	File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\trial1.xlsx");
 	FileInputStream inputStream = new FileInputStream(file);
     XSSFWorkbook workbook = new XSSFWorkbook(inputStream);

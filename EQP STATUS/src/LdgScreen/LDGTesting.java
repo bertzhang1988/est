@@ -169,8 +169,6 @@ public class LDGTesting {
 	 SA.assertEquals(page.DateInput.getAttribute("value"), DATE);
 	 SA.assertEquals(page.HourInput.getAttribute("value"),hour);
 	 SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute);
-
-	 
 	 //check pro grid
 	LinkedHashSet<ArrayList<String>> ProInfo=page.GetProList(page.ProListForm);
 	SA.assertEquals(ProInfo,DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");	 
@@ -196,10 +194,9 @@ public class LDGTesting {
 	 SA.assertEquals(NewEqpStatusRecord.get(4), NewCube,"Actual_Capacity_Consumed_PC is wrong");
 	 SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDG","Source_Modify_ID is wrong");
 	 Date TS=CommonFunction.SETtime((Date) NewEqpStatusRecord.get(5));	
-	 SA.assertTrue(Math.abs(TS.getTime()-d.getTime())<120000,"modify_ts is wrong  "+TS+"  "+d);
-	 
+	 SA.assertTrue(Math.abs(TS.getTime()-d.getTime())<120000,"modify_ts is wrong  "+TS+"  "+d);	 
 	 for (int i=6;i<=8;i++){
-	 SA.assertEquals(NewEqpStatusRecord.get(i),OldEqpStatusRecord.get(i),i+"  "+TS+"  "+d);}	
+	 SA.assertEquals(NewEqpStatusRecord.get(i),OldEqpStatusRecord.get(i),i+"  "+NewEqpStatusRecord.get(i)+"  "+OldEqpStatusRecord.get(i));}	
 	 
 	 SA.assertAll();
   }		

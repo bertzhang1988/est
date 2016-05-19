@@ -30,9 +30,9 @@ public static Iterator<Object[]> CreateData(Method m) throws ClassNotFoundExcept
 	Statement stat= conn.createStatement();
 	
 	String query = null;
-	if(m.getName().contains("MtyfromONH")){
+	if(m.getName().contains("CPUfromONH")){
 		query=DataCommon.query25;
-	}if(m.getName().contains("MtyNOTfromONH")){
+	}if(m.getName().contains("CPUNOTfromONH")){
 		query=DataCommon.query26;
 	}
 	

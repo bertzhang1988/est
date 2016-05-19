@@ -40,7 +40,6 @@ public class OFDScreenTesting {
  	  System.setProperty("webdriver.ie.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium\\ie32\\IEDriverServer.exe");
  	  driver=new InternetExplorerDriver();
  	  }
-  //driver=new FirefoxDriver();
    page=new EqpStatusPageS(driver);
    driver.get(page.sit1);
    driver.manage().window().maximize();

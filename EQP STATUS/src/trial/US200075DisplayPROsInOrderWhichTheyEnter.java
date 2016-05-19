@@ -1,4 +1,4 @@
-package LdgScreen;
+package trial;
 
 import java.awt.AWTException;
 import java.sql.SQLException;
@@ -35,7 +35,7 @@ import Page.EqpStatusPageS;
 public class US200075DisplayPROsInOrderWhichTheyEnter {
 	private WebDriver driver;
 	private EqpStatusPageS page;
-  @Test(priority=1,dataProvider = "2000.75",dataProviderClass=DataForUS200075.class, groups = { "ldg uc" })
+ // @Test(priority=1,dataProvider = "2000.75",dataProviderClass=DataForUS200075.class, groups = { "ldg uc" })
   public void AddSinglePro(String terminalcd,String SCAC,String TrailerNB) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 	  SoftAssert SA= new SoftAssert();  
 	  page.SetLocation(terminalcd);	 
@@ -66,7 +66,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
   }
 
   
-
+  
   @Test(priority=2,dataProvider = "2000.75",dataProviderClass=DataForUS200075.class, groups = { "ldg uc" })
   public void AddMultipleProsInSingleBatch(String terminalcd,String SCAC,String TrailerNB) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();  
@@ -117,9 +117,8 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
       SA.assertAll();
   }
   
-  
 
-  @Test(priority=3,dataProvider = "2000.75",dataProviderClass=DataForUS200075.class, groups = { "ldg uc" })
+  //@Test(priority=3,dataProvider = "2000.75",dataProviderClass=DataForUS200075.class, groups = { "ldg uc" })
   public void AddTwoBatchesProsInSameSection(String terminalcd,String SCAC,String TrailerNB) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 	  SoftAssert SA= new SoftAssert();  
 	  page.SetLocation(terminalcd);	 
@@ -177,7 +176,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
   
   @BeforeClass( groups = { "ldg uc" })
   @Parameters({"browser"})
-	 public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException { 
+	 public void SetUp(@Optional("ie")String browser) throws AWTException, InterruptedException { 
 	 	  if (browser.equalsIgnoreCase("chrome")){
 	 	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
 	 	  driver = new ChromeDriver();            
@@ -188,7 +187,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	  //driver=new FirefoxDriver();
 	   page=new EqpStatusPageS(driver);
 	   driver.get(page.sit1);
-	   driver.manage().window().maximize();
+	  // driver.manage().window().maximize();
 	   page.SetStatus("ldg");
   }
 

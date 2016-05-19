@@ -4,9 +4,9 @@
   <test name="ONE METHOD">
  <parameter name="browser" value="chrome"/>
     <classes>
-	 <class name="MTYtesting.MTYScreenTesting">
+	 <class name="LdgScreen.US200091SmartEnterLDG">
 	  <methods>
-        <include name="twoBlOBRDockFromONH" />
+        <include name="TrailerWithoutPROAddPROSetToldg" />
       </methods></class> 	
     </classes>
   </test>

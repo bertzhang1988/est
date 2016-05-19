@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="22719" started-at="2016-05-13T20:27:10Z" finished-at="2016-05-13T20:27:33Z">
+  <suite name="SINGLE TEST" duration-ms="29076" started-at="2016-05-19T20:48:37Z" finished-at="2016-05-19T20:49:06Z">
     <groups>
+      <group name="ldg uc">
+        <method signature="US200091SmartEnterLDG.TrailerWithoutPROAddPROSetToldg(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:1, instance:LdgScreen.US200091SmartEnterLDG@4de3a949]" name="TrailerWithoutPROAddPROSetToldg" class="LdgScreen.US200091SmartEnterLDG"/>
+      </group> <!-- ldg uc -->
     </groups>
-    <test name="Default test" duration-ms="22719" started-at="2016-05-13T20:27:10Z" finished-at="2016-05-13T20:27:33Z">
-      <class name="trial.trytologctrix">
-        <test-method status="PASS" signature="f()[pri:0, instance:trial.trytologctrix@4f36b91b]" name="f" duration-ms="22694" started-at="2016-05-13T15:27:10Z" finished-at="2016-05-13T15:27:33Z">
+    <test name="ONE METHOD" duration-ms="29076" started-at="2016-05-19T20:48:37Z" finished-at="2016-05-19T20:49:06Z">
+      <class name="LdgScreen.US200091SmartEnterLDG">
+        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:LdgScreen.US200091SmartEnterLDG@4de3a949]" name="SetUp" is-config="true" duration-ms="11889" started-at="2016-05-19T15:48:37Z" finished-at="2016-05-19T15:48:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- f -->
-      </class> <!-- trial.trytologctrix -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- SetUp -->
+        <test-method status="PASS" signature="Close()[pri:0, instance:LdgScreen.US200091SmartEnterLDG@4de3a949]" name="Close" is-config="true" duration-ms="1335" started-at="2016-05-19T15:49:04Z" finished-at="2016-05-19T15:49:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Close -->
+      </class> <!-- LdgScreen.US200091SmartEnterLDG -->
+    </test> <!-- ONE METHOD -->
+  </suite> <!-- SINGLE TEST -->
 </testng-results>
