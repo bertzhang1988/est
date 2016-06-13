@@ -64,8 +64,13 @@ public class EqpStatusPageS {
     public WebElement LOADTOENRbutton;
     
     @FindBy(how = How.XPATH, using = ".//*[@id='mainBody']/h3")
-    public WebElement Title;
+    public WebElement TitleOfScreen;
     
+    @FindBy(how = How.LINK_TEXT, using = "FAQ")
+    public WebElement FAQ;
+    
+    @FindBy(how = How.XPATH, using = ".//img[@src='assets/images/yrcf_logo_other.png']")
+    public WebElement YrcLogoIcon;
     
     @FindBy(how = How.XPATH, using = ".//*[@label='Set Status To']/div/div/span")
     public WebElement SetStatusToField;
@@ -74,7 +79,6 @@ public class EqpStatusPageS {
     public WebElement SetStatusToInput;
 
     @FindBy(how = How.XPATH, using = ".//*[@label='Set Status To']/div/ul")
-  
     public WebElement StatusList;
 
     @FindBy(how = How.CSS, using = "input[name^='trailerVM.trailer.locationCode_']")
@@ -338,14 +342,17 @@ public WebElement CityRouteTypeField;
 @FindBy(how = How.CSS, using = "div[label='City Route Type']>div>input")
 public WebElement CityRouteTypeInput;
 
+@FindBy(how= How.CSS, using = "div[label='City Route Type']>div>ul>li")
+public WebElement CityRouteTypeList;
+
 /*INQUIRY SCREEN*/
 //@FindBy(how = How.XPATH, using = ".//input[starts-with(@name,'trailerInquiryVM.terminalNumber')]")
 //@FindBy(how = How.XPATH, using = ".//input[contains(@name,'trailerInquiryVM.terminalNumber')]")
 @FindBy(how = How.CSS, using = "input[name^='trailerInquiryVM.terminalNumber_']")
-public WebElement EQTerminalInput;
+public WebElement IQTerminalInput;
 
 @FindBy(how = How.XPATH, using = ".//div[starts-with(@class,'trailer-inquiry-content')]//div[@class='panel-group']")
-public WebElement EQStatusList; 
+public WebElement IQStatusList; 
 
 
 @FindBy(how = How.CSS, using = "button[label='Filters']")
@@ -401,7 +408,7 @@ public void AddComment(String Comment){
 public void SetInquiryScreen(){
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.TrailerByTerminalButton));	
 this.TrailerByTerminalButton.click();
-(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.EQTerminalInput));	
+(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.IQTerminalInput));	
 }
 
 public void SetStatus(String status) throws InterruptedException{
@@ -415,7 +422,7 @@ ChangeStatusTo(status);
 public void SetToLoadEnrScreen(){
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.LOADTOENRbutton));	
 this.LOADTOENRbutton.click();
-(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(this.Title, "Load To ENR"));	
+(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(this.TitleOfScreen, "Load To ENR"));	
 }
 
 public void ChangeStatusTo(String status) throws InterruptedException{
@@ -533,6 +540,32 @@ public void SetCityRoute(String CityRoute) throws InterruptedException{
 	builder.sendKeys(Keys.TAB).build().perform();		 
 	 }
 
+public void SetCityRouteType(String CityRouteType){
+    Actions builder = new Actions(driver);
+	this.CityRouteTypeField.click();
+    (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.CityRouteTypeList));
+	String CityRouteTypeName = null;
+
+	if (CityRouteType.equalsIgnoreCase("appt")){
+		CityRouteTypeName="APPT";
+		}
+		else if(CityRouteType.equalsIgnoreCase("CARTAGE")){
+		CityRouteTypeName="CARTAGE";
+		}
+		else if(CityRouteType.equalsIgnoreCase("INTERLINE")){
+		CityRouteTypeName="INTERLINE";
+		}
+		else if(CityRouteType.equalsIgnoreCase("PEDDLE")){
+		CityRouteTypeName="PEDDLE";
+		}
+		else if(CityRouteType.equalsIgnoreCase("TRAP")){
+		CityRouteTypeName="TRAP";
+		}
+
+	this.CityRouteTypeList.findElement(By.linkText(CityRouteTypeName)).click();
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.CityRouteTypeField));
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(this.CityRouteTypeList,CityRouteTypeName));
+} 
 
 public void SetCube(String Cube) throws InterruptedException{
 	Actions builder = new Actions(driver);
@@ -732,7 +765,7 @@ public void SetHour1(String Hour){
 	this.HourInput.clear();
 	String firstKey=Hour.substring(0,1);
     String secondKey= Hour.substring(1, 2);
-	if(driver instanceof InternetExplorerDriver ) {
+	if(driver instanceof InternetExplorerDriver ) {	
 		this.HourInput.sendKeys(firstKey);
 		this.HourInput.sendKeys(secondKey);
 	}else

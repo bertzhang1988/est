@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [multiple screen, some test method use static parameter]" parallel="tests">
+  <parameter name="status" value="CL"/>
+  <parameter name="browser" value="chrome"/>
+  <test name="test ofd(failed)" parallel="tests">
+    <parameter name="status" value="OFD"/>
+    <classes>
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyInvalidStatusTransition"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+    </classes>
+  </test> <!-- test ofd(failed) -->
+  <test name="test CL(failed)" parallel="tests">
+    <parameter name="status" value="CL"/>
+    <classes>
+      <class name="SitTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+          <include name="VerifyInvalidStatusTransition"/>
+        </methods>
+      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+    </classes>
+  </test> <!-- test CL(failed) -->
+</suite> <!-- Failed suite [multiple screen, some test method use static parameter] -->

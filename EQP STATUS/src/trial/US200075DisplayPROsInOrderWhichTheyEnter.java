@@ -75,7 +75,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	  ArrayList<String> PRO=DataCommon.GetProNotInAnyTrailer();
 	  page.RemoveProButton.click();
 	  ArrayList<String> Addpro= new  ArrayList<String>();
-	  for(int i=0;i<3;i++){  
+	  for(int i=0;i<10;i++){  
 	  String CurrentPro=PRO.get(i);
 	  page.EnterPro(CurrentPro); 
 	  Addpro.add(CurrentPro);
@@ -86,6 +86,8 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	  ArrayList<Object> OldEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB); 		 
 	  page.SubmitLDGButton.click();	 
 	  Date d=CommonFunction.gettime("UTC");
+	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded"));	
+	  Date d2=CommonFunction.gettime("UTC");
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
@@ -114,6 +116,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	  // check eqp
 	  ArrayList<Object> NewEqp= DataCommon.CheckEquipment(SCAC, TrailerNB);
 	  SA.assertEquals(NewEqp.get(0), page.M_ID," eqp Mainframe_User_ID is wrong");
+	  System.out.println((d2.getTime()-d.getTime())/1000);
       SA.assertAll();
   }
   
@@ -176,7 +179,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
   
   @BeforeClass( groups = { "ldg uc" })
   @Parameters({"browser"})
-	 public void SetUp(@Optional("ie")String browser) throws AWTException, InterruptedException { 
+	 public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException { 
 	 	  if (browser.equalsIgnoreCase("chrome")){
 	 	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
 	 	  driver = new ChromeDriver();            

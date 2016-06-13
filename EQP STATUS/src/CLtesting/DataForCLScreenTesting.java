@@ -55,8 +55,8 @@ public static Iterator<Object[]> CreateData(Method m) throws ClassNotFoundExcept
 String query=null;
 
 	
-	if(m.getName().contains("threeBlOBR")){
-		query=DataCommon.query42;
+	if(m.getName().contains("ThreeBlOBR")){
+		query=DataCommon.query43;
 	}else if(m.getName().contains("clScreen")){
 		query=query1;
 		

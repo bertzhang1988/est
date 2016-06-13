@@ -53,7 +53,7 @@ public void SetTrailerToLDGWithProLeaveHeadLoadCubeAndDestination(String termina
 	page.EnterTrailer(SCAC,TrailerNB);
 	Date CurrentTime=CommonFunction.gettime("UTC");
 	Date LocalTime = null;
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	//check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
 		 if(MReqpst.before(CurrentTime)){

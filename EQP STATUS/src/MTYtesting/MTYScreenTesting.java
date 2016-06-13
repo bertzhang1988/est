@@ -70,7 +70,7 @@ public class MTYScreenTesting {
  	SoftAssert SA= new SoftAssert();
  	page.SetLocation(terminalcd);
  	page.EnterTrailer(SCAC,TrailerNB);
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
  	// check pre populate
  	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," mty two button lobr terminal is wrong");
 	SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"MTY two button lobr trailer input is wrong");
@@ -85,7 +85,7 @@ public class MTYScreenTesting {
 	page.HandleLOBRproAll("Dock");
 	Date d=CommonFunction.gettime("UTC");
 	
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Empty"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
  	 // check eqps
 	ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -128,7 +128,7 @@ public class MTYScreenTesting {
  	SoftAssert SA= new SoftAssert();
  	page.SetLocation(terminalcd);
  	page.EnterTrailer(SCAC,TrailerNB);
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
  	// check pre populate
  	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," mty two button lobr terminal is wrong");
 	SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"MTY two button lobr trailer input is wrong");
@@ -143,7 +143,7 @@ public class MTYScreenTesting {
 	ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 	page.HandleLOBRproAll("allshort");
 	Date d=CommonFunction.gettime("UTC");
-	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Empty"));
+	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 	 // check eqps
     ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -331,7 +331,7 @@ public class MTYScreenTesting {
  	SoftAssert SA= new SoftAssert();
  	page.SetLocation(terminalcd);
  	page.EnterTrailer(SCAC,TrailerNB);
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
  	// check pre populate
  	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," mty two button lobr terminal is wrong");
 	SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"MTY two button lobr trailer input is wrong");
@@ -346,7 +346,7 @@ public class MTYScreenTesting {
 	page.HandleLOBRproAll("Dock");
 	Date d=CommonFunction.gettime("UTC");
 	
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Empty"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
  	 // check eqps
 	ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -389,7 +389,7 @@ public class MTYScreenTesting {
  	SoftAssert SA= new SoftAssert();
  	page.SetLocation(terminalcd);
  	page.EnterTrailer(SCAC,TrailerNB);
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
  	// check pre populate
  	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," mty two button lobr terminal is wrong");
 	SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"MTY two button lobr trailer input is wrong");
@@ -404,7 +404,7 @@ public class MTYScreenTesting {
 	ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 	page.HandleLOBRproAll("allshort");
 	Date d=CommonFunction.gettime("UTC");
-	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Empty"));
+	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 	 // check eqps
     ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);

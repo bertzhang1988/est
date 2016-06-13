@@ -48,7 +48,7 @@ public static Iterator<Object[]> CreateData(Method m) throws ClassNotFoundExcept
 	     String City_Route_Type_NM=rs.getString("City_Route_Type_NM");
 	     Timestamp Planned_Delivery_DT=rs.getTimestamp("Planned_Delivery_DT");
 	     Timestamp Equipment_Status_TS=rs.getTimestamp("Equipment_Status_TS");
-	     if(Status.equalsIgnoreCase("OFD")){
+	     if(!Status.equalsIgnoreCase("CLTG")){
 	    	 City_Route_NM="";
 	    	 City_Route_Type_NM="";
 	    	 Planned_Delivery_DT=null;

@@ -57,7 +57,7 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 public void SetTrailerToLDGWithPro(String terminalcd, String SCAC, String TrailerNB,Date MReqpst) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 }
 
@@ -81,7 +81,7 @@ public void SetTrailerToLDGWithProCheckHeadloadCube(String terminalcd, String SC
 	page.SetStatus("ldg");
 	page.SetLocation(terminalcd);	
 	page.EnterTrailer(SCAC,TrailerNB);
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	String[] Cube={"00011","1 1","00","   1","33","88","100","1030","7000","abc"};
 	 for(int i=0;i<Cube.length;i++){
@@ -105,7 +105,7 @@ public void SetTrailerToLDGWithProLeaveHeadLoadCubeAndDestination(String termina
 	page.EnterTrailer(SCAC,TrailerNB);
 	Date CurrentTime=CommonFunction.gettime("UTC");
 	Date LocalTime = null;
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	//check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
 		 if(MReqpst.before(CurrentTime)){

@@ -45,12 +45,12 @@ public void SetUp(@Optional("ie")String browser) throws AWTException, Interrupte
 	}
   @Test
   public void f() throws InterruptedException, IOException {
-	  page.EQTerminalInput.clear();
-	  page.EQTerminalInput.sendKeys("326");
+	  page.IQTerminalInput.clear();
+	  page.IQTerminalInput.sendKeys("326");
 	  page.SearchButton.click(); 
 	  Thread.sleep(500);
 	  (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));	
-	  (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
+	  (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
 	  driver.findElement(By.xpath(".//button[@label='Print']")).click();
 	  Thread.sleep(2500);
 	  Runtime.getRuntime().exec("C:\\Users\\uyr27b0\\Desktop\\selenium\\AUTOIT CODE\\CLICK PRINT IE.exe");       

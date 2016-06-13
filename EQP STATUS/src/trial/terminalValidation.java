@@ -50,8 +50,27 @@ public void SetUp(@Optional("chrome")String browser,@Optional("ldg")String statu
 	   builder = new Actions(driver);
 }
 
-@Test
+//@Test
 public void verifyInvalidTerminal() throws IOException, AWTException, InterruptedException{
+	File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\trial1.xlsx");
+	FileInputStream inputStream = new FileInputStream(file);
+    XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+    XSSFSheet sheet1 = workbook.getSheetAt(0);
+    int rownumber=sheet1.getLastRowNum();
+    for (int i=1;i<rownumber;i++)
+    {
+    Iterator<Cell> cellIterator = sheet1.getRow(i).cellIterator();
+    while(cellIterator.hasNext()){
+    Cell cell= cellIterator.next();
+    String terminal =cell.getStringCellValue();
+    page.SetLocation(terminal);}
+    }
+    workbook.close();
+
+}
+
+@Test
+public void verifyInvalidTerminal2() throws IOException, AWTException, InterruptedException{
 	File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\trial1.xlsx");
 	FileInputStream inputStream = new FileInputStream(file);
     XSSFWorkbook workbook = new XSSFWorkbook(inputStream);

@@ -217,7 +217,7 @@ public void MTYTrailerHasPRO(String terminalcd, String SCAC, String TrailerNB,St
 SoftAssert SAssert= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);	
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -243,7 +243,7 @@ page.HandleLOBRproAll(handleLobrPro[ran]);
 (new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 page.LobrSubmitButton.click();
 Date d=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //check screen
 SAssert.assertEquals(page.DestinationField.getAttribute("value"),destination);
@@ -268,7 +268,7 @@ public void SPTTrailerHasPRO(String terminalcd, String SCAC, String TrailerNB,St
 SoftAssert SAssert= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);	
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -293,7 +293,7 @@ page.HandleLOBRproAll(handleLobrPro[ran]);
 (new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 page.LobrSubmitButton.click();
 Date d=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //check screen
 SAssert.assertEquals(page.DestinationField.getAttribute("value"),destination);
@@ -318,7 +318,7 @@ public void OFDTrailerHasPRO(String terminalcd, String SCAC, String TrailerNB,St
 SoftAssert SAssert= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);	
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -345,7 +345,7 @@ page.HandleLOBRproAll(handleLobrPro[ran]);
 (new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 page.LobrSubmitButton.click();
 Date d=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //check screen
 SAssert.assertEquals(page.DestinationField.getAttribute("value"),destination);
@@ -370,7 +370,7 @@ SoftAssert SAssert= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);	
 ArrayList<Object> OldEqpStatusRecord= DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -385,7 +385,7 @@ if(desti.equalsIgnoreCase("___")||desti.equalsIgnoreCase("")){
 }
 page.LobrCancelButton.click();
 
-(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //check screen
 SAssert.assertEquals(page.TerminalField.getAttribute("value"),terminalcd,"terminal display wrong");
@@ -404,7 +404,7 @@ public void SPTTrailerHasPROCancel(String terminalcd, String SCAC, String Traile
 	page.SetLocation(terminalcd);	
 	page.EnterTrailer(SCAC,TrailerNB);	
 	ArrayList<Object> OldEqpStatusRecord= DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -419,7 +419,7 @@ public void SPTTrailerHasPROCancel(String terminalcd, String SCAC, String Traile
 	}
 	page.LobrCancelButton.click();
 
-	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	//check screen
 	SAssert.assertEquals(page.TerminalField.getAttribute("value"),terminalcd,"terminal display wrong");
@@ -439,7 +439,7 @@ public void OFDTrailerHasPROCancel(String terminalcd, String SCAC, String Traile
 	page.SetLocation(terminalcd);	
 	page.EnterTrailer(SCAC,TrailerNB);	
 	ArrayList<Object> OldEqpStatusRecord= DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	SAssert.assertTrue(page.ErrorAndWarningField.getText().contains("Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -454,7 +454,7 @@ public void OFDTrailerHasPROCancel(String terminalcd, String SCAC, String Traile
 	}
 	page.LobrCancelButton.click();
 
-	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	//check screen
 	SAssert.assertEquals(page.TerminalField.getAttribute("value"),terminalcd,"terminal display wrong");

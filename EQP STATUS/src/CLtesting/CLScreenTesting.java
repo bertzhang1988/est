@@ -59,6 +59,18 @@ public class CLScreenTesting {
    page.SetStatus("cl");
 	  }
 
+ @Test(priority=1,dataProvider = "cl with pro",dataProviderClass=DataForCLScreenTesting.class,description="not in cl with pro set to cl,leave on")
+ public void ThreeBlOBRLeaveOn(String terminalcd,String SCAC,String TrailerNB) throws AWTException, InterruptedException{
+	 SoftAssert SA= new SoftAssert();
+	 page.SetLocation(terminalcd);
+	 page.EnterTrailer(SCAC,TrailerNB); 
+	 (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review - 3 Button"));
+	 
+	 
+ }
+ 
+ 
+ 
   @Test(priority=1,dataProvider = "cl with pro",dataProviderClass=DataForCLScreenTesting.class)
  public void CLScreen(String terminalcd,String SCAC,String TrailerNB,String Desti,String Cube,String AmountPro,String AmountWeight, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 	 SoftAssert SA= new SoftAssert();
@@ -93,13 +105,13 @@ public class CLScreenTesting {
  	 SoftAssert SA= new SoftAssert();
  	 page.SetLocation(terminalcd);
  	 page.EnterTrailer(SCAC,TrailerNB);
- 	 (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review - 3 Button"));
+ 	 (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review - 3 Button"));
   	//check pro grid
   	LinkedHashSet<ArrayList<String>> ProInfo=page.GetProList(page.LeftoverBillForm);
  	SA.assertEquals(ProInfo,DataCommon.GetProListLOBR(SCAC, TrailerNB), " LOBR pro grid is wrong");	
  	
  	 page.LobrCancelButton.click();
- 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status City Loading"));
+ 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
  	 	SA.assertAll();
    }		
  	

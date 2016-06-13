@@ -67,18 +67,18 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
  @Test(priority=1,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
   public void DisplayListOfStatuses(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
-	page.EQTerminalInput.clear();
-	page.EQTerminalInput.sendKeys(terminal);
+	page.IQTerminalInput.clear();
+	page.IQTerminalInput.sendKeys(terminal);
 	//builder.sendKeys(page.EQTerminalInput, Keys.ENTER).build().perform();
 	page.SearchButton.click();
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));	
-	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	ArrayList<String> StatusList= new ArrayList<String>();
 	for (int i=1;i<=CountStatus;i++){
-	String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+	String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
 	StatusList.add(StatusName);
 	}
     Assert.assertEquals(StatusList,ExpectedStatusList ,"  "+ExpectedStatusList+" "+StatusList);
@@ -90,20 +90,20 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
  @Test(priority=2,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
   public void DisplayListOfStatusesAndPup(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	ArrayList<ArrayList<String>> ExpectedStatusList=DataForInQuiryScreen.GetStatusListAndPup(terminal);
-	page.EQTerminalInput.clear();
-	page.EQTerminalInput.sendKeys(terminal);
+	page.IQTerminalInput.clear();
+	page.IQTerminalInput.sendKeys(terminal);
 	page.SearchButton.click();
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
-	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	ArrayList<ArrayList<String>> StatusList= new ArrayList<ArrayList<String>>();
 	for (int i=1;i<=CountStatus;i++){
-	String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
-	String Schedules=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[1]/span")).getText();
-	String PUPS=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[2]/span")).getText();
-	String VANS=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[3]/span")).getText();
+	String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+	String Schedules=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[1]/span")).getText();
+	String PUPS=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[2]/span")).getText();
+	String VANS=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status-stat']/div[3]/span")).getText();
 	ArrayList<String> A= new ArrayList<String>();
 	A.add(StatusName);
 	A.add(Schedules);
@@ -121,19 +121,19 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
   public void DisplayTrailerGrid(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	SoftAssert Sassert= new SoftAssert();   
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
-	page.EQTerminalInput.clear();
-	page.EQTerminalInput.sendKeys(terminal);
+	page.IQTerminalInput.clear();
+	page.IQTerminalInput.sendKeys(terminal);
 	page.SearchButton.click();
 	Date d=CommonFunction.gettime("UTC");
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
-	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	for(int i=1;i<=CountStatus;i++){
-		String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
-		page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
-		WebElement TrailerGrid=page.EQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
+		String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+		page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
+		WebElement TrailerGrid=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));	
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		//(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
@@ -147,7 +147,7 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 	}
 	ArrayList<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformation(terminal, StatusName, d);
 	Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName);
-	page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
+	page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
 	}}else{
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 	}
@@ -159,20 +159,20 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	SoftAssert Sassert= new SoftAssert();   
 	Wait<WebDriver> wait=new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS).pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
-	page.EQTerminalInput.clear();
-	page.EQTerminalInput.sendKeys(terminal);
+	page.IQTerminalInput.clear();
+	page.IQTerminalInput.sendKeys(terminal);
 	page.SearchButton.click();
 	Date d=CommonFunction.gettime("UTC");
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
-	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	for(int i=1;i<=CountStatus;i++){
-		String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
-		page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
-		WebElement TrailerGrid=page.EQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
-		WebElement PlusSignColumn=page.EQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[2]//div[@class='ui-grid-canvas']"));
+		String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+		page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
+		WebElement TrailerGrid=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
+		WebElement PlusSignColumn=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[2]//div[@class='ui-grid-canvas']"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));	
 		Thread.sleep(1000);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
@@ -214,7 +214,7 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	}
 	//ArrayList<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformation(terminal, StatusName, d);
 	//Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName);
-	page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
+	page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
 	}}else{
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));		
 	}
@@ -227,13 +227,13 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	Wait<WebDriver> wait=new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
 	JavascriptExecutor jse = (JavascriptExecutor)driver;
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
-	page.EQTerminalInput.clear();
-	page.EQTerminalInput.sendKeys(terminal);
+	page.IQTerminalInput.clear();
+	page.IQTerminalInput.sendKeys(terminal);
 	page.SearchButton.click();
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.EQStatusList));	
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
 	if(!page.FileterField.isDisplayed()){
 	page.FilterButton.click();
 	wait.until(ExpectedConditions.visibilityOf(page.FileterField));
@@ -266,14 +266,14 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	Date d=CommonFunction.gettime("UTC");
 	Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	for(int i=1;i<=CountStatus;i++){
-		String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
-		jse.executeScript("arguments[0].scrollIntoView(false);",page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")));
-		page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
+		String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+		jse.executeScript("arguments[0].scrollIntoView(false);",page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")));
+		page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
 		Thread.sleep(500);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		WebElement TrailerGrid=page.EQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
+		WebElement TrailerGrid=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));	
 		//(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
 		
@@ -286,7 +286,7 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	}
 	LinkedHashSet<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformationByFilter(terminal, StatusName, d,leng,ty);
 	Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName+"   "+length);
-	page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
+	page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
 	
 	}
 	leng.clear();
@@ -317,14 +317,14 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	Date d=CommonFunction.gettime("UTC");
 	Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-	int CountStatus=page.EQStatusList.findElements(By.xpath("div")).size();
+	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	for(int i=1;i<=CountStatus;i++){
-		String StatusName=page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
-		jse.executeScript("arguments[0].scrollIntoView(false);",page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")));
-		page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
+		String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
+		jse.executeScript("arguments[0].scrollIntoView(false);",page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")));
+		page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
 		Thread.sleep(500);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		WebElement TrailerGrid=page.EQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
+		WebElement TrailerGrid=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));	
 	
 		//(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
@@ -338,7 +338,7 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	}
 	LinkedHashSet<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformationByFilter(terminal, StatusName, d,leng,ty);
 	Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName+"   "+Subtype);
-	page.EQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
+	page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
 	
 	}
 	leng.clear();

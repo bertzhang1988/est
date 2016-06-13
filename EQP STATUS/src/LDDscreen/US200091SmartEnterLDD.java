@@ -192,7 +192,7 @@ while (destination.equalsIgnoreCase(changeDesti)){
 changeDesti=dest[new Random().nextInt(dest.length)];
 }
 page.SetDestination(changeDesti);
-(new WebDriverWait(driver, 150)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Mark PROs as Headload"));
+(new WebDriverWait(driver, 150)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
 (new WebDriverWait(driver, 150)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 ArrayList<ArrayList<Object>> WbtRecord=DataCommon.CheckWaybillUpdateForHL(SCAC,TrailerNB);	
@@ -209,7 +209,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
 builer.sendKeys(Keys.ENTER).build().perform();
 //page.YesButton.click();
 Date d=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 150)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Closed"));
+(new WebDriverWait(driver, 150)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);

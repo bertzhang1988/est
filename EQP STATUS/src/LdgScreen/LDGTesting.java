@@ -78,7 +78,7 @@ public class LDGTesting {
 	 Date LocalTime = null;
 	 page.EnterTrailer(SCAC,TrailerNB);
 
-	 //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
+	 //check date&time field should a. eqpst after current-time use eqpst  minute+1 b. eqpst before current time use current time
 	 if(MReqpst.before(CurrentTime)){
 		 LocalTime= CommonFunction.getLocalTime(terminalcd, CurrentTime);
 	   }else if(MReqpst.after(CurrentTime)){
@@ -328,7 +328,7 @@ public void LDGWithoutProChangeDestination(String terminalcd,String SCAC,String 
  	page.SetDestination(changeDesti);
  	    
  	 //screen navigate to headload
- 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Mark PROs as Headload"));
+ 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
  	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
  	 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
  	 
@@ -351,7 +351,7 @@ public void LDGWithoutProChangeDestination(String terminalcd,String SCAC,String 
  	Date d=CommonFunction.gettime("UTC");
  	//(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 	//(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	 
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	
 	//(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.AddProForm));
@@ -414,7 +414,7 @@ Date CurrentTime=CommonFunction.gettime("UTC");
 page.EnterTrailer(SCAC,TrailerNB);
 Date LocalTime = null;
 
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -466,7 +466,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
 page.HandleLOBRproAll("Dock");
 Date d=CommonFunction.gettime("UTC");
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 // check eqps 
@@ -545,7 +545,7 @@ SAssert.assertEquals(page.CubeField.getAttribute("value"),NewCube,"loading scree
   page.EnterTrailer(SCAC,TrailerNB);
   Date LocalTime = null;
 
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   
   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -601,7 +601,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
   //(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
   Thread.sleep(3000);
@@ -678,7 +678,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   page.EnterTrailer(SCAC,TrailerNB);
   Date LocalTime = null;
 
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   
   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -733,7 +733,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
   //(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
   // check eqps 
@@ -817,7 +817,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   page.EnterTrailer(SCAC,TrailerNB);
   Date LocalTime = null;
 
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   
   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -871,7 +871,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
   //(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
   // check eqps 
@@ -1061,7 +1061,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
    page.EnterTrailer(SCAC,TrailerNB);
    Date LocalTime = null;
 
-   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    
    //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -1128,7 +1128,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
      // navigate to ldg
      
      //(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
      (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
      (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
      //check screen
@@ -1276,7 +1276,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   Date CurrentTime=CommonFunction.gettime("UTC");
   Date LocalTime = null;
 
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
   
   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -1326,7 +1326,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
   //(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
   // check eqps 

@@ -44,7 +44,7 @@ public class US1215QuickClose {
 
 @BeforeClass( groups = { "ldg uc" })
 @Parameters({"browser"})
-public void SetUp(@Optional("ie")String browser) throws AWTException, InterruptedException { 
+public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException { 
 	if (browser.equalsIgnoreCase("chrome")){
      System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
 	 driver = new ChromeDriver();            
@@ -84,7 +84,7 @@ public void LDGTrailerWithPROQuickClose(String terminal,String SCAC,String Trail
    page.SubmitAndCloseOutButton.click();
 
    // navigate to quick close screen
-   (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status to Closed"));
+   (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    Date CurrentTime=CommonFunction.gettime("UTC");
    Date LocalTime = null;
@@ -131,7 +131,7 @@ public void LDGTrailerWithPROQuickClose(String terminal,String SCAC,String Trail
    page.SetSealQC(NewSeal);}
    page.qcCloseTrailerButton.click();
    Date d=CommonFunction.gettime("UTC");
-   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
    (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
@@ -193,7 +193,7 @@ public void NONLDGTrailerWithoutPROAddPRO(String terminalcd,String SCAC,String T
  	ArrayList<String> GetProNotOnAnyTrailer= DataCommon.GetProNotInAnyTrailer();
  	ArrayList<String> ADDPRO=new ArrayList<String>();
  	page.RemoveProButton.click();
- 	 for(int j=0;j<1;j++){
+ 	 for(int j=0;j<2;j++){
  	String CurrentPro=GetProNotOnAnyTrailer.get(j);
  	page.EnterPro(CurrentPro);
  	ADDPRO.add(CurrentPro);
@@ -208,7 +208,7 @@ public void NONLDGTrailerWithoutPROAddPRO(String terminalcd,String SCAC,String T
    page.SubmitAndCloseOutButton.click();
    Date d=CommonFunction.gettime("UTC");
    // navigate to quick close screen
-   (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status to Closed"));
+   (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
    
@@ -286,7 +286,7 @@ public void NONLDGTrailerWithoutPROAddPRO(String terminalcd,String SCAC,String T
    page.SetSealQC(NewSeal);}
    page.qcCloseTrailerButton.click();
    Date d1=CommonFunction.gettime("UTC");
-   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
    (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		

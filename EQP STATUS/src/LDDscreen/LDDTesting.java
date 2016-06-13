@@ -165,7 +165,7 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
   page.EnterTrailer(SCAC,TrailerNB);	
   Date CurrentTime=CommonFunction.gettime("UTC");
   Date LocalTime = null;
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
   (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
@@ -220,7 +220,7 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
   Date d=CommonFunction.gettime("UTC");
 
   //Assert.assertEquals(page.LeftoverBillForm.findElements(By.xpath("div")).size(), 0);
-  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Loading"));
+  (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Loading"));
   (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
  
   //check eqps
@@ -295,7 +295,7 @@ public void LDDTrailerHasProChangeDestination(String terminalcd,String SCAC,Stri
 	page.SetDestination(changeDesti);
 	
 	//navigate to headload screen 
-	(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Mark PROs as Headload"));
+	(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
 	(new WebDriverWait(driver, 30)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	//System.out.println(driver.switchTo().activeElement().toString());
 	//SAssert.assertEquals(page.YesButton, driver.switchTo().activeElement(), "the cursor is not in YES button");
@@ -311,7 +311,7 @@ public void LDDTrailerHasProChangeDestination(String terminalcd,String SCAC,Stri
 	Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 	page.YesButton.click();
 	Date d=CommonFunction.gettime("UTC");
-	(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Closed"));
+	(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
 	(new WebDriverWait(driver, 30)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	// CHECK EQPS
 	ArrayList<Object> NewEqpStatusRecord= DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);

@@ -59,6 +59,9 @@ public class OFDScreenTesting {
 	  Date picker=page.GetDatePickerTime();
 	  Date expect=CommonFunction.getPrepopulateTime(terminalcd, d1,MRSts);
 	  SA.assertEquals(picker, expect,"prepopulate time is wrong ");
+	  // check preppopulate
+	  
+	  
 	  //alter time
 	  page.SetDatePicker2( page.GetDatePickerTime(),0,59); 
 	  Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());	
@@ -83,7 +86,8 @@ public class OFDScreenTesting {
 	  SA.assertAll();
  }
   
- @Test(priority=2,dataProvider = "OFDScreen",dataProviderClass=DataForOFDScreenTesting.class)
+ 
+ @Test(priority=2,dataProvider = "OFDScreen",dataProviderClass=DataForOFDScreenTesting.class, description="uc1 505.03")
  public void SmartEnterSetTrailerWithProToOFD1(String terminalcd,String SCAC,String TrailerNB,String CurrentStatus,String CRName,String CRType,Date PlanDelts, Date MRSts) throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 	  SoftAssert SA= new SoftAssert();
 	  page.SetLocation(terminalcd);
@@ -132,7 +136,7 @@ public class OFDScreenTesting {
 	  if(TimeGap>24){
 		 page.SetDatePicker2(page.GetDatePickerTime(),-23,-59);   
 	  }else if(TimeGap<24){
-		page.SetDatePicker2(MRSts, 0, -1);
+		page.SetDatePicker2(MRSts, 0, 1);
 	  }
 	  
 	  Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());	
@@ -172,7 +176,7 @@ public class OFDScreenTesting {
 	  if(TimeGap>24){
 		 page.SetDatePicker2(page.GetDatePickerTime(),-23,-59);   
 	  }else if(TimeGap<24){
-		page.SetDatePicker2(MRSts, 0, -1);
+		page.SetDatePicker2(MRSts, 0, 1);
 	  }
 	  Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());	
 	  builder.sendKeys( Keys.ENTER).build().perform();	  

@@ -38,6 +38,7 @@ public static void verifyInvalidTerminal() throws IOException, AWTException, Int
 	 for (int i=1;i<rownumber;i++)
 	    {
 		    Cell TerminalNo = sheet1.getRow(i).getCell(1);
+		    if(TerminalNo==null) break;
 		    String terminal =TerminalNo.getStringCellValue();
 		    page.SetLocation(terminal);}
 	 workbook.close();
@@ -53,7 +54,7 @@ public static void verifyValidTerminal() throws IOException, AWTException, Inter
 	 builder = new Actions(driver);
 	 page.SetStatus("ldg");
 	 builder = new Actions(driver);
-    File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\trial1.xlsx");
+     File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\trial1.xlsx");
 	 FileInputStream inputStream = new FileInputStream(file);
 	 XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 	 XSSFSheet sheet1 = workbook.getSheetAt(0);
@@ -61,6 +62,7 @@ public static void verifyValidTerminal() throws IOException, AWTException, Inter
 	 for (int i=1;i<rownumber;i++)
 	    {
 	    Cell TerminalNo = sheet1.getRow(i).getCell(0);
+	    if(TerminalNo==null) break;
 	    String terminal =TerminalNo.getStringCellValue();
 	    page.SetLocation(terminal);}
 	    

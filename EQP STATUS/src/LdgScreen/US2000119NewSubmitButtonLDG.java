@@ -154,7 +154,7 @@ SoftAssert SA= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);
 
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //change destination
 String[] dest={"270","112","841","198","135"};
@@ -178,7 +178,7 @@ int ran1 =new Random().nextInt(handleLobrPro.length);
 page.HandleLOBRproAll(handleLobrPro[ran1]);
 
 
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 Thread.sleep(3000);
@@ -235,7 +235,7 @@ public void TrailerWithPRONoAdding(String terminalcd, String SCAC, String Traile
 SoftAssert SA= new SoftAssert();
 page.SetLocation(terminalcd);	
 page.EnterTrailer(SCAC,TrailerNB);
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //change destination
 String[] dest={"270","112","841","198","135"};
@@ -252,7 +252,7 @@ page.HandleLOBRproAll(handleLobrPro[ran1]);
 Date d=CommonFunction.gettime("UTC");
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Loading"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 //check eqps
@@ -424,7 +424,7 @@ while (changeDesti.equalsIgnoreCase(destination)){
 changeDesti=dest[new Random().nextInt(dest.length)];}
 destination =changeDesti;
 page.SetDestination(destination);
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 //alter time
 page.SetDatePicker( page.GetDatePickerTime(), -3); 
@@ -432,7 +432,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
 //headload yes
 page.YesButton.click();
 Date d1=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Loading"));
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Loading"));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 // add pro

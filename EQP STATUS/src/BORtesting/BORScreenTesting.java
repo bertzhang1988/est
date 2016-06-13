@@ -127,7 +127,7 @@ public class BORScreenTesting {
 	  SoftAssert SA= new SoftAssert();
 	 	page.SetLocation(terminalcd);
 	 	page.EnterTrailer(SCAC,TrailerNB);
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	 	// check pre populate
 	 	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"bor two button lobr trailer input is wrong");
@@ -141,7 +141,7 @@ public class BORScreenTesting {
 		ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("Dock");
 		Date d=CommonFunction.gettime("UTC");
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Bad Order Requested"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Bad Order Requested"));
 	 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 	 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -186,7 +186,7 @@ public class BORScreenTesting {
 	 	SoftAssert SA= new SoftAssert();
 	 	page.SetLocation(terminalcd);
 	 	page.EnterTrailer(SCAC,TrailerNB);
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	 	// check pre populate
 	 	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"bor two button lobr trailer input is wrong");
@@ -201,7 +201,7 @@ public class BORScreenTesting {
 		ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d=CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Bad Order Requested"));
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Bad Order Requested"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -278,7 +278,7 @@ public void twoBlOBRDockNOTFromONH(String terminalcd,String SCAC,String TrailerN
 	  SoftAssert SA= new SoftAssert();
 	 	page.SetLocation(terminalcd);
 	 	page.EnterTrailer(SCAC,TrailerNB);
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	 	// check pre populate
 	 	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"bor two button lobr trailer input is wrong");
@@ -292,7 +292,7 @@ public void twoBlOBRDockNOTFromONH(String terminalcd,String SCAC,String TrailerN
 		ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("Dock");
 		Date d=CommonFunction.gettime("UTC");
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Bad Order Requested"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Bad Order Requested"));
 	 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 	 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -336,7 +336,7 @@ public void twoBlOBRAllShortNOTFromONH(String terminalcd,String SCAC,String Trai
 	 	SoftAssert SA= new SoftAssert();
 	 	page.SetLocation(terminalcd);
 	 	page.EnterTrailer(SCAC,TrailerNB);
-	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Leftover Bill Review"));
+	 	(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 	 	// check pre populate
 	 	SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd," bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),"bor two button lobr trailer input is wrong");
@@ -351,7 +351,7 @@ public void twoBlOBRAllShortNOTFromONH(String terminalcd,String SCAC,String Trai
 		ArrayList<String> ProOnTrailer=DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d=CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.Title, "Set Trailer Status Bad Order Requested"));
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Bad Order Requested"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));

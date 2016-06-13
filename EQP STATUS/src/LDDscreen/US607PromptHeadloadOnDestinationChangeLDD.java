@@ -90,7 +90,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
     
  // check the screen navigate to hl
   
-    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
     (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
     (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
     SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -100,7 +100,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
     SAssert.assertEquals(page.CubeField.getAttribute("value"),cube,"screen cube is wrong");
 	
     page.hlCancelButton.click();//click cancel
-    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Closed"));
+    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Closed"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -120,7 +120,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	}
 	//change destination
 	page.SetDestination(changeDesti);
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -177,7 +177,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		 }
 	 page.SetDestination(changeDesti);
 	 //check the hl screen
-	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 	 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	 SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -187,7 +187,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	 SAssert.assertEquals(page.CubeField.getAttribute("value"),cube,"screen cube is wrong");
      page.hlCancelButton.click();//click cancel
 	 //navigate back to ldd screen
-     (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Closed"));
+     (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Closed"));
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 	 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	 SAssert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);  
@@ -207,7 +207,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		//change destination
 		page.SetDestination(changeDesti);
 		//chcek hl screen
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -281,7 +281,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	 }
    page.SetDestination(changeDesti);
    
-   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
    (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -290,7 +290,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
    SAssert.assertEquals(page.DestinationField.getAttribute("value"),changeDesti,"screen desti is wrong");
    SAssert.assertEquals(page.CubeField.getAttribute("value"),cube,"screen cube is wrong");
    page.hlCancelButton.click();//click cancel
-   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Closed"));
+   (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Closed"));
    (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);  
@@ -309,7 +309,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	}
 	//change destination
 	page.SetDestination(changeDesti);
-	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+	(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 	(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -372,7 +372,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		 }
 	 page.SetDestination(changeDesti);
 	    
-	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 	 (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	 SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");
@@ -381,7 +381,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	 SAssert.assertEquals(page.DestinationField.getAttribute("value"),changeDesti,"screen desti is wrong");
 	 SAssert.assertEquals(page.CubeField.getAttribute("value"),cube,"screen cube is wrong");
      page.hlCancelButton.click();//click cancel
-     (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Set Trailer Status Closed"));
+     (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Set Trailer Status Closed"));
      (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
      (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	 Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);  
@@ -400,7 +400,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 	
     //change destination
     page.SetDestination(changeDesti);
-    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.Title,"Mark PROs as Headload"));
+    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,"Mark PROs as Headload"));
     (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
     (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
     SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"),OrgiDesti,"screenHldestination is wrong");

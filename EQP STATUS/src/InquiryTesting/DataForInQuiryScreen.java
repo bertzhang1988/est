@@ -136,7 +136,7 @@ PreparedStatement stat2 = conn3.prepareStatement(query9);
 PreparedStatement stat3 = conn3.prepareStatement(query11);
 stat.setString(1, status);
 String[] UseCityRoute={"CL","CLTG","OFD","SPT"};
-String[] NonTabulated={"ARV","LDD","ENR","ARR","CLTG"};
+String[] NonTabulated={"ARV","LDD","ENR","ARR"};
 ResultSet rs3 = stat.executeQuery();
 	  while (rs3.next()) {
 	  String SCAC=rs3.getString("Standard_Carrier_Alpha_CD"); 
