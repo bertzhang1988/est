@@ -5,7 +5,7 @@
  <parameter name="browser" value="chrome"/>
    <groups>
     <run>
-      <exclude name="ldg uc"/>
+      <include name="ldg uc"/>
     </run>
   </groups>
     <classes>

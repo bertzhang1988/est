@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
 
 import Page.DataCommon;
+import Page.DataConnection;
 
 public class DataForUSLDGLifeTest {
 
@@ -26,7 +27,7 @@ public class DataForUSLDGLifeTest {
   @DataProvider(name="ldgscreen")
   public static Iterator<Object[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
 	 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	 Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	 Connection conn1=DataConnection.getConnection();
 	 Statement stat= conn1.createStatement();
 	 
 

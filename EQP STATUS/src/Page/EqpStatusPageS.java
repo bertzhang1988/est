@@ -2,6 +2,7 @@ package Page;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,7 +45,8 @@ public class EqpStatusPageS {
        PageFactory.initElements(driver,this);
       
    }
-              
+
+
     public String dev1="https://spadev.yrcw.com/webapps/yrc-equipstatus/";
     public String sit="https://spasit1.yrcw.com/webapps/yrc-equipstatus/";
     public String qa="https://spastg.yrcw.com/webapps/yrc-equipstatus/"; 
@@ -53,7 +55,7 @@ public class EqpStatusPageS {
     public String M_ID="UYR27B0";
     
     /*Common */
-    
+
     @FindBy(how = How.LINK_TEXT, using = "STATUS TRAILER")
     public WebElement StatusTrailerButton;
      

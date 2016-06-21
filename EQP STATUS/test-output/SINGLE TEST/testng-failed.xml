@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [SINGLE TEST]" parallel="classes">
-  <parameter name="browser" value="ie"/>
+  <parameter name="browser" value="chrome"/>
   <test name="ONE METHOD(failed)" parallel="classes">
-    <parameter name="browser" value="ie"/>
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="LdgScreen.US200091SmartEnterLDG">
+      <class name="trial.US200075DisplayPROsInOrderWhichTheyEnter">
         <methods>
           <include name="SetUp"/>
-          <include name="TrailerWithPROAddPRO"/>
-          <include name="Close"/>
+          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
         </methods>
-      </class> <!-- LdgScreen.US200091SmartEnterLDG -->
+      </class> <!-- trial.US200075DisplayPROsInOrderWhichTheyEnter -->
     </classes>
   </test> <!-- ONE METHOD(failed) -->
 </suite> <!-- Failed suite [SINGLE TEST] -->

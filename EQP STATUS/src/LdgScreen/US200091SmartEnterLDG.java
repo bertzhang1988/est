@@ -200,7 +200,7 @@ page.AddProField.click();
 builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 Date d=CommonFunction.gettime("UTC");
 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	 
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));	 
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
@@ -389,7 +389,7 @@ page.SetCube(NewCube);
 //enter key
 builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 Date d=CommonFunction.gettime("UTC");
-(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	 
+(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));	 
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 (new WebDriverWait(driver, 80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));

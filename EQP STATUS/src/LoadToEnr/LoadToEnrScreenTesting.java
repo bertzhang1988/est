@@ -286,16 +286,20 @@ public void VerifyValidTerminal(String terminalcd) throws AWTException, Interrup
 	  ArrayList<String> PRO=DataCommon.GetProNotInAnyTrailer();
 	  page.RemoveProButton.click();
 	  ArrayList<String> Addpro= new  ArrayList<String>();
-	  for(int i=0;i<2;i++){  
+	  for(int i=0;i<80;i++){  
 	  String CurrentPro=PRO.get(i);
 	  page.EnterPro(CurrentPro);	 
 	  Addpro.add(CurrentPro);
 		 } 		 
 	  
 	  page.SubmitButton.click();	 
+	  Date d=CommonFunction.gettime("UTC");
+	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded"));	
+	  Date d2=CommonFunction.gettime("UTC");
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 	  (new WebDriverWait(driver, 80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+	  System.out.println((d2.getTime()-d.getTime())/1000);
 	  page.EnterTrailer(SCAC,TrailerNB);
       LinkedHashSet<ArrayList<String>> ProInfo=page.GetProList(page.LENRProListForm);
 	  SA.assertEquals(ProInfo,DataCommon.GetProList(SCAC, TrailerNB)," pro grid is wrong");		 
@@ -307,6 +311,7 @@ public void VerifyValidTerminal(String terminalcd) throws AWTException, Interrup
       AddproBatch.add(pro.get(0).replaceAll("-", ""));
       }  
       SA.assertEquals( AddproBatch, Addpro," pro sequence is wrong");
+    
       SA.assertAll();
   }
 

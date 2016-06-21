@@ -174,7 +174,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		 
 		 page.SubmitLDGButton.click();	 
 
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -271,7 +271,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		 page.SetCube(NewCube);
 		 // click submit
 		 page.SubmitLDGButton.click();	 
-	     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+	     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 		 (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 		 (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));	
 		 (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -371,7 +371,7 @@ public void ldgTrailerWithoutProsLDDClickYes(String terminalcd,String SCAC,Strin
 		 
 		 page.SubmitLDGButton.click();	 
 
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));	
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));

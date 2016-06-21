@@ -1,6 +1,7 @@
 package LdgScreen;
 
 import java.awt.AWTException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS1205;
 import Data.DataForUS200068AndUS445;
 import Page.CommonFunction;
+import Page.ConfigRd;
 import Page.DataCommon;
 import Page.EqpStatusPageS;
 
@@ -37,17 +39,18 @@ public class NegativeScenarioLDG {
 	 private Actions builder;
 @BeforeClass
 @Parameters({"browser"})
-public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException { 
-	  if (browser.equalsIgnoreCase("chrome")){
-	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
+public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException, IOException { 
+	  ConfigRd Conf= new ConfigRd();
+	 if (browser.equalsIgnoreCase("chrome")){
+	  System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
 	  driver = new ChromeDriver();            
 	  }else if(browser.equalsIgnoreCase("ie")){
-	  System.setProperty("webdriver.ie.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium\\ie32\\IEDriverServer.exe");
+	  System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
 	  driver=new InternetExplorerDriver();
 	  }
  //driver=new FirefoxDriver();
   page=new EqpStatusPageS(driver);
-  driver.get(page.sit1);
+  driver.get(Conf.GetURL());
   driver.manage().window().maximize();
   page.SetStatus("ldg");
   builder = new Actions(driver);

@@ -2,6 +2,7 @@ package LdgScreen;
 
 import java.awt.AWTException;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS1229;
 import Data.DataForUS452;
 import Page.CommonFunction;
+import Page.ConfigRd;
 import Page.DataCommon;
 import Page.EqpStatusPageS;
 
@@ -51,21 +53,22 @@ public class LDGTesting {
 	 
  @BeforeClass( groups = { "ldg uc" })
  @Parameters({"browser"})
- public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException { 
+ public void SetUp(@Optional("chrome")String browser) throws AWTException, InterruptedException, IOException { 
+	  ConfigRd Conf=new ConfigRd();
  	  if (browser.equalsIgnoreCase("chrome")){
- 	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium//chromedriver.exe");
+ 	  System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
  	  driver = new ChromeDriver();            
  	  }else if(browser.equalsIgnoreCase("ie")){
- 	  System.setProperty("webdriver.ie.driver", "C:\\Users\\uyr27b0\\Desktop\\selenium\\selenium\\ie32\\IEDriverServer.exe");
+ 	  System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
  	  driver=new InternetExplorerDriver();
  	  }else if(browser.equalsIgnoreCase("hl")){
- 	   File file = new File("C:\\Users\\uyr27b0\\Desktop\\selenium\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe");             
+ 	   File file = new File(Conf.GetPhantomJSDriverPath());             
        System.setProperty("phantomjs.binary.path", file.getAbsolutePath());        
        driver = new PhantomJSDriver();   
  	  }
 
    page=new EqpStatusPageS(driver);
-   driver.get(page.sit1);
+   driver.get(Conf.GetURL());
    driver.manage().window().maximize();
    page.SetStatus("ldg");
 	  }
@@ -119,7 +122,7 @@ public class LDGTesting {
 
 	 Date d=CommonFunction.gettime("UTC");
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	 
+	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));	 
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 	 
 	 Thread.sleep(5000);
@@ -182,7 +185,7 @@ public class LDGTesting {
 	 page.SubmitLDGButton.click();
 	 Date d=CommonFunction.gettime("UTC");
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	 
+	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));	 
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 	
 	 Thread.sleep(2000);
@@ -250,7 +253,7 @@ public void LDGWithoutProChangeDestination(String terminalcd,String SCAC,String 
 	 page.SubmitLDGButton.click();
 	 Date d=CommonFunction.gettime("UTC");
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));	
+	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));	
 	 (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 	 (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
 	 (new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
@@ -565,12 +568,12 @@ SAssert.assertEquals(page.CubeField.getAttribute("value"),NewCube,"loading scree
 	 String MinutePlusOne=String.format("%02d",minute+1);
 	 String DATE = dateFormat.format(cal.getTime());
 	 
-	 SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE,"TIME DARE IS WRONG");
-	 SAssert.assertEquals(page.HourInput.getAttribute("value"),hour,"TIME HOR IS WRONG");
+	 SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE,"TIME DARE IS WRONG,lobr");
+	 SAssert.assertEquals(page.HourInput.getAttribute("value"),hour,"TIME HOR IS WRONG,lobr");
 	 if(MReqpst.after(CurrentTime)){
-	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne,"TIME MINUTE IS WRONG"); 
+	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne,"TIME MINUTE IS WRONG,lobr"); 
 	 }else{
-	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute,"TIME MINUTE IS WRONG");}
+	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute,"TIME MINUTE IS WRONG,lobr");}
     
 	// check lobr pro gtrid
 	LinkedHashSet<ArrayList<String>> ProInfo=page.GetProList(page.LeftoverBillForm);
@@ -644,25 +647,13 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
   SAssert.assertEquals(page.DestinationField.getAttribute("value"),changeDesti,"");
   SAssert.assertFalse(page.DateInput.isEnabled(),"date&time field is not disabled");
   SAssert.assertEquals(page.CubeField.getAttribute("value"),NewCube,"Cube field is not disabled");
-  
-
-  //check date&time field should be equipment_status_ts at status location time zone
-	 Date LocalTime2=CommonFunction.getLocalTime(terminalcd, (Date) NewEqpStatusRecord.get(7));
-	 Calendar cal2 = Calendar.getInstance();
-	 SimpleDateFormat dateFormat2 = new SimpleDateFormat("MM/dd/YYYY");
-	 cal2.setTime(LocalTime2); 
-	 int hourOfDay2 = cal2.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-	 String hour2=String.format("%02d",hourOfDay2);
-	 int minute2 = cal2.get(Calendar.MINUTE);
-	 String Minute2=String.format("%02d",minute2);
-	 String DATE2 = dateFormat2.format(cal.getTime());
-	 SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE2);
-	 SAssert.assertEquals(page.HourInput.getAttribute("value"),hour2);
-	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute2);
 	
-	 //check pro grid in ldg screen again
-	 LinkedHashSet<ArrayList<String>> ProInfo1=page.GetProList(page.ProListForm);
-	 SAssert.assertEquals(ProInfo1,DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");	
+  // check time back in ldg screen
+  Date expect=CommonFunction.getPrepopulateTime2(terminalcd,(Date) NewEqpStatusRecord.get(7));
+  SAssert.assertEquals(page.GetDatePickerTime(),expect,"time is wrong, back in ldg screen");
+  //check pro grid in ldg screen again
+  LinkedHashSet<ArrayList<String>> ProInfo1=page.GetProList(page.ProListForm);
+  SAssert.assertEquals(ProInfo1,DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");	
 	 
 	 //check the sequence as same as it before leave on
 	// SAssert.assertEquals(prolistAfterlobr,prolistbeforelobr, "pro sequence is changing after leave on");	
@@ -1064,29 +1055,10 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
    (new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
    (new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
    
-   //check date&time field should a. eqpst>current-time use eqpst  minute+1 b. eqpst<current time use current time
- 	 if(MReqpst.before(CurrentTime)){
- 		 LocalTime= CommonFunction.getLocalTime(terminalcd, CurrentTime);
- 	   }else if(MReqpst.after(CurrentTime)){
- 		 LocalTime=CommonFunction.getLocalTime(terminalcd, MReqpst);
- 	   }
-
- 	 Calendar cal = Calendar.getInstance();
- 	 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
- 	 cal.setTime(LocalTime); 
- 	 int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
- 	 String hour=String.format("%02d",hourOfDay);
- 	 int minute = cal.get(Calendar.MINUTE);
- 	 String Minute=String.format("%02d",minute);
- 	 String MinutePlusOne=String.format("%02d",minute+1);
- 	 String DATE = dateFormat.format(cal.getTime());
- 	 
- 	 SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE,"TIME DARE IS WRONG");
- 	 SAssert.assertEquals(page.HourInput.getAttribute("value"),hour,"TIME HOR IS WRONG");
- 	 if(MReqpst.after(CurrentTime)){
- 	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne,"TIME MINUTE IS WRONG"); 
- 	 }else{
- 	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute,"TIME MINUTE IS WRONG");}
+   // check time prepopulate
+	  Date picker=page.GetDatePickerTime();
+	  Date expect=CommonFunction.getPrepopulateTime(terminalcd, CurrentTime,MReqpst);
+	  SAssert.assertEquals(picker, expect,"lobr screen prepopulate time is wrong ");
      
  	// check lobr pro gtrid
  	LinkedHashSet<ArrayList<String>> ProInfo=page.GetProList(page.LeftoverBillForm);
@@ -1123,6 +1095,7 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
     String[] handleLobrPro={"headload","leaveON","allshort","dock"};
     int ran1 =new Random().nextInt(handleLobrPro.length);
     page.HandleLOBRpro(handleLobrPro[ran1]);
+    Thread.sleep(1000);
      }
      Date d=CommonFunction.gettime("UTC");
      // navigate to ldg
@@ -1152,19 +1125,9 @@ Date AlterTime=CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime(
 			 SAssert.assertTrue(Math.abs(TS.getTime()-d.getTime())<120000,i+" "+TS+"  "+d);	 
 			 }
 		 }
-     //check date&time field should be equipment_status_ts at status location time zone
-   	 Date LocalTime2=CommonFunction.getLocalTime(terminalcd, (Date) NewEqpStatusRecord.get(7));
-   	 Calendar cal2 = Calendar.getInstance();
-   	 SimpleDateFormat dateFormat2 = new SimpleDateFormat("MM/dd/YYYY");
-   	 cal2.setTime(LocalTime2); 
-   	 int hourOfDay2 = cal2.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-   	 String hour2=String.format("%02d",hourOfDay2);
-   	 int minute2 = cal2.get(Calendar.MINUTE);
-   	 String Minute2=String.format("%02d",minute2);
-   	 String DATE2 = dateFormat2.format(cal.getTime());
-   	 SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE2);
-   	 SAssert.assertEquals(page.HourInput.getAttribute("value"),hour2);
-   	 SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute2);
+	// check time back in ldg screen
+	  Date expect2=CommonFunction.getPrepopulateTime2(terminalcd,(Date) NewEqpStatusRecord.get(7));
+	  SAssert.assertEquals(page.GetDatePickerTime(),expect2,"time is wrong, back in ldg screen");
    	
    	 //check pro grid in ldg screen again
    	 LinkedHashSet<ArrayList<String>> ProInfo1=page.GetProList(page.ProListForm);

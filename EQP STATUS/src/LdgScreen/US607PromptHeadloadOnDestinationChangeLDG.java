@@ -333,7 +333,7 @@ public void ldgTrailerWithoutProsClickNo(String terminalcd,String SCAC,String Tr
 	 
 	 page.SubmitLDGButton.click();	 
 
-	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -431,7 +431,7 @@ public void ldgTrailerWithoutProsClickNo(String terminalcd,String SCAC,String Tr
 	 page.SetCube(NewCube);
 	 // click submit
 	 page.SubmitLDGButton.click();	 
-     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+     (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 	 (new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 	 (new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));	
 	 (new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -528,7 +528,7 @@ public void ldgTrailerWithHeadloadProsClickNo(String terminalcd,String SCAC,Stri
 	 page.SetCube(NewCube);
 	 
 	 page.SubmitLDGButton.click();	 
-	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));	
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -618,7 +618,7 @@ public void ldgTrailerWithoutProsLDDClickNo(String terminalcd,String SCAC,String
 	 
 	 page.SubmitLDGButton.click();	 
 
-	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 	(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));		
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
@@ -727,7 +727,7 @@ public void ldgTrailerWithoutProsLDDClickYes(String terminalcd,String SCAC,Strin
 		 String NewCube1=Integer.toString(Ran1);
 		 page.SetCube(NewCube1);
 		 page.SubmitLDGButton.click();	 
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+SCAC+TrailerNB+" updated to LDG"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer "+page.SCACTrailer(SCAC, TrailerNB)+" updated to LDG"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s) loaded."));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));	
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));

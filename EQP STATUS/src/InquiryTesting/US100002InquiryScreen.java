@@ -71,16 +71,19 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 	page.IQTerminalInput.sendKeys(terminal);
 	//builder.sendKeys(page.EQTerminalInput, Keys.ENTER).build().perform();
 	page.SearchButton.click();
+	Date d=CommonFunction.gettime("UTC");
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));	
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	Date d2=CommonFunction.gettime("UTC");
 	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	ArrayList<String> StatusList= new ArrayList<String>();
 	for (int i=1;i<=CountStatus;i++){
 	String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
 	StatusList.add(StatusName);
 	}
+	System.out.println("time of initial inquiry at facility level: "+terminal+"   "+(d2.getTime()-d.getTime()-500)/1000.0);
     Assert.assertEquals(StatusList,ExpectedStatusList ,"  "+ExpectedStatusList+" "+StatusList);
 	}else {
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
@@ -93,10 +96,12 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 	page.IQTerminalInput.clear();
 	page.IQTerminalInput.sendKeys(terminal);
 	page.SearchButton.click();
+	Date d=CommonFunction.gettime("UTC");
 	if(ExpectedStatusList.size()!=0){
     Thread.sleep(500);
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
-	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));	
+	(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
+	Date d2=CommonFunction.gettime("UTC");
 	int CountStatus=page.IQStatusList.findElements(By.xpath("div")).size();
 	ArrayList<ArrayList<String>> StatusList= new ArrayList<ArrayList<String>>();
 	for (int i=1;i<=CountStatus;i++){
@@ -111,13 +116,14 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 	A.add(VANS);
 	StatusList.add(A);	
 	}
+	System.out.println("time of initial inquiry at facility level: "+terminal+"   "+(d2.getTime()-d.getTime()-500)/1000.0);
     Assert.assertEquals(ExpectedStatusList, StatusList,"  "+ExpectedStatusList+" "+StatusList);
 	}else {
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
   }
   
-  @Test(priority=3,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
+ @Test(priority=3,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
   public void DisplayTrailerGrid(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	SoftAssert Sassert= new SoftAssert();   
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
@@ -133,9 +139,11 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 	for(int i=1;i<=CountStatus;i++){
 		String StatusName=page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='trailer-inquiry-status']")).getText();
 		page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();
+		Date d1=CommonFunction.gettime("UTC");
 		WebElement TrailerGrid=page.IQStatusList.findElement(By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));	
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		Date d2=CommonFunction.gettime("UTC");
 		//(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
 		
 	int TrailerLine=TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']")).size();
@@ -145,9 +153,11 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 		 ArrayList<String> e= new ArrayList<String> (Arrays.asList(OneTrailerInoformation));
 		 TrailerInformation.add(e);	
 	}
+	
 	ArrayList<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformation(terminal, StatusName, d);
 	Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName);
 	page.IQStatusList.findElement(By.xpath("div["+i+"]//div[@class='panel-heading']")).click();	
+	System.out.println("time of trailer list for specific status: "+terminal+" "+StatusName+"  "+(d2.getTime()-d1.getTime())/1000.0);
 	}}else{
 	(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 	}
@@ -157,7 +167,7 @@ public void SetUp(@Optional("chrome")String browser) throws AWTException, Interr
 @Test(priority=4,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
 public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	SoftAssert Sassert= new SoftAssert();   
-	Wait<WebDriver> wait=new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS).pollingEvery(2, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+	Wait<WebDriver> wait=new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 	ArrayList<String> ExpectedStatusList=DataForInQuiryScreen.GetStatusList(terminal);
 	page.IQTerminalInput.clear();
 	page.IQTerminalInput.sendKeys(terminal);
@@ -191,7 +201,7 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 		//Actions actions = new Actions(driver);
 		//actions.moveToElement(PlusSign.get(j-1));
 		//actions.perform();
-		PlusSign.get(j-1).click();
+
 		String SCAC;
 		String trailerNb;
 		String SCACTrailer=TrailerGrid.findElement(By.xpath("div["+j+"]/div/div[1]")).getText();
@@ -202,15 +212,19 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 		SCAC="RDWY";
 		trailerNb=SCACTrailer;
 		}
+		PlusSign.get(j-1).click();
+		Date d1=CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']/child::div["+(j)+"]/div[@class='expandableRow']/div[@config='row.entity.subGridConfig']//div[@class='ui-grid-canvas']")));
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));	
+		Date d2=CommonFunction.gettime("UTC");
 		WebElement ProGridForEachTrailer=TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']")).get(j-1).findElement(By.xpath("div[@class='expandableRow']/div[@config='row.entity.subGridConfig']//div[@class='ui-grid-canvas']"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));		
 		LinkedHashSet<ArrayList<String>> ProInformation= page.GetProListInInquiryScreen(ProGridForEachTrailer);
 		LinkedHashSet<ArrayList<String>> ExpectedProInformation=DataForInQuiryScreen.GetProInformation(SCAC, trailerNb);
 		Sassert.assertEquals(ProInformation, ExpectedProInformation,StatusName+" "+SCACTrailer );
 		jse.executeScript("arguments[0].scrollIntoView(false);",PlusSign.get(j-1));
 		PlusSign.get(j-1).click(); 
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(ProGridForEachTrailer));
+		System.out.println("time of pro detail under specific trailer: "+terminal+" "+StatusName+"  "+SCACTrailer+"  "+(d2.getTime()-d1.getTime())/1000.0);
 	}
 	//ArrayList<ArrayList<String>> ExpectedTrailerInformation=DataForInQuiryScreen.GetTrailerInformation(terminal, StatusName, d);
 	//Sassert.assertEquals(TrailerInformation,ExpectedTrailerInformation,"  "+StatusName);
@@ -221,7 +235,7 @@ public void DisplayProGrid(String terminal) throws ClassNotFoundException, SQLEx
 	Sassert.assertAll();
 }  
 
-@Test(priority=5,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
+//@Test(priority=5,dataProvider = "1000.02",dataProviderClass=DataForInQuiryScreen.class)
  public void Filter(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 	SoftAssert Sassert= new SoftAssert(); 
 	Wait<WebDriver> wait=new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
