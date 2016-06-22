@@ -17,7 +17,8 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 
@@ -26,7 +27,7 @@ public class DataForUS470 {
   @DataProvider(name="4.70")
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn1=DataConnection.getConnection();
   Statement stat=null; 
   stat= conn1.createStatement();
   String query1=null;
@@ -58,7 +59,7 @@ ArrayList<String[]> b=new ArrayList<String[]>();
 
   public static ArrayList<ArrayList<String>> GetProFromTrailerOnDifferentTerminal(String terminalcd,String SCAC,String TrailerNB) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn2.createStatement();
 	  String query2 = 
@@ -97,7 +98,7 @@ ArrayList<String[]> b=new ArrayList<String[]>();
   
   public static ArrayList<ArrayList<String>> GetProFromTrailerOnSameTerminal(String terminalcd,String SCAC,String TrailerNB) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn3=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn3=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn3.createStatement();
 	  String query2 = 

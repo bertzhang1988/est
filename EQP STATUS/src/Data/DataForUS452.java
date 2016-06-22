@@ -17,7 +17,8 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 
@@ -26,7 +27,7 @@ public class DataForUS452 {
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
   //conn=DriverManager.getConnection(dev1db, "estdev","equipment");
-  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn1=DataConnection.getConnection();
   Statement stat=null; 
   stat= conn1.createStatement();
   String query1 =null;

@@ -13,15 +13,17 @@ import java.util.Iterator;
 import java.util.TimeZone;
 
 import org.testng.annotations.Test;
-import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
+
+import org.testng.annotations.DataProvider;
 
 public class DataForUS1229 {
   @DataProvider(name="12.29")
   public static Iterator<String[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
 	 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	 Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	 Connection conn1=DataConnection.getConnection();
 	 Statement stat= conn1.createStatement();
 	 
 	 String Status=null;
@@ -85,7 +87,7 @@ public class DataForUS1229 {
 
   public static ArrayList<String> GetProNotInAnyTrailer() throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat=conn2.createStatement();
 	  String query2 = 
 " SELECT wb.Pro_NB FROM EQP.Waybill as wb WHERE wb.Standard_Carrier_Alpha_CD Is Null AND wb.Equipment_Unit_NB Is Null AND wb.Shipment_Correction_Type_CD<>'VO' AND wb.Shipment_Purpose_CD<>'MR'" 
@@ -104,7 +106,7 @@ public class DataForUS1229 {
 
 static public ArrayList<Object> CheckEQPStatusUpdate(String SCAC,String TrailerNB ) throws ClassNotFoundException, SQLException{
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn3=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn3=DataConnection.getConnection();
 	  Statement stat= conn3.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	  String query3 = "select top 1 [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],Equipment_Status_Type_CD,Statusing_Facility_CD,[Equipment_Dest_Facility_CD],Source_Create_ID,Actual_Capacity_Consumed_PC,Modify_TS,create_ts,Equipment_Status_TS,Observed_Shipment_QT,Observed_Weight_QT,Seal_NB,Equipment_Status_System_TS from [EQP].[Equipment_Status] where Equipment_Unit_NB='"+TrailerNB+"' and Standard_Carrier_Alpha_CD='"+SCAC+"'"
 			  +" ORDER BY [Equipment_Status_TS] DESC,[Equipment_Status_System_TS] DESC";
@@ -145,7 +147,7 @@ static public ArrayList<Object> CheckEQPStatusUpdate(String SCAC,String TrailerN
 
 public static ArrayList<Object> GetWBandWBTupdate(String PRO) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn4=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn4=DataConnection.getConnection();
 	  Statement stat= conn4.createStatement();
 	  String query4 = 
 " select wb.pro_nb,WB.Standard_Carrier_Alpha_CD,WB.Equipment_Unit_NB,wb.Destination_Facility_CD, wb.Modify_TS,wbt.To_Standard_Carrier_Alpha_CD,wbt.To_Equipment_Unit_NB,wbT.Waybill_Transaction_Type_NM,wbt.Manifest_Destination_Fclty_CD,wbt.Waybill_Transaction_End_TS,wbt.Create_ts, wbt.Modify_ts"

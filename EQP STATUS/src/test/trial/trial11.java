@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.testng.annotations.Test;
 
-import Page.CommonFunction;
+import Function.CommonFunction;
 
 public class trial11 {
   @Test

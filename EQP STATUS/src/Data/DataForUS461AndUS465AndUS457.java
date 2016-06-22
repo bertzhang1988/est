@@ -18,14 +18,15 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 public class DataForUS461AndUS465AndUS457 {
 
 @DataProvider(name="4.61And4.65And4.57")
 public static Iterator<Object[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	Connection conn=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	Connection conn=DataConnection.getConnection();
 	Statement stat= conn.createStatement();
 	String query1 = DataCommon.query34;
  

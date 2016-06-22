@@ -13,9 +13,11 @@ import java.util.Iterator;
 import java.util.TimeZone;
 
 import org.testng.annotations.Test;
-import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
+
+import org.testng.annotations.DataProvider;
 
 
 public class DataForUS200091 {
@@ -23,7 +25,7 @@ public class DataForUS200091 {
   @DataProvider(name="2000.91")
   public static Iterator<Object[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
 	 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	 Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	 Connection conn1=DataConnection.getConnection();
 	 Statement stat= conn1.createStatement();
 
 String Query = null;

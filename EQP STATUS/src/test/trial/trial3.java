@@ -16,7 +16,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-import Page.CommonFunction;
+import Function.CommonFunction;
 import Page.EqpStatusPageS;
 
 public class trial3 {

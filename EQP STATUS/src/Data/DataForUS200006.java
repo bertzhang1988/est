@@ -14,7 +14,8 @@ import java.util.Set;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 
@@ -23,7 +24,7 @@ public class DataForUS200006 {
  @DataProvider(name="ldgtrailerNoPro")
  public static Iterator<String[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
- Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+ Connection conn1=DataConnection.getConnection();
  Statement stat=null; 
  stat= conn1.createStatement();
  String query1 = DataCommon.query1;
@@ -48,7 +49,7 @@ public class DataForUS200006 {
   @DataProvider(name="2000.06")
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn2=DataConnection.getConnection();
   Statement stat=null; 
   stat= conn2.createStatement();
   String stuff1 = null;
@@ -97,7 +98,7 @@ String query2 =
   @DataProvider(name="ldg trailer with both food and pois")
   public static Iterator<String[]> trailerWithFoodANDPois(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn2=DataConnection.getConnection();
   Statement stat=null; 
   stat= conn2.createStatement();
 String query2 = 
@@ -133,7 +134,7 @@ String query2 =
 
   public static ArrayList<String> GetPro(String SCAC, String TrailerNB,String ProType) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn3=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn3=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn3.createStatement();
 	  String query3 = 

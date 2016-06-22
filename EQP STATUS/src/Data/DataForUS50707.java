@@ -17,7 +17,8 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 
@@ -26,7 +27,7 @@ public class DataForUS50707 {
   @DataProvider(name="507.07")
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn1=DataConnection.getConnection();
   Statement stat= conn1.createStatement();
   String query1 = DataCommon.query2;
 ArrayList<String[]> b=new ArrayList<String[]>();
@@ -51,7 +52,7 @@ ArrayList<String[]> b=new ArrayList<String[]>();
 
   public static ArrayList<String> GetTrailerOnSameTerminal(String terminalcd, String statustype) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat= conn2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	  String query2 = 
 " select top 1 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,nEqps.Equipment_Dest_Facility_CD"
@@ -81,7 +82,7 @@ ArrayList<String[]> b=new ArrayList<String[]>();
   
   public static ArrayList<String> GetTrailerOnDifferentTerminal(String terminalcd, String statustype) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat= conn2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	  String query2 = 
 " select top 1 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,nEqps.Equipment_Dest_Facility_CD"

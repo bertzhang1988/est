@@ -11,14 +11,15 @@ import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 public class DataForUS439 {
  
   public static ArrayList<String> Getpro1(String stuff,String SCAC,String trailernb) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn.createStatement();
 	  String query1 = null;
@@ -44,7 +45,7 @@ public class DataForUS439 {
   @DataProvider(name="Invalid pro")
   public static Iterator<String[]> CreateData2(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn1=DataConnection.getConnection();
   Statement stat=null; 
   stat= conn1.createStatement();
   String query1 = null ;
@@ -75,7 +76,7 @@ public class DataForUS439 {
   @DataProvider(name="ldgtrailerNoPro")
   public static Iterator<String[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-   Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+   Connection conn1=DataConnection.getConnection();
  	 Statement stat=null; 
  	 stat= conn1.createStatement();
  	 String query1 = DataCommon.query1;

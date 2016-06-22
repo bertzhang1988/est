@@ -26,10 +26,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import Page.CommonFunction;
-import Page.DataCommon;
+import Function.CommonFunction;
+import Function.DataCommon;
 import Page.EqpStatusPageS;
-import UADtesting.DataForUADTesting;
+import TestCase.UADtesting.DataForUADTesting;
 
 public class submit {
 

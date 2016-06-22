@@ -11,16 +11,17 @@ import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 import Page.EqpStatusPageS;
-import SitTest.US200057EvaluateStatusTransitions;
+import TestCase.SitTest.US200057EvaluateStatusTransitions;
 
 public class DataForUS200057 {
 
 	  @DataProvider(name="2000.57")
 	  public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn1=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn1.createStatement();
 	  

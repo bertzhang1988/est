@@ -11,14 +11,15 @@ import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 public class DataForUS458 {
 	  @DataProvider(name="458")
 	  public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn1=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn1.createStatement();
 
@@ -43,7 +44,7 @@ public class DataForUS458 {
 
 	  public static ArrayList<String> GetPro(String SCAC, String TrailerNB) throws ClassNotFoundException, SQLException {
 		  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+		  Connection conn2=DataConnection.getConnection();
 		  Statement stat=null; 
 		  stat= conn2.createStatement();
 		  String query2 = 

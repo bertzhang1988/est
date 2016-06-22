@@ -11,14 +11,15 @@ import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 public class DataForUS200001AndUS200002AndUS200041 { 
 
 @DataProvider(name="2000.41")
  public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	 Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn1=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn1.createStatement();
 	  
@@ -45,7 +46,7 @@ public class DataForUS200001AndUS200002AndUS200041 {
  @DataProvider(name="2000.02")
  public static Iterator<String[]> CreateData2(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	   Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn2.createStatement();
 	  String query2 =DataCommon.query31;
@@ -69,7 +70,7 @@ public class DataForUS200001AndUS200002AndUS200041 {
  @DataProvider(name="2000.01retired")
  public static Iterator<String[]> CreateData3(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn3=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn3=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn3.createStatement();
 	  String query3 = DataCommon.query32;

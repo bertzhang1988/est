@@ -11,13 +11,14 @@ import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 public class DataForUS1203 {
   @DataProvider(name="12.03")
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn=DataConnection.getConnection();
 	  Statement stat= conn.createStatement();
 	  String Mark = null;
 	  

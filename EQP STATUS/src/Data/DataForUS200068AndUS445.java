@@ -13,14 +13,15 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 public class DataForUS200068AndUS445 {
 
 @DataProvider(name="2000.68")
  public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn=DataConnection.getConnection();
 	  Statement stat=null; 
 	  stat= conn.createStatement();
 	  ArrayList<String[]> b=new ArrayList<String[]>();
@@ -46,7 +47,7 @@ public class DataForUS200068AndUS445 {
  @DataProvider(name="2000.682")
  public static Iterator<Object[]> CreateData1(Method m) throws ClassNotFoundException, SQLException {	
 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+Connection conn1=DataConnection.getConnection();
 Statement stat= conn1.createStatement();
 TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 String Query="select top 1 ESi.Equipment_Unit_NB,ESi.Standard_Carrier_Alpha_CD,ESi.Statusing_Facility_CD,ESI.Equipment_Status_TS, ESi.Equipment_Status_Type_CD, ESi.Actual_Capacity_Consumed_PC,esi.Seal_NB,ESi.Equipment_Dest_Facility_CD,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) AS AmountWeight,esi.Headload_Dest_Facility_CD,esi.Headload_Capacity_Consumed_PC,esi.Observed_Shipment_QT,esi.Observed_Weight_QT"

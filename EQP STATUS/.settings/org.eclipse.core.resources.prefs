@@ -1,8 +1,8 @@
 eclipse.preferences.version=1
-encoding//src/BORtesting/DataForBORScreenTesting.java=UTF-8
-encoding//src/CLTGtesting/DataForCLTGScreenTesting.java=UTF-8
-encoding//src/CLtesting/DataForCLScreenTesting.java=UTF-8
-encoding//src/CPUtesting/DataForCPUScreenTesting.java=UTF-8
 encoding//src/Data/DataForUS461AndUS465AndUS457.java=UTF-8
-encoding//src/MTYtesting/DataForMTYScreenTesting.java=UTF-8
-encoding//src/OFDtesting/DataForOFDScreenTesting.java=UTF-8
+encoding//src/TestCase/BORtesting/DataForBORScreenTesting.java=UTF-8
+encoding//src/TestCase/CLTGtesting/DataForCLTGScreenTesting.java=UTF-8
+encoding//src/TestCase/CLtesting/DataForCLScreenTesting.java=UTF-8
+encoding//src/TestCase/CPUtesting/DataForCPUScreenTesting.java=UTF-8
+encoding//src/TestCase/MTYtesting/DataForMTYScreenTesting.java=UTF-8
+encoding//src/TestCase/OFDtesting/DataForOFDScreenTesting.java=UTF-8

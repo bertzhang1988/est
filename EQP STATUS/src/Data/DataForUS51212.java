@@ -18,14 +18,15 @@ import java.util.TimeZone;
 
 import org.testng.annotations.DataProvider;
 
-import Page.DataCommon;
+import Function.DataCommon;
+import Function.DataConnection;
 
 
 public class DataForUS51212 {
   @DataProvider(name="512.12")
   public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {	
   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  Connection conn1=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+  Connection conn1=DataConnection.getConnection();
   Statement stat= conn1.createStatement();
   ArrayList<String[]> b=new ArrayList<String[]>();
   String query=DataCommon.query44;
@@ -50,7 +51,7 @@ public class DataForUS51212 {
 
   public static ArrayList<String> GetTrailerOnSameTerminal(String terminalcd, String statustype) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat= conn2.createStatement();
 	  String query2 = 
 " select top 1 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,nEqps.Equipment_Dest_Facility_CD"
@@ -79,7 +80,7 @@ public class DataForUS51212 {
   
   public static ArrayList<String> GetTrailerOnDifferentTerminal(String terminalcd, String statustype) throws ClassNotFoundException, SQLException {
 	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	  Connection conn2=DriverManager.getConnection(DataCommon.db, DataCommon.user,DataCommon.password);
+	  Connection conn2=DataConnection.getConnection();
 	  Statement stat= conn2.createStatement();
 	  String query2 = 
  " select top 1 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,nEqps.Equipment_Dest_Facility_CD"

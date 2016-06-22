@@ -20,9 +20,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import LdgScreen.DataForUSLDGLifeTest;
-import Page.CommonFunction;
+import Function.CommonFunction;
 import Page.EqpStatusPageS;
+import TestCase.LdgScreen.DataForUSLDGLifeTest;
 
 public class DatePickerTrial {
 	 private WebDriver driver;

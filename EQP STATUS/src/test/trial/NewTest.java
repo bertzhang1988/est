@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import Data.DataForUS439;
-import Page.CommonFunction;
+import Function.CommonFunction;
 
 public class NewTest {
 	WebDriver driver;

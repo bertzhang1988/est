@@ -33,10 +33,10 @@ import Data.DataForUS1215;
 import Data.DataForUS200075;
 import Data.DataForUS200091;
 import Data.DataForUS470;
-import LoadToEnr.DataForUSLoadToEnrTest;
-import Page.CommonFunction;
-import Page.DataCommon;
+import Function.CommonFunction;
+import Function.DataCommon;
 import Page.EqpStatusPageS;
+import TestCase.LoadToEnr.DataForUSLoadToEnrTest;
 
 public class US200075DisplayPROsInOrderWhichTheyEnter {
 	private WebDriver driver;
