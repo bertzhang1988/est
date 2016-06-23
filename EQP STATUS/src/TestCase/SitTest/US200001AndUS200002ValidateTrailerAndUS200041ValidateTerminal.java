@@ -44,7 +44,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 			driver = new PhantomJSDriver();
 		}
 		page = new EqpStatusPageS(driver);
-		driver.get(page.sit1);
+		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		builder = new Actions(driver);
 		page.SetStatus(status);

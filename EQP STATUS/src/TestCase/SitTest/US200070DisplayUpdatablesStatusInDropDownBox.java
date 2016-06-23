@@ -44,7 +44,7 @@ public class US200070DisplayUpdatablesStatusInDropDownBox {
 			driver = new PhantomJSDriver();
 		}
 		page = new EqpStatusPageS(driver);
-		driver.get(page.sit1);
+		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 	}
 

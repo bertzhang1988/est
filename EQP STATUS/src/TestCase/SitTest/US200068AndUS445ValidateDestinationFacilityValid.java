@@ -46,7 +46,7 @@ public class US200068AndUS445ValidateDestinationFacilityValid {
 			driver = new PhantomJSDriver();
 		}
 		page = new EqpStatusPageS(driver);
-		driver.get(page.sit1);
+		driver.get(Conf.GetURL());
 		// driver.manage().window().maximize();
 		page.SetStatus(status);
 		builder = new Actions(driver);

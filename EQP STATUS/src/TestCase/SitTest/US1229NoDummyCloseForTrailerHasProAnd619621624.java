@@ -48,7 +48,7 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 			driver = new PhantomJSDriver();
 		}
 		page = new EqpStatusPageS(driver);
-		driver.get(page.sit1);
+		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 		builer = new Actions(driver);

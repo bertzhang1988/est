@@ -3,9 +3,9 @@
   <test name="ONE METHOD">
  <parameter name="browser" value="chrome"/>
     <classes>
-	<class name="LDDscreen.LDDTesting">
+	<class name="TestCase.LdgScreen.LDGTesting">
 	  <methods>
-        <include name="NonLDDtrailerHasProSetldg"/>
+        <include name="SetTrailerToLDGWithProAndDock"/>
       </methods></class> 	
     </classes>
   </test>
