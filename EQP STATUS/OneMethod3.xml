@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SINGLE TEST" thread-count="1"  parallel="classes" verbose="2">
+  <test name="ONE METHOD">
+ <parameter name="browser" value="chrome"/>
+    <classes>
+	<class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
+	  <methods>
+        <include name="LdgTrailerWithProAddPro2"/>
+   
+         
+      </methods></class> 	
+    </classes>
+  </test>
+  
+  
+ </suite>
+

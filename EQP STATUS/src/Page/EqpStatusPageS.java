@@ -451,11 +451,11 @@ public class EqpStatusPageS {
 
 	public void SetLocation(String terminalcd) throws AWTException, InterruptedException {
 		Actions builder = new Actions(driver);
-		// r= new Robot();
+		r = new Robot();
 		this.TerminalField.click();
 		this.TerminalField.clear();
 		this.TerminalField.sendKeys(terminalcd);
-		// r.keyPress(KeyEvent.VK_TAB);
+		// r.keyPress(KeyEvent..VK_TAB);
 		// r.keyRelease(KeyEvent.VK_TAB);
 		builder.sendKeys(Keys.TAB).build().perform();
 		// this.Title.click();
@@ -692,10 +692,10 @@ public class EqpStatusPageS {
 			this.HeadloadCube.sendKeys(HeadloadCube);
 			builder.sendKeys(Keys.TAB).build().perform();
 			this.HEADLOADButton.click();
-			Thread.sleep(2000);
+			// Thread.sleep(2000);
 		} else if (handle.equalsIgnoreCase("leaveon")) {
 			this.LEAVEONButton.click();
-			Thread.sleep(2000);
+			// Thread.sleep(2000);
 		} else if (handle.equalsIgnoreCase("allshort")) {
 			this.ALLSHORTButton.click();
 			(new WebDriverWait(driver, 50))
@@ -734,13 +734,17 @@ public class EqpStatusPageS {
 		}
 	}
 
-	public Date GetDatePickerTime() throws ParseException {
+	public Date GetDatePickerTime() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		String DateAndTime = this.DateInput.getAttribute("value") + " " + this.HourInput.getAttribute("value") + ":"
 				+ this.MinuteInput.getAttribute("value");
 		SimpleDateFormat PickerDate = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(PickerDate.parse(DateAndTime));
+		try {
+			cal.setTime(PickerDate.parse(DateAndTime));
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+		}
 		return cal.getTime();
 	}
 

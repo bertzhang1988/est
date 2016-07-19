@@ -5,7 +5,9 @@
     <classes>
 	<class name="TestCase.LdgScreen.LDGTesting">
 	  <methods>
-        <include name="SetTrailerToLDGWithProAndDock"/>
+        <include name="SetTrailerToLDGWithProAndHeadLoad"/>
+         <include name="SetTrailerToLDGWithProAndLeaveOn"/>
+         
       </methods></class> 	
     </classes>
   </test>

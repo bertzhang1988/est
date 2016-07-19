@@ -5,6 +5,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -29,6 +31,7 @@ import Data.DataForUS607;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
+import Function.Utility;
 import Page.EqpStatusPageS;
 
 public class US607PromptHeadloadOnDestinationChangeLDG {
@@ -64,8 +67,16 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 	}
 
 	@AfterMethod(groups = { "ldg uc" })
-	public void setback() throws InterruptedException {
-		page.SetStatus("ldg");
+	public void getbackldg(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+
+			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
+					"");
+			String FailureTestparameter = result.getName() + Testparameter;
+
+			Utility.takescreenshot(driver, FailureTestparameter);
+			page.SetStatus("ldg");
+		}
 	}
 
 	@Test(priority = 1, dataProvider = "6.07", dataProviderClass = DataForUS607.class, groups = { "ldg uc" })
@@ -258,7 +269,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 
 		page.SubmitLDGButton.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"Trailer " + SCAC + TrailerNB + " updated to LDG"));
+				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));

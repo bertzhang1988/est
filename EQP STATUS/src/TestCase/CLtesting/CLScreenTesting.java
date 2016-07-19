@@ -15,7 +15,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -47,14 +46,15 @@ public class CLScreenTesting {
 			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
 			driver = new PhantomJSDriver();
 		}
-		// driver=new FirefoxDriver();
 		page = new EqpStatusPageS(driver);
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("cl");
 	}
 
-	@Test(priority = 1, dataProvider = "cl with pro", dataProviderClass = DataForCLScreenTesting.class, description = "not in cl with pro set to cl,leave on")
+	// @Test(priority = 1, dataProvider = "cl with pro", dataProviderClass =
+	// DataForCLScreenTesting.class, description = "not in cl with pro set to
+	// cl,leave on")
 	public void ThreeBlOBRLeaveOn(String terminalcd, String SCAC, String TrailerNB)
 			throws AWTException, InterruptedException {
 		SoftAssert SA = new SoftAssert();
@@ -65,7 +65,28 @@ public class CLScreenTesting {
 
 	}
 
-	@Test(priority = 1, dataProvider = "cl with pro", dataProviderClass = DataForCLScreenTesting.class)
+	@Test(priority = 1, dataProvider = "cl with pro", dataProviderClass = DataForCLScreenTesting.class, description = "not in cl no pro set to cl")
+	public void ToCLNoPro(String terminalcd, String SCAC, String TrailerNB, String Desti, String Cube, String AmountPro,
+			String AmountWeight, Date MRSts)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+		SoftAssert SA = new SoftAssert();
+		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
+		page.EnterTrailer(SCAC, TrailerNB);
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
+		// enter plan date
+
+		// (new WebDriverWait(driver,
+		// 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
+		// "Leftover Bill Review - 3 Button"));
+
+	}
+
+	// @Test(priority = 1, dataProvider = "cl with pro", dataProviderClass =
+	// DataForCLScreenTesting.class)
 	public void CLScreen(String terminalcd, String SCAC, String TrailerNB, String Desti, String Cube, String AmountPro,
 			String AmountWeight, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
@@ -95,7 +116,8 @@ public class CLScreenTesting {
 		SA.assertAll();
 	}
 
-	@Test(priority = 2, dataProvider = "cl with pro", dataProviderClass = DataForCLScreenTesting.class)
+	// @Test(priority = 2, dataProvider = "cl with pro", dataProviderClass =
+	// DataForCLScreenTesting.class)
 	public void threeBlOBR(String terminalcd, String SCAC, String TrailerNB, String Desti, String Cube,
 			String AmountPro, String AmountWeight, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
@@ -114,7 +136,7 @@ public class CLScreenTesting {
 		SA.assertAll();
 	}
 
-	@AfterClass
+	// @AfterClass
 	public void TearDown() {
 		driver.quit();
 	}

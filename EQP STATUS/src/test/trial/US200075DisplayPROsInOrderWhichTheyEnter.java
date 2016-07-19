@@ -83,7 +83,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		page.RemoveProButton.click();
 		ArrayList<String> Addpro = new ArrayList<String>();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 120; i++) {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			Addpro.add(CurrentPro);
@@ -105,6 +105,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), " pro grid is wrong");
+
 		// check right grid is as same as left grid
 		ArrayList<String> AddproBatch = new ArrayList<String>();
 		Iterator<ArrayList<String>> pr = ProInfo.iterator();
@@ -130,6 +131,17 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
 		System.out.println((d2.getTime() - d.getTime()) / 1000);
+		page.SetStatus("uad");
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+		page.SubmitButton.click();
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		page.SetStatus("ldg");
 		SA.assertAll();
 	}
 
@@ -256,11 +268,20 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		// add no waybill record pro
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 0; i++) {
+		for (int i = 0; i < 3; i++) {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
+
+		// add dt mismatch pro record pro
+		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		for (int i = 0; i < 3; i++) {
+			String CurrentPro = PRO4.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
 		// change cube
 		int Ran = (int) (Math.random() * 99) + 1;
 		String NewCube = Integer.toString(Ran);
@@ -268,7 +289,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		// page.SubmitLDGButton.click();
 		// click submit and close out button
-		// page.SubmitAndCloseOutButton.click();
+		page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
@@ -400,7 +421,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		// add pro not in any trailer
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 2; i++) {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
@@ -408,7 +429,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		// add pro from other trailer
 		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 0; i++) {
 			String CurrentPro = PRO2.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
@@ -418,6 +439,14 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
 		for (int i = 0; i < 0; i++) {
 			String CurrentPro = PRO3.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add dt mismatch pro record pro
+		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		for (int i = 0; i < 0; i++) {
+			String CurrentPro = PRO4.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
@@ -491,6 +520,243 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		SAssert.assertAll();
 	}
 
+	@Test(priority = 2, dataProvider = "2000.75", dataProviderClass = DataForUS200075.class, groups = { "ldg uc" })
+	public void AddMultipleProsInSingleBatch2(String terminalcd, String SCAC, String TrailerNB)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+		SoftAssert SA = new SoftAssert();
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
+		page.RemoveProButton.click();
+		ArrayList<String> Addpro = new ArrayList<String>();
+		for (int i = 0; i < 107; i++) {
+			String CurrentPro = PRO.get(i);
+			page.EnterPro(CurrentPro);
+			Addpro.add(CurrentPro);
+		}
+
+		int Ran = (int) (Math.random() * 99) + 1;
+		page.SetCube(Integer.toString(Ran));
+		page.SubmitLDGButton.click();
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.elementToBeClickable(page.StatusTrailerButton));
+		page.SetStatus("uad");
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+		page.SubmitButton.click();
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		page.SetStatus("ldg");
+		SA.assertAll();
+	}
+
+	@Test(priority = 8, dataProvider = "2000.91", dataProviderClass = DataForUS200091.class, groups = { "ldg uc" })
+	public void LdgTrailerWithProAddPro2(String terminalcd, String SCAC, String TrailerNB, String destination,
+			Date MReqpst)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+		SoftAssert SAssert = new SoftAssert();
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+
+		// add pro not in any trailer
+		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
+		ArrayList<String> ADDPRO = new ArrayList<String>();
+		page.RemoveProButton.click();
+		for (int j = 0; j < 20; j++) {
+			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add pro from other trailer
+		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
+		for (int i = 0; i < 10; i++) {
+			String CurrentPro = PRO2.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 10; i++) {
+			String CurrentPro = PRO3.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add dttmsp pro
+		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		for (int i = 0; i < 20; i++) {
+			String CurrentPro = PRO4.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// enter cube
+		int Ran = (int) (Math.random() * 99) + 1;
+		String NewCube = Integer.toString(Ran);
+		page.SetCube(NewCube);
+		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+
+		// click new submit
+		page.SubmitLDGButton.click();
+		Date d = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 180))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		Date d2 = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+
+		// check eqps
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(2), destination, "equipment_dest_facility_cd is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(19), "LH.LDG", "Source_Modify_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
+		for (int i = 5; i <= 8; i++) {
+			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
+			if (i == 5) {
+				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, "modify_ts " + "  " + TS + "  " + d);
+			} else {
+				SAssert.assertEquals(NewEqpStatusRecord.get(i), (Date) OldEqpStatusRecord.get(i),
+						i + "  " + NewEqpStatusRecord.get(i) + "  " + OldEqpStatusRecord.get(i));
+			}
+		}
+
+		// check pro
+		for (String CurrentPro : ADDPRO) {
+			ArrayList<Object> NewWbAndWbtRecord = DataCommon.GetWaybillInformationOfPro(CurrentPro);
+			SAssert.assertEquals(NewWbAndWbtRecord.get(0), SCAC,
+					"" + CurrentPro + " wb.Standard_Carrier_Alpha_CD is wrong");
+			SAssert.assertEquals(NewWbAndWbtRecord.get(1), TrailerNB, "wb.Equipment_Unit_NB is wrong");
+			SAssert.assertEquals(NewWbAndWbtRecord.get(17), SCAC, "wb.To_Standard_Carrier_Alpha_CD is wrong");
+			SAssert.assertEquals(NewWbAndWbtRecord.get(18), TrailerNB, "wb.To_Equipment_Unit_NB is wrong");
+			SAssert.assertEquals(NewWbAndWbtRecord.get(20), "LOADING", "wb.Waybill_Transaction_Type_NM is wrong");
+			Date System_Modify_TS = CommonFunction.SETtime((Date) NewWbAndWbtRecord.get(9));
+			SAssert.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
+					" waybill table System_Modify_TS " + System_Modify_TS + "  " + d);
+			Date Waybill_Transaction_End_TS = CommonFunction.SETtime((Date) NewWbAndWbtRecord.get(11));
+			SAssert.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
+					" waybill table Waybill_Transaction_End_TS is wrong " + CurrentPro + "  "
+							+ Waybill_Transaction_End_TS + "  " + d);
+		}
+		System.out.println((d2.getTime() - d.getTime()) / 1000.0);
+		SAssert.assertAll();
+	}
+
+	@Test(priority = 9, dataProvider = "12.15", dataProviderClass = DataForUS1215.class, description = "non ldg without pro, add pro", groups = {
+			"ldg uc" })
+	public void NONLDGTrailerWithoutPROAddPRO2(String terminalcd, String SCAC, String TrailerNB, String Desti,
+			String AmountPro, String AmountWeight, String Cube, String seal, String hldesti, String hlcube,
+			Date MReqpst) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+		SoftAssert SAssert = new SoftAssert();
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+
+		// ENTER DESTINATION
+		String[] dest = { "270", "112", "841", "198", "135" };
+		int ran = new Random().nextInt(dest.length);
+		String changeDesti = dest[ran];
+		page.SetDestination(changeDesti);
+
+		// add pro not in any trailer
+		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
+		ArrayList<String> ADDPRO = new ArrayList<String>();
+		page.RemoveProButton.click();
+		for (int j = 0; j < 10; j++) {
+			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add pro from other trailer
+		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
+		for (int i = 0; i < 10; i++) {
+			String CurrentPro = PRO2.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 10; i++) {
+			String CurrentPro = PRO3.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add dt mismatch pro record pro
+		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		for (int i = 0; i < 10; i++) {
+			String CurrentPro = PRO4.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// change cube
+		int Ran = (int) (Math.random() * 99) + 1;
+		String NewCube = Integer.toString(Ran);
+		page.SetCube(NewCube);
+		// click submit
+		page.SubmitLDGButton.click();
+		Date d = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		Date d2 = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+
+		// check eqps
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
+
+		for (int i = 5; i <= 8; i++) {
+			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
+			SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 180000, i + "  " + TS + "  " + d);
+		}
+
+		// CHECK WAYBILL TABLE (load new pro)
+		for (String pro : ADDPRO) {
+
+			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
+			SAssert.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + "waybill SCAC is wrong");
+			SAssert.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + "waybill trailernb is wrong");
+			SAssert.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + "waybill  toSCAC is wrong");
+			SAssert.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + "waybill from terminal is wrong");
+			SAssert.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + "waybill totrailernb is wrong");
+			SAssert.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + "waybill TRANSACTION TYPE is wrong");
+			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
+			SAssert.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
+					"" + pro + " waybill table System_Modify_TS " + System_Modify_TS + "  " + d);
+			Date Waybill_Transaction_End_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(11));
+			SAssert.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
+					"" + pro + " waybill table Waybill_Transaction_End_TS " + Waybill_Transaction_End_TS + "  " + d);
+
+		}
+		System.out.println((d2.getTime() - d.getTime()) / 1000.0);
+		SAssert.assertAll();
+	}
+
 	@BeforeClass(groups = { "ldg uc" })
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
@@ -511,6 +777,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		driver.get(Conf.GetURL());
 		// driver.manage().window().maximize();
 		page.SetStatus("ldg");
+
 	}
 
 	// @AfterClass( groups = { "ldg uc" })

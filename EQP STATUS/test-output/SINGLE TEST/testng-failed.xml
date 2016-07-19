@@ -5,12 +5,12 @@
   <test name="ONE METHOD(failed)" parallel="classes">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="trial.US200075DisplayPROsInOrderWhichTheyEnter">
+      <class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
         <methods>
           <include name="SetUp"/>
-          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
+          <include name="LdgTrailerWithProAddPro2" invocation-numbers="0"/>
         </methods>
-      </class> <!-- trial.US200075DisplayPROsInOrderWhichTheyEnter -->
+      </class> <!-- test.trial.US200075DisplayPROsInOrderWhichTheyEnter -->
     </classes>
   </test> <!-- ONE METHOD(failed) -->
 </suite> <!-- Failed suite [SINGLE TEST] -->

@@ -67,7 +67,7 @@ public class OFDScreenTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTime(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
 		// check preppopulate
 
@@ -111,7 +111,7 @@ public class OFDScreenTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTime(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
@@ -153,7 +153,7 @@ public class OFDScreenTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTime(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
 		// alter time
 		int TimeGap = (int) ((d1.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
@@ -201,7 +201,7 @@ public class OFDScreenTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTime(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
 		// alter time
 		int TimeGap = (int) ((d1.getTime() - MRSts.getTime()) / (1000 * 60 * 60));

@@ -539,7 +539,7 @@ public class MTYScreenTesting {
 
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTime(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong, get from picker ");
 
 		// alter time

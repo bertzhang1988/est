@@ -15,6 +15,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -67,11 +68,28 @@ public class US2000119NewSubmitButtonLDG {
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-		// add pro
-		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
+		// add pro not in any trailer
+		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 1; i++) {
-			String CurrentPro = PRO.get(i);
+		page.RemoveProButton.click();
+		for (int j = 0; j < 16; j++) {
+			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add pro from other trailer
+		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
+		for (int i = 0; i < 12; i++) {
+			String CurrentPro = PRO2.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 12; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
@@ -83,7 +101,9 @@ public class US2000119NewSubmitButtonLDG {
 		page.SubmitLDGButton.click();
 
 		Date d = CommonFunction.gettime("UTC");
-
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		Date d2 = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
@@ -120,6 +140,7 @@ public class US2000119NewSubmitButtonLDG {
 			SA.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
 					" waybill table Waybill_Transaction_End_TS " + System_Modify_TS + "  " + d);
 		}
+		System.out.println((d2.getTime() - d.getTime()) / 1000.0);
 		SA.assertAll();
 	}
 
@@ -303,11 +324,28 @@ public class US2000119NewSubmitButtonLDG {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		// add pro
-		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
+		// add pro not in any trailer
+		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 1; i++) {
-			String CurrentPro = PRO.get(i);
+		page.RemoveProButton.click();
+		for (int j = 0; j < 16; j++) {
+			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add pro from other trailer
+		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
+		for (int i = 0; i < 12; i++) {
+			String CurrentPro = PRO2.get(i);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 12; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
@@ -320,6 +358,9 @@ public class US2000119NewSubmitButtonLDG {
 		// click new submit
 		page.SubmitLDGButton.click();
 		Date d = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		Date d2 = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
@@ -343,6 +384,7 @@ public class US2000119NewSubmitButtonLDG {
 			}
 		}
 
+		// check pro
 		for (String CurrentPro : ADDPRO) {
 			ArrayList<Object> NewWbAndWbtRecord = DataCommon.GetWaybillInformationOfPro(CurrentPro);
 			SAssert.assertEquals(NewWbAndWbtRecord.get(0), SCAC,
@@ -358,7 +400,7 @@ public class US2000119NewSubmitButtonLDG {
 			SAssert.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
 					" waybill table Waybill_Transaction_End_TS " + Waybill_Transaction_End_TS + "  " + d);
 		}
-
+		System.out.println((d2.getTime() - d.getTime()) / 1000.0);
 		SAssert.assertAll();
 	}
 
@@ -551,7 +593,7 @@ public class US2000119NewSubmitButtonLDG {
 		SAssert.assertAll();
 	}
 
-	// @AfterClass( groups = { "ldg uc" })
+	@AfterClass(groups = { "ldg uc" })
 	public void Close() {
 		driver.close();
 	}

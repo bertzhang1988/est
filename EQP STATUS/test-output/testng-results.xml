@@ -2,16 +2,69 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="148300" started-at="2016-06-21T21:57:54Z" finished-at="2016-06-21T22:00:22Z">
+  <suite name="Default suite" duration-ms="32720" started-at="2016-07-18T22:18:21Z" finished-at="2016-07-18T22:18:54Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="148300" started-at="2016-06-21T21:57:54Z" finished-at="2016-06-21T22:00:22Z">
-      <class name="test.trial2.TestExecute">
-        <test-method status="PASS" signature="TestExecution()[pri:0, instance:test.trial2.TestExecute@3ddda70f]" name="TestExecution" duration-ms="148273" started-at="2016-06-21T16:57:54Z" finished-at="2016-06-21T17:00:22Z">
+    <test name="Default test" duration-ms="32720" started-at="2016-07-18T22:18:21Z" finished-at="2016-07-18T22:18:54Z">
+      <class name="TestCase.CLtesting.CLScreenTesting">
+        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.CLtesting.CLScreenTesting@611353a7]" name="SetUp" is-config="true" duration-ms="11716" started-at="2016-07-18T22:18:21Z" finished-at="2016-07-18T22:18:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestExecution -->
-      </class> <!-- test.trial2.TestExecute -->
+        </test-method> <!-- SetUp -->
+        <test-method status="PASS" signature="ToCLNoPro(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:1, instance:TestCase.CLtesting.CLScreenTesting@611353a7]" name="ToCLNoPro" duration-ms="6416" started-at="2016-07-18T22:18:47Z" description="not in cl no pro set to cl" data-provider="cl with pro" finished-at="2016-07-18T22:18:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[125794]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-14 06:00:00.0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ToCLNoPro -->
+      </class> <!-- TestCase.CLtesting.CLScreenTesting -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

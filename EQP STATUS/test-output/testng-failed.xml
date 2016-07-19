@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="InquiryTesting.US100002InquiryScreen">
+      <class name="TestCase.CLtesting.CLScreenTesting">
         <methods>
           <include name="SetUp"/>
-          <include name="DisplayProGrid" invocation-numbers="2 4"/>
-          <include name="Close"/>
+          <include name="TearDown"/>
+          <include name="ToCLNoPro"/>
         </methods>
-      </class> <!-- InquiryTesting.US100002InquiryScreen -->
+      </class> <!-- TestCase.CLtesting.CLScreenTesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

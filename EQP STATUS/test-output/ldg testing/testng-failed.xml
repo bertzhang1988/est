@@ -10,68 +10,63 @@
       </run>
     </groups>
     <classes>
-      <class name="LdgScreen.US607PromptHeadloadOnDestinationChangeLDG">
+      <class name="TestCase.LdgScreen.US200091SmartEnterLDG">
         <methods>
-          <include name="ldgTrailerWithHeadloadProsClickNo" invocation-numbers="0"/>
-          <include name="SetUp"/>
-          <include name="ldgTrailerWithoutProsLDDClickYes" invocation-numbers="0"/>
           <include name="Close"/>
-          <include name="setback"/>
-          <include name="ldgTrailerWithoutProsClickYes" invocation-numbers="0"/>
-          <include name="ldgTrailerWithoutProsClickNo" invocation-numbers="0"/>
-          <include name="ldgTrailerWithoutProsLDDClickNo" invocation-numbers="0"/>
-          <include name="ldgTrailerWithHeadloadProsClickYes" invocation-numbers="0"/>
+          <include name="SetUp"/>
+          <include name="LdgTrailerWithoutProNoChange" invocation-numbers="0"/>
+          <include name="LdgTrailerWithoutProChangeDestinationAddPRO" invocation-numbers="0"/>
         </methods>
-      </class> <!-- LdgScreen.US607PromptHeadloadOnDestinationChangeLDG -->
-      <class name="LdgScreen.US200091SmartEnterLDG">
+      </class> <!-- TestCase.LdgScreen.US200091SmartEnterLDG -->
+      <class name="TestCase.LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG">
         <methods>
+          <include name="Close"/>
+          <include name="getbackldg"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG -->
+      <class name="TestCase.LdgScreen.US2000119NewSubmitButtonLDG">
+        <methods>
+          <include name="LdgTrailerWithoutProNoChange" invocation-numbers="0"/>
           <include name="LdgTrailerWithProChangeDestinationAddPRO" invocation-numbers="0"/>
           <include name="SetUp"/>
-          <include name="TrailerWithPROAddPRO" invocation-numbers="0 1 2 3 4"/>
-          <include name="Close"/>
-          <include name="LdgTrailerWithoutProChangeDestinationAddPRO" invocation-numbers="0"/>
-          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
-          <include name="LdgTrailerWithoutProNoChange" invocation-numbers="0"/>
         </methods>
-      </class> <!-- LdgScreen.US200091SmartEnterLDG -->
-      <class name="LdgScreen.LDGTesting">
+      </class> <!-- TestCase.LdgScreen.US2000119NewSubmitButtonLDG -->
+      <class name="TestCase.LdgScreen.US1215QuickClose">
+        <methods>
+          <include name="SetUp"/>
+          <include name="Close"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US1215QuickClose -->
+      <class name="TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter">
+        <methods>
+          <include name="Close"/>
+          <include name="AddMultipleProsInSingleBatch" invocation-numbers="0"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter -->
+      <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG">
+        <methods>
+          <include name="Close"/>
+          <include name="getbackldg"/>
+          <include name="ldgTrailerWithoutProsLDDClickNo" invocation-numbers="0"/>
+          <include name="SetUp"/>
+          <include name="ldgTrailerWithoutProsClickNo" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG -->
+      <class name="TestCase.LdgScreen.LDGTesting">
         <methods>
           <include name="NoLdgEmptyTrailerAddNonExistingPro" invocation-numbers="0"/>
+          <include name="SetTrailerToLoadingNoShipments" invocation-numbers="4"/>
+          <include name="LDGTrailerWithProChangeDestination" invocation-numbers="0"/>
+          <include name="SetTrailerToLDGWithProAndLeaveOn" invocation-numbers="0"/>
+          <include name="SetTrailerToLDGWithProAndALLSHORT" invocation-numbers="0"/>
           <include name="getbackldg"/>
           <include name="LDGWithoutProChangeDestination" invocation-numbers="0"/>
           <include name="SetUp"/>
           <include name="TearDown"/>
         </methods>
-      </class> <!-- LdgScreen.LDGTesting -->
-      <class name="LdgScreen.US1215QuickClose">
-        <methods>
-          <include name="SetUp"/>
-          <include name="Close"/>
-        </methods>
-      </class> <!-- LdgScreen.US1215QuickClose -->
-      <class name="LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter">
-        <methods>
-          <include name="AddMultipleProsInSingleBatch" invocation-numbers="0"/>
-          <include name="SetUp"/>
-          <include name="Close"/>
-        </methods>
-      </class> <!-- LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter -->
-      <class name="LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG">
-        <methods>
-          <include name="setback"/>
-          <include name="Close"/>
-          <include name="ldgTrailerWithoutProsClickYes" invocation-numbers="0"/>
-          <include name="ldgTrailerWithHeadloadProsClickYes" invocation-numbers="0"/>
-          <include name="SetUp"/>
-          <include name="ldgTrailerWithoutProsLDDClickYes" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG -->
-      <class name="LdgScreen.US2000119NewSubmitButtonLDG">
-        <methods>
-          <include name="SetUp"/>
-          <include name="LdgTrailerWithoutProChangeDestinationAddPRO" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- LdgScreen.US2000119NewSubmitButtonLDG -->
+      </class> <!-- TestCase.LdgScreen.LDGTesting -->
     </classes>
   </test> <!-- test ldg(failed) -->
 </suite> <!-- Failed suite [ldg testing] -->

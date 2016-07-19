@@ -109,7 +109,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDG", "Source_Modify_ID is wrong");
 		Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(5));
 		SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, "modify_ts is wrong  " + TS + "  " + d);
 		for (int i = 6; i <= 8; i++) {

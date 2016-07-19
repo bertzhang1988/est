@@ -24,8 +24,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -40,7 +42,7 @@ public class US100002InquiryScreen {
 	private EqpStatusPageS page;
 	private Actions builder;
 
-	@BeforeMethod
+	@BeforeClass
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
@@ -281,8 +283,7 @@ public class US100002InquiryScreen {
 		Sassert.assertAll();
 	}
 
-	// @Test(priority=5,dataProvider =
-	// "1000.02",dataProviderClass=DataForInQuiryScreen.class)
+	@Test(priority = 5, dataProvider = "1000.02", dataProviderClass = DataForInQuiryScreen.class)
 	public void Filter(String terminal) throws ClassNotFoundException, SQLException, InterruptedException {
 		SoftAssert Sassert = new SoftAssert();
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(10, TimeUnit.SECONDS)
@@ -446,7 +447,13 @@ public class US100002InquiryScreen {
 		Sassert.assertAll();
 	}
 
-	@AfterMethod
+	@AfterMethod()
+	public void RefreshScreen(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE)
+			driver.navigate().refresh();
+	}
+
+	@AfterClass
 	public void Close() {
 		driver.close();
 	}
