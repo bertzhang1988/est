@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Jul 12 20:19:04 UTC 2016</td>
+<td>Started on:</td><td>Wed Jul 20 04:05:22 UTC 2016</td>
 </tr>
-<tr><td>Total time:</td><td>473 seconds (473162 ms)</td>
+<tr><td>Total time:</td><td>94 seconds (94304 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,16 +75,30 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='test.trial.US200075DisplayPROsInOrderWhichTheyEnter.LdgTrailerWithProAddPro2()'><b>LdgTrailerWithProAddPro2</b><br>Test class: test.trial.US200075DisplayPROsInOrderWhichTheyEnter<br>Parameters: 347, RDWY, 131740, 336, 2016-02-17 14:14:00.0</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Timed out after 80 seconds waiting for visibility of [[ChromeDriver: chrome on XP (f106c01c6c2104f81b75ebb98f17e60f)] -&gt; css selector: div[name^=&apos;trailerVM.trailer.trailerSCACAndNumber_&apos;] input]
-Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
-System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
-Session ID: f106c01c6c2104f81b75ebb98f17e60f
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir11720_20521}, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=51.0.2704.103, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
-	at test.trial.US200075DisplayPROsInOrderWhichTheyEnter.LdgTrailerWithProAddPro2(US200075DisplayPROsInOrderWhichTheyEnter.java:617)
+<td title='TestCase.LdgScreen.LDGTesting.SetTrailerToLDGWithProAndLeaveOn()'><b>SetTrailerToLDGWithProAndLeaveOn</b><br>Test class: TestCase.LdgScreen.LDGTesting<br>Test method: can transit to ldg not in ldg and ldd with pro, lobr, leave on<br>Parameters: 435, RDWY, 530600, 2016-02-16 20:41:00.0</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [LDG] but found [MTY],
+	equipment_dest_facility_cd is wrong expected [270] but found [435],
+	Source_Create_ID is wrong expected [LH.LDG] but found [HRZ420],
+	Actual_Capacity_Consumed_PC is wrong expected [32] but found [null],
+	5 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	6 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	equipment_status_ts is wrong  Tue Feb 16 20:41:00 UTC 2016  Wed Jul 20 05:06:00 UTC 2016 expected [true] but found [false],
+	8 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	Waybill table Source_Modify_ID is wrong 4599000696 expected [LOBR] but found [CAR061],
+	waybill table system_modify_ts  Wed Jul 20 00:47:21 UTC 2016  Wed Jul 20 04:06:38 UTC 2016     4599000696 expected [true] but found [false],
+	waybill table loading record To_Facility_CD is wrong 4599000696 expected [null] but found [455],
+	waybill table loading record From_Facility_CD is wrong 4599000696 expected [435] but found [null],
+	waybill table loading record To_Standard_Carrier_Alpha_CD is wrong 4599000696 expected [RDWY] but found [null],
+	waybill table loading record To_Equipment_Unit_NB is wrong 4599000696 expected [530600] but found [null],
+	waybill table loading Waybill_Transaction_Type_NM is wrong 4599000696 expected [LOADING] but found [PICKUP],
+	waybill Waybill_Transaction_End_TS is  Wed Dec 16 05:00:00 UTC 2015 set date is : Wed Jul 20 05:06:00 UTC 2016     4599000696 expected [true] but found [false],
+	 expected [270] but found [],
+	Cube field is not disabled expected [32] but found [],
+	ldg screen prepopulate time is wrong  expected [Tue Feb 16 14:41:00 UTC 2016] but found [Tue Jul 19 23:06:00 UTC 2016],
+	pro grid is wrong expected [[[459-900069-6, 455, 650, 340]]] but found [[]]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.LdgScreen.LDGTesting.SetTrailerToLDGWithProAndLeaveOn(LDGTesting.java:757)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -98,16 +112,30 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browser
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
 	at java.lang.Thread.run(Thread.java:722)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1235448034", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1235448034'><pre>org.openqa.selenium.TimeoutException: Timed out after 80 seconds waiting for visibility of [[ChromeDriver: chrome on XP (f106c01c6c2104f81b75ebb98f17e60f)] -&gt; css selector: div[name^=&apos;trailerVM.trailer.trailerSCACAndNumber_&apos;] input]
-Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
-System info: host: &apos;N700278&apos;, ip: &apos;10.51.235.212&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
-Session ID: f106c01c6c2104f81b75ebb98f17e60f
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir11720_20521}, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=51.0.2704.103, takesHeapSnapshot=true, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
-	at test.trial.US200075DisplayPROsInOrderWhichTheyEnter.LdgTrailerWithProAddPro2(US200075DisplayPROsInOrderWhichTheyEnter.java:617)
+</pre></div><a href='#' onClick='toggleBox("stack-trace526894257", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace526894257'><pre>java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [LDG] but found [MTY],
+	equipment_dest_facility_cd is wrong expected [270] but found [435],
+	Source_Create_ID is wrong expected [LH.LDG] but found [HRZ420],
+	Actual_Capacity_Consumed_PC is wrong expected [32] but found [null],
+	5 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	6 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	equipment_status_ts is wrong  Tue Feb 16 20:41:00 UTC 2016  Wed Jul 20 05:06:00 UTC 2016 expected [true] but found [false],
+	8 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
+	Waybill table Source_Modify_ID is wrong 4599000696 expected [LOBR] but found [CAR061],
+	waybill table system_modify_ts  Wed Jul 20 00:47:21 UTC 2016  Wed Jul 20 04:06:38 UTC 2016     4599000696 expected [true] but found [false],
+	waybill table loading record To_Facility_CD is wrong 4599000696 expected [null] but found [455],
+	waybill table loading record From_Facility_CD is wrong 4599000696 expected [435] but found [null],
+	waybill table loading record To_Standard_Carrier_Alpha_CD is wrong 4599000696 expected [RDWY] but found [null],
+	waybill table loading record To_Equipment_Unit_NB is wrong 4599000696 expected [530600] but found [null],
+	waybill table loading Waybill_Transaction_Type_NM is wrong 4599000696 expected [LOADING] but found [PICKUP],
+	waybill Waybill_Transaction_End_TS is  Wed Dec 16 05:00:00 UTC 2015 set date is : Wed Jul 20 05:06:00 UTC 2016     4599000696 expected [true] but found [false],
+	 expected [270] but found [],
+	Cube field is not disabled expected [32] but found [],
+	ldg screen prepopulate time is wrong  expected [Tue Feb 16 14:41:00 UTC 2016] but found [Tue Jul 19 23:06:00 UTC 2016],
+	pro grid is wrong expected [[[459-900069-6, 455, 650, 340]]] but found [[]]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.LdgScreen.LDGTesting.SetTrailerToLDGWithProAndLeaveOn(LDGTesting.java:757)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -122,8 +150,8 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browser
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
 	at java.lang.Thread.run(Thread.java:722)
 </pre></div></td>
-<td>419</td>
-<td>test.trial.US200075DisplayPROsInOrderWhichTheyEnter@1604470f</td></tr>
+<td>23</td>
+<td>TestCase.LdgScreen.LDGTesting@73a43f81</td></tr>
 </table><p>
 </body>
 </html>

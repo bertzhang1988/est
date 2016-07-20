@@ -3,9 +3,9 @@
   <test name="ONE METHOD">
  <parameter name="browser" value="chrome"/>
     <classes>
-	<class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
+	<class name="TestCase.LdgScreen.LDGTesting">
 	  <methods>
-        <include name="LdgTrailerWithProAddPro2"/>
+        <include name="SetTrailerToLDGWithProAndHeadLoad"/>
    
          
       </methods></class> 	

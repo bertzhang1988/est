@@ -36,23 +36,27 @@ public class ConfigRd {
 	}
 
 	public String GetURL() {
-		String path = pro.getProperty("EqpsDevURL");
+		String path = pro.getProperty("EqpsSitURL");
 		return path;
 	}
 
 	public String GetDatabase() {
-		String path = pro.getProperty("Devdb");
+		String path = pro.getProperty("Sitdb");
 		return path;
 	}
 
 	public String GetDbUserName() {
-		String path = pro.getProperty("Devuser");
+		String path = pro.getProperty("Situser");
 		return path;
 	}
 
 	public String GetDbPassword() {
-		String path = pro.getProperty("Devpassword");
+		String path = pro.getProperty("Sitpassword");
 		return path;
 	}
 
+	public String GetGrowlMessage(String GrowlMessage) {
+		String path = pro.getProperty(GrowlMessage);
+		return path;
+	}
 }

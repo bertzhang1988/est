@@ -29,3 +29,5 @@ user1=svcEQP
 password1=EquipProd1
 
 proddb=jdbc:sqlserver://ywsqlopslstr:5000/Ops
+
+ASDGrowlMessage=Additional Shipments have been ASD'd to this trailer. You must disposition these PROs on LOBR before proceeding with the next updates.

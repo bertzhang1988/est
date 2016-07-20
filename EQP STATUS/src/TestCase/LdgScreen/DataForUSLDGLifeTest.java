@@ -35,6 +35,8 @@ public class DataForUSLDGLifeTest {
 			Query = DataCommon.query3;
 		} else if (m.getName().contains("SetTrailerToLDGWithPro")) {
 			Query = DataCommon.query9;
+		} else if (m.getName().contains("LDGTrailerWithProNotInLoading")) {
+			Query = DataCommon.query45;
 		}
 
 		ArrayList<Object[]> b1 = new ArrayList<Object[]>();

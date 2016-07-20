@@ -379,6 +379,7 @@ public class EqpStatusPageS {
 	@FindBy(how = How.NAME, using = "submitUAD")
 	public WebElement UadSubmit;
 
+	// UI method
 	public void AddComment(String Comment) {
 		if (!this.CommentInput.isDisplayed()) {
 			this.CommentButton.click();
@@ -514,7 +515,7 @@ public class EqpStatusPageS {
 		this.DestinationField.clear();
 		this.DestinationField.sendKeys(desti);
 		builder.sendKeys(Keys.TAB).build().perform();
-		Thread.sleep(1500);
+		Thread.sleep(1000);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	}
 
@@ -527,7 +528,7 @@ public class EqpStatusPageS {
 	}
 
 	public void SetCityRouteType(String CityRouteType) {
-		Actions builder = new Actions(driver);
+
 		this.CityRouteTypeField.click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.CityRouteTypeList));
 		String CityRouteTypeName = null;
@@ -612,6 +613,24 @@ public class EqpStatusPageS {
 
 	}
 
+	public String ChangeDestiantion() throws InterruptedException {
+		String originDestiantion = this.DestinationField.getAttribute("value");
+		String[] dest = { "851", "112", "841", "270", "198", "135" };
+		String changeDesti = null;
+		do {
+			changeDesti = dest[new Random().nextInt(dest.length)];
+		} while (changeDesti.equalsIgnoreCase(originDestiantion));
+		this.SetDestination(changeDesti);
+		return changeDesti;
+	}
+
+	public String ChangeCube() throws InterruptedException {
+		int Ran = (int) (Math.random() * 99) + 1;
+		String NewCube = Integer.toString(Ran);
+		this.SetCube(NewCube);
+		return NewCube;
+	}
+
 	public void EnterPro(String Pro) throws InterruptedException {
 		Actions builder = new Actions(driver);
 		this.AddProField.click();
@@ -679,7 +698,7 @@ public class EqpStatusPageS {
 
 		if (handle.equalsIgnoreCase("headload")) {
 			String[] dest = { "270", "112", "841", "198", "135" };
-			;
+
 			int ran = new Random().nextInt(dest.length);
 			String changeDesti = dest[ran];
 			String hldesti = changeDesti;
@@ -712,7 +731,7 @@ public class EqpStatusPageS {
 	}
 
 	public void HandleLOBRpro(String handle) throws InterruptedException {
-		Actions builder = new Actions(driver);
+
 		if (handle.equalsIgnoreCase("headload")) {
 			this.HEADLOADButton.click();
 			Thread.sleep(2000);
@@ -778,6 +797,11 @@ public class EqpStatusPageS {
 		this.MinuteInput.sendKeys(minute);
 	}
 
+	public void SetPlanDay(String Day) {
+		this.PlanDate.clear();
+		this.PlanDate.sendKeys(Day);
+	}
+
 	public void SetDatePicker(Date SetDate, int AlterHour) {
 		Actions builder = new Actions(driver);
 		Calendar cal = Calendar.getInstance();
@@ -812,6 +836,18 @@ public class EqpStatusPageS {
 		this.SetDate(DATE);
 		this.SetHour1(hour);
 		this.SetMinute(Minute);
+		builder.sendKeys(Keys.TAB).build().perform();
+	}
+
+	public void SetPlanDate(Date LocalTime, int AlterDay) {
+		Actions builder = new Actions(driver);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(LocalTime);
+		if (AlterDay != 0)
+			cal.add(Calendar.DAY_OF_MONTH, AlterDay);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+		String DATE = dateFormat.format(cal.getTime());
+		this.SetPlanDay(DATE);
 		builder.sendKeys(Keys.TAB).build().perform();
 	}
 

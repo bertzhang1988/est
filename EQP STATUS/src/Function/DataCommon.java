@@ -200,7 +200,7 @@ public class DataCommon {
 					+ " and [Equipment_Avbl_Status_NM]='available' and  neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] "
 					+ " and eqpa.M204_Occurrence_NB=(Select min(ea1.M204_Occurrence_NB) from EQP.Equipment_Availability_vw ea1  where ea1.Standard_Carrier_Alpha_CD=eqpa.Standard_Carrier_Alpha_CD and ea1.Equipment_unit_NB= eqpa.Equipment_Unit_NB)"
 					+ " and nEqps.Equipment_Unit_NB=wb.Equipment_Unit_NB  and nEqps.Standard_Carrier_Alpha_CD=wb.Standard_Carrier_Alpha_CD "
-					+ " group by neqps.Statusing_Facility_CD,neqps.Standard_Carrier_Alpha_CD,neqps.Actual_Capacity_Consumed_PC,neqps.Equipment_Unit_NB,neqps.Equipment_Status_Type_CD,neqps.Equipment_Dest_Facility_CD,neqps.Seal_NB,neqps.Equipment_Status_TS,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT having count(wb.pro_nb)>20 order by newid()";
+					+ " group by neqps.Statusing_Facility_CD,neqps.Standard_Carrier_Alpha_CD,neqps.Actual_Capacity_Consumed_PC,neqps.Equipment_Unit_NB,neqps.Equipment_Status_Type_CD,neqps.Equipment_Dest_Facility_CD,neqps.Seal_NB,neqps.Equipment_Status_TS,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT  order by newid()";
 
 	// in arr and enr without pro
 	public static String query10 =
@@ -560,6 +560,19 @@ public class DataCommon {
 					+ " group by ESi.Statusing_Facility_CD,ESi.Standard_Carrier_Alpha_CD,ESi.Actual_Capacity_Consumed_PC,ESi.Equipment_Unit_NB,esi.Equipment_Status_Type_CD,ESi.Equipment_Dest_Facility_CD,esi.Seal_NB,ESI.Equipment_Status_TS,esi.Headload_Dest_Facility_CD,esi.Headload_Capacity_Consumed_PC,esi.Observed_Shipment_QT,esi.Observed_Weight_QT,esi.City_Route_NM,esi.City_Route_Type_NM,esi.Planned_Delivery_DT"
 					+ " having COUNT(wb.pro_nb)=0 order by newid()";
 
+	// in ldg with pro and some of pros are not loading
+	public static String query45 =
+
+			"select top 1 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.Equipment_Status_TS,neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,neqps.Seal_NB,nEqps.Equipment_Dest_Facility_CD,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) AS AmountWeight,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT"
+					+ " from  [EQP].[Equipment_vw] eqp,[EQP].[Equipment_Availability_vw] eqpa,[EQP].[Equipment_Status_Type_Transition_vw] eqpst,EQP.Waybill_vw WB,(select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Status_TS,Equipment_Dest_Facility_CD,Actual_Capacity_Consumed_PC,Seal_NB,Headload_Dest_Facility_CD,Headload_Capacity_Consumed_PC,Observed_Shipment_QT,Observed_Weight_QT"
+					+ " from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Actual_Capacity_Consumed_PC,eqps.Equipment_Dest_Facility_CD,eqps.Seal_NB,EQPS.Equipment_Status_TS,eqps.Headload_Dest_Facility_CD,eqps.Headload_Capacity_Consumed_PC,eqps.Observed_Shipment_QT,eqps.Observed_Weight_QT,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
+					+ " where neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] and eqp.[Emergency_Repair_Due_IN]='n' and  eqp.Equipment_Type_NM in ('trailer','STRAIGHT TRUCK') and Neqps.Equipment_Dest_Facility_CD is not null and wb.Headload_IN='N' "
+					+ " and eqpa.[Standard_Carrier_Alpha_CD]=eqp.[Standard_Carrier_Alpha_CD] and eqpa.[Equipment_Unit_NB]=eqp.[Equipment_Unit_NB]  and neqps.[Equipment_Status_Type_CD]=eqpst.[From_Equipment_Status_Type_CD] and eqpst.[To_Equipment_Status_Type_CD]='ldg' and neqps.[Equipment_Status_Type_CD] in ('ldg')"
+					+ " and [Equipment_Avbl_Status_NM]='available' and  neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] "
+					+ " and eqpa.M204_Occurrence_NB=(Select min(ea1.M204_Occurrence_NB) from EQP.Equipment_Availability_vw ea1  where ea1.Standard_Carrier_Alpha_CD=eqpa.Standard_Carrier_Alpha_CD and ea1.Equipment_unit_NB= eqpa.Equipment_Unit_NB)"
+					+ " and nEqps.Equipment_Unit_NB=wb.Equipment_Unit_NB  and nEqps.Standard_Carrier_Alpha_CD=wb.Standard_Carrier_Alpha_CD  and wb.Waybill_Transaction_Type_NM <> 'LOADING'"
+					+ " group by neqps.Statusing_Facility_CD,neqps.Standard_Carrier_Alpha_CD,neqps.Actual_Capacity_Consumed_PC,neqps.Equipment_Unit_NB,neqps.Equipment_Status_Type_CD,neqps.Equipment_Dest_Facility_CD,neqps.Seal_NB,neqps.Equipment_Status_TS,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT order by newid()";
+
 	public static LinkedHashSet<ArrayList<String>> GetProList(String SCAC, String TrailerNB)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -770,6 +783,72 @@ public class DataCommon {
 		return d;
 	}
 
+	public static LinkedHashSet<ArrayList<String>> GetProNotInLoadingListLOBR(String SCAC, String TrailerNB)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn2 = DataConnection.getConnection();
+		Statement stat = conn2.createStatement();
+
+		String query6 = "select wb.pro_nb, wb.Origin_Facility_CD,wb.Planned_Destination_Facility_CD,wb.Total_Handling_Units_QT,wb.Total_Actual_Weight_QT,wb.Shipment_Due_DT,wb.Manifest_Destination_Fclty_CD,wb.Headload_IN,wb.Waybill_Transaction_Type_NM "
+				+ " from eqp.waybill_vw wb " + " where wb.Standard_Carrier_Alpha_CD= '" + SCAC
+				+ "'  and wb.Equipment_Unit_NB= '" + TrailerNB
+				+ "' and wb.Waybill_Transaction_Type_NM <> 'LOADING' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
+
+		String query10 = " select wb.pro_nb,ssst.[Shipment_Service_Sub_Type_NM], ss.[Shipment_Service_Type_NM] from [EQP].[Waybill_vw] wb left join [EQP].[Waybill_Service_vw] wbs on wb.[Pro_NB]=wbs.pro_nb"
+				+ " left join [EQP].[Shipment_Service_vw] ss on wbs.[Service_CD]=ss.[Service_CD] left join [EQP].[Shipment_Service_Sub_Type_vw] ssst on ss.[Shipment_Service_Sub_Type_NM]=ssst.[Shipment_Service_Sub_Type_NM]"
+				+ " where wb.pro_nb= ? and ss.[Shipment_Service_Type_NM]= ?  order by ssst.[Display_Sequence_NB] DESC ";
+
+		// Set<ArrayList<String>> d=new HashSet<ArrayList<String>>(); // without
+		// sort
+		LinkedHashSet<ArrayList<String>> d = new LinkedHashSet<ArrayList<String>>(); // sort
+		ResultSet rs = stat.executeQuery(query6);
+		PreparedStatement stat2 = conn2.prepareStatement(query10);
+		while (rs.next()) {
+			String PRONB = rs.getString("pro_nb");
+			String pronb = PRONB.substring(0, 3) + "-" + PRONB.substring(3, 9) + "-"
+					+ PRONB.substring(9, PRONB.length());
+			String ORI = rs.getString("Origin_Facility_CD");
+			String DEST = rs.getString("Planned_Destination_Facility_CD");
+			String ACTUALW = rs.getString("Total_Actual_Weight_QT");
+			// String MANID=rs.getString("Manifest_Destination_Fclty_CD");
+			// String HLI=rs.getString("Headload_IN");
+			stat2.setString(1, PRONB);
+			stat2.setString(2, "flag");
+			ResultSet rs5 = stat2.executeQuery();
+			ArrayList<String> f = new ArrayList<String>();
+			while (rs5.next()) {
+				String ServiceName = rs5.getString("Shipment_Service_Sub_Type_NM");
+				f.add(ServiceName);
+				f.removeAll(Collections.singleton(null));
+			}
+			String Flag;
+			if (f.size() != 0) {
+				Flag = f.toString().replaceAll("[\\[\\] ]", "");
+			} else {
+				Flag = null;
+			}
+			ArrayList<String> c = new ArrayList<String>();
+			c.add(pronb);
+			c.add(Flag);
+			c.add(ORI);
+			c.add(DEST);
+			c.add(ACTUALW);
+			// c.add(MANID);
+			// c.add(HLI);
+			c.removeAll(Collections.singleton(null));
+			d.add(c);
+
+		}
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn2 != null)
+			conn2.close();
+
+		return d;
+	}
+
 	public static ArrayList<ArrayList<Object>> CheckWaybillUpdateForHL(String SCAC, String TrailerNB)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -779,6 +858,42 @@ public class DataCommon {
 		String query3 = "SELECT  *  FROM  [EQP].[Waybill_vw] wb where  wb.Equipment_Unit_NB='" + TrailerNB
 				+ "' and wb.Standard_Carrier_Alpha_CD='" + SCAC
 				+ "' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
+		ResultSet rs = stat.executeQuery(query3);
+		ArrayList<ArrayList<Object>> pros = new ArrayList<ArrayList<Object>>();
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		while (rs.next()) {
+			ArrayList<Object> p = new ArrayList<Object>();
+			String pro_nb = rs.getString("pro_nb");
+			String Headload_IN = rs.getString("Headload_IN");
+			Timestamp Waybill_Transaction_End_TS = rs.getTimestamp("Waybill_Transaction_End_TS");
+			String Manifest_Destination_Fclty_CD = rs.getString("Manifest_Destination_Fclty_CD");
+			String source_modify_ID = rs.getString("source_modify_ID");
+			p.add(pro_nb);// 0
+			p.add(Headload_IN);// 1
+			p.add(Manifest_Destination_Fclty_CD);// 2
+			p.add(Waybill_Transaction_End_TS);// 3
+			p.add(source_modify_ID);// 4
+			pros.add(p);
+		}
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn3 != null)
+			conn3.close();
+
+		return pros;
+	}
+
+	public static ArrayList<ArrayList<Object>> CheckProNotInLoadingUpdateForHL(String SCAC, String TrailerNB)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn3 = DataConnection.getConnection();
+		Statement stat = null;
+		stat = conn3.createStatement();
+		String query3 = "SELECT  *  FROM  [EQP].[Waybill_vw] wb where  wb.Equipment_Unit_NB='" + TrailerNB
+				+ "' and wb.Standard_Carrier_Alpha_CD='" + SCAC
+				+ "' and wb.Waybill_Transaction_Type_NM <> 'LOADING' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
 		ResultSet rs = stat.executeQuery(query3);
 		ArrayList<ArrayList<Object>> pros = new ArrayList<ArrayList<Object>>();
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
@@ -1027,6 +1142,32 @@ public class DataCommon {
 		String query4 = " select wb.pro_nb from eqp.Waybill_vw wb where wb.Standard_Carrier_Alpha_CD ='" + SCAC
 				+ "'  and wb.Equipment_Unit_NB='" + TrailerNB
 				+ "' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
+		ArrayList<String> d = new ArrayList<String>();
+		ResultSet rs = stat.executeQuery(query4);
+		while (rs.next()) {
+			String pro = rs.getString("PRO_NB");
+			d.add(pro);
+		}
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn4 != null)
+			conn4.close();
+
+		return d;
+
+	}
+
+	public static ArrayList<String> GetProNotInLoadingOnTrailer(String SCAC, String TrailerNB)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn4 = DataConnection.getConnection();
+		Statement stat = null;
+		stat = conn4.createStatement();
+		String query4 = " select wb.pro_nb from eqp.Waybill_vw wb where wb.Standard_Carrier_Alpha_CD ='" + SCAC
+				+ "'  and wb.Equipment_Unit_NB='" + TrailerNB
+				+ "' and wb.Waybill_Transaction_Type_NM <> 'LOADING' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
 		ArrayList<String> d = new ArrayList<String>();
 		ResultSet rs = stat.executeQuery(query4);
 		while (rs.next()) {

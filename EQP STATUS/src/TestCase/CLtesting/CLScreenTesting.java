@@ -78,7 +78,8 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 		// enter plan date
-
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		page.SetPlanDate(Localtime, 2);
 		// (new WebDriverWait(driver,
 		// 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
 		// "Leftover Bill Review - 3 Button"));
