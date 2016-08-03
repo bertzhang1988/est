@@ -136,31 +136,4 @@ public class DataForUS200006 {
 		return b2.iterator();
 	}
 
-	public static ArrayList<String> GetPro(String SCAC, String TrailerNB, String ProType)
-			throws ClassNotFoundException, SQLException {
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		Connection conn3 = DataConnection.getConnection();
-		Statement stat = null;
-		stat = conn3.createStatement();
-		String query3 = " SELECT WBS.PRO_NB,WBS.SERVICE_CD FROM EQP.Waybill_vw WB RIGHT JOIN EQP.Waybill_Service_vw WBS ON WB.PRO_NB=WBS.PRO_NB "
-				+ " WHERE WBS.SERVICE_CD='" + ProType + "' and (wb.Equipment_Unit_NB<>'" + TrailerNB
-				+ "' or wb.Standard_Carrier_Alpha_CD <>'" + SCAC
-				+ "' ) and wb.Shipment_Purpose_CD  NOT in ('mr','su' ) and wb.Shipment_Correction_Type_CD <>'VO' ";
-		ArrayList<String> c = new ArrayList<String>();
-		ResultSet rs3 = stat.executeQuery(query3);
-		while (rs3.next()) {
-			String pro = rs3.getString("PRO_NB");
-			c.add(pro);
-		}
-		if (rs3 != null)
-			rs3.close();
-		if (stat != null)
-			stat.close();
-		if (conn3 != null)
-			conn3.close();
-
-		return c;
-
-	}
-
 }

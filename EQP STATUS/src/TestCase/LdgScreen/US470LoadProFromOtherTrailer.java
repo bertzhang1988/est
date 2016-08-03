@@ -242,7 +242,7 @@ public class US470LoadProFromOtherTrailer {
 			ArrayList<Object> BeforeADDWb = DataCommon.GetWaybillInformationOfPro(CurrentPro);
 			int Ran = (int) (Math.random() * 99) + 1;
 			page.SetCube(Integer.toString(Ran));
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
@@ -334,7 +334,7 @@ public class US470LoadProFromOtherTrailer {
 			ArrayList<Object> BeforeADDWb = DataCommon.GetWaybillInformationOfPro(CurrentPro);
 			int Ran = (int) (Math.random() * 99) + 1;
 			page.SetCube(Integer.toString(Ran));
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));

@@ -22,11 +22,11 @@ Situser=estsit
 
 Sitpassword=equipment
 
-EqpsQadb=jdbc:sqlserver://ywsqlopsqalstr\\ads:5000;databaseName=ops
+Qadb=jdbc:sqlserver://ywsqlopsqalstr\\ads:5000;databaseName=ops
 
-user1=svcEQP
+Qauser=svcEQP
 
-password1=EquipProd1
+Qapassword=EquipProd1
 
 proddb=jdbc:sqlserver://ywsqlopslstr:5000/Ops
 

@@ -84,7 +84,7 @@ public class US2000141AlertUserIfMidusFailsForAnyReason {
 		int Ran = (int) (Math.random() * 99) + 1;
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Update failed. Please open a ticket with the trailer, terminal and user ID for the EST app."));
 		// check eqps
@@ -127,7 +127,7 @@ public class US2000141AlertUserIfMidusFailsForAnyReason {
 		page.SetCube(NewCube);
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// click new submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Update failed. Please open a ticket with the trailer, terminal and user ID for the EST app."));
 

@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -67,8 +69,12 @@ public class CommonFunction {
 
 	public static Date SETtime(Date time) {
 		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		c.setTime(time);
-		return c.getTime();
+		if (time != null) {
+			c.setTime(time);
+			return c.getTime();
+		} else {
+			return null;
+		}
 	}
 
 	public static Date getDay(Date t) throws ParseException {
@@ -208,6 +214,67 @@ public class CommonFunction {
 	public static String addHyphenToPro(String PRONB) {
 		String pronb = PRONB.substring(0, 3) + "-" + PRONB.substring(3, 9) + "-" + PRONB.substring(9, PRONB.length());
 		return pronb;
+	}
+
+	public static void SetTrailerToEQPdttmsh(String SCAC, String TrailerNB)
+			throws InterruptedException, ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn4 = DataConnection.getConnection();
+		String query3 = " UPDATE EQP.Equipment_VW  SET M204_EQP_DTTMSP_TS = 0 where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ? ";
+		PreparedStatement stat = conn4.prepareStatement(query3);
+		stat.setString(1, SCAC);
+		stat.setString(2, TrailerNB);
+		stat.executeUpdate();
+
+		if (stat != null)
+			stat.close();
+		if (conn4 != null)
+			conn4.close();
+	}
+
+	public static void SetProToWGPdttmsh(ArrayList<String> PRONBlist)
+			throws InterruptedException, ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn4 = DataConnection.getConnection();
+		String query1 = "  UPDATE EQP.Waybill_vw SET M204_WGP_DTTMSP_TS = 0 where Pro_NB = ? ";
+		PreparedStatement stat = conn4.prepareStatement(query1);
+		for (int i = 0; i <= PRONBlist.size(); i++) {
+			String pro = PRONBlist.get(i);
+			stat.setString(1, pro);
+			stat.executeUpdate();
+			if (i == 10)
+				break;
+		}
+		if (stat != null)
+			stat.close();
+		if (conn4 != null)
+			conn4.close();
+	}
+
+	public static String GetFlag(String SCAC, String TrailerNB, String flagtype)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn = DataConnection.getConnection();
+		Statement stat = conn.createStatement();
+		String query2 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service] ss,[EQP].[Shipment_Service_Sub_Type] ssst"
+				+ " where wb.[Pro_NB]=wbs.[Pro_NB]  and wbs.[Service_CD]=ss.[Service_CD] and ss.[Shipment_Service_Sub_Type_NM]=ssst.[Shipment_Service_Sub_Type_NM]"
+				+ " and wb.Standard_Carrier_Alpha_CD='" + SCAC + "' and  wb.Equipment_Unit_NB='" + TrailerNB
+				+ "'  and ss.[Shipment_Service_Type_NM]='" + flagtype + "' order by ssst.[Display_Sequence_NB]";
+		ArrayList<String> c = new ArrayList<String>();
+		ResultSet rs = stat.executeQuery(query2);
+		while (rs.next()) {
+			String flag = rs.getString("Shipment_Service_Sub_Type_NM");
+			c.add(flag);
+		}
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn != null)
+			conn.close();
+
+		return c.toString().replaceAll("[\\[\\] ]", "");
+
 	}
 
 }

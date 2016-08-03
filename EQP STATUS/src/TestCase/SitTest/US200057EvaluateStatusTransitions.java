@@ -30,7 +30,7 @@ public class US200057EvaluateStatusTransitions {
 
 	@BeforeClass
 	@Parameters({ "browser", "status" })
-	public void SetUp(@Optional("chrome") String browser, @Optional("ldd") String status)
+	public void SetUp(@Optional("chrome") String browser, @Optional("cltg") String status)
 			throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {

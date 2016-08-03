@@ -1,4 +1,4 @@
-package TestCase.LdgScreen;
+package TestCase.CLtesting;
 
 import java.awt.AWTException;
 import java.io.File;
@@ -16,6 +16,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -27,13 +28,13 @@ import Function.ConfigRd;
 import Function.DataCommon;
 import Page.EqpStatusPageS;
 
-public class US494Open4BlobrWhenPorsNotInLoading {
+public class US51226Open3BlobrCLWhenPorsNotInLoading {
 
 	private WebDriver driver;
 	private EqpStatusPageS page;
 	private ConfigRd Conf;
 
-	@BeforeClass(groups = { "ldg uc" })
+	@BeforeClass()
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException, IOException {
 		Conf = new ConfigRd();
@@ -52,12 +53,12 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 		page = new EqpStatusPageS(driver);
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
-		page.SetStatus("ldg");
+		page.SetStatus("CL");
 	}
 
-	@Test(priority = 1, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class, description = "ldg trailer with pro not in loading type, 4b lobr, Dock", groups = {
-			"ldg uc" })
-	public void LDGTrailerWithProNotInLoadingAndDock(String terminalcd, String SCAC, String TrailerNB, Date MReqpst)
+	@Test(priority = 1, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = "CL trailer with pro not in loading type, 3b lobr, Dock")
+	public void LDGTrailerWithProNotInLoadingAndDock(String terminalcd, String SCAC, String TrailerNB, String CityR,
+			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -70,53 +71,67 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 		// check date&time pre populate
 		Date picker = page.GetDatePickerTime();
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
-		SAssert.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
+		SAssert.assertEquals(picker, expect, " 3 button lobr screen prepopulate time is wrong ");
+
+		// Check Plan Day and other fields prepopulate
+		SAssert.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
+				"Plan date prepopulate time is wrong ");
+		SAssert.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
+				"City Route prepopulate is wrong ");
+		SAssert.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
 
 		// check lobr pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SAssert.assertEquals(ProInfo, DataCommon.GetProNotInLoadingListLOBR(SCAC, TrailerNB),
 				" lobr pro grid is wrong");
+
+		// get pro not in loading
 		ArrayList<String> prolistbeforeDisposition = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
-		// change destination
-		String changeDesti = page.ChangeDestiantion();
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
 
-		// enter cube
-		String NewCube = page.ChangeCube();
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
 
-		// SetTime
-		// page.SetDatePicker(page.GetDatePickerTime(), -3);
-		// Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd,
-		// page.GetDatePickerTime());
+		// select city route type
+		String SetCityRtype = page.SetCityRouteType("trap");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		(new WebDriverWait(driver, 80)).until(
+				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
-		/*
-		 * // check eqps ArrayList<Object> NewEqpStatusRecord =
-		 * DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		 * SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG",
-		 * "Equipment_Status_Type_CD is wrong");
-		 * SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd,
-		 * "Statusing_Facility_CD is wrong");
-		 * SAssert.assertEquals(NewEqpStatusRecord.get(2), changeDesti,
-		 * "equipment_dest_facility_cd is wrong");
-		 * SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG",
-		 * "Source_Create_ID is wrong");
-		 * SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube,
-		 * "Actual_Capacity_Consumed_PC is wrong"); for (int i = 5; i <= 8; i++)
-		 * { Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
-		 * if (i == 7) { SAssert.assertTrue(Math.abs(TS.getTime() -
-		 * AlterTime.getTime()) < 60000, "equipment_status_ts is wrong  " + TS +
-		 * "  " + AlterTime); } else { SAssert.assertTrue(Math.abs(TS.getTime()
-		 * - d.getTime()) < 120000, i + " " + TS + "  " + d); } }
-		 */
+
+		// check eqps
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+		SAssert.assertEquals(NewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(3), "CL", "Source_Create_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(21), SetCityRtype, "City_Route_Type_NM is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(22), NewCityRoute, "City_Route_NM is wrong");
+		int[] TimeElement = { 5, 6, 7, 8, 20 };
+		for (int i : TimeElement) {
+			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
+			if (i == 7) {
+				SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
+						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+			} else if (i == 20) {
+				SAssert.assertEquals(TS, PlanDate, "Planned_Delivery_DT is wrong");
+			} else {
+				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
+			}
+		}
+
 		// check waybill
 		for (String RemovedPro : prolistbeforeDisposition) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
@@ -132,46 +147,32 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 					"waybill table waybill system_modify_ts  " + f + "  " + d + "  " + "   " + RemovedPro);
 			// SAssert.assertEquals(AfterRemoveWb.get(12),BeforeRemoveWb.get(12),"waybill
 			// table record_key is wrong "+RemovedPro);
-			SAssert.assertTrue(AfterRemoveWb.get(13) == null, "waybill  From_Facility_CD is wrong" + RemovedPro);
-			SAssert.assertEquals(AfterRemoveWb.get(14), terminalcd, "waybill To_Facility_CD is wrong" + RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(13) == null, "waybill  From_Facility_CD is wrong " + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(14), terminalcd, "waybill To_Facility_CD is wrong " + RemovedPro);
 			SAssert.assertEquals(AfterRemoveWb.get(15), SCAC,
-					"waybill  From_Standard_Carrier_Alpha_CD is wrong" + RemovedPro);
+					"waybill  From_Standard_Carrier_Alpha_CD is wrong " + RemovedPro);
 			SAssert.assertEquals(AfterRemoveWb.get(16), TrailerNB,
-					"waybill  From_Equipment_Unit_NB is wrong" + RemovedPro);
+					"waybill  From_Equipment_Unit_NB is wrong " + RemovedPro);
 			SAssert.assertTrue(AfterRemoveWb.get(17) == null,
-					"waybill  To_Standard_Carrier_Alpha_CD is wrong" + RemovedPro);
-			SAssert.assertTrue(AfterRemoveWb.get(18) == null, "waybill  To_Equipment_Unit_NB is wrong" + RemovedPro);
+					"waybill  To_Standard_Carrier_Alpha_CD is wrong " + RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(18) == null, "waybill  To_Equipment_Unit_NB is wrong " + RemovedPro);
 			SAssert.assertEquals(AfterRemoveWb.get(20), "UNLOADING",
-					"waybill  Waybill_Transaction_Type_NM is wrong" + RemovedPro);
+					"waybill  Waybill_Transaction_Type_NM is wrong " + RemovedPro);
 			Date f1 = CommonFunction.SETtime((Date) AfterRemoveWb.get(11));
 			SAssert.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
-
 		}
 
-		// check ldg screen
-		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti,
-				"loading screen destination is wrong");
-		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
-		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "loading screen Cube field is wrong");
+		// check pro grid prepopulate
+		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
+		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
 
-		// check date&time prepopulate
-		// Date picker2 = page.GetDatePickerTime();
-		// Date expect2 =
-		// CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, (Date)
-		// NewEqpStatusRecord.get(7));
-		// SAssert.assertEquals(picker2, expect2, "ldg screen prepopulate time
-		// is wrong ");
-
-		// check pro grid in ldg screen again
-		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
-	@Test(priority = 2, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class, description = " ldg trailer with pro not in loading, lobr, all short", groups = {
-			"ldg uc" })
-	public void LDGTrailerWithProNotInLoadingAndALLSHORT(String terminalcd, String SCAC, String TrailerNB, Date MReqpst)
+	@Test(priority = 2, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = " CL trailer with pro not in loading, lobr, all short")
+	public void LDGTrailerWithProNotInLoadingAndALLSHORT(String terminalcd, String SCAC, String TrailerNB, String CityR,
+			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -193,15 +194,20 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 				" lobr pro grid is wrong");
 		ArrayList<String> prolistbeforeDisposition = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
-		// change destination
-		String changeDesti = page.ChangeDestiantion();
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
 
-		// enter cube
-		String NewCube = page.ChangeCube();
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
 
-		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), 1);
+		// select city route type
+		String SetCityRtype = page.SetCityRouteType("INTERLINE");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
+
 		// handle the left pro
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
@@ -209,25 +215,28 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		(new WebDriverWait(driver, 80)).until(
+				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
-		for (int i = 5; i <= 8; i++) {
+		SAssert.assertEquals(NewEqpStatusRecord.get(3), "CL", "Source_Create_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(21), SetCityRtype, "City_Route_Type_NM is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(22), NewCityRoute, "City_Route_NM is wrong");
+		int[] TimeElement = { 5, 6, 7, 8, 20 };
+		for (int i : TimeElement) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
 				SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts is wrong  " + TS + "  " + AlterTime);
+						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+			} else if (i == 20) {
+				SAssert.assertEquals(TS, PlanDate, "Planned_Delivery_DT is wrong");
 			} else {
-				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + " " + TS + "  " + d);
+				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
 
@@ -263,141 +272,16 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 
 		}
 
-		// check screen
-		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti,
-				"loading screen destination is wrong");
-		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
-		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "loading screen Cube field is wrong");
-
-		// check date&time prepopulate
-		Date picker2 = page.GetDatePickerTime();
-		Date expect2 = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, (Date) NewEqpStatusRecord.get(7));
-		SAssert.assertEquals(picker2, expect2, "ldg screen prepopulate time is wrong ");
-
-		// check pro grid in ldg screen again
-		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
-		SAssert.assertAll();
-	}
-
-	@Test(priority = 3, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class, description = "ldg trailer with pro not in loading, lobr, headload", groups = {
-			"ldg uc" })
-	public void LDGTrailerWithProNotInLoadingAndHeadLoad(String terminalcd, String SCAC, String TrailerNB, Date MReqpst)
-			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
-		SoftAssert SAssert = new SoftAssert();
-		page.SetLocation(terminalcd);
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		page.EnterTrailer(SCAC, TrailerNB);
-
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-
-		// check lobr date&time pre populate
-		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
-		SAssert.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
-
-		// check lobr pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
-		SAssert.assertEquals(ProInfo, DataCommon.GetProNotInLoadingListLOBR(SCAC, TrailerNB),
-				" lobr pro grid is wrong");
-		ArrayList<String> prolistbeforeDisposition = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
-
-		// change destination
-		String changeDesti = page.ChangeDestiantion();
-
-		// enter cube
-		String NewCube = page.ChangeCube();
-
-		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), 1);
-		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-
-		page.HandleLOBRproAll("headload");
-		String headload_dest = page.HeadloadDestination.getAttribute("value");
-		String headloadCube = page.HeadloadCube.getAttribute("value");
-		Date d = CommonFunction.gettime("UTC");
-
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		// (new WebDriverWait(driver,
-		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
-		Thread.sleep(3000);
-		// check eqps new record
-		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(12), headloadCube, "headload_cube is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(13), headload_dest, "headload_dest_facility_cd is wrong");
-		for (int i = 5; i <= 8; i++) {
-			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
-			if (i == 7) {
-				SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts is wrong  " + TS + "  " + AlterTime);
-			} else {
-				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + " " + TS + "  " + d);
-			}
-		}
-
-		// check waybill
-		ArrayList<ArrayList<Object>> NewWbtRecord = DataCommon.CheckProNotInLoadingUpdateForHL(SCAC, TrailerNB);
-		int i = 0;
-		Date f2 = null;
-		for (ArrayList<Object> Currentwbti : NewWbtRecord) {
-			SAssert.assertEquals(Currentwbti.get(1), "Y", Currentwbti.get(0) + "  Headload_IN is wrong"); // Headload_IN
-			Date TS = CommonFunction.SETtime((Date) Currentwbti.get(3));
-			SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-					Currentwbti.get(0) + "Waybill_Transaction_End_TS is : " + TS + " set date is " + AlterTime
-							+ " Waybill_Transaction_End_TS is wrong");// Waybill_Transaction_End_TS
-			SAssert.assertEquals(Currentwbti.get(2), headload_dest,
-					Currentwbti.get(0) + " manifest_destination is wrong");// only
-																			// work
-																			// this
-																			// way
-																			// in
-																			// four
-																			// button
-																			// lobr
-			SAssert.assertEquals(Currentwbti.get(4), "LOBR", Currentwbti.get(0) + " source_modify_ID is wrong");
-			// CHECK THE WAYBILL TRANSACTION END TS ARE NOT IDENTICAL
-			if (i > 0)
-				SAssert.assertTrue(TS.after(f2),
-						"waybill Waybill_Transaction_End_TS is not ascending increase : waybill_transaction_end_ts "
-								+ TS + "  waybill_transaction_end_ts of previous pro is  " + f2 + "  " + "   "
-								+ Currentwbti.get(0));
-			f2 = TS;
-			i = i + 1;
-
-		}
-
-		// check screen
-		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "");
-		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
-		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "Cube field is not disabled");
-
-		// check date&time prepopulate
-		Date picker2 = page.GetDatePickerTime();
-		Date expect2 = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, (Date) NewEqpStatusRecord.get(7));
-		SAssert.assertEquals(picker2, expect2, "ldg screen prepopulate time is wrong ");
-
-		// check ldg pro grid
+		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo2, DataCommon.GetProList(SCAC, TrailerNB), " ldg pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
 
 		SAssert.assertAll();
 	}
 
-	@Test(priority = 4, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class, description = "ldg trailer with pro not in loading, lobr, leave on", groups = {
-			"ldg uc" })
-	public void LDGTrailerWithProNotInLoadingAndLeaveOn(String terminalcd, String SCAC, String TrailerNB, Date MReqpst)
+	@Test(priority = 3, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = "CL trailer with pro not in loading, lobr, leave on")
+	public void LDGTrailerWithProNotInLoadingAndLeaveOn(String terminalcd, String SCAC, String TrailerNB, String CityR,
+			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -419,11 +303,15 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 				" lobr pro grid is wrong");
 		ArrayList<String> prolistbeforeDisposition = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
-		// change destination
-		String changeDesti = page.ChangeDestiantion();
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
 
-		// enter cube
-		String NewCube = page.ChangeCube();
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
+
+		// select city route type
+		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), 1);
@@ -439,25 +327,29 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		(new WebDriverWait(driver, 80)).until(
+				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
-		for (int i = 5; i <= 8; i++) {
+		SAssert.assertEquals(NewEqpStatusRecord.get(3), "CL", "Source_Create_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(21), SetCityRtype, "City_Route_Type_NM is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(22), NewCityRoute, "City_Route_NM is wrong");
+		int[] TimeElement = { 5, 6, 7, 8, 20 };
+		for (int i : TimeElement) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
 				SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts is wrong  " + TS + "  " + AlterTime);
+						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+			} else if (i == 20) {
+				SAssert.assertEquals(TS, PlanDate, "Planned_Delivery_DT is wrong");
 			} else {
-				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + " " + TS + "  " + d);
+				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
 
@@ -504,16 +396,6 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 			f2 = f1;
 		}
 
-		// check screen
-		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "");
-		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
-		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "Cube field is not disabled");
-
-		// check date&time prepopulate
-		Date picker2 = page.GetDatePickerTime();
-		Date expect2 = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, (Date) NewEqpStatusRecord.get(7));
-		SAssert.assertEquals(picker2, expect2, "ldg screen prepopulate time is wrong ");
-
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
 		SAssert.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
@@ -521,4 +403,8 @@ public class US494Open4BlobrWhenPorsNotInLoading {
 		SAssert.assertAll();
 	}
 
+	@AfterMethod
+	public void SetBackToLDG() throws InterruptedException {
+		page.SetStatus("CL");
+	}
 }

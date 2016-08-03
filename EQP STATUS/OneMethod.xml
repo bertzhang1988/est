@@ -3,10 +3,9 @@
   <test name="ONE METHOD">
  <parameter name="browser" value="chrome"/>
     <classes>
-	<class name="TestCase.LdgScreen.US2000119NewSubmitButtonLDG">
+	<class name="TestCase.CLtesting.CLScreenTesting">
 	  <methods>
-        <include name="TrailerWithoutPROAddPRO"/>
-         <include name="LdgTrailerWithProAddPro"/>
+        <include name="ToCLNoProSetToCl"/>
       </methods></class> 	
     </classes>
   </test>

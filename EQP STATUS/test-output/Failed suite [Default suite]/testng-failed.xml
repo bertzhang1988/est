@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Default suite]]">
+  <test name="Default test(failed)(failed)">
+    <classes>
+      <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG">
+        <methods>
+          <include name="Close"/>
+          <include name="getbackldg"/>
+          <include name="ldgTrailerWithProsYes" invocation-numbers="0"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG -->
+    </classes>
+  </test> <!-- Default test(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Default suite]] -->

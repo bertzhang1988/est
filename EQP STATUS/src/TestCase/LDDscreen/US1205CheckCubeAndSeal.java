@@ -84,9 +84,9 @@ public class US1205CheckCubeAndSeal {
 		String[] Count = { "0", "155", "abc", " 3 4 5", "3 3 3 3", "1030", "7000", "abcdef" };
 		for (int i = 0; i < Count.length; i++) {
 			String countnum = Count[i].replace(" ", "").trim();
-			page.ShipmentCountLdd.click();
-			page.ShipmentCountLdd.clear();
-			page.ShipmentCountLdd.sendKeys(Count[i]);
+			page.ShipmentCount2.click();
+			page.ShipmentCount2.clear();
+			page.ShipmentCount2.sendKeys(Count[i]);
 			builder.sendKeys(Keys.TAB).build().perform();
 			Thread.sleep(500);
 			String countpattern = "[\\d]+";
@@ -94,7 +94,7 @@ public class US1205CheckCubeAndSeal {
 				(new WebDriverWait(driver, 10))
 						.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, ""));
 			} else {
-				Assert.assertEquals("disabled", page.ShipmentCountLdd.getAttribute("disabled"));
+				Assert.assertEquals("disabled", page.ShipmentCount2.getAttribute("disabled"));
 				break;
 			}
 

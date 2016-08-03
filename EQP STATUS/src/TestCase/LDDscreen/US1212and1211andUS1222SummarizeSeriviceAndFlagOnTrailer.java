@@ -17,11 +17,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Data.DataForUS1212AND1211;
+import Function.CommonFunction;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
 
 public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer {
-	private WebDriver driver = null;
+	private WebDriver driver;
 	EqpStatusPageS page;
 
 	@Test(priority = 2, dataProvider = "12.12", dataProviderClass = DataForUS1212AND1211.class)
@@ -29,9 +30,8 @@ public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer {
 			throws AWTException, ClassNotFoundException, SQLException, InterruptedException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		String Shipflag = DataForUS1212AND1211.GetFlag(SCAC, TrailerNB, "flag").toString().replaceAll("[\\[\\] ]", "");
-		String Serviceflag = DataForUS1212AND1211.GetFlag(SCAC, TrailerNB, "SERV").toString().replaceAll("[\\[\\] ]",
-				"");
+		String Shipflag = CommonFunction.GetFlag(SCAC, TrailerNB, "flag");
+		String Serviceflag = CommonFunction.GetFlag(SCAC, TrailerNB, "SERV");
 		String getShipflag = page.ShipmentFlag.getText();
 		String getServiceflag = page.ServiceFlag.getText();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(page.ShipmentFlag, Shipflag));
@@ -65,7 +65,7 @@ public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer {
 
 	}
 
-	// @Test(priority=1)
+	@Test(priority = 1)
 	public void VerifyTheLegendDisplay() throws AWTException, InterruptedException {
 		page.SetLocation("326");
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(page.ServiceFlagExclamation));

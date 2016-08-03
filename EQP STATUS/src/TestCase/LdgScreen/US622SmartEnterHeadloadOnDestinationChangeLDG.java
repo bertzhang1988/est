@@ -192,7 +192,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
@@ -304,7 +304,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 		// click submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
 		(new WebDriverWait(driver, 80))
@@ -413,7 +413,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		String NewCube1 = Integer.toString(Ran1);
 		page.SetCube(NewCube1);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));

@@ -98,7 +98,7 @@ public class US2000119NewSubmitButtonLDG {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
@@ -158,7 +158,7 @@ public class US2000119NewSubmitButtonLDG {
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
@@ -233,7 +233,7 @@ public class US2000119NewSubmitButtonLDG {
 
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
@@ -356,7 +356,7 @@ public class US2000119NewSubmitButtonLDG {
 		page.SetCube(NewCube);
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// click new submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
@@ -414,7 +414,7 @@ public class US2000119NewSubmitButtonLDG {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// click submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"No
 		// updates entered."));
@@ -461,7 +461,7 @@ public class US2000119NewSubmitButtonLDG {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 		// enter key
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
@@ -548,7 +548,7 @@ public class US2000119NewSubmitButtonLDG {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 		// enter key
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 150))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));// wait

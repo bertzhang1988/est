@@ -84,7 +84,7 @@ public class LDGTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// CLICK SUBMIT
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
@@ -126,8 +126,8 @@ public class LDGTesting {
 		// check trailer value prepopulate
 		SA.assertEquals(page.DestinationField.getAttribute("value").replaceAll("_", ""), Desti, "destination is wrong");
 		SA.assertEquals(page.CubeField.getAttribute("value"), Cube, "cube is wrong");
-		SA.assertEquals(page.ShipCountLdg.getText(), AmountPro, "shipcount is wrong");
-		SA.assertEquals(page.ShipWeightLdg.getText(), AmountWeight, "ship weight is wrong");
+		SA.assertEquals(page.ShipCount1.getText(), AmountPro, "shipcount is wrong");
+		SA.assertEquals(page.ShipWeight1.getText(), AmountWeight, "ship weight is wrong");
 		SA.assertEquals(page.HLDestLdg.getText(), hldesti, "headload dest is wrong");
 		SA.assertEquals(page.HLCubeLdg.getText(), hlcube, "headload cube is wrong");
 
@@ -146,7 +146,7 @@ public class LDGTesting {
 		page.SetCube(NewCube);
 
 		// click submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
@@ -184,8 +184,8 @@ public class LDGTesting {
 		// check trailer value prepopulate
 		SA.assertEquals(page.DestinationField.getAttribute("value").replaceAll("_", ""), Desti, "destination is wrong");
 		SA.assertEquals(page.CubeField.getAttribute("value"), Cube, "cube is wrong");
-		SA.assertEquals(page.ShipCountLdg.getText(), AmountPro, "shipcount is wrong");
-		SA.assertEquals(page.ShipWeightLdg.getText(), AmountWeight, "ship weight is wrong");
+		SA.assertEquals(page.ShipCount1.getText(), AmountPro, "shipcount is wrong");
+		SA.assertEquals(page.ShipWeight1.getText(), AmountWeight, "ship weight is wrong");
 		SA.assertEquals(page.HLDestLdg.getText(), hldesti, "headload dest is wrong");
 		SA.assertEquals(page.HLCubeLdg.getText(), hlcube, "headload cube is wrong");
 
@@ -211,7 +211,7 @@ public class LDGTesting {
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// click submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
@@ -258,8 +258,8 @@ public class LDGTesting {
 		SA.assertEquals(page.DestinationField.getAttribute("value").replaceAll("_", ""), OrgiDesti,
 				"destination is wrong");
 		SA.assertEquals(page.CubeField.getAttribute("value"), cube, "cube is wrong");
-		SA.assertEquals(page.ShipCountLdg.getText(), AmountPro, "shipcount is wrong");
-		SA.assertEquals(page.ShipWeightLdg.getText(), AmountWeight, "ship weight is wrong");
+		SA.assertEquals(page.ShipCount1.getText(), AmountPro, "shipcount is wrong");
+		SA.assertEquals(page.ShipWeight1.getText(), AmountWeight, "ship weight is wrong");
 		SA.assertEquals(page.HLDestLdg.getText(), hldesti, "headload dest is wrong");
 		SA.assertEquals(page.HLCubeLdg.getText(), hlcube, "headload cube is wrong");
 
@@ -366,8 +366,8 @@ public class LDGTesting {
 		SA.assertEquals(page.DestinationField.getAttribute("value").replaceAll("_", ""), changeDesti,
 				"destination is wrong");
 		SA.assertEquals(page.CubeField.getAttribute("value"), cube, "cube is wrong");
-		SA.assertEquals(page.ShipCountLdg.getText(), AmountPro, "shipcount is wrong");
-		SA.assertEquals(page.ShipWeightLdg.getText(), AmountWeight, "ship weight is wrong");
+		SA.assertEquals(page.ShipCount1.getText(), AmountPro, "shipcount is wrong");
+		SA.assertEquals(page.ShipWeight1.getText(), AmountWeight, "ship weight is wrong");
 		SA.assertEquals(page.HLDestLdg.getText(), OrgiDesti, "headload dest is wrong");
 		SA.assertEquals(page.HLCubeLdg.getText(), cube, "headload cube is wrong");
 
@@ -919,7 +919,7 @@ public class LDGTesting {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		Date today = CommonFunction.getDay(d);
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
@@ -1121,7 +1121,7 @@ public class LDGTesting {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		Date today = CommonFunction.getDay(d);
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.AlertMessage));

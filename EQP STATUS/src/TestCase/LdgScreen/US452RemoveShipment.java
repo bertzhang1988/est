@@ -112,7 +112,7 @@ public class US452RemoveShipment {
 		int Ran = (int) (Math.random() * 99) + 1;
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));

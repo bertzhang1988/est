@@ -54,7 +54,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW1+"]/div/div/div/div")).click();
 			int Ran = (int) (Math.random() * 99) + 1;
 			page.SetCube(Integer.toString(Ran));
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 			(new WebDriverWait(driver, 80))
 					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
@@ -92,7 +92,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		int Ran = (int) (Math.random() * 99) + 1;
 		page.SetCube(Integer.toString(Ran));
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
@@ -164,7 +164,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		int Ran = (int) (Math.random() * 99) + 1;
 		page.SetCube(Integer.toString(Ran));
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
@@ -183,7 +183,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 					page.addHyphenToPro(CurrentPro));
 			Addpro.add(CurrentPro);
 		}
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
@@ -537,7 +537,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		int Ran = (int) (Math.random() * 99) + 1;
 		page.SetCube(Integer.toString(Ran));
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
@@ -609,7 +609,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// click new submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 180))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
@@ -712,7 +712,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 		// click submit
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));

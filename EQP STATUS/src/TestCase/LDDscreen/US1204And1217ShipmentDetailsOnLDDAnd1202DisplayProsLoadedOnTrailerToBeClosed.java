@@ -61,9 +61,9 @@ public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerT
 		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		SA.assertEquals(page.ShipmentCountLdd.getAttribute("value").replaceAll("_", ""), AmountPro,
+		SA.assertEquals(page.ShipmentCount2.getAttribute("value").replaceAll("_", ""), AmountPro,
 				"ship count is wrong");
-		SA.assertEquals(page.ShipmentWeightLdd.getAttribute("value").replaceAll("_", ""), AmountWeight,
+		SA.assertEquals(page.ShipmentWeight2.getAttribute("value").replaceAll("_", ""), AmountWeight,
 				"ship weight is wrong");
 		SA.assertEquals(page.DestinationField.getAttribute("value").replaceAll("_", ""), Desti, "destination is wrong");
 		SA.assertEquals(page.CubeField.getAttribute("value"), Cube, "cube is wrong");

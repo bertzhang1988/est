@@ -14,6 +14,7 @@ public class ConfigRd {
 			FileInputStream fis = new FileInputStream(src);
 			pro = new Properties();
 			pro.load(fis);
+			fis.close();
 		} catch (Exception e) {
 
 			e.printStackTrace();

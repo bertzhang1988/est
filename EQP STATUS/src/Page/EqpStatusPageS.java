@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.TimeZone;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -127,7 +128,7 @@ public class EqpStatusPageS {
 	public WebElement CheckAllAddProButton;
 
 	@FindBy(how = How.NAME, using = "submitLDG")
-	public WebElement SubmitLDGButton;
+	public WebElement SubmitButton1;
 
 	@FindBy(how = How.ID, using = "updatedTrailerNum")
 	public WebElement UpdatedTrailerNum;
@@ -154,10 +155,10 @@ public class EqpStatusPageS {
 	public WebElement ProListCheckAllProChecked;
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(), 'Ship Count')]/following-sibling::div")
-	public WebElement ShipCountLdg;
+	public WebElement ShipCount1;
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(), 'Ship Weight')]/following-sibling::div")
-	public WebElement ShipWeightLdg;
+	public WebElement ShipWeight1;
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(), 'HL Dest')]/following-sibling::div")
 	public WebElement HLDestLdg;
@@ -170,14 +171,6 @@ public class EqpStatusPageS {
 
 	@FindBy(how = How.CSS, using = "button[label='Submit & Close Out']")
 	public WebElement SubmitAndCloseOutButton;
-
-	public void LoadNewPRO(int proamount) throws ClassNotFoundException, SQLException, InterruptedException {
-		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
-		for (int i = 0; i < proamount; i++) {
-			String CurrentPro = PRO.get(i);
-			this.EnterPro(CurrentPro);
-		}
-	}
 
 	/* quickclose */
 
@@ -223,10 +216,10 @@ public class EqpStatusPageS {
 	public WebElement ServiceFlagLegend;
 
 	@FindBy(how = How.CSS, using = "input[name^='trailerStatusVM.trailer.trailerShipmentCount_']")
-	public WebElement ShipmentCountLdd;
+	public WebElement ShipmentCount2;
 
 	@FindBy(how = How.CSS, using = "input[name^='trailerStatusVM.trailer.trailerShipmentWeight_']")
-	public WebElement ShipmentWeightLdd;
+	public WebElement ShipmentWeight2;
 
 	@FindBy(how = How.CSS, using = "input[name^='trailerStatusVM.trailer.trailerCube_']")
 	public WebElement CubeField;
@@ -313,7 +306,7 @@ public class EqpStatusPageS {
 	@FindBy(how = How.CSS, using = "input[name^='trailerStatusVM.trailer.trailerHeadloadDestination_']")
 	public WebElement HLDestField;
 
-	/* cl */
+	// cl & cltg
 
 	@FindBy(how = How.CSS, using = "input[name^='trailerStatusVM.trailer.cityRouteName_']")
 	public WebElement CityRoute;
@@ -380,6 +373,15 @@ public class EqpStatusPageS {
 	public WebElement UadSubmit;
 
 	// UI method
+
+	public void LoadNewPRO(int proamount) throws ClassNotFoundException, SQLException, InterruptedException {
+		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
+		for (int i = 0; i < proamount; i++) {
+			String CurrentPro = PRO.get(i);
+			this.EnterPro(CurrentPro);
+		}
+	}
+
 	public void AddComment(String Comment) {
 		if (!this.CommentInput.isDisplayed()) {
 			this.CommentButton.click();
@@ -527,10 +529,10 @@ public class EqpStatusPageS {
 		builder.sendKeys(Keys.TAB).build().perform();
 	}
 
-	public void SetCityRouteType(String CityRouteType) {
-
+	public String SetCityRouteType(String CityRouteType) {
+		WebDriverWait Wait = new WebDriverWait(driver, 20);
 		this.CityRouteTypeField.click();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.CityRouteTypeList));
+		Wait.until(ExpectedConditions.visibilityOf(this.CityRouteTypeList));
 		String CityRouteTypeName = null;
 
 		if (CityRouteType.equalsIgnoreCase("appt")) {
@@ -546,9 +548,9 @@ public class EqpStatusPageS {
 		}
 
 		this.CityRouteTypeList.findElement(By.linkText(CityRouteTypeName)).click();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.CityRouteTypeField));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElementValue(this.CityRouteTypeList, CityRouteTypeName));
+		Wait.until(ExpectedConditions.visibilityOf(this.CityRouteTypeField));
+		Wait.until(ExpectedConditions.textToBePresentInElement(this.CityRouteTypeField, CityRouteTypeName));
+		return CityRouteTypeName;
 	}
 
 	public void SetCube(String Cube) throws InterruptedException {
@@ -579,18 +581,18 @@ public class EqpStatusPageS {
 
 	public void SetShipCount(String shipcount) throws InterruptedException {
 		Actions builder = new Actions(driver);
-		this.ShipmentCountLdd.clear();
-		this.ShipmentCountLdd.click();
-		this.ShipmentCountLdd.sendKeys(shipcount);
+		this.ShipmentCount2.clear();
+		this.ShipmentCount2.click();
+		this.ShipmentCount2.sendKeys(shipcount);
 		builder.sendKeys(Keys.TAB).build().perform();
 
 	}
 
 	public void SetShipWeight(String shipweight) throws InterruptedException {
 		Actions builder = new Actions(driver);
-		this.ShipmentWeightLdd.clear();
-		this.ShipmentWeightLdd.click();
-		this.ShipmentWeightLdd.sendKeys(shipweight);
+		this.ShipmentWeight2.clear();
+		this.ShipmentWeight2.click();
+		this.ShipmentWeight2.sendKeys(shipweight);
 		builder.sendKeys(Keys.TAB).build().perform();
 
 	}
@@ -629,6 +631,13 @@ public class EqpStatusPageS {
 		String NewCube = Integer.toString(Ran);
 		this.SetCube(NewCube);
 		return NewCube;
+	}
+
+	public String UpdateCityRoute() throws InterruptedException {
+		int length = (int) ((Math.random() * 9) + 1);
+		String CityRoute = RandomStringUtils.randomAlphanumeric(length);
+		this.SetCityRoute(CityRoute);
+		return CityRoute.toUpperCase();
 	}
 
 	public void EnterPro(String Pro) throws InterruptedException {
@@ -805,7 +814,7 @@ public class EqpStatusPageS {
 	public void SetDatePicker(Date SetDate, int AlterHour) {
 		Actions builder = new Actions(driver);
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		cal.setTime(SetDate);
 		cal.add(Calendar.HOUR_OF_DAY, AlterHour);
 		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
@@ -822,7 +831,7 @@ public class EqpStatusPageS {
 	public void SetDatePicker2(Date SetDate, int AlterHour, int AlterMinute) {
 		Actions builder = new Actions(driver);
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		cal.setTime(SetDate);
 		if (AlterHour != 0)
 			cal.add(Calendar.HOUR_OF_DAY, AlterHour);
@@ -839,16 +848,40 @@ public class EqpStatusPageS {
 		builder.sendKeys(Keys.TAB).build().perform();
 	}
 
-	public void SetPlanDate(Date LocalTime, int AlterDay) {
+	public Date SetPlanDate(Date LocalTime, int AlterDay) {
 		Actions builder = new Actions(driver);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(LocalTime);
 		if (AlterDay != 0)
 			cal.add(Calendar.DAY_OF_MONTH, AlterDay);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		String DATE = dateFormat.format(cal.getTime());
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		Date PlanDay = cal.getTime();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		String DATE = dateFormat.format(PlanDay);
 		this.SetPlanDay(DATE);
 		builder.sendKeys(Keys.TAB).build().perform();
+		return PlanDay;
+
+	}
+
+	public Date GetPlanDatePickerTime() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		String PlanDay = this.PlanDate.getAttribute("value");
+		if (PlanDay.equalsIgnoreCase("")) {
+			return null;
+		} else {
+			SimpleDateFormat PickerDate = new SimpleDateFormat("MM/dd/yyyy");
+			Calendar cal = Calendar.getInstance();
+			try {
+				cal.setTime(PickerDate.parse(PlanDay));
+			} catch (ParseException pe) {
+				pe.printStackTrace();
+			}
+			return cal.getTime();
+		}
 	}
 
 	public LinkedHashSet<ArrayList<String>> GetProList(WebElement ProGrid) {

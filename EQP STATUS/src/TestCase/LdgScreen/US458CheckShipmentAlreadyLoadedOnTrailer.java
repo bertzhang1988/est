@@ -63,7 +63,7 @@ public class US458CheckShipmentAlreadyLoadedOnTrailer {
 			page.EnterPro(pro);
 			int NEW = page.AddProForm.findElements(By.xpath("div")).size();
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW+"]/div/div/div/div")).click();
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 20)).until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"This PRO is already on trailer."));

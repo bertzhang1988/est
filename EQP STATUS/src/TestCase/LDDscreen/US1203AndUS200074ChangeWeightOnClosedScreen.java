@@ -86,7 +86,7 @@ public class US1203AndUS200074ChangeWeightOnClosedScreen {
 				page.CorrectWeightButton.click();
 			}
 
-			page.ShipmentWeightLdd.clear();
+			page.ShipmentWeight2.clear();
 			Thread.sleep(1000);
 		}
 
@@ -129,7 +129,7 @@ public class US1203AndUS200074ChangeWeightOnClosedScreen {
 				page.CorrectWeightButton.click();
 			}
 
-			page.ShipmentWeightLdd.clear();
+			page.ShipmentWeight2.clear();
 			Thread.sleep(1000);
 		}
 	}

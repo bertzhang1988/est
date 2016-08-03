@@ -45,6 +45,7 @@ public class TerminalValidation {
 			page.SetLocation(terminal);
 		}
 		workbook.close();
+		inputStream.close();
 		driver.close();
 	}
 
@@ -73,6 +74,7 @@ public class TerminalValidation {
 		}
 
 		workbook.close();
+		inputStream.close();
 		driver.close();
 	}
 

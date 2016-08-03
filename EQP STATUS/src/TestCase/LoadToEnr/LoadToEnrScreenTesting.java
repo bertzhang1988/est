@@ -29,7 +29,6 @@ import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200001AndUS200002AndUS200041;
 import Data.DataForUS200004;
-import Data.DataForUS200006;
 import Data.DataForUS439;
 import Data.DataForUS458;
 import Function.CommonFunction;
@@ -246,7 +245,7 @@ public class LoadToEnrScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);
@@ -284,7 +283,7 @@ public class LoadToEnrScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);

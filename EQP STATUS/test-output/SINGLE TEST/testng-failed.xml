@@ -7,7 +7,7 @@
     <classes>
       <class name="TestCase.LdgScreen.LDGTesting">
         <methods>
-          <include name="SetTrailerToLDGWithProAndLeaveOn" invocation-numbers="0"/>
+          <include name="SetTrailerToLDGWithProAndHeadLoad" invocation-numbers="0"/>
           <include name="getbackldg"/>
           <include name="SetUp"/>
           <include name="TearDown"/>

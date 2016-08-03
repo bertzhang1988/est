@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="TestCase.LdgScreen.US494Open4BlobrWhenPorsNotInLoading">
+      <class name="TestCase.CLTGtesting.CLTGScreenTesting">
         <methods>
-          <include name="LDGTrailerWithProNotInLoadingAndDock" invocation-numbers="0"/>
+          <include name="ToCLTGWithProSetToCLTG" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
+          <include name="TearDown"/>
           <include name="SetUp"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US494Open4BlobrWhenPorsNotInLoading -->
+      </class> <!-- TestCase.CLTGtesting.CLTGScreenTesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

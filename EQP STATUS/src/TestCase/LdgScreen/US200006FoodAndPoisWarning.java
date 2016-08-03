@@ -59,7 +59,7 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -67,7 +67,7 @@ public class US200006FoodAndPoisWarning {
 			int Ran = (int) (Math.random() * 99) + 1;
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
 			// (new WebDriverWait(driver,
 			// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
@@ -98,7 +98,7 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -106,7 +106,7 @@ public class US200006FoodAndPoisWarning {
 			int Ran = (int) (Math.random() * 99) + 1;
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
 			// (new WebDriverWait(driver,
 			// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
@@ -139,7 +139,7 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		page.RemoveProButton.click();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		ArrayList<String> Addpro = new ArrayList<String>();
 		for (int i = 0; i < 2; i++) {
 			String CurrentPro = PRO.get(i);
@@ -151,7 +151,7 @@ public class US200006FoodAndPoisWarning {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		// (new WebDriverWait(driver,
 		// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
@@ -185,7 +185,7 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		page.RemoveProButton.click();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		ArrayList<String> Addpro = new ArrayList<String>();
 		for (int i = 0; i < 2; i++) {
 			String CurrentPro = PRO.get(i);
@@ -197,7 +197,7 @@ public class US200006FoodAndPoisWarning {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
@@ -232,7 +232,7 @@ public class US200006FoodAndPoisWarning {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// List<ArrayList<String>>
 		// PROonTrailerBeforeAdd=DataForUS200006.GetProList(SCAC,TrailerNB);
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -243,7 +243,7 @@ public class US200006FoodAndPoisWarning {
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
 
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is POISON. Food already on trailer."));
@@ -263,14 +263,14 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);
 			page.EnterPro(pro);
 			Addpro.add(pro);
 		}
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
 		(new WebDriverWait(driver, 50))
@@ -299,7 +299,7 @@ public class US200006FoodAndPoisWarning {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -310,7 +310,7 @@ public class US200006FoodAndPoisWarning {
 			int Ran = (int) (Math.random() * 99) + 1;
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is FOOD. Poison already on trailer."));
@@ -330,14 +330,14 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);
 			page.EnterPro(pro);
 			Addpro.add(pro);
 		}
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
 		(new WebDriverWait(driver, 50))
@@ -366,7 +366,7 @@ public class US200006FoodAndPoisWarning {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// List<ArrayList<String>>
 		// PROonTrailerBeforeAdd=DataForUS200006.GetProList(SCAC,TrailerNB);
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -377,7 +377,7 @@ public class US200006FoodAndPoisWarning {
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
 
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is POISON. Food already on trailer."));
@@ -397,14 +397,14 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "pois");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "pois");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);
 			page.EnterPro(pro);
 			Addpro.add(pro);
 		}
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
 		(new WebDriverWait(driver, 50))
@@ -433,7 +433,7 @@ public class US200006FoodAndPoisWarning {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		for (int i = 0; i < 1; i++) {
 			page.RemoveProButton.click();
 			String CurrentPro = PRO.get(i);
@@ -444,7 +444,7 @@ public class US200006FoodAndPoisWarning {
 			int Ran = (int) (Math.random() * 99) + 1;
 			String NewCube = Integer.toString(Ran);
 			page.SetCube(NewCube);
-			page.SubmitLDGButton.click();
+			page.SubmitButton1.click();
 			(new WebDriverWait(driver, 30)).until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is FOOD. Poison already on trailer."));
@@ -464,14 +464,14 @@ public class US200006FoodAndPoisWarning {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> Addpro = new ArrayList<String>();
-		ArrayList<String> PRO = DataForUS200006.GetPro(SCAC, TrailerNB, "food");
+		ArrayList<String> PRO = DataCommon.GetProWithType(SCAC, TrailerNB, "food");
 		page.RemoveProButton.click();
 		for (int i = 0; i < 2; i++) {
 			String pro = PRO.get(i);
 			page.EnterPro(pro);
 			Addpro.add(pro);
 		}
-		page.SubmitLDGButton.click();
+		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
 		(new WebDriverWait(driver, 50))

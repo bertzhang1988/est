@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [SINGLE TEST]" parallel="classes">
-  <parameter name="browser" value="chrome"/>
-  <test name="ONE METHOD(failed)" parallel="classes">
-    <parameter name="browser" value="chrome"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="TestCase.LdgScreen.LDGTesting">
+      <class name="TestCase.CLTGtesting.CLTGScreenTesting">
         <methods>
-          <include name="SetTrailerToLDGWithProAndLeaveOn" invocation-numbers="0"/>
-          <include name="getbackldg"/>
-          <include name="SetUp"/>
+          <include name="ToCLTGWithProSetToCLTG" invocation-numbers="0 1 2 3 4 5 6 7 8 9"/>
           <include name="TearDown"/>
+          <include name="SetUp"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.LDGTesting -->
+      </class> <!-- TestCase.CLTGtesting.CLTGScreenTesting -->
     </classes>
-  </test> <!-- ONE METHOD(failed) -->
-</suite> <!-- Failed suite [SINGLE TEST] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

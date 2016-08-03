@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="1" passed="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="SINGLE TEST" duration-ms="94304" started-at="2016-07-20T04:05:22Z" finished-at="2016-07-20T04:06:56Z">
+  <suite name="SINGLE TEST" duration-ms="42178" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:07:19Z">
     <groups>
-      <group name="ldg uc">
-        <method signature="LDGTesting.SetTrailerToLDGWithProAndLeaveOn(java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:7, instance:TestCase.LdgScreen.LDGTesting@73a43f81]" name="SetTrailerToLDGWithProAndLeaveOn" class="TestCase.LdgScreen.LDGTesting"/>
-      </group> <!-- ldg uc -->
     </groups>
-    <test name="ONE METHOD" duration-ms="94304" started-at="2016-07-20T04:05:22Z" finished-at="2016-07-20T04:06:56Z">
-      <class name="TestCase.LdgScreen.LDGTesting">
-        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.LdgScreen.LDGTesting@73a43f81]" name="SetUp" is-config="true" duration-ms="25910" started-at="2016-07-20T04:05:22Z" finished-at="2016-07-20T04:05:48Z">
+    <test name="ONE METHOD" duration-ms="42178" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:07:19Z">
+      <class name="TestCase.CLtesting.CLScreenTesting">
+        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="SetUp" is-config="true" duration-ms="9835" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:06:46Z">
           <params>
             <param index="0">
               <value>
@@ -21,11 +18,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method status="FAIL" signature="SetTrailerToLDGWithProAndLeaveOn(java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:7, instance:TestCase.LdgScreen.LDGTesting@73a43f81]" name="SetTrailerToLDGWithProAndLeaveOn" duration-ms="23576" started-at="2016-07-20T04:06:28Z" description="can transit to ldg not in ldg and ldd with pro, lobr, leave on" data-provider="ldgscreen" finished-at="2016-07-20T04:06:51Z">
+        <test-method status="PASS" signature="ToCLNoProSetToCl(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.Date)[pri:1, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="ToCLNoProSetToCl" duration-ms="12839" started-at="2016-08-03T08:07:04Z" description="not in cl no pro set to cl" data-provider="ClScreen1" finished-at="2016-08-03T08:07:17Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[435]]>
+                <![CDATA[572]]>
               </value>
             </param>
             <param index="1">
@@ -35,98 +32,46 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[530600]]>
+                <![CDATA[310758]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[2016-02-16 20:41:00.0]]>
+                <![CDATA[]]>
               </value>
             </param>
-          </params>
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-	Equipment_Status_Type_CD is wrong expected [LDG] but found [MTY],
-	equipment_dest_facility_cd is wrong expected [270] but found [435],
-	Source_Create_ID is wrong expected [LH.LDG] but found [HRZ420],
-	Actual_Capacity_Consumed_PC is wrong expected [32] but found [null],
-	5 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	6 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	equipment_status_ts is wrong  Tue Feb 16 20:41:00 UTC 2016  Wed Jul 20 05:06:00 UTC 2016 expected [true] but found [false],
-	8 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	Waybill table Source_Modify_ID is wrong 4599000696 expected [LOBR] but found [CAR061],
-	waybill table system_modify_ts  Wed Jul 20 00:47:21 UTC 2016  Wed Jul 20 04:06:38 UTC 2016     4599000696 expected [true] but found [false],
-	waybill table loading record To_Facility_CD is wrong 4599000696 expected [null] but found [455],
-	waybill table loading record From_Facility_CD is wrong 4599000696 expected [435] but found [null],
-	waybill table loading record To_Standard_Carrier_Alpha_CD is wrong 4599000696 expected [RDWY] but found [null],
-	waybill table loading record To_Equipment_Unit_NB is wrong 4599000696 expected [530600] but found [null],
-	waybill table loading Waybill_Transaction_Type_NM is wrong 4599000696 expected [LOADING] but found [PICKUP],
-	waybill Waybill_Transaction_End_TS is  Wed Dec 16 05:00:00 UTC 2015 set date is : Wed Jul 20 05:06:00 UTC 2016     4599000696 expected [true] but found [false],
-	 expected [270] but found [],
-	Cube field is not disabled expected [32] but found [],
-	ldg screen prepopulate time is wrong  expected [Tue Feb 16 14:41:00 UTC 2016] but found [Tue Jul 19 23:06:00 UTC 2016],
-	pro grid is wrong expected [[[459-900069-6, 455, 650, 340]]] but found [[]]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-	Equipment_Status_Type_CD is wrong expected [LDG] but found [MTY],
-	equipment_dest_facility_cd is wrong expected [270] but found [435],
-	Source_Create_ID is wrong expected [LH.LDG] but found [HRZ420],
-	Actual_Capacity_Consumed_PC is wrong expected [32] but found [null],
-	5 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	6 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	equipment_status_ts is wrong  Tue Feb 16 20:41:00 UTC 2016  Wed Jul 20 05:06:00 UTC 2016 expected [true] but found [false],
-	8 Tue Feb 16 20:41:45 UTC 2016  Wed Jul 20 04:06:38 UTC 2016 expected [true] but found [false],
-	Waybill table Source_Modify_ID is wrong 4599000696 expected [LOBR] but found [CAR061],
-	waybill table system_modify_ts  Wed Jul 20 00:47:21 UTC 2016  Wed Jul 20 04:06:38 UTC 2016     4599000696 expected [true] but found [false],
-	waybill table loading record To_Facility_CD is wrong 4599000696 expected [null] but found [455],
-	waybill table loading record From_Facility_CD is wrong 4599000696 expected [435] but found [null],
-	waybill table loading record To_Standard_Carrier_Alpha_CD is wrong 4599000696 expected [RDWY] but found [null],
-	waybill table loading record To_Equipment_Unit_NB is wrong 4599000696 expected [530600] but found [null],
-	waybill table loading Waybill_Transaction_Type_NM is wrong 4599000696 expected [LOADING] but found [PICKUP],
-	waybill Waybill_Transaction_End_TS is  Wed Dec 16 05:00:00 UTC 2015 set date is : Wed Jul 20 05:06:00 UTC 2016     4599000696 expected [true] but found [false],
-	 expected [270] but found [],
-	Cube field is not disabled expected [32] but found [],
-	ldg screen prepopulate time is wrong  expected [Tue Feb 16 14:41:00 UTC 2016] but found [Tue Jul 19 23:06:00 UTC 2016],
-	pro grid is wrong expected [[[459-900069-6, 455, 650, 340]]] but found [[]]
-	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
-	at TestCase.LdgScreen.LDGTesting.SetTrailerToLDGWithProAndLeaveOn(LDGTesting.java:757)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
-	at java.lang.Thread.run(Thread.java:722)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SetTrailerToLDGWithProAndLeaveOn -->
-        <test-method status="PASS" signature="getbackldg(org.testng.ITestResult)[pri:0, instance:TestCase.LdgScreen.LDGTesting@73a43f81]" name="getbackldg" is-config="true" duration-ms="1449" started-at="2016-07-20T04:06:51Z" finished-at="2016-07-20T04:06:53Z">
-          <params>
-            <param index="0">
+            <param index="4">
               <value>
-                <![CDATA[[TestResult name=SetTrailerToLDGWithProAndLeaveOn status=FAILURE method=LDGTesting.SetTrailerToLDGWithProAndLeaveOn(java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:7, instance:TestCase.LdgScreen.LDGTesting@73a43f81] output={null}]]]>
+                <![CDATA[PEDDLE]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value is-null="true"/>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[2016-02-15 22:18:00.0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getbackldg -->
-        <test-method status="PASS" signature="TearDown()[pri:0, instance:TestCase.LdgScreen.LDGTesting@73a43f81]" name="TearDown" is-config="true" duration-ms="3776" started-at="2016-07-20T04:06:53Z" finished-at="2016-07-20T04:06:56Z">
+        </test-method> <!-- ToCLNoProSetToCl -->
+        <test-method status="PASS" signature="TearDown()[pri:0, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="TearDown" is-config="true" duration-ms="1678" started-at="2016-08-03T08:07:17Z" finished-at="2016-08-03T08:07:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->
-      </class> <!-- TestCase.LdgScreen.LDGTesting -->
+      </class> <!-- TestCase.CLtesting.CLScreenTesting -->
     </test> <!-- ONE METHOD -->
   </suite> <!-- SINGLE TEST -->
 </testng-results>

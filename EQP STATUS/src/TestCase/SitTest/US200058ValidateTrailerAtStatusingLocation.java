@@ -30,7 +30,7 @@ public class US200058ValidateTrailerAtStatusingLocation {
 
 	@BeforeClass
 	@Parameters({ "browser", "status" })
-	public void SetUp(@Optional("chrome") String browser, @Optional("CL") String status)
+	public void SetUp(@Optional("chrome") String browser, @Optional("CLtg") String status)
 			throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {

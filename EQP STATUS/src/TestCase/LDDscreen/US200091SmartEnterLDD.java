@@ -141,7 +141,7 @@ public class US200091SmartEnterLDD {
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		// check shipmentcount is disabled
-		SAssert.assertFalse(page.ShipmentCountLdd.isEnabled(), "shipment count is not disbaled");
+		SAssert.assertFalse(page.ShipmentCount2.isEnabled(), "shipment count is not disbaled");
 
 		// enter shipweight
 		int Ran4 = (int) (Math.random() * 27000) + 1000;
