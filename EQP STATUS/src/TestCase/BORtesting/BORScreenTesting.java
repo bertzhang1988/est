@@ -38,7 +38,7 @@ public class BORScreenTesting {
 
 	@BeforeClass
 	@Parameters({ "browser" })
-	public void SetUp(@Optional("ie") String browser) throws AWTException, InterruptedException {
+	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
 
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
@@ -147,6 +147,7 @@ public class BORScreenTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// page.LobrCancelButton.click();
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
@@ -174,9 +175,9 @@ public class BORScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -253,9 +254,9 @@ public class BORScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -368,9 +369,9 @@ public class BORScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -446,9 +447,9 @@ public class BORScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"

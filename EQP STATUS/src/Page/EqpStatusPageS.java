@@ -54,6 +54,9 @@ public class EqpStatusPageS {
 	@FindBy(how = How.LINK_TEXT, using = "TRAILERS BY TERMINAL")
 	public WebElement TrailerByTerminalButton;
 
+	@FindBy(how = How.LINK_TEXT, using = "TRAILER INQUIRY")
+	public WebElement TrailerInquirybutton;
+
 	@FindBy(how = How.LINK_TEXT, using = "LOAD TO ENR")
 	public WebElement LOADTOENRbutton;
 
@@ -323,7 +326,7 @@ public class EqpStatusPageS {
 	@FindBy(how = How.CSS, using = "div[label='City Route Type']>div>ul>li")
 	public WebElement CityRouteTypeList;
 
-	/* INQUIRY SCREEN */
+	/* terminal INQUIRY SCREEN */
 	// @FindBy(how = How.XPATH, using =
 	// ".//input[starts-with(@name,'trailerInquiryVM.terminalNumber')]")
 	// @FindBy(how = How.XPATH, using =
@@ -372,6 +375,13 @@ public class EqpStatusPageS {
 	@FindBy(how = How.NAME, using = "submitUAD")
 	public WebElement UadSubmit;
 
+	// Traile Inquiry
+	@FindBy(how = How.XPATH, using = ".//div[@config='trailerVM.currentTrailerConfig.config']//div[@class='ui-grid-contents-wrapper']/div[@role='grid']//div[@class='ui-grid-canvas']")
+	public WebElement TIQtrailerGrid;
+
+	@FindBy(how = How.XPATH, using = ".//div[@config='trailerVM.currentProsConfig.config']//div[@class='ui-grid-contents-wrapper']/div[@role='grid']//div[@class='ui-grid-canvas']")
+	public WebElement TIQProGrid;
+
 	// UI method
 
 	public void LoadNewPRO(int proamount) throws ClassNotFoundException, SQLException, InterruptedException {
@@ -392,7 +402,13 @@ public class EqpStatusPageS {
 
 	}
 
-	public void SetInquiryScreen() {
+	public void SetTrailerInquiryScreen() {
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.TrailerInquirybutton));
+		this.TrailerInquirybutton.click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.TrailerInputField));
+	}
+
+	public void SetTerminalInquiryScreen() {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.TrailerByTerminalButton));
 		this.TrailerByTerminalButton.click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.IQTerminalInput));
@@ -859,7 +875,7 @@ public class EqpStatusPageS {
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		Date PlanDay = cal.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
 		String DATE = dateFormat.format(PlanDay);
 		this.SetPlanDay(DATE);
 		builder.sendKeys(Keys.TAB).build().perform();

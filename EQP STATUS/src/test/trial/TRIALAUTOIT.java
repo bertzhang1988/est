@@ -42,7 +42,7 @@ public class TRIALAUTOIT {
 		page = new EqpStatusPageS(driver);
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
-		page.SetInquiryScreen();
+		page.SetTrailerInquiryScreen();
 
 	}
 

@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 8 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,8 +37,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" class="navigator-link" panel-name="suite-SINGLE_TEST">
-              <span class="suite-name border-passed">SINGLE TEST</span>
+            <a href="#" class="navigator-link" panel-name="suite-Default_suite">
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -48,37 +48,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="test-xml-SINGLE_TEST">
-                    <span>C:\Users\uyr27b0\git\EST\EQP STATUS\OneMethod.xml</span>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
+                    <span>C:\Users\uyr27b0\AppData\Local\Temp\testng-eclipse-536516072\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="testlist-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_suite">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="group-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="group-Default_suite">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="times-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="times-Default_suite">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="reporter-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_suite">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="ignored-methods-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_suite">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="chronological-SINGLE_TEST">
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_suite">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -91,21 +91,56 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">8 methods, 8 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-SINGLE_TEST" class="hide-methods passed suite-SINGLE_TEST"> (hide)</a> <!-- hide-methods passed suite-SINGLE_TEST -->
-                      <a href="#" panel-name="suite-SINGLE_TEST" class="show-methods passed suite-SINGLE_TEST"> (show)</a> <!-- show-methods passed suite-SINGLE_TEST -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content passed suite-SINGLE_TEST">
+                    <div class="method-list-content failed suite-Default_suite">
                       <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-SINGLE_TEST" title="TestCase.CLtesting.CLScreenTesting" hash-for-method="ToCLNoProSetToCl(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0)">ToCLNoProSetToCl(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0)</a> <!-- method navigator-link -->
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="SetTrailerWithoutProNotFromONHToMty(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0)">SetTrailerWithoutProNotFromONHToMty(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-SINGLE_TEST -->
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="SetTrailerWithoutProToMtyFromONH(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0)">SetTrailerWithoutProToMtyFromONH(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="SmartEneterSetTrailerWithoutProToMtyFromONH(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0)">SmartEneterSetTrailerWithoutProToMtyFromONH(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="SmartEneterSetTrailerWithoutProToMtyNOTFromONH(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0)">SmartEneterSetTrailerWithoutProToMtyNOTFromONH(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="twoBlOBRAllShortFromONH(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0)">twoBlOBRAllShortFromONH(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="twoBlOBRAllShortNOTFromONH(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0)">twoBlOBRAllShortNOTFromONH(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="twoBlOBRDockFromONH(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0)">twoBlOBRDockFromONH(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="TestCase.MTYtesting.MTYScreenTesting" hash-for-method="twoBlOBRDockNOTFromONH(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0)">twoBlOBRDockNOTFromONH(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -116,149 +151,800 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-SINGLE_TEST" class="panel SINGLE_TEST">
-          <div class="suite-SINGLE_TEST-class-passed">
+        <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">TestCase.CLtesting.CLScreenTesting</span>
+              <img src="failed.png"/>
+              <span class="class-name">TestCase.MTYtesting.MTYScreenTesting</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="ToCLNoProSetToCl(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0)">
-                  </a> <!-- ToCLNoProSetToCl(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0) -->
-                  <span class="method-name">ToCLNoProSetToCl</span>
-                  <span class="parameters">(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0)</span>
-                  <em>
-(not in cl no pro set to cl)                  </em>
+                  <a name="SetTrailerWithoutProNotFromONHToMty(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0)">
+                  </a> <!-- SetTrailerWithoutProNotFromONHToMty(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0) -->
+                  <span class="method-name">SetTrailerWithoutProNotFromONHToMty</span>
+                  <span class="parameters">(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [CLTG],
+	Source_Create_ID is wrong expected [MTY] but found [TEC250],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [E854MXS],
+	5  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	6  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 09 02:16:00 UTC 2016  Fri Aug 12 07:36:00 UTC 2016 expected [true] but found [false],
+	8  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	 eqp Mainframe_User_ID is wrong expected [UYR27B0] but found [OPSYS]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SetTrailerWithoutProNotFromONHToMty(MTYScreenTesting.java:379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SetTrailerWithoutProToMtyFromONH(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0)">
+                  </a> <!-- SetTrailerWithoutProToMtyFromONH(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0) -->
+                  <span class="method-name">SetTrailerWithoutProToMtyFromONH</span>
+                  <span class="parameters">(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [ER37JG],
+	5  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	6  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Mon Mar 14 10:00:00 UTC 2016  Fri Aug 12 07:09:00 UTC 2016 expected [true] but found [false],
+	8  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SetTrailerWithoutProToMtyFromONH(MTYScreenTesting.java:272)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SmartEneterSetTrailerWithoutProToMtyFromONH(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0)">
+                  </a> <!-- SmartEneterSetTrailerWithoutProToMtyFromONH(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0) -->
+                  <span class="method-name">SmartEneterSetTrailerWithoutProToMtyFromONH</span>
+                  <span class="parameters">(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	6  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 16 15:53:00 UTC 2016  Fri Aug 12 06:45:00 UTC 2016 expected [true] but found [false],
+	8  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SmartEneterSetTrailerWithoutProToMtyFromONH(MTYScreenTesting.java:311)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SmartEneterSetTrailerWithoutProToMtyNOTFromONH(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0)">
+                  </a> <!-- SmartEneterSetTrailerWithoutProToMtyNOTFromONH(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0) -->
+                  <span class="method-name">SmartEneterSetTrailerWithoutProToMtyNOTFromONH</span>
+                  <span class="parameters">(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0)</span>
+                  <div class="stack-trace">org.openqa.selenium.InvalidElementStateException: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=52.0.2743.116)
+  (Driver info: chromedriver=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 27 milliseconds
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.202.134&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:139)
+	at sun.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at $Proxy11.clear(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:475)
+	at TestCase.MTYtesting.MTYScreenTesting.SmartEneterSetTrailerWithoutProToMtyNOTFromONH(MTYScreenTesting.java:536)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="twoBlOBRAllShortFromONH(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0)">
+                  </a> <!-- twoBlOBRAllShortFromONH(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0) -->
+                  <span class="method-name">twoBlOBRAllShortFromONH</span>
+                  <span class="parameters">(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARR],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:27:00 UTC 2016  Fri Aug 12 17:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4969924027 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4969924027 expected [true] but found [false],
+	waybill source_modify_id is wrong  4969924027 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:27:19 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4969924027 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4969924027 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4969924027 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4969924027 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4969924027 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4969924027 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4969924027 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:47:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill scac is wrong  3400238920 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3400238920 expected [true] but found [false],
+	waybill source_modify_id is wrong  3400238920 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:21 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3400238920 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3400238920 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3400238920 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3400238920 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3400238920 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3400238920 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3400238920 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:48:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill scac is wrong  4994795212 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994795212 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994795212 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:20 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994795212 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994795212 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994795212 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994795212 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994795212 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994795212 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994795212 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:51:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill scac is wrong  4823910464 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4823910464 expected [true] but found [false],
+	waybill source_modify_id is wrong  4823910464 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:44:33 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4823910464 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4823910464 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4823910464 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4823910464 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4823910464 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4823910464 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4823910464 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:56:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill scac is wrong  4464736088 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4464736088 expected [true] but found [false],
+	waybill source_modify_id is wrong  4464736088 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:06:48 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4464736088 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4464736088 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4464736088 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4464736088 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4464736088 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4464736088 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4464736088 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:14:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill scac is wrong  4994774817 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994774817 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994774817 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:50 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994774817 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994774817 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994774817 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994774817 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994774817 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994774817 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994774817 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:15:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill scac is wrong  4998842855 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998842855 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998842855 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:46:54 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998842855 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998842855 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998842855 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998842855 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998842855 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998842855 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998842855 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill scac is wrong  4933594874 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4933594874 expected [true] but found [false],
+	waybill source_modify_id is wrong  4933594874 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:40 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4933594874 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4933594874 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4933594874 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4933594874 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4933594874 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4933594874 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4933594874 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:20:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill scac is wrong  4998829976 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998829976 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998829976 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:10 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998829976 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998829976 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998829976 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998829976 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998829976 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998829976 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998829976 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:21:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill scac is wrong  253674147X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  253674147X expected [true] but found [false],
+	waybill source_modify_id is wrong  253674147X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:42:29 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong253674147X expected [true] but found [false],
+	waybill To_Facility_CD is wrong253674147X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong253674147X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong253674147X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong253674147X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong253674147X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong253674147X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:22:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill scac is wrong  4956664626 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956664626 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956664626 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:51:02 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956664626 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956664626 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956664626 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956664626 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956664626 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956664626 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956664626 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 20:02:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill scac is wrong  4939944826 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4939944826 expected [true] but found [false],
+	waybill source_modify_id is wrong  4939944826 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:54:12 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4939944826 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4939944826 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4939944826 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4939944826 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4939944826 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4939944826 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4939944826 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill scac is wrong  919071116X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  919071116X expected [true] but found [false],
+	waybill source_modify_id is wrong  919071116X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:32:23 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong919071116X expected [true] but found [false],
+	waybill To_Facility_CD is wrong919071116X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong919071116X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong919071116X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong919071116X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong919071116X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong919071116X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 23:08:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRAllShortFromONH(MTYScreenTesting.java:207)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="twoBlOBRAllShortNOTFromONH(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0)">
+                  </a> <!-- twoBlOBRAllShortNOTFromONH(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0) -->
+                  <span class="method-name">twoBlOBRAllShortNOTFromONH</span>
+                  <span class="parameters">(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0)</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text (&apos;Set Trailer Status Empty&apos;) to be present in element [[ChromeDriver: chrome on XP (01d0520cd908a1f166e9ba74d0fdf967)] -&gt; xpath: .//*[@id=&apos;mainBody&apos;]/h3]
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;N700278&apos;, ip: &apos;10.51.202.134&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.7.0_06&apos;
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRAllShortNOTFromONH(MTYScreenTesting.java:481)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="twoBlOBRDockFromONH(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0)">
+                  </a> <!-- twoBlOBRDockFromONH(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0) -->
+                  <span class="method-name">twoBlOBRDockFromONH</span>
+                  <span class="parameters">(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:11:00 UTC 2016  Fri Aug 12 19:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4956659337 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956659337 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956659337 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:35 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956659337 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956659337 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956659337 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956659337 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956659337 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956659337 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956659337 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 05:56:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill scac is wrong  3138397218 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3138397218 expected [true] but found [false],
+	waybill source_modify_id is wrong  3138397218 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:50:30 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3138397218 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3138397218 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3138397218 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3138397218 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3138397218 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3138397218 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3138397218 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill scac is wrong  4596984387 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984387 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984387 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:02:03 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984387 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984387 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984387 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984387 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984387 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984387 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984387 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill scac is wrong  4596984396 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984396 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984396 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:19 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984396 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984396 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984396 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984396 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984396 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984396 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984396 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill scac is wrong  4956773250 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956773250 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956773250 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:51 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956773250 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956773250 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956773250 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956773250 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956773250 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956773250 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956773250 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRDockFromONH(MTYScreenTesting.java:133)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="twoBlOBRDockNOTFromONH(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0)">
+                  </a> <!-- twoBlOBRDockNOTFromONH(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0) -->
+                  <span class="method-name">twoBlOBRDockNOTFromONH</span>
+                  <span class="parameters">(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [LDG],
+	Source_Create_ID is wrong expected [MTY] but found [HRZ105],
+	5  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	6  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Tue Apr 19 18:58:01 UTC 2016  Fri Aug 12 17:39:00 UTC 2016 expected [true] but found [false],
+	8  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  5285437457 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285437457 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285437457 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:49:46 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285437457 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285437457 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285437457 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285437457 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285437457 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285437457 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285437457 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill scac is wrong  5285463343 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285463343 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285463343 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:48:34 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285463343 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285463343 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285463343 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285463343 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285463343 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285463343 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285463343 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRDockNOTFromONH(MTYScreenTesting.java:453)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-SINGLE_TEST-class-passed -->
-        </div> <!-- panel SINGLE_TEST -->
-        <div panel-name="test-xml-SINGLE_TEST" class="panel">
+          </div> <!-- suite-Default_suite-class-failed -->
+        </div> <!-- panel Default_suite -->
+        <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\uyr27b0\git\EST\EQP STATUS\OneMethod.xml</span>
+            <span class="header-content">C:\Users\uyr27b0\AppData\Local\Temp\testng-eclipse-536516072\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite thread-count=&quot;1&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;2&quot; name=&quot;SINGLE TEST&quot; parallel=&quot;classes&quot;&gt;
-  &lt;test name=&quot;ONE METHOD&quot;&gt;
-    &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
+  &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;TestCase.CLtesting.CLScreenTesting&quot;&gt;
-        &lt;methods&gt;
-          &lt;include name=&quot;ToCLNoProSetToCl&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- TestCase.CLtesting.CLScreenTesting --&gt;
+      &lt;class name=&quot;TestCase.MTYtesting.MTYScreenTesting&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- ONE METHOD --&gt;
-&lt;/suite&gt; &lt;!-- SINGLE TEST --&gt;
+  &lt;/test&gt; &lt;!-- Default test --&gt;
+&lt;/suite&gt; &lt;!-- Default suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-SINGLE_TEST" class="panel">
+        <div panel-name="testlist-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for SINGLE TEST</span>
+            <span class="header-content">Tests for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">ONE METHOD (1 class)</span>
+                <span class="test-name">Default test (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-SINGLE_TEST" class="panel">
+        <div panel-name="group-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for SINGLE TEST</span>
+            <span class="header-content">Groups for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-SINGLE_TEST" class="panel">
+        <div panel-name="times-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for SINGLE TEST</span>
+            <span class="header-content">Times for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_SINGLE_TEST');
-function tableData_SINGLE_TEST() {
+suiteTableInitFunctions.push('tableData_Default_suite');
+function tableData_Default_suite() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(8);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ToCLNoProSetToCl')
-data.setCell(0, 2, 'TestCase.CLtesting.CLScreenTesting')
-data.setCell(0, 3, 12839);
-window.suiteTableData['SINGLE_TEST']= { tableData: data, tableDiv: 'times-div-SINGLE_TEST'}
+data.setCell(0, 1, 'twoBlOBRAllShortFromONH')
+data.setCell(0, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(0, 3, 41389);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'twoBlOBRAllShortNOTFromONH')
+data.setCell(1, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(1, 3, 25204);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'twoBlOBRDockFromONH')
+data.setCell(2, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(2, 3, 17548);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'twoBlOBRDockNOTFromONH')
+data.setCell(3, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(3, 3, 15542);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'SetTrailerWithoutProToMtyFromONH')
+data.setCell(4, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(4, 3, 8685);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'SetTrailerWithoutProNotFromONHToMty')
+data.setCell(5, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(5, 3, 7830);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'SmartEneterSetTrailerWithoutProToMtyFromONH')
+data.setCell(6, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(6, 3, 7496);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'SmartEneterSetTrailerWithoutProToMtyNOTFromONH')
+data.setCell(7, 2, 'TestCase.MTYtesting.MTYScreenTesting')
+data.setCell(7, 3, 125);
+window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
-              <div id="times-div-SINGLE_TEST">
-              </div> <!-- times-div-SINGLE_TEST -->
+              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <div id="times-div-Default_suite">
+              </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-SINGLE_TEST" class="panel">
+        <div panel-name="reporter-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for SINGLE TEST</span>
+            <span class="header-content">Reporter output for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-SINGLE_TEST" class="panel">
+        <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">7 ignored methods</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">TestCase.CLtesting.CLScreenTesting</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">CLHasProSetToCL</span>
-                <br/>
-                <span class="ignored-method-name">ToCLWithProAllShort</span>
-                <br/>
-                <span class="ignored-method-name">CLTGHasProSetToCl</span>
-                <br/>
-                <span class="ignored-method-name">ToCLWithProDock</span>
-                <br/>
-                <span class="ignored-method-name">ToCLWithProLeaveOn</span>
-                <br/>
-                <span class="ignored-method-name">ToCLNoProAddPro</span>
-                <br/>
-                <span class="ignored-method-name">ToCLNoProAddProWithType</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-SINGLE_TEST" class="panel">
+        <div panel-name="chronological-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">TestCase.CLtesting.CLScreenTesting</div> <!-- chronological-class-name -->
-              <div class="configuration-class before">
+              <div class="chronological-class-name">TestCase.MTYtesting.MTYScreenTesting</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
                 <span class="method-name">SetUp(chrome)</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-class before -->
+              </div> <!-- configuration-test before -->
               <div class="test-method">
-                <span class="method-name">ToCLNoProSetToCl(572, RDWY, 310758, , PEDDLE, , , null, 2016-02-15 22:18:00.0)</span>
-                <span class="method-start">27641 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">SetTrailerWithoutProToMtyFromONH(522, RDWY, 129914, 522, 95, , , 2016-03-14 10:00:00.0)</span>
+                <span class="method-start">26050 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-class after">
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">twoBlOBRAllShortFromONH(324, RDWY, 279402, 653, 98, 13, 13372, 2016-03-17 05:27:00.0)</span>
+                <span class="method-start">55822 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">twoBlOBRDockFromONH(309, RDWY, 41421, 309, 90, 5, 3367, 2016-03-17 05:11:00.0)</span>
+                <span class="method-start">109856 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">SmartEneterSetTrailerWithoutProToMtyFromONH(152, RDWY, 281251, 152, 98, , , 2016-03-16 15:53:00.0)</span>
+                <span class="method-start">140776 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">SetTrailerWithoutProNotFromONHToMty(854, RDWY, 559908, 854, 90, , , 2016-03-09 02:16:00.0)</span>
+                <span class="method-start">163710 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">twoBlOBRDockNOTFromONH(324, RDWY, 291140, 160, 2, 2, 4556, 2016-04-19 18:58:01.0)</span>
+                <span class="method-start">189322 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">twoBlOBRAllShortNOTFromONH(431, RDWY, 278218, 521, 90, 11, 16101, 2016-03-17 03:08:00.0)</span>
+                <span class="method-start">218060 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">SmartEneterSetTrailerWithoutProToMtyNOTFromONH(153, RDWY, 277381, 153, 95, , , 2016-03-17 08:07:00.0)</span>
+                <span class="method-start">257154 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
                 <span class="method-name">TearDown</span>
-                <span class="method-start">40483 ms</span>
-              </div> <!-- configuration-class after -->
+                <span class="method-start">257296 ms</span>
+              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

@@ -238,11 +238,11 @@ public class CommonFunction {
 		Connection conn4 = DataConnection.getConnection();
 		String query1 = "  UPDATE EQP.Waybill_vw SET M204_WGP_DTTMSP_TS = 0 where Pro_NB = ? ";
 		PreparedStatement stat = conn4.prepareStatement(query1);
-		for (int i = 0; i <= PRONBlist.size(); i++) {
+		for (int i = 0; i < PRONBlist.size(); i++) {
 			String pro = PRONBlist.get(i);
 			stat.setString(1, pro);
 			stat.executeUpdate();
-			if (i == 10)
+			if (i == 4)
 				break;
 		}
 		if (stat != null)

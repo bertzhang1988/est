@@ -33,6 +33,8 @@ public class DataForCLScreenTesting {
 			query = DataCommon.query47;
 		} else if (m.getName().contains("CLTrailerWithProNotInLoading")) {
 			query = DataCommon.query48;
+		} else if (m.getName().contains("CLWithoutPro")) {
+			query = DataCommon.query44;
 		}
 
 		ArrayList<Object[]> b = new ArrayList<Object[]>();

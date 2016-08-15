@@ -105,9 +105,9 @@ public class MTYScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -179,9 +179,9 @@ public class MTYScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -425,9 +425,9 @@ public class MTYScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
@@ -499,9 +499,9 @@ public class MTYScreenTesting {
 		// CHECK WAYBILL
 		for (String RemovedPro : ProOnTrailer) {
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
-			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong");
-			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong");
-			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong");
+			SA.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SA.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SA.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
 			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
 			// Create_TS is wrong");
 			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"

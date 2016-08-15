@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [multiple screen, some test method use static parameter]" parallel="tests">
-  <parameter name="status" value="CL"/>
+<suite thread-count="1" guice-stage="DEVELOPMENT" name="Failed suite [multiple screen, some test method use static parameter]">
+  <parameter name="status" value="cltg"/>
   <parameter name="browser" value="chrome"/>
-  <test name="test ofd(failed)" parallel="tests">
-    <parameter name="status" value="OFD"/>
+  <test name="test reusable function(failed)">
+    <parameter name="status" value="cltg"/>
     <classes>
-      <class name="SitTest.US200057EvaluateStatusTransitions">
+      <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation">
         <methods>
           <include name="SetUp"/>
-          <include name="SetUp"/>
-          <include name="VerifyInvalidStatusTransition"/>
+          <include name="TearDown"/>
         </methods>
-      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
-    </classes>
-  </test> <!-- test ofd(failed) -->
-  <test name="test CL(failed)" parallel="tests">
-    <parameter name="status" value="CL"/>
-    <classes>
-      <class name="SitTest.US200057EvaluateStatusTransitions">
+      </class> <!-- TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation -->
+      <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid">
         <methods>
+          <include name="VerifyValidDestination" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
+          <include name="EnterTrailerInLdgNoShipments" invocation-numbers="0"/>
+          <include name="TearDown"/>
           <include name="SetUp"/>
-          <include name="SetUp"/>
-          <include name="VerifyInvalidStatusTransition"/>
+          <include name="VerifyInvalidDestination" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
         </methods>
-      </class> <!-- SitTest.US200057EvaluateStatusTransitions -->
+      </class> <!-- TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid -->
+      <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions">
+        <methods>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions -->
+      <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
+        <methods>
+          <include name="TearDown"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
     </classes>
-  </test> <!-- test CL(failed) -->
+  </test> <!-- test reusable function(failed) -->
 </suite> <!-- Failed suite [multiple screen, some test method use static parameter] -->

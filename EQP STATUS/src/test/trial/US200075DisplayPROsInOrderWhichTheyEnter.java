@@ -266,21 +266,21 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			ADDPRO.add(CurrentPro);
 		}
 
-		// add no waybill record pro
-		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 3; i++) {
-			String CurrentPro = PRO3.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
-		// add dt mismatch pro record pro
-		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
-		for (int i = 0; i < 3; i++) {
-			String CurrentPro = PRO4.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
+		// // add no waybill record pro
+		// ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		// for (int i = 0; i < 3; i++) {
+		// String CurrentPro = PRO3.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
+		//
+		// // add dt mismatch pro record pro
+		// ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		// for (int i = 0; i < 3; i++) {
+		// String CurrentPro = PRO4.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
 
 		// change cube
 		int Ran = (int) (Math.random() * 99) + 1;
@@ -572,9 +572,10 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
 		page.RemoveProButton.click();
-		for (int j = 0; j < 20; j++) {
+		for (int j = 0; j < 10; j++) {
 			String CurrentPro = GetProNotOnAnyTrailer.get(j);
 			page.EnterPro(CurrentPro);
+			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
@@ -583,22 +584,24 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO2.get(i);
 			page.EnterPro(CurrentPro);
+			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
-		// add no waybill record pro
-		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 10; i++) {
-			String CurrentPro = PRO3.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
+		// // add no waybill record pro
+		// ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		// for (int i = 0; i < 10; i++) {
+		// String CurrentPro = PRO3.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
+		//
 		// add dttmsp pro
 		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 8; i++) {
 			String CurrentPro = PRO4.get(i);
 			page.EnterPro(CurrentPro);
+			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
@@ -680,6 +683,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		for (int j = 0; j < 10; j++) {
 			String CurrentPro = GetProNotOnAnyTrailer.get(j);
 			page.EnterPro(CurrentPro);
+			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
@@ -688,24 +692,25 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO2.get(i);
 			page.EnterPro(CurrentPro);
+			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
-		// add no waybill record pro
-		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 10; i++) {
-			String CurrentPro = PRO3.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
-		// add dt mismatch pro record pro
-		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
-		for (int i = 0; i < 10; i++) {
-			String CurrentPro = PRO4.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
+		// // add no waybill record pro
+		// ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		// for (int i = 0; i < 10; i++) {
+		// String CurrentPro = PRO3.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
+		//
+		// // add dt mismatch pro record pro
+		// ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		// for (int i = 0; i < 10; i++) {
+		// String CurrentPro = PRO4.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
 
 		// change cube
 		int Ran = (int) (Math.random() * 99) + 1;

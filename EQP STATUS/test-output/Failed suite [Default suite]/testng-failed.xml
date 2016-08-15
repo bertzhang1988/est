@@ -3,14 +3,22 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Default suite]]">
   <test name="Default test(failed)(failed)">
     <classes>
-      <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG">
+      <class name="TestCase.CLtesting.CLScreenTesting">
         <methods>
-          <include name="Close"/>
-          <include name="getbackldg"/>
-          <include name="ldgTrailerWithProsYes" invocation-numbers="0"/>
+          <include name="CLHasProSetToCL" invocation-numbers="0"/>
+          <include name="CLWithoutProAddProQuickClose" invocation-numbers="0"/>
           <include name="SetUp"/>
+          <include name="TearDown"/>
+          <include name="ToCLWithProAllShort"/>
+          <include name="ToCLWithProDock"/>
+          <include name="ToCLWithProLeaveOn"/>
+          <include name="ToCLNoProAddPro" invocation-numbers="0"/>
+          <include name="CLHasProAddProQuickClose" invocation-numbers="0"/>
+          <include name="CLHasProQuickClose" invocation-numbers="0"/>
+          <include name="ToCLNoProAddProQuickClose" invocation-numbers="0"/>
+          <include name="ToCLNoProAddProWithType" invocation-numbers="0"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG -->
+      </class> <!-- TestCase.CLtesting.CLScreenTesting -->
     </classes>
   </test> <!-- Default test(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Default suite]] -->

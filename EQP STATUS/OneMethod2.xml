@@ -3,10 +3,10 @@
   <test name="ONE METHOD">
  <parameter name="browser" value="chrome"/>
     <classes>
-	<class name="TestCase.LdgScreen.LDGTesting">
+	<class name="TestCase.LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG">
 	  <methods>
-        <include name="SetTrailerToLDGWithProAndHeadLoad"/>
-         <include name="SetTrailerToLDGWithProAndLeaveOn"/>
+        <include name="ldgTrailerWithHeadloadProsClickYes"/>
+    
          
       </methods></class> 	
     </classes>

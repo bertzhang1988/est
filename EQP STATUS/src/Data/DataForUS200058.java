@@ -11,7 +11,7 @@ import java.util.Iterator;
 import org.testng.annotations.DataProvider;
 
 import Function.DataConnection;
-import TestCase.SitTest.US200058ValidateTrailerAtStatusingLocation;
+import TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation;
 
 public class DataForUS200058 {
 

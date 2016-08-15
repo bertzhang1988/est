@@ -1,0 +1,80 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="multiple screen, some test method use static parameter" thread-count="1"  parallel="false">
+<parameter name="browser" value="ie" />
+   <test name="test MTY">
+   <parameter name="status" value="mty"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class> 
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>   
+      </classes>
+   </test>
+ <test name="test BOR">
+ <parameter name="status" value="bor"/>
+     <classes>
+   <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>
+   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+     </classes> 
+ </test>
+  <test name="test UAD">
+ <parameter name="status" value="uad"/>
+     <classes>
+ <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+ <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>
+ <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+     </classes> 
+ </test>
+  <test name="test LDD">
+   <parameter name="status" value="ldd"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>    
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+	   <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
+      </classes>
+   </test>
+    <test name="test LDG">
+   <parameter name="status" value="ldg"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>  
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
+	   <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
+      </classes>
+   </test>
+    <test name="test CPU">
+   <parameter name="status" value="cpu"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>  
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
+      </classes>
+   </test>
+ <test name="test OFD">
+   <parameter name="status" value="ofd"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>  
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
+      </classes>
+   </test>
+ <test name="test CL">
+   <parameter name="status" value="cl"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>  
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
+      </classes>
+   </test>
+ <test name="test CLTG">
+   <parameter name="status" value="cltg"/>
+      <classes>
+       <class name="SitTest.US200057EvaluateStatusTransitions"></class>
+	   <class name="SitTest.US200058ValidateTrailerAtStatusingLocation"></class>  
+	   <class name="SitTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class> 
+	   <class name="SitTest.US200068AndUS445ValidateDestinationFacilityValid"></class>  
+      </classes>
+   </test>
+</suite>
+

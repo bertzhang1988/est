@@ -17,7 +17,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -69,7 +68,7 @@ public class US642DTMSCHProAndTrailer {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// set trailer eqp mismatch
-		CommonFunction.SetTrailerToEQPdttmsh(SCAC, TrailerNB);
+		// CommonFunction.SetTrailerToEQPdttmsh(SCAC, TrailerNB);
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -81,7 +80,7 @@ public class US642DTMSCHProAndTrailer {
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 
-		// set pro to WGP
+		// set pro to WGP mismatch
 		CommonFunction.SetProToWGPdttmsh(prolistbeforelobr);
 
 		// ENTER DESTINATION IF IT IS BLANK
@@ -189,7 +188,7 @@ public class US642DTMSCHProAndTrailer {
 		SAssert.assertAll();
 	}
 
-	@AfterClass(groups = { "ldg uc" })
+	// @AfterClass(groups = { "ldg uc" })
 	public void TearDown() {
 		driver.quit();
 	}

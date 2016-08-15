@@ -2,71 +2,57 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [ldg testing]">
   <parameter name="browser" value="chrome"/>
-  <test name="test ldg(failed)">
+  <test name="test ldg 1(failed)">
     <parameter name="browser" value="chrome"/>
-    <groups>
-      <run>
-        <include name="ldg uc"/>
-      </run>
-    </groups>
     <classes>
-      <class name="TestCase.LdgScreen.US200091SmartEnterLDG">
+      <class name="TestCase.LdgScreen.US200006FoodAndPoisWarning">
         <methods>
-          <include name="Close"/>
-          <include name="SetUp"/>
-          <include name="LdgTrailerWithoutProNoChange" invocation-numbers="0"/>
-          <include name="LdgTrailerWithoutProChangeDestinationAddPRO" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- TestCase.LdgScreen.US200091SmartEnterLDG -->
-      <class name="TestCase.LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG">
-        <methods>
-          <include name="Close"/>
-          <include name="getbackldg"/>
+          <include name="VerifyBatchProForFoodTrailer" invocation-numbers="0"/>
+          <include name="VerifyBatchFoodProTrailerWithBothFOODandPOIS" invocation-numbers="0"/>
+          <include name="VerifySingleFoodProForTrailerWithBothFOODandPOIS" invocation-numbers="0"/>
+          <include name="VerifyBatchPoisProForTrailerWithBothFOODandPOIS" invocation-numbers="0"/>
+          <include name="TearDown"/>
+          <include name="VerifyBatchProForPoisonTrailer" invocation-numbers="0"/>
           <include name="SetUp"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US622SmartEnterHeadloadOnDestinationChangeLDG -->
-      <class name="TestCase.LdgScreen.US2000119NewSubmitButtonLDG">
+      </class> <!-- TestCase.LdgScreen.US200006FoodAndPoisWarning -->
+      <class name="TestCase.LdgScreen.US439PreventProFromLoadingAlert">
         <methods>
-          <include name="LdgTrailerWithoutProNoChange" invocation-numbers="0"/>
-          <include name="LdgTrailerWithProChangeDestinationAddPRO" invocation-numbers="0"/>
+          <include name="TearDown"/>
+          <include name="VerifyMRValidation" invocation-numbers="0 1 2"/>
           <include name="SetUp"/>
+          <include name="VerifyVOValidation" invocation-numbers="0 1 2"/>
+          <include name="VerifyMasterRevenueVlidation" invocation-numbers="0"/>
+          <include name="VerifySUValidation" invocation-numbers="0 1 2"/>
+          <include name="VerifyAlreadyDeliveredValidation" invocation-numbers="0 1 2"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US2000119NewSubmitButtonLDG -->
-      <class name="TestCase.LdgScreen.US1215QuickClose">
+      </class> <!-- TestCase.LdgScreen.US439PreventProFromLoadingAlert -->
+      <class name="TestCase.LdgScreen.US200004ProNumberDigitCheck">
         <methods>
           <include name="SetUp"/>
-          <include name="Close"/>
+          <include name="TearDown"/>
+          <include name="VerifyProDigitCheck" invocation-numbers="10"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US1215QuickClose -->
+      </class> <!-- TestCase.LdgScreen.US200004ProNumberDigitCheck -->
       <class name="TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter">
         <methods>
           <include name="Close"/>
-          <include name="AddMultipleProsInSingleBatch" invocation-numbers="0"/>
           <include name="SetUp"/>
+          <include name="AddSinglePro" invocation-numbers="0"/>
         </methods>
       </class> <!-- TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter -->
-      <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG">
+      <class name="TestCase.LdgScreen.US458CheckShipmentAlreadyLoadedOnTrailer">
+        <methods>
+          <include name="SetUp"/>
+          <include name="CheckShipmentAlreadyLoadedOnTrailer" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- TestCase.LdgScreen.US458CheckShipmentAlreadyLoadedOnTrailer -->
+      <class name="TestCase.LdgScreen.US452RemoveShipment">
         <methods>
           <include name="Close"/>
-          <include name="getbackldg"/>
-          <include name="ldgTrailerWithoutProsLDDClickNo" invocation-numbers="0"/>
           <include name="SetUp"/>
-          <include name="ldgTrailerWithoutProsClickNo" invocation-numbers="0"/>
         </methods>
-      </class> <!-- TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG -->
-      <class name="TestCase.LdgScreen.LDGTesting">
-        <methods>
-          <include name="NoLdgEmptyTrailerAddNonExistingPro" invocation-numbers="0"/>
-          <include name="SetTrailerToLoadingNoShipments" invocation-numbers="4"/>
-          <include name="LDGTrailerWithProChangeDestination" invocation-numbers="0"/>
-          <include name="SetTrailerToLDGWithProAndLeaveOn" invocation-numbers="0"/>
-          <include name="SetTrailerToLDGWithProAndALLSHORT" invocation-numbers="0"/>
-          <include name="getbackldg"/>
-          <include name="LDGWithoutProChangeDestination" invocation-numbers="0"/>
-          <include name="SetUp"/>
-          <include name="TearDown"/>
-        </methods>
-      </class> <!-- TestCase.LdgScreen.LDGTesting -->
+      </class> <!-- TestCase.LdgScreen.US452RemoveShipment -->
     </classes>
-  </test> <!-- test ldg(failed) -->
+  </test> <!-- test ldg 1(failed) -->
 </suite> <!-- Failed suite [ldg testing] -->

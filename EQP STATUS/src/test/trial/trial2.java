@@ -1,9 +1,6 @@
 package test.trial;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.testng.annotations.Test;
 
 public class trial2 {

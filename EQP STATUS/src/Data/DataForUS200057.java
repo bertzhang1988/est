@@ -11,7 +11,7 @@ import java.util.Iterator;
 import org.testng.annotations.DataProvider;
 
 import Function.DataConnection;
-import TestCase.SitTest.US200057EvaluateStatusTransitions;
+import TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions;
 
 public class DataForUS200057 {
 

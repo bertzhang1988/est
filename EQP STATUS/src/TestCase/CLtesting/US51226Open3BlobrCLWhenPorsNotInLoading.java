@@ -57,7 +57,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 	}
 
 	@Test(priority = 1, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = "CL trailer with pro not in loading type, 3b lobr, Dock")
-	public void LDGTrailerWithProNotInLoadingAndDock(String terminalcd, String SCAC, String TrailerNB, String CityR,
+	public void CLTrailerWithProNotInLoadingAndDock(String terminalcd, String SCAC, String TrailerNB, String CityR,
 			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
@@ -171,7 +171,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 	}
 
 	@Test(priority = 2, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = " CL trailer with pro not in loading, lobr, all short")
-	public void LDGTrailerWithProNotInLoadingAndALLSHORT(String terminalcd, String SCAC, String TrailerNB, String CityR,
+	public void CLTrailerWithProNotInLoadingAndALLSHORT(String terminalcd, String SCAC, String TrailerNB, String CityR,
 			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
@@ -280,7 +280,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 	}
 
 	@Test(priority = 3, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class, description = "CL trailer with pro not in loading, lobr, leave on")
-	public void LDGTrailerWithProNotInLoadingAndLeaveOn(String terminalcd, String SCAC, String TrailerNB, String CityR,
+	public void CLTrailerWithProNotInLoadingAndLeaveOn(String terminalcd, String SCAC, String TrailerNB, String CityR,
 			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="8" total="8" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="SINGLE TEST" duration-ms="42178" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:07:19Z">
+  <suite name="Default suite" duration-ms="258881" started-at="2016-08-12T18:42:36Z" finished-at="2016-08-12T18:46:55Z">
     <groups>
     </groups>
-    <test name="ONE METHOD" duration-ms="42178" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:07:19Z">
-      <class name="TestCase.CLtesting.CLScreenTesting">
-        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="SetUp" is-config="true" duration-ms="9835" started-at="2016-08-03T08:06:36Z" finished-at="2016-08-03T08:06:46Z">
+    <test name="Default test" duration-ms="258881" started-at="2016-08-12T18:42:36Z" finished-at="2016-08-12T18:46:55Z">
+      <class name="TestCase.MTYtesting.MTYScreenTesting">
+        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="SetUp" is-config="true" duration-ms="7734" started-at="2016-08-12T18:42:37Z" finished-at="2016-08-12T18:42:44Z">
           <params>
             <param index="0">
               <value>
@@ -18,11 +18,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method status="PASS" signature="ToCLNoProSetToCl(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.Date)[pri:1, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="ToCLNoProSetToCl" duration-ms="12839" started-at="2016-08-03T08:07:04Z" description="not in cl no pro set to cl" data-provider="ClScreen1" finished-at="2016-08-03T08:07:17Z">
+        <test-method status="FAIL" signature="SetTrailerWithoutProToMtyFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:1, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="SetTrailerWithoutProToMtyFromONH" duration-ms="8685" started-at="2016-08-12T18:43:03Z" data-provider="MTYScreen" finished-at="2016-08-12T18:43:11Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[572]]>
+                <![CDATA[522]]>
               </value>
             </param>
             <param index="1">
@@ -32,17 +32,17 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[310758]]>
+                <![CDATA[129914]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[]]>
+                <![CDATA[522]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[PEDDLE]]>
+                <![CDATA[95]]>
               </value>
             </param>
             <param index="5">
@@ -56,22 +56,1232 @@
               </value>
             </param>
             <param index="7">
-              <value is-null="true"/>
-            </param>
-            <param index="8">
               <value>
-                <![CDATA[2016-02-15 22:18:00.0]]>
+                <![CDATA[2016-03-14 10:00:00.0]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [ER37JG],
+	5  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	6  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Mon Mar 14 10:00:00 UTC 2016  Fri Aug 12 07:09:00 UTC 2016 expected [true] but found [false],
+	8  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [ER37JG],
+	5  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	6  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Mon Mar 14 10:00:00 UTC 2016  Fri Aug 12 07:09:00 UTC 2016 expected [true] but found [false],
+	8  Mon Mar 14 09:57:58 UTC 2016  Fri Aug 12 18:43:07 UTC 2016 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SetTrailerWithoutProToMtyFromONH(MTYScreenTesting.java:272)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ToCLNoProSetToCl -->
-        <test-method status="PASS" signature="TearDown()[pri:0, instance:TestCase.CLtesting.CLScreenTesting@3ea4480d]" name="TearDown" is-config="true" duration-ms="1678" started-at="2016-08-03T08:07:17Z" finished-at="2016-08-03T08:07:19Z">
+        </test-method> <!-- SetTrailerWithoutProToMtyFromONH -->
+        <test-method status="FAIL" signature="twoBlOBRAllShortFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:2, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="twoBlOBRAllShortFromONH" duration-ms="41389" started-at="2016-08-12T18:43:32Z" data-provider="MTYScreen" finished-at="2016-08-12T18:44:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[324]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[279402]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[653]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[98]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[13]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[13372]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-17 05:27:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARR],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:27:00 UTC 2016  Fri Aug 12 17:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4969924027 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4969924027 expected [true] but found [false],
+	waybill source_modify_id is wrong  4969924027 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:27:19 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4969924027 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4969924027 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4969924027 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4969924027 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4969924027 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4969924027 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4969924027 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:47:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill scac is wrong  3400238920 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3400238920 expected [true] but found [false],
+	waybill source_modify_id is wrong  3400238920 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:21 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3400238920 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3400238920 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3400238920 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3400238920 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3400238920 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3400238920 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3400238920 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:48:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill scac is wrong  4994795212 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994795212 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994795212 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:20 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994795212 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994795212 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994795212 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994795212 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994795212 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994795212 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994795212 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:51:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill scac is wrong  4823910464 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4823910464 expected [true] but found [false],
+	waybill source_modify_id is wrong  4823910464 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:44:33 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4823910464 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4823910464 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4823910464 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4823910464 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4823910464 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4823910464 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4823910464 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:56:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill scac is wrong  4464736088 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4464736088 expected [true] but found [false],
+	waybill source_modify_id is wrong  4464736088 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:06:48 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4464736088 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4464736088 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4464736088 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4464736088 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4464736088 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4464736088 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4464736088 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:14:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill scac is wrong  4994774817 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994774817 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994774817 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:50 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994774817 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994774817 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994774817 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994774817 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994774817 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994774817 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994774817 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:15:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill scac is wrong  4998842855 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998842855 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998842855 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:46:54 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998842855 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998842855 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998842855 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998842855 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998842855 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998842855 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998842855 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill scac is wrong  4933594874 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4933594874 expected [true] but found [false],
+	waybill source_modify_id is wrong  4933594874 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:40 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4933594874 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4933594874 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4933594874 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4933594874 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4933594874 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4933594874 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4933594874 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:20:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill scac is wrong  4998829976 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998829976 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998829976 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:10 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998829976 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998829976 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998829976 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998829976 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998829976 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998829976 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998829976 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:21:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill scac is wrong  253674147X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  253674147X expected [true] but found [false],
+	waybill source_modify_id is wrong  253674147X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:42:29 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong253674147X expected [true] but found [false],
+	waybill To_Facility_CD is wrong253674147X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong253674147X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong253674147X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong253674147X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong253674147X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong253674147X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:22:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill scac is wrong  4956664626 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956664626 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956664626 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:51:02 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956664626 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956664626 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956664626 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956664626 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956664626 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956664626 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956664626 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 20:02:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill scac is wrong  4939944826 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4939944826 expected [true] but found [false],
+	waybill source_modify_id is wrong  4939944826 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:54:12 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4939944826 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4939944826 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4939944826 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4939944826 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4939944826 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4939944826 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4939944826 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill scac is wrong  919071116X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  919071116X expected [true] but found [false],
+	waybill source_modify_id is wrong  919071116X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:32:23 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong919071116X expected [true] but found [false],
+	waybill To_Facility_CD is wrong919071116X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong919071116X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong919071116X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong919071116X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong919071116X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong919071116X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 23:08:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARR],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:27:00 UTC 2016  Fri Aug 12 17:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:27:46 UTC 2016  Fri Aug 12 18:44:09 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4969924027 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4969924027 expected [true] but found [false],
+	waybill source_modify_id is wrong  4969924027 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:27:19 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4969924027 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4969924027 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4969924027 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4969924027 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4969924027 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4969924027 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4969924027 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:47:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4969924027 expected [true] but found [false],
+	waybill scac is wrong  3400238920 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3400238920 expected [true] but found [false],
+	waybill source_modify_id is wrong  3400238920 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:21 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3400238920 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3400238920 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3400238920 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3400238920 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3400238920 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3400238920 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3400238920 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:48:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     3400238920 expected [true] but found [false],
+	waybill scac is wrong  4994795212 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994795212 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994795212 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:20 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994795212 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994795212 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994795212 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994795212 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994795212 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994795212 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994795212 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:51:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994795212 expected [true] but found [false],
+	waybill scac is wrong  4823910464 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4823910464 expected [true] but found [false],
+	waybill source_modify_id is wrong  4823910464 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:44:33 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4823910464 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4823910464 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4823910464 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4823910464 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4823910464 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4823910464 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4823910464 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 18:56:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4823910464 expected [true] but found [false],
+	waybill scac is wrong  4464736088 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4464736088 expected [true] but found [false],
+	waybill source_modify_id is wrong  4464736088 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:06:48 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4464736088 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4464736088 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4464736088 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4464736088 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4464736088 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4464736088 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4464736088 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:14:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4464736088 expected [true] but found [false],
+	waybill scac is wrong  4994774817 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4994774817 expected [true] but found [false],
+	waybill source_modify_id is wrong  4994774817 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:50 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4994774817 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4994774817 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4994774817 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4994774817 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4994774817 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4994774817 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4994774817 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:15:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4994774817 expected [true] but found [false],
+	waybill scac is wrong  4998842855 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998842855 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998842855 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:46:54 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998842855 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998842855 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998842855 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998842855 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998842855 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998842855 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998842855 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998842855 expected [true] but found [false],
+	waybill scac is wrong  4933594874 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4933594874 expected [true] but found [false],
+	waybill source_modify_id is wrong  4933594874 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:43:40 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4933594874 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4933594874 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4933594874 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4933594874 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4933594874 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4933594874 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4933594874 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:20:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4933594874 expected [true] but found [false],
+	waybill scac is wrong  4998829976 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4998829976 expected [true] but found [false],
+	waybill source_modify_id is wrong  4998829976 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:10:10 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4998829976 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4998829976 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4998829976 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4998829976 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4998829976 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4998829976 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4998829976 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:21:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4998829976 expected [true] but found [false],
+	waybill scac is wrong  253674147X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  253674147X expected [true] but found [false],
+	waybill source_modify_id is wrong  253674147X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:42:29 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong253674147X expected [true] but found [false],
+	waybill To_Facility_CD is wrong253674147X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong253674147X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong253674147X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong253674147X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong253674147X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong253674147X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 19:22:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     253674147X expected [true] but found [false],
+	waybill scac is wrong  4956664626 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956664626 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956664626 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:51:02 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956664626 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956664626 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956664626 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956664626 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956664626 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956664626 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956664626 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 20:02:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4956664626 expected [true] but found [false],
+	waybill scac is wrong  4939944826 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4939944826 expected [true] but found [false],
+	waybill source_modify_id is wrong  4939944826 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:54:12 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4939944826 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4939944826 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4939944826 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4939944826 expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4939944826 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4939944826 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4939944826 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:19:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     4939944826 expected [true] but found [false],
+	waybill scac is wrong  919071116X expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  919071116X expected [true] but found [false],
+	waybill source_modify_id is wrong  919071116X expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:32:23 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false],
+	waybill  From_Facility_CD is wrong919071116X expected [true] but found [false],
+	waybill To_Facility_CD is wrong919071116X expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong919071116X expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong919071116X expected [279402] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong919071116X expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong919071116X expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong919071116X expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 23:08:00 UTC 2016  Fri Aug 12 18:44:09 UTC 2016     919071116X expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRAllShortFromONH(MTYScreenTesting.java:207)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- twoBlOBRAllShortFromONH -->
+        <test-method status="FAIL" signature="twoBlOBRDockFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:3, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="twoBlOBRDockFromONH" duration-ms="17548" started-at="2016-08-12T18:44:26Z" data-provider="MTYScreen" finished-at="2016-08-12T18:44:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[309]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[41421]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[309]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[90]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[5]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[3367]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-17 05:11:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:11:00 UTC 2016  Fri Aug 12 19:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4956659337 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956659337 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956659337 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:35 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956659337 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956659337 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956659337 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956659337 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956659337 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956659337 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956659337 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 05:56:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill scac is wrong  3138397218 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3138397218 expected [true] but found [false],
+	waybill source_modify_id is wrong  3138397218 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:50:30 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3138397218 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3138397218 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3138397218 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3138397218 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3138397218 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3138397218 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3138397218 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill scac is wrong  4596984387 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984387 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984387 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:02:03 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984387 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984387 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984387 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984387 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984387 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984387 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984387 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill scac is wrong  4596984396 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984396 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984396 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:19 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984396 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984396 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984396 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984396 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984396 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984396 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984396 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill scac is wrong  4956773250 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956773250 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956773250 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:51 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956773250 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956773250 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956773250 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956773250 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956773250 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956773250 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956773250 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	6  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Thu Mar 17 05:11:00 UTC 2016  Fri Aug 12 19:43:00 UTC 2016 expected [true] but found [false],
+	8  Thu Mar 17 05:13:56 UTC 2016  Fri Aug 12 18:44:36 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  4956659337 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956659337 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956659337 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:35 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956659337 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956659337 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956659337 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956659337 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956659337 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956659337 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956659337 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 05:56:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956659337 expected [true] but found [false],
+	waybill scac is wrong  3138397218 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  3138397218 expected [true] but found [false],
+	waybill source_modify_id is wrong  3138397218 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:50:30 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong3138397218 expected [true] but found [false],
+	waybill To_Facility_CD is wrong3138397218 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong3138397218 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong3138397218 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong3138397218 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong3138397218 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong3138397218 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     3138397218 expected [true] but found [false],
+	waybill scac is wrong  4596984387 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984387 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984387 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:02:03 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984387 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984387 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984387 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984387 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984387 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984387 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984387 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984387 expected [true] but found [false],
+	waybill scac is wrong  4596984396 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4596984396 expected [true] but found [false],
+	waybill source_modify_id is wrong  4596984396 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:15:19 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4596984396 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4596984396 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4596984396 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4596984396 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4596984396 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4596984396 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4596984396 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4596984396 expected [true] but found [false],
+	waybill scac is wrong  4956773250 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  4956773250 expected [true] but found [false],
+	waybill source_modify_id is wrong  4956773250 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 16:07:51 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong4956773250 expected [true] but found [false],
+	waybill To_Facility_CD is wrong4956773250 expected [309] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong4956773250 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong4956773250 expected [41421] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong4956773250 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong4956773250 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong4956773250 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Wed Mar 16 21:37:00 UTC 2016  Fri Aug 12 18:44:36 UTC 2016     4956773250 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRDockFromONH(MTYScreenTesting.java:133)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- twoBlOBRDockFromONH -->
+        <test-method status="FAIL" signature="SmartEneterSetTrailerWithoutProToMtyFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:4, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="SmartEneterSetTrailerWithoutProToMtyFromONH" duration-ms="7496" started-at="2016-08-12T18:44:57Z" data-provider="MTYScreen" finished-at="2016-08-12T18:45:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[152]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[281251]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[152]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[98]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-16 15:53:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	6  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 16 15:53:00 UTC 2016  Fri Aug 12 06:45:00 UTC 2016 expected [true] but found [false],
+	8  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [ARV],
+	Source_Create_ID is wrong expected [MTY] but found [PCM608],
+	5  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	6  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 16 15:53:00 UTC 2016  Fri Aug 12 06:45:00 UTC 2016 expected [true] but found [false],
+	8  Wed Mar 16 15:53:44 UTC 2016  Fri Aug 12 18:45:01 UTC 2016 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SmartEneterSetTrailerWithoutProToMtyFromONH(MTYScreenTesting.java:311)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SmartEneterSetTrailerWithoutProToMtyFromONH -->
+        <test-method status="FAIL" signature="SetTrailerWithoutProNotFromONHToMty(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:5, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="SetTrailerWithoutProNotFromONHToMty" duration-ms="7830" started-at="2016-08-12T18:45:20Z" data-provider="MTYScreen" finished-at="2016-08-12T18:45:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[854]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[559908]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[854]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[90]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-09 02:16:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [CLTG],
+	Source_Create_ID is wrong expected [MTY] but found [TEC250],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [E854MXS],
+	5  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	6  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 09 02:16:00 UTC 2016  Fri Aug 12 07:36:00 UTC 2016 expected [true] but found [false],
+	8  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	 eqp Mainframe_User_ID is wrong expected [UYR27B0] but found [OPSYS]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [CLTG],
+	Source_Create_ID is wrong expected [MTY] but found [TEC250],
+	modify_id is wrong expected [UYR27B0] but found [null],
+	eqps Mainframe_User_ID is wrong expected [UYR27B0] but found [E854MXS],
+	5  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	6  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Wed Mar 09 02:16:00 UTC 2016  Fri Aug 12 07:36:00 UTC 2016 expected [true] but found [false],
+	8  Tue Mar 08 14:43:55 UTC 2016  Fri Aug 12 18:45:25 UTC 2016 expected [true] but found [false],
+	 eqp Mainframe_User_ID is wrong expected [UYR27B0] but found [OPSYS]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.SetTrailerWithoutProNotFromONHToMty(MTYScreenTesting.java:379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SetTrailerWithoutProNotFromONHToMty -->
+        <test-method status="FAIL" signature="twoBlOBRDockNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:6, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="twoBlOBRDockNOTFromONH" duration-ms="15542" started-at="2016-08-12T18:45:46Z" data-provider="MTYScreen" finished-at="2016-08-12T18:46:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[324]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[291140]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[160]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[4556]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-04-19 18:58:01.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [LDG],
+	Source_Create_ID is wrong expected [MTY] but found [HRZ105],
+	5  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	6  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Tue Apr 19 18:58:01 UTC 2016  Fri Aug 12 17:39:00 UTC 2016 expected [true] but found [false],
+	8  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  5285437457 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285437457 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285437457 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:49:46 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285437457 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285437457 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285437457 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285437457 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285437457 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285437457 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285437457 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill scac is wrong  5285463343 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285463343 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285463343 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:48:34 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285463343 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285463343 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285463343 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285463343 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285463343 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285463343 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285463343 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+	Equipment_Status_Type_CD is wrong expected [MTY] but found [LDG],
+	Source_Create_ID is wrong expected [MTY] but found [HRZ105],
+	5  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	6  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	equipment_status_ts   Tue Apr 19 18:58:01 UTC 2016  Fri Aug 12 17:39:00 UTC 2016 expected [true] but found [false],
+	8  Tue Apr 19 18:58:53 UTC 2016  Fri Aug 12 18:45:57 UTC 2016 expected [true] but found [false],
+	waybill scac is wrong  5285437457 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285437457 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285437457 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:49:46 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285437457 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285437457 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285437457 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285437457 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285437457 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285437457 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285437457 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285437457 expected [true] but found [false],
+	waybill scac is wrong  5285463343 expected [true] but found [false],
+	waybill equipment_unit_nb is wrong  5285463343 expected [true] but found [false],
+	waybill source_modify_id is wrong  5285463343 expected [LOBR] but found [CAR061],
+	waybill table waybill system_modify_ts  Wed Jun 22 15:48:34 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false],
+	waybill  From_Facility_CD is wrong5285463343 expected [true] but found [false],
+	waybill To_Facility_CD is wrong5285463343 expected [324] but found [null],
+	waybill  From_Standard_Carrier_Alpha_CD is wrong5285463343 expected [RDWY] but found [null],
+	waybill  From_Equipment_Unit_NB is wrong5285463343 expected [291140] but found [null],
+	waybill  To_Standard_Carrier_Alpha_CD is wrong5285463343 expected [true] but found [false],
+	waybill  To_Equipment_Unit_NB is wrong5285463343 expected [true] but found [false],
+	waybill  Waybill_Transaction_Type_NM is wrong5285463343 expected [UNLOADING] but found [LOADING],
+	waybill table Waybill_Transaction_End_TS  Tue Apr 19 18:58:00 UTC 2016  Fri Aug 12 18:45:57 UTC 2016     5285463343 expected [true] but found [false]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:43)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRDockNOTFromONH(MTYScreenTesting.java:453)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- twoBlOBRDockNOTFromONH -->
+        <test-method status="FAIL" signature="twoBlOBRAllShortNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:7, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="twoBlOBRAllShortNOTFromONH" duration-ms="25204" started-at="2016-08-12T18:46:15Z" data-provider="MTYScreen" finished-at="2016-08-12T18:46:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[431]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[278218]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[521]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[90]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[11]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[16101]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-17 03:08:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Timed out after 10 seconds waiting for text ('Set Trailer Status Empty') to be present in element [[ChromeDriver: chrome on XP (01d0520cd908a1f166e9ba74d0fdf967)] -> xpath: .//*[@id='mainBody']/h3]
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'N700278', ip: '10.51.202.134', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_06'
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for text ('Set Trailer Status Empty') to be present in element [[ChromeDriver: chrome on XP (01d0520cd908a1f166e9ba74d0fdf967)] -> xpath: .//*[@id='mainBody']/h3]
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'N700278', ip: '10.51.202.134', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_06'
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at TestCase.MTYtesting.MTYScreenTesting.twoBlOBRAllShortNOTFromONH(MTYScreenTesting.java:481)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- twoBlOBRAllShortNOTFromONH -->
+        <test-method status="FAIL" signature="SmartEneterSetTrailerWithoutProToMtyNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:8, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="SmartEneterSetTrailerWithoutProToMtyNOTFromONH" duration-ms="125" started-at="2016-08-12T18:46:54Z" data-provider="MTYScreen" finished-at="2016-08-12T18:46:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[153]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RDWY]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[277381]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[153]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[95]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[2016-03-17 08:07:00.0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.InvalidElementStateException">
+            <message>
+              <![CDATA[invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=52.0.2743.116)
+  (Driver info: chromedriver=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 27 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'N700278', ip: '10.51.202.134', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_06'
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidElementStateException: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=52.0.2743.116)
+  (Driver info: chromedriver=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 27 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'N700278', ip: '10.51.202.134', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_06'
+Session ID: 01d0520cd908a1f166e9ba74d0fdf967
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=chrome, chrome={userDataDir=C:\Users\uyr27b0\AppData\Local\Temp\scoped_dir9332_8768, chromedriverVersion=2.23.409699 (49b0fa931cda1caad0ae15b7d1b68004acd05129)}, networkConnectionEnabled=false, rotatable=false, locationContextEnabled=true, mobileEmulationEnabled=false, version=52.0.2743.116, takesHeapSnapshot=true, databaseEnabled=false, cssSelectorsEnabled=true, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, hasTouchScreen=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:139)
+	at sun.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at $Proxy11.clear(Unknown Source)
+	at Page.EqpStatusPageS.SetLocation(EqpStatusPageS.java:475)
+	at TestCase.MTYtesting.MTYScreenTesting.SmartEneterSetTrailerWithoutProToMtyNOTFromONH(MTYScreenTesting.java:536)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidElementStateException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SmartEneterSetTrailerWithoutProToMtyNOTFromONH -->
+        <test-method status="PASS" signature="TearDown()[pri:0, instance:TestCase.MTYtesting.MTYScreenTesting@36fb8c7a]" name="TearDown" is-config="true" duration-ms="1582" started-at="2016-08-12T18:46:54Z" finished-at="2016-08-12T18:46:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->
-      </class> <!-- TestCase.CLtesting.CLScreenTesting -->
-    </test> <!-- ONE METHOD -->
-  </suite> <!-- SINGLE TEST -->
+      </class> <!-- TestCase.MTYtesting.MTYScreenTesting -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Bor testing" verbose="2">
   <test name="Test">
-  </test> <!-- Test -->
+  <parameter name="browser" value="chrome"/>
+    <classes>
+	<class name="TestCase.CLtesting.CLScreenTesting">
+	  <methods>
+        <include name="CLHasProQuickClose"/>
+      </methods></class> 	
+    </classes>
+  </test>
 </suite> <!-- Suite -->
