@@ -568,42 +568,45 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		// add pro not in any trailer
-		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
+		// // add pro not in any trailer
+		// ArrayList<String> GetProNotOnAnyTrailer =
+		// DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		page.RemoveProButton.click();
-		for (int j = 0; j < 10; j++) {
-			String CurrentPro = GetProNotOnAnyTrailer.get(j);
-			page.EnterPro(CurrentPro);
-			System.out.println(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
-		// add pro from other trailer
-		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
-		for (int i = 0; i < 10; i++) {
-			String CurrentPro = PRO2.get(i);
-			page.EnterPro(CurrentPro);
-			System.out.println(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
-		// // add no waybill record pro
-		// ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		// for (int i = 0; i < 10; i++) {
-		// String CurrentPro = PRO3.get(i);
+		// page.RemoveProButton.click();
+		// for (int j = 0; j < 10; j++) {
+		// String CurrentPro = GetProNotOnAnyTrailer.get(j);
 		// page.EnterPro(CurrentPro);
+		// System.out.println(CurrentPro);
 		// ADDPRO.add(CurrentPro);
 		// }
-		//
-		// add dttmsp pro
-		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
-		for (int i = 0; i < 8; i++) {
-			String CurrentPro = PRO4.get(i);
+
+		// // add pro from other trailer
+		// ArrayList<String> PRO2 =
+		// DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC,
+		// TrailerNB);
+		// for (int i = 0; i < 10; i++) {
+		// String CurrentPro = PRO2.get(i);
+		// page.EnterPro(CurrentPro);
+		// System.out.println(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 30; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
-			System.out.println(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
+
+		// // add dttmsp pro
+		// ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		// for (int i = 0; i < 8; i++) {
+		// String CurrentPro = PRO4.get(i);
+		// page.EnterPro(CurrentPro);
+		// System.out.println(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
 
 		// enter cube
 		int Ran = (int) (Math.random() * 99) + 1;

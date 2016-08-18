@@ -1257,7 +1257,7 @@ public class LDGTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.SetStatus("ldg");
+			page.ChangeStatusTo("ldg");
 		}
 	}
 

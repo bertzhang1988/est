@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CLTG testing" verbose="2">
+  <test name="cltg one method">
+    <classes>
+      <class name="TestCase.CLTGtesting.CLTGScreenTesting">
+        <methods>
+        <include name="ToCLTGHasPro3Blobr"/>
+      </methods>	
+      </class>
+    </classes>
+  </test> <!-- cltg one method -->
+</suite> <!-- CLTG testing -->

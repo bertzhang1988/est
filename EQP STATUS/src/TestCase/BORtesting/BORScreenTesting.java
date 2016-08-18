@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -19,7 +20,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -29,6 +32,7 @@ import org.testng.asserts.SoftAssert;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
+import Function.Utility;
 import Page.EqpStatusPageS;
 
 public class BORScreenTesting {
@@ -581,6 +585,19 @@ public class BORScreenTesting {
 			}
 		}
 		SA.assertAll();
+	}
+
+	@AfterMethod()
+	public void getbackldg(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+
+			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
+					"");
+			String FailureTestparameter = result.getName() + Testparameter;
+
+			Utility.takescreenshot(driver, FailureTestparameter);
+			page.ChangeStatusTo("BOR");
+		}
 	}
 
 	@AfterClass

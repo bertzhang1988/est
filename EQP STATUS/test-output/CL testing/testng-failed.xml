@@ -5,9 +5,9 @@
     <classes>
       <class name="TestCase.CLtesting.CLScreenTesting">
         <methods>
+          <include name="getbackldg"/>
+          <include name="CLHasProSetToCL" invocation-numbers="1"/>
           <include name="SetUp"/>
-          <include name="TearDown"/>
-          <include name="ToCLWithProAllShort" invocation-numbers="0"/>
         </methods>
       </class> <!-- TestCase.CLtesting.CLScreenTesting -->
     </classes>

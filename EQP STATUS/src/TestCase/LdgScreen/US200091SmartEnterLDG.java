@@ -398,9 +398,8 @@ public class US200091SmartEnterLDG {
 
 		// enter key
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
-		// (new WebDriverWait(driver,
-		// 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"No
-		// updates entered."));
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "No updates entered."));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));

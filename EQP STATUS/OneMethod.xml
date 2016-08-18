@@ -5,7 +5,7 @@
     <classes>
 	<class name="TestCase.CLtesting.CLScreenTesting">
 	  <methods>
-        <include name="CLHasProQuickClose"/>
+        <include name="twoBlOBRDockFromONH"/>
       </methods></class> 	
     </classes>
   </test>

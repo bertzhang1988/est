@@ -5,16 +5,9 @@
     <classes>
       <class name="TestCase.MTYtesting.MTYScreenTesting">
         <methods>
-          <include name="twoBlOBRAllShortFromONH" invocation-numbers="0"/>
-          <include name="twoBlOBRDockNOTFromONH" invocation-numbers="0"/>
           <include name="SmartEneterSetTrailerWithoutProToMtyNOTFromONH" invocation-numbers="0"/>
           <include name="SetUp"/>
-          <include name="SetTrailerWithoutProToMtyFromONH" invocation-numbers="0"/>
-          <include name="SetTrailerWithoutProNotFromONHToMty" invocation-numbers="0"/>
           <include name="TearDown"/>
-          <include name="twoBlOBRAllShortNOTFromONH" invocation-numbers="0"/>
-          <include name="twoBlOBRDockFromONH" invocation-numbers="0"/>
-          <include name="SmartEneterSetTrailerWithoutProToMtyFromONH" invocation-numbers="0"/>
         </methods>
       </class> <!-- TestCase.MTYtesting.MTYScreenTesting -->
     </classes>

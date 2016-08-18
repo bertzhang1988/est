@@ -34,6 +34,8 @@ public class DataForUSLDGLifeTest {
 			Query = DataCommon.query45;
 		} else if (m.getName().contains("LDGTrailerWithPro")) {
 			Query = DataCommon.query2;
+		} else if (m.getName().contains("LDGTrailerWithoutPro")) {
+			Query = DataCommon.query1;
 		}
 		ArrayList<Object[]> b1 = new ArrayList<Object[]>();
 		ResultSet rs1 = stat.executeQuery(Query);

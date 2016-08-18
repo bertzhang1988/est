@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCase.CLtesting.CLScreenTesting">
        <methods>
-        <include name="ToCLWithProAllShort"/>
+        <include name="CLHasProSetToCL"/>
       </methods>
       </class>
     </classes>

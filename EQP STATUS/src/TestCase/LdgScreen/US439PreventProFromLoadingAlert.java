@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,9 +19,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import Data.DataForUS200068AndUS445;
 import Data.DataForUS439;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
@@ -51,17 +50,18 @@ public class US439PreventProFromLoadingAlert {
 		page.SetStatus("LDG");
 	}
 
-	@Test(priority = 1, dataProvider = "2000.682", dataProviderClass = DataForUS200068AndUS445.class)
-	public void EnterTrailerInLdgNoShipments(String terminalcd, String SCAC, String TrailerNB)
+	@Test(dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void EnterLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 	}
 
-	@Test(priority = 2, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class)
+	@Test(priority = 2, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class, dependsOnMethods = {
+			"EnterLDGTrailerWithoutPro" })
 	public void VerifyMRValidation(String PRO)
 			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
+
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 		page.EnterPro(PRO);
@@ -80,10 +80,11 @@ public class US439PreventProFromLoadingAlert {
 		page.RemoveProButton.click();
 	}
 
-	@Test(priority = 3, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class)
+	@Test(priority = 3, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class, dependsOnMethods = {
+			"EnterLDGTrailerWithoutPro" })
 	public void VerifySUValidation(String PRO)
 			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
+
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 		page.EnterPro(PRO);
@@ -102,10 +103,11 @@ public class US439PreventProFromLoadingAlert {
 		page.RemoveProButton.click();
 	}
 
-	@Test(priority = 4, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class)
+	@Test(priority = 4, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class, dependsOnMethods = {
+			"EnterLDGTrailerWithoutPro" })
 	public void VerifyVOValidation(String PRO)
 			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
+
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 		page.EnterPro(PRO);
@@ -124,10 +126,11 @@ public class US439PreventProFromLoadingAlert {
 		page.RemoveProButton.click();
 	}
 
-	@Test(priority = 5, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class)
+	@Test(priority = 5, dataProvider = "Invalid pro", dataProviderClass = DataForUS439.class, dependsOnMethods = {
+			"EnterLDGTrailerWithoutPro" })
 	public void VerifyAlreadyDeliveredValidation(String PRO)
 			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
+
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 		page.EnterPro(PRO);
@@ -146,10 +149,9 @@ public class US439PreventProFromLoadingAlert {
 		page.RemoveProButton.click();
 	}
 
-	@Test(priority = 6, dataProvider = "ldgtrailerNoPro", dataProviderClass = DataForUS439.class)
-	public void VerifyMasterRevenueVlidation(String terminalcd, String SCAC, String TrailerNB)
-			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
+	@Test(priority = 6, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void VerifyMasterRevenueValidationToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB,
+			Date MRST) throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 

@@ -432,6 +432,7 @@ public class EqpStatusPageS {
 
 	public void ChangeStatusTo(String status) throws InterruptedException {
 		Actions builder = new Actions(driver);
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(this.SetStatusToField));
 		this.SetStatusToField.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(this.StatusList));
 		this.SetStatusToInput.click();
@@ -670,7 +671,8 @@ public class EqpStatusPageS {
 			this.AddProField.click();
 			builder.sendKeys(this.AddProField, Keys.TAB).build().perform();
 		}
-
+		// if (driver instanceof InternetExplorerDriver)
+		// builder.sendKeys(this.AddProField, Keys.TAB).build().perform();
 		Thread.sleep(500);
 		int NEW1 = this.AddProForm.findElements(By.xpath("div")).size();
 		if (NEW1 > 25) {

@@ -52,8 +52,8 @@ public class US200006FoodAndPoisWarning {
 		page.SetStatus("ldg");
 	}
 
-	@Test(priority = 1, dataProvider = "ldgtrailerNoPro", dataProviderClass = DataForUS200006.class)
-	public void addSingleFoodToTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB)
+	@Test(priority = 1, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void addSingleFoodToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -91,8 +91,8 @@ public class US200006FoodAndPoisWarning {
 		SAssert.assertAll();
 	}
 
-	@Test(priority = 2, dataProvider = "ldgtrailerNoPro", dataProviderClass = DataForUS200006.class)
-	public void addSinglePoisToTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB)
+	@Test(priority = 2, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void addSinglePoisToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -132,8 +132,8 @@ public class US200006FoodAndPoisWarning {
 		SAssert.assertAll();
 	}
 
-	@Test(priority = 3, dataProvider = "ldgtrailerNoPro", dataProviderClass = DataForUS200006.class)
-	public void addBatchFoodToTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB)
+	@Test(priority = 3, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void addBatchFoodToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -178,8 +178,8 @@ public class US200006FoodAndPoisWarning {
 		SAssert.assertAll();
 	}
 
-	@Test(priority = 4, dataProvider = "ldgtrailerNoPro", dataProviderClass = DataForUS200006.class)
-	public void addBatchPoisToTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB)
+	@Test(priority = 4, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void addBatchPoisToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
@@ -272,7 +272,7 @@ public class US200006FoodAndPoisWarning {
 		}
 		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"There are no valid Pro(s) in the list."));
+				"There was an error while adding all your pros to the trailer."));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
@@ -339,7 +339,7 @@ public class US200006FoodAndPoisWarning {
 		}
 		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"There are no valid Pro(s) in the list."));
+				"There was an error while adding all your pros to the trailer."));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
@@ -406,7 +406,7 @@ public class US200006FoodAndPoisWarning {
 		}
 		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"There are no valid Pro(s) in the list."));
+				"There was an error while adding all your pros to the trailer."));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
@@ -473,7 +473,7 @@ public class US200006FoodAndPoisWarning {
 		}
 		page.SubmitButton1.click();
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"There are no valid Pro(s) in the list."));
+				"There was an error while adding all your pros to the trailer."));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 1; pro <= Addpro.size(); pro++) {

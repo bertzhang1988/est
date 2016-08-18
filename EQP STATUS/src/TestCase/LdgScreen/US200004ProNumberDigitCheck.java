@@ -4,14 +4,13 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +22,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200004;
-import Data.DataForUS200068AndUS445;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
@@ -53,23 +51,18 @@ public class US200004ProNumberDigitCheck {
 		page.SetStatus("ldg");
 	}
 
-	@Test(priority = 1, dataProvider = "2000.682", dataProviderClass = DataForUS200068AndUS445.class)
-	public void EnterTrailerInLdgNoShipments(String terminalcd, String SCAC, String TrailerNB)
+	@Test(dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void EnterLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB, Date MRST)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 	}
 
-	@Test(priority = 2, dataProvider = "2000.04", dataProviderClass = DataForUS200004.class)
+	@Test(priority = 2, dataProvider = "2000.04", dataProviderClass = DataForUS200004.class, dependsOnMethods = {
+			"EnterLDGTrailerWithoutPro" })
 	public void VerifyProDigitCheck(String pro) throws InterruptedException {
-		Actions builder = new Actions(driver);
-		page.AddProField.clear();
-		page.AddProField.sendKeys(pro);
+		page.EnterPro(pro);
 		String Pronumber = pro.trim().toUpperCase();
-		String PronumberH = page.addHyphenToPro(Pronumber);
-		if (driver instanceof InternetExplorerDriver)
-			builder.sendKeys(page.AddProField, Keys.TAB).build().perform();
-		(new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElement(page.AddProForm, PronumberH));
 		String message = null;
 		int flag = CommonFunction.CheckProPattern(Pronumber);
 		if (flag == 1) {

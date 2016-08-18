@@ -3,6 +3,7 @@ package TestCase.LdgScreen;
 import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.openqa.selenium.By;
@@ -12,13 +13,14 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Data.DataForUS458;
 import Function.ConfigRd;
+import Function.DataCommon;
 import Page.EqpStatusPageS;
 
 public class US458CheckShipmentAlreadyLoadedOnTrailer {
@@ -46,9 +48,9 @@ public class US458CheckShipmentAlreadyLoadedOnTrailer {
 		page.SetStatus("ldg");
 	}
 
-	@Test(priority = 1, dataProvider = "458", dataProviderClass = DataForUS458.class)
-	public void CheckShipmentAlreadyLoadedOnTrailer(String terminalcd, String SCAC, String TrailerNB)
-			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+	@Test(priority = 1, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void CheckShipmentAlreadyLoadedOnLDGTrailerWithPro(String terminalcd, String SCAC, String TrailerNB,
+			Date MRST) throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		String Cube = page.CubeField.getAttribute("value");
@@ -56,7 +58,7 @@ public class US458CheckShipmentAlreadyLoadedOnTrailer {
 			int Ran = (int) (Math.random() * 99) + 1;
 			page.SetCube(Integer.toString(Ran));
 		}
-		Iterator<String> data = DataForUS458.GetPro(SCAC, TrailerNB).iterator();
+		Iterator<String> data = DataCommon.GetProOnTrailer(SCAC, TrailerNB).iterator();
 		while (data.hasNext()) {
 			page.RemoveProButton.click();
 			String pro = data.next();
@@ -75,7 +77,7 @@ public class US458CheckShipmentAlreadyLoadedOnTrailer {
 		}
 	}
 
-	// @AfterClass
+	@AfterClass
 	public void TearDown() {
 		driver.quit();
 	}

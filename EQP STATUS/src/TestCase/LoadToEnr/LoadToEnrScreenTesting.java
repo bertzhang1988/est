@@ -20,7 +20,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -30,10 +32,10 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS200001AndUS200002AndUS200041;
 import Data.DataForUS200004;
 import Data.DataForUS439;
-import Data.DataForUS458;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
+import Function.Utility;
 import Page.EqpStatusPageS;
 
 public class LoadToEnrScreenTesting {
@@ -130,7 +132,7 @@ public class LoadToEnrScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminal);
 		page.EnterTrailer(SCAC, TrailerNb);
-		Iterator<String> data = DataForUS458.GetPro(SCAC, TrailerNb).iterator();
+		Iterator<String> data = DataCommon.GetProOnTrailer(SCAC, TrailerNb).iterator();
 		while (data.hasNext()) {
 			page.RemoveProButton.click();
 			String pro = data.next();
@@ -369,4 +371,21 @@ public class LoadToEnrScreenTesting {
 		SA.assertAll();
 	}
 
+	@AfterMethod()
+	public void getbackldg(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+
+			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
+					"");
+			String FailureTestparameter = result.getName() + Testparameter;
+
+			Utility.takescreenshot(driver, FailureTestparameter);
+			page.SetToLoadEnrScreen();
+		}
+	}
+
+	@AfterClass()
+	public void TearDown() {
+		driver.quit();
+	}
 }

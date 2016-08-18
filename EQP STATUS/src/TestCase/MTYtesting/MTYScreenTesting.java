@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -19,6 +20,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
@@ -29,6 +32,7 @@ import org.testng.asserts.SoftAssert;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
+import Function.Utility;
 import Page.EqpStatusPageS;
 
 public class MTYScreenTesting {
@@ -157,7 +161,7 @@ public class MTYScreenTesting {
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10))
+		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -403,7 +407,7 @@ public class MTYScreenTesting {
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 10))
+		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -477,7 +481,7 @@ public class MTYScreenTesting {
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10))
+		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Empty"));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -574,6 +578,19 @@ public class MTYScreenTesting {
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
+	}
+
+	@AfterMethod()
+	public void getbackldg(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+
+			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
+					"");
+			String FailureTestparameter = result.getName() + Testparameter;
+
+			Utility.takescreenshot(driver, FailureTestparameter);
+			page.ChangeStatusTo("MTY");
+		}
 	}
 
 	@AfterTest

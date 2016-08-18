@@ -35,6 +35,8 @@ public class DataForCLScreenTesting {
 			query = DataCommon.query48;
 		} else if (m.getName().contains("CLWithoutPro")) {
 			query = DataCommon.query44;
+		} else if (m.getName().contains("InCLStatusNoProAtCan")) {
+			query = DataCommon.query51;
 		}
 
 		ArrayList<Object[]> b = new ArrayList<Object[]>();

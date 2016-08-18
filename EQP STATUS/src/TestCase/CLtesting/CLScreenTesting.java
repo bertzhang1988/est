@@ -189,6 +189,9 @@ public class CLScreenTesting {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
@@ -393,6 +396,9 @@ public class CLScreenTesting {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
@@ -674,8 +680,9 @@ public class CLScreenTesting {
 		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		SA.assertAll();
-		// // leave on
-		// page.HandleLOBRproAll("Dock");
+
+		// leave on
+		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
@@ -784,8 +791,8 @@ public class CLScreenTesting {
 		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		SA.assertAll();
-		// // all short
-		// page.HandleLOBRproAll("ALLSHORT");
+		// all short
+		page.HandleLOBRproAll("ALLSHORT");
 		Date d = CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
@@ -1241,7 +1248,8 @@ public class CLScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.SetStatus("cl");
+
+			page.ChangeStatusTo("cl");
 		}
 	}
 
