@@ -4,10 +4,8 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.openqa.selenium.By;
@@ -58,8 +56,6 @@ public class CPUScreenTesting {
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("CPU");
-		Actions builder = new Actions(driver);
-
 	}
 
 	@Test(priority = 1, dataProvider = "CPUScreen", dataProviderClass = DataForCPUScreenTesting.class)
@@ -70,31 +66,12 @@ public class CPUScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
+
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -179,31 +156,12 @@ public class CPUScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
+
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -289,7 +247,7 @@ public class CPUScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.ChangeStatusTo("CPU");
+			page.SetStatus("CPU");
 		}
 	}
 

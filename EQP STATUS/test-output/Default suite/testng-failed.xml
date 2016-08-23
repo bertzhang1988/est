@@ -3,13 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="TestCase.MTYtesting.MTYScreenTesting">
+      <class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
         <methods>
-          <include name="SmartEneterSetTrailerWithoutProToMtyNOTFromONH" invocation-numbers="0"/>
+          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
           <include name="SetUp"/>
-          <include name="TearDown"/>
         </methods>
-      </class> <!-- TestCase.MTYtesting.MTYScreenTesting -->
+      </class> <!-- test.trial.US200075DisplayPROsInOrderWhichTheyEnter -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

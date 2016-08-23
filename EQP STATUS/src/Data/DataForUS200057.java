@@ -23,7 +23,7 @@ public class DataForUS200057 {
 		stat = conn1.createStatement();
 
 		String status = US200057EvaluateStatusTransitions.SetToStatus;
-		String query1 = "select top 20 eqp.[Standard_Carrier_Alpha_CD],eqp.[Equipment_Unit_NB],Neqps.[Equipment_Status_Type_CD],Neqps.[Statusing_Facility_CD]"
+		String query1 = "select top 10 eqp.[Standard_Carrier_Alpha_CD],eqp.[Equipment_Unit_NB],Neqps.[Equipment_Status_Type_CD],Neqps.[Statusing_Facility_CD]"
 				+ " from [EQP].[Equipment_vw] eqp, [EQP].[Equipment_Availability_vw] eqpa,[EQP].[Equipment_Status_Type_Transition_vw] eqpst,(select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Status_TS,Equipment_Dest_Facility_CD,Actual_Capacity_Consumed_PC,Seal_NB,Headload_Dest_Facility_CD,Headload_Capacity_Consumed_PC"
 				+ " from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Actual_Capacity_Consumed_PC,eqps.Equipment_Dest_Facility_CD,eqps.Seal_NB,EQPS.Equipment_Status_TS,eqps.Headload_Dest_Facility_CD,eqps.Headload_Capacity_Consumed_PC,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
 				+ " where eqp.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and eqp.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] and eqp.[Emergency_Repair_Due_IN]='n' AND eqp.Equipment_Type_NM in ('trailer','STRAIGHT TRUCK')"

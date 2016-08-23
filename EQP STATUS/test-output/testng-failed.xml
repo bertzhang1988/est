@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [single screen, two browser]" parallel="tests">
+  <parameter name="browser" value="chrome"/>
+  <test name="b(failed)" parallel="tests">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="TestCase.MTYtesting.MTYScreenTesting">
+      <class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
         <methods>
-          <include name="SmartEneterSetTrailerWithoutProToMtyNOTFromONH" invocation-numbers="0"/>
+          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
           <include name="SetUp"/>
-          <include name="TearDown"/>
+          <include name="SetUp"/>
         </methods>
-      </class> <!-- TestCase.MTYtesting.MTYScreenTesting -->
+      </class> <!-- test.trial.US200075DisplayPROsInOrderWhichTheyEnter -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- b(failed) -->
+  <test name="a(failed)" parallel="tests">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
+        <methods>
+          <include name="LdgTrailerWithProAddPro" invocation-numbers="0"/>
+          <include name="SetUp"/>
+          <include name="SetUp"/>
+        </methods>
+      </class> <!-- test.trial.US200075DisplayPROsInOrderWhichTheyEnter -->
+    </classes>
+  </test> <!-- a(failed) -->
+</suite> <!-- Failed suite [single screen, two browser] -->

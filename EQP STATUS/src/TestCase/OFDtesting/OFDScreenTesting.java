@@ -251,7 +251,7 @@ public class OFDScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.ChangeStatusTo("OFD");
+			page.SetStatus("OFD");
 		}
 	}
 

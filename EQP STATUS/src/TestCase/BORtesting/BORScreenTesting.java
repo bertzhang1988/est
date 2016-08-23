@@ -4,10 +4,8 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 
@@ -72,35 +70,16 @@ public class BORScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "bor screen prepopulate time is wrong ");
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, -5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
+
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
@@ -111,6 +90,7 @@ public class BORScreenTesting {
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -139,16 +119,20 @@ public class BORScreenTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		(new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+
 		// check pre populate
 		SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, " bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),
 				"bor two button lobr trailer input is wrong");
+
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "pro grid is wrong");
+
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
+
 		// page.LobrCancelButton.click();
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 
@@ -204,7 +188,7 @@ public class BORScreenTesting {
 			SA.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
-		page.SetStatus("bor");
+
 		SA.assertAll();
 
 	}
@@ -283,7 +267,7 @@ public class BORScreenTesting {
 			SA.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
-		page.SetStatus("bor");
+
 		SA.assertAll();
 	}
 
@@ -398,7 +382,7 @@ public class BORScreenTesting {
 			SA.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
-		page.SetStatus("bor");
+
 		SA.assertAll();
 	}
 
@@ -476,7 +460,7 @@ public class BORScreenTesting {
 			SA.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
-		page.SetStatus("bor");
+
 		SA.assertAll();
 	}
 
@@ -488,32 +472,12 @@ public class BORScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 
-		// check date&time field should a. eqpst> current-time use eqpst
-		// minute+1 b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "bor screen prepopulate time is wrong ");
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 20);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -596,7 +560,7 @@ public class BORScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.ChangeStatusTo("BOR");
+			page.SetStatus("BOR");
 		}
 	}
 

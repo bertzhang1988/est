@@ -29,7 +29,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 
 	@BeforeClass
 	@Parameters({ "browser", "status" })
-	public void SetUp(@Optional("chrome") String browser, @Optional("cltg") String status)
+	public void SetUp(@Optional("chrome") String browser, @Optional("cl") String status)
 			throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {

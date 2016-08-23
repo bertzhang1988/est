@@ -6,31 +6,23 @@
   <test name="test reusable function(failed)">
     <parameter name="status" value="cltg"/>
     <classes>
-      <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation">
-        <methods>
-          <include name="SetUp"/>
-          <include name="TearDown"/>
-        </methods>
-      </class> <!-- TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation -->
-      <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid">
-        <methods>
-          <include name="VerifyValidDestination" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
-          <include name="EnterTrailerInLdgNoShipments" invocation-numbers="0"/>
-          <include name="TearDown"/>
-          <include name="SetUp"/>
-          <include name="VerifyInvalidDestination" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
-        </methods>
-      </class> <!-- TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid -->
       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions">
         <methods>
           <include name="TearDown"/>
           <include name="SetUp"/>
         </methods>
       </class> <!-- TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions -->
+      <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation">
+        <methods>
+          <include name="SetUp"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation -->
       <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal">
         <methods>
           <include name="TearDown"/>
           <include name="SetUp"/>
+          <include name="VerifyMaintenanceTrailer" invocation-numbers="4 5 6"/>
         </methods>
       </class> <!-- TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal -->
     </classes>

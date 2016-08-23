@@ -3,10 +3,8 @@ package TestCase.LoadToEnr;
 import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -320,21 +318,12 @@ public class LoadToEnrScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		// check date time
-		Date LocalTime = CommonFunction.getLocalTime(terminalcd, Mrst);
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, Mrst);
+		SA.assertEquals(picker, expect, "load to enr screen prepopulate time is wrong ");
+
 		// add pro
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		page.RemoveProButton.click();

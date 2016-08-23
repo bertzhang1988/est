@@ -7,7 +7,6 @@
        <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
 	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>    
 	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
       </classes>
    </test>
 </suite>

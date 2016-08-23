@@ -417,39 +417,41 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-
-		// add pro not in any trailer
-		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
+		//
+		// // add pro not in any trailer
+		// ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 2; i++) {
-			String CurrentPro = PRO.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
-
-		// add pro from other trailer
-		ArrayList<String> PRO2 = DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC, TrailerNB);
-		for (int i = 0; i < 0; i++) {
-			String CurrentPro = PRO2.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
+		// for (int i = 0; i < 2; i++) {
+		// String CurrentPro = PRO.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
+		//
+		// // add pro from other trailer
+		// ArrayList<String> PRO2 =
+		// DataCommon.GetProFromTrailerOnDifferentTerminal(terminalcd, SCAC,
+		// TrailerNB);
+		// for (int i = 0; i < 0; i++) {
+		// String CurrentPro = PRO2.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
 
 		// add no waybill record pro
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 0; i++) {
+		for (int i = 0; i < 90; i++) {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
 
-		// add dt mismatch pro record pro
-		ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
-		for (int i = 0; i < 0; i++) {
-			String CurrentPro = PRO4.get(i);
-			page.EnterPro(CurrentPro);
-			ADDPRO.add(CurrentPro);
-		}
+		// // add dt mismatch pro record pro
+		// ArrayList<String> PRO4 = DataCommon.ProWithDttmsp();
+		// for (int i = 0; i < 0; i++) {
+		// String CurrentPro = PRO4.get(i);
+		// page.EnterPro(CurrentPro);
+		// ADDPRO.add(CurrentPro);
+		// }
 
 		// enter cube
 		int Ran = (int) (Math.random() * 99) + 1;
@@ -462,24 +464,22 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// click new submit
-		// page.SubmitLDGButton.click();
+		page.SubmitButton.click();
 		// page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Thread.sleep(20000);
-		// Date d2=CommonFunction.gettime("UTC");
-		// (new WebDriverWait(driver,
-		// 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		// (new WebDriverWait(driver,
-		// 80)).until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField,""));
-		// (new WebDriverWait(driver,
-		// 80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-		// page.EnterTrailer(SCAC,TrailerNB);
-		// LinkedHashSet<ArrayList<String>>
-		// ProInfo=page.GetProList(page.ProListForm);
-		// SAssert.assertEquals(ProInfo,DataCommon.GetProList(SCAC, TrailerNB),"
-		// pro grid is wrong");
+		Date d2 = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+
+		page.EnterTrailer(SCAC, TrailerNB);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
+		SAssert.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -783,7 +783,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		page = new EqpStatusPageS(driver);
 		driver.get(Conf.GetURL());
-		// driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 
 	}

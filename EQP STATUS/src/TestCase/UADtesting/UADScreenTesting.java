@@ -4,9 +4,7 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.openqa.selenium.By;
@@ -178,34 +176,14 @@ public class UADScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
+		page.EnterTrailer(SCAC, TrailerNB);
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), -1, 0);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -246,34 +224,14 @@ public class UADScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		page.EnterTrailer(SCAC, TrailerNB);
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
-		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
+
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), -3, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -313,34 +271,14 @@ public class UADScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		Actions builder = new Actions(driver);
 		page.SetLocation(terminalcd);
-		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
+		page.EnterTrailer(SCAC, TrailerNB);
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), -4, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -381,33 +319,14 @@ public class UADScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		Actions builder = new Actions(driver);
 		page.SetLocation(terminalcd);
-		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MRSts.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MRSts.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MRSts);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
+		page.EnterTrailer(SCAC, TrailerNB);
 
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MRSts.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
+
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), -4, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());

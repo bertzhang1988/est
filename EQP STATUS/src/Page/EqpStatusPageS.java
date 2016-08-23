@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,6 +28,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -497,6 +500,8 @@ public class EqpStatusPageS {
 
 	public void EnterTrailer(String SCAC, String TrailerNB) throws AWTException, InterruptedException {
 		Actions builder = new Actions(driver);
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(2, TimeUnit.SECONDS).pollingEvery(100,
+				TimeUnit.MILLISECONDS);
 		if (TrailerField.isDisplayed()) {
 			this.TrailerField.click();
 		}
@@ -514,16 +519,14 @@ public class EqpStatusPageS {
 		// builder.sendKeys(this.TrailerInputField,Keys.TAB).build().perform();
 		String SCACTrailer = SCACTrailer(SCAC, TrailerNB);
 		try {
-			(new WebDriverWait(driver, 2))
-					.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));
+			wait.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));
 			// TimeoutException
 		} catch (Exception e) {
 			(new WebDriverWait(driver, 20))
 					.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SCACTrailer)));
 			driver.findElement(By.linkText(SCACTrailer)).click();
 		}
-		(new WebDriverWait(driver, 5))
-				.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));
+		wait.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));
 		Thread.sleep(1000);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	}
@@ -757,6 +760,50 @@ public class EqpStatusPageS {
 		}
 	}
 
+	public void HandleLOBRproAllByKey(String handle) throws InterruptedException {
+		Actions builder = new Actions(driver);
+		try {
+			if (this.LeftoverCheckAllPRO.isDisplayed()) {
+				this.LeftoverCheckAllPRO.click();
+			}
+		} catch (Exception e) {
+		}
+
+		if (handle.equalsIgnoreCase("headload")) {
+			String[] dest = { "270", "112", "841", "198", "135" };
+
+			int ran = new Random().nextInt(dest.length);
+			String changeDesti = dest[ran];
+			String hldesti = changeDesti;
+			this.HeadloadDestination.clear();
+			this.HeadloadDestination.sendKeys(hldesti);
+			builder.sendKeys(Keys.TAB).build().perform();
+			int Ran = (int) (Math.random() * 99) + 1;
+			String HeadloadCube = Integer.toString(Ran);
+			this.HeadloadCube.clear();
+			this.HeadloadCube.sendKeys(HeadloadCube);
+			builder.sendKeys(Keys.TAB).build().perform();
+			builder.keyDown(Keys.ALT).sendKeys("H").keyUp(Keys.ALT).build().perform();
+			// Thread.sleep(2000);
+		} else if (handle.equalsIgnoreCase("leaveon")) {
+			builder.keyDown(Keys.ALT).sendKeys("L").keyUp(Keys.ALT).build().perform();
+			// Thread.sleep(2000);
+		} else if (handle.equalsIgnoreCase("allshort")) {
+			builder.keyDown(Keys.ALT).sendKeys("a").keyUp(Keys.ALT).build().perform();
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		} else if (handle.equalsIgnoreCase("dock")) {
+			// builder.keyDown(Keys.ALT).sendKeys("K").keyUp(Keys.ALT).build().perform();
+			builder.sendKeys(Keys.chord(Keys.ALT, "k", Keys.NULL)).build().perform();
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		}
+	}
+
 	public void HandleLOBRpro(String handle) throws InterruptedException {
 
 		if (handle.equalsIgnoreCase("headload")) {
@@ -773,6 +820,29 @@ public class EqpStatusPageS {
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		} else if (handle.equalsIgnoreCase("dock")) {
 			this.DOCKButton.click();
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		}
+	}
+
+	public void HandleLOBRproByKey(String handle) throws InterruptedException {
+		Actions builder = new Actions(driver);
+		if (handle.equalsIgnoreCase("headload")) {
+			builder.keyDown(Keys.ALT).sendKeys("H").keyUp(Keys.ALT).build().perform();
+			Thread.sleep(2000);
+		} else if (handle.equalsIgnoreCase("leaveon")) {
+			builder.keyDown(Keys.ALT).sendKeys("L").keyUp(Keys.ALT).build().perform();
+			Thread.sleep(2000);
+		} else if (handle.equalsIgnoreCase("allshort")) {
+			builder.keyDown(Keys.ALT).sendKeys("A").keyUp(Keys.ALT).build().perform();
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		} else if (handle.equalsIgnoreCase("dock")) {
+			builder.keyDown(Keys.ALT).sendKeys("K").keyUp(Keys.ALT).build().perform();
 			(new WebDriverWait(driver, 50))
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 			(new WebDriverWait(driver, 50))

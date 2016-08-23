@@ -4,9 +4,7 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -296,33 +294,12 @@ public class US200091SmartEnterLDD {
 			changeDesti = dest[new Random().nextInt(dest.length)];
 		}
 		page.SetDestination(changeDesti);
-		// check time
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-		SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SAssert.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
+		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// enter seal if blank
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
@@ -383,29 +360,11 @@ public class US200091SmartEnterLDD {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		Date LocalTime = null;
 		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-		SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SAssert.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
+		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// enter shipweight
 		int Ran4 = (int) (Math.random() * 27000) + 1000;
@@ -468,32 +427,13 @@ public class US200091SmartEnterLDD {
 		page.SetShipWeight(Shipweight);
 
 		// check time
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-		SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SAssert.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
+		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
+
 		// enter cube
 		int Ran = (int) (Math.random() * 99) + 1;
 		String NewCube = Integer.toString(Ran);

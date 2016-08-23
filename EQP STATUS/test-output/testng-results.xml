@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="8" passed="8">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="316771" started-at="2016-08-18T14:57:41Z" finished-at="2016-08-18T15:02:58Z">
+  <suite name="Default suite" duration-ms="390503" started-at="2016-08-23T20:18:54Z" finished-at="2016-08-23T20:25:25Z">
     <groups>
+      <group name="ldg uc">
+        <method signature="US200075DisplayPROsInOrderWhichTheyEnter.LdgTrailerWithProAddPro(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:5, instance:test.trial.US200075DisplayPROsInOrderWhichTheyEnter@598067a5]" name="LdgTrailerWithProAddPro" class="test.trial.US200075DisplayPROsInOrderWhichTheyEnter"/>
+      </group> <!-- ldg uc -->
     </groups>
-    <test name="Default test" duration-ms="316771" started-at="2016-08-18T14:57:41Z" finished-at="2016-08-18T15:02:58Z">
-      <class name="TestCase.BORtesting.BORScreenTesting">
-        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="SetUp" is-config="true" duration-ms="15654" started-at="2016-08-18T14:57:41Z" finished-at="2016-08-18T14:57:57Z">
+    <test name="Default test" duration-ms="390503" started-at="2016-08-23T20:18:54Z" finished-at="2016-08-23T20:25:25Z">
+      <class name="test.trial.US200075DisplayPROsInOrderWhichTheyEnter">
+        <test-method status="PASS" signature="SetUp(java.lang.String)[pri:0, instance:test.trial.US200075DisplayPROsInOrderWhichTheyEnter@598067a5]" name="SetUp" is-config="true" duration-ms="12599" started-at="2016-08-23T20:18:55Z" finished-at="2016-08-23T20:19:07Z">
           <params>
             <param index="0">
               <value>
@@ -18,11 +21,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method status="PASS" signature="SetTrailerWithoutProToBorFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:1, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="SetTrailerWithoutProToBorFromONH" duration-ms="10035" started-at="2016-08-18T14:58:19Z" data-provider="BORscreen" finished-at="2016-08-18T14:58:29Z">
+        <test-method status="PASS" signature="LdgTrailerWithProAddPro(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:5, instance:test.trial.US200075DisplayPROsInOrderWhichTheyEnter@598067a5]" name="LdgTrailerWithProAddPro" duration-ms="364702" started-at="2016-08-23T20:19:20Z" data-provider="2000.91" finished-at="2016-08-23T20:25:25Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[409]]>
+                <![CDATA[455]]>
               </value>
             </param>
             <param index="1">
@@ -32,365 +35,24 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[123893]]>
+                <![CDATA[125802]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[409]]>
+                <![CDATA[423]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-02-12 18:44:00.0]]>
+                <![CDATA[2016-03-17 12:00:00.0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SetTrailerWithoutProToBorFromONH -->
-        <test-method status="PASS" signature="twoBlOBRDockFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:2, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="twoBlOBRDockFromONH" duration-ms="30144" started-at="2016-08-18T14:58:54Z" data-provider="BORscreen" finished-at="2016-08-18T14:59:24Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[830]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[RDWY]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[126818]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[830]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[17]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[11037]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-02-17 06:30:00.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- twoBlOBRDockFromONH -->
-        <test-method status="PASS" signature="twoBlOBRAllShortFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:3, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="twoBlOBRAllShortFromONH" duration-ms="26172" started-at="2016-08-18T14:59:43Z" data-provider="BORscreen" finished-at="2016-08-18T15:00:09Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[111]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[RDWY]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[127675]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[111]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[9]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[7745]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-02-17 08:15:00.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- twoBlOBRAllShortFromONH -->
-        <test-method status="PASS" signature="SmartEnterSetTrailerWithoutProToBorFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:4, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="SmartEnterSetTrailerWithoutProToBorFromONH" duration-ms="8735" started-at="2016-08-18T15:00:29Z" data-provider="BORscreen" finished-at="2016-08-18T15:00:38Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[875]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[RDWY]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[430783]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[875]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-01-31 09:55:00.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SmartEnterSetTrailerWithoutProToBorFromONH -->
-        <test-method status="PASS" signature="twoBlOBRDockNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:5, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="twoBlOBRDockNOTFromONH" duration-ms="22439" started-at="2016-08-18T15:00:58Z" data-provider="BORscreen" finished-at="2016-08-18T15:01:21Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[808]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[RDWY]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[311297]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[122]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[4]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[14225]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-04-22 19:59:18.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- twoBlOBRDockNOTFromONH -->
-        <test-method status="PASS" signature="twoBlOBRAllShortNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:6, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="twoBlOBRAllShortNOTFromONH" duration-ms="22632" started-at="2016-08-18T15:01:41Z" data-provider="BORscreen" finished-at="2016-08-18T15:02:03Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[881]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[RDWY]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[128320]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[865]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[90]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[7]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[21036]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-02-17 05:36:00.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- twoBlOBRAllShortNOTFromONH -->
-        <test-method status="PASS" signature="SetTrailerWithoutProToBorNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:7, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="SetTrailerWithoutProToBorNOTFromONH" duration-ms="9762" started-at="2016-08-18T15:02:22Z" data-provider="BORscreen" finished-at="2016-08-18T15:02:32Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[878]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[C878]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[238290]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[878]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-01-28 19:56:00.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SetTrailerWithoutProToBorNOTFromONH -->
-        <test-method status="PASS" signature="SmartEnterSetTrailerWithoutProToBorNOTFromONH(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date)[pri:8, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="SmartEnterSetTrailerWithoutProToBorNOTFromONH" duration-ms="8866" started-at="2016-08-18T15:02:47Z" data-provider="BORscreen" finished-at="2016-08-18T15:02:56Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[479]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[BMOU]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[478467]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[555]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[55]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[2016-04-08 19:59:39.0]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SmartEnterSetTrailerWithoutProToBorNOTFromONH -->
-        <test-method status="PASS" signature="TearDown()[pri:0, instance:TestCase.BORtesting.BORScreenTesting@70b8b8d3]" name="TearDown" is-config="true" duration-ms="2204" started-at="2016-08-18T15:02:56Z" finished-at="2016-08-18T15:02:58Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TearDown -->
-      </class> <!-- TestCase.BORtesting.BORScreenTesting -->
+        </test-method> <!-- LdgTrailerWithProAddPro -->
+      </class> <!-- test.trial.US200075DisplayPROsInOrderWhichTheyEnter -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

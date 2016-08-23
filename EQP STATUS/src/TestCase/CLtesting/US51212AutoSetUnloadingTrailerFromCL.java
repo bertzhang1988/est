@@ -31,36 +31,47 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 	private WebDriver driver;
 	private EqpStatusPageS page;
 
-	@Test(priority = 1, dataProvider = "512.12", dataProviderClass = DataForUS51212.class)
+	@Test(priority = 1, dataProvider = "512.12ST", dataProviderClass = DataForUS51212.class)
 	public void PullProFromARVTrailerInSameTerminal(String terminalcd, String SCAC, String TrailerNB, String Desti)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert Sassert = new SoftAssert();
 		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// pick an arv trailer in same terminal
 		ArrayList<String> PickedTrailer = DataForUS51212.GetTrailerOnSameTerminal(terminalcd, "arv");
 		String fromSCAC = PickedTrailer.get(0);
 		String fromTrailerNb = PickedTrailer.get(1);
+
 		// get eqps information of the picked trailer
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
+
 		// get pro from the picked trailer
 		ArrayList<String> PROlist = DataCommon.GetProOnTrailer(fromSCAC, fromTrailerNb);
 
-		page.RemoveProButton.click();
+		// update cityRoute
+		page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		page.SetPlanDate(Localtime, 2);
+
+		// select city route type
+		page.SetCityRouteType("trap");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
+
 		// add pro
+		page.RemoveProButton.click();
 		ArrayList<String> ADDEDPRO = new ArrayList<String>();
 		for (int j = 0; j < 1; j++) {
 			String currentPro = PROlist.get(j);
 			page.EnterPro(currentPro);
 			ADDEDPRO.add(currentPro);
 		}
-		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
-		// change cityroute
-		page.SetCityRoute("Downtown");
-
-		// set plan date
-		page.PlanDate.sendKeys(CommonFunction.getTommorrow());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
@@ -73,8 +84,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// eqps table
-		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(PickedTrailer.get(0),
-				PickedTrailer.get(1));
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
 		Sassert.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(1), OldEqpStatusRecord.get(1), "Statusing_Facility_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(3), "AUTUAD", "Source_Create_ID is wrong");
@@ -86,8 +96,8 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
-				Sassert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+				Sassert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 60000,
+						"equipment_status_ts is worng" + " get: " + TS + " time for pulling the pro " + d);
 			} else {
 				Sassert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
@@ -130,23 +140,40 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 
 	}
 
-	@Test(priority = 2, dataProvider = "512.12", dataProviderClass = DataForUS51212.class)
+	@Test(priority = 2, dataProvider = "512.12ST", dataProviderClass = DataForUS51212.class)
 	public void PullProFromCPUTrailerInSameTerminal(String terminalcd, String SCAC, String TrailerNB, String Desti)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert Sassert = new SoftAssert();
 		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// pick an arv trailer in same terminal
 		ArrayList<String> PickedTrailer = DataForUS51212.GetTrailerOnSameTerminal(terminalcd, "CPU");
 		String fromSCAC = PickedTrailer.get(0);
 		String fromTrailerNb = PickedTrailer.get(1);
+
 		// get eqps information of the picked trailer
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
+
 		// get pro from the picked trailer
 		ArrayList<String> PROlist = DataCommon.GetProOnTrailer(fromSCAC, fromTrailerNb);
 
-		page.RemoveProButton.click();
+		// update cityRoute
+		page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		page.SetPlanDate(Localtime, 2);
+
+		// select city route type
+		page.SetCityRouteType("trap");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
+
 		// add pro
+		page.RemoveProButton.click();
 		ArrayList<String> ADDEDPRO = new ArrayList<String>();
 		for (int j = 0; j < 1; j++) {
 			String currentPro = PROlist.get(j);
@@ -154,15 +181,9 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 			ADDEDPRO.add(currentPro);
 		}
 
-		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-
-		// change cityroute
-		page.SetCityRoute("Downtown");
-		// set plan date
-		page.PlanDate.sendKeys(CommonFunction.getTommorrow());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		Date today = CommonFunction.getDay(CommonFunction.gettime(""));
+
 		// wait the pro is added on right grid
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50))
@@ -174,8 +195,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// eqps table
-		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(PickedTrailer.get(0),
-				PickedTrailer.get(1));
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
 		Sassert.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(1), OldEqpStatusRecord.get(1), "Statusing_Facility_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(3), "AUTUAD", "Source_Create_ID is wrong");
@@ -187,8 +207,8 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
-				Sassert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+				Sassert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 60000,
+						"equipment_status_ts is worng" + " get: " + TS + " time for pulling the pro " + d);
 			} else {
 				Sassert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
@@ -230,23 +250,40 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 
 	}
 
-	@Test(priority = 3, dataProvider = "512.12", dataProviderClass = DataForUS51212.class)
+	@Test(priority = 3, dataProvider = "512.12DT", dataProviderClass = DataForUS51212.class)
 	public void PullProFromARVTrailerInDifferentTerminal(String terminalcd, String SCAC, String TrailerNB, String Desti)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert Sassert = new SoftAssert();
 		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// pick an arv trailer in same terminal
 		ArrayList<String> PickedTrailer = DataForUS51212.GetTrailerOnDifferentTerminal(terminalcd, "arv");
 		String fromSCAC = PickedTrailer.get(0);
 		String fromTrailerNb = PickedTrailer.get(1);
+
 		// get eqps information of the picked trailer
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
+
 		// get pro from the picked trailer
 		ArrayList<String> PROlist = DataCommon.GetProOnTrailer(fromSCAC, fromTrailerNb);
 
-		page.RemoveProButton.click();
+		// update cityRoute
+		page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		page.SetPlanDate(Localtime, 2);
+
+		// select city route type
+		page.SetCityRouteType("trap");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
+
 		// add pro
+		page.RemoveProButton.click();
 		ArrayList<String> ADDEDPRO = new ArrayList<String>();
 		for (int j = 0; j < 1; j++) {
 			String currentPro = PROlist.get(j);
@@ -254,15 +291,9 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 			ADDEDPRO.add(currentPro);
 		}
 
-		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-
-		// change cityroute
-		page.SetCityRoute("Downtown");
-		// set plan date
-		page.PlanDate.sendKeys(CommonFunction.getTommorrow());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		Date today = CommonFunction.getDay(CommonFunction.gettime(""));
+
 		// wait the pro is added on right grid
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50))
@@ -310,23 +341,40 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 
 	}
 
-	@Test(priority = 4, dataProvider = "512.12", dataProviderClass = DataForUS51212.class)
+	@Test(priority = 4, dataProvider = "512.12DT", dataProviderClass = DataForUS51212.class)
 	public void PullProFromCPUTrailerInDifferentTerminal(String terminalcd, String SCAC, String TrailerNB, String Desti)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert Sassert = new SoftAssert();
 		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// pick an arv trailer in same terminal
 		ArrayList<String> PickedTrailer = DataForUS51212.GetTrailerOnDifferentTerminal(terminalcd, "cpu");
 		String fromSCAC = PickedTrailer.get(0);
 		String fromTrailerNb = PickedTrailer.get(1);
+
 		// get eqps information of the picked trailer
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
+
 		// get pro from the picked trailer
 		ArrayList<String> PROlist = DataCommon.GetProOnTrailer(fromSCAC, fromTrailerNb);
 
-		page.RemoveProButton.click();
+		// update cityRoute
+		page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		page.SetPlanDate(Localtime, 2);
+
+		// select city route type
+		page.SetCityRouteType("trap");
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
+
 		// add pro
+		page.RemoveProButton.click();
 		ArrayList<String> ADDEDPRO = new ArrayList<String>();
 		for (int j = 0; j < 1; j++) {
 			String currentPro = PROlist.get(j);
@@ -334,15 +382,9 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 			ADDEDPRO.add(currentPro);
 		}
 
-		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-
-		// change cityroute
-		page.SetCityRoute("Downtown");
-		// set plan date
-		page.PlanDate.sendKeys(CommonFunction.getTommorrow());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		Date today = CommonFunction.getDay(CommonFunction.gettime(""));
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));

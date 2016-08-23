@@ -183,6 +183,17 @@ public class CLScreenTesting {
 			Addpro.add(CurrentPro);
 		}
 
+		// add volume pro
+		ArrayList<String> VolumePRO = DataCommon.GetVolumeProNotInAnyTrailer();
+		ArrayList<String> VolumePROList = new ArrayList<String>();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = VolumePRO.get(i);
+			page.EnterPro(CurrentPro);
+			VolumePROList.add(CurrentPro);
+
+		}
+		Addpro.addAll(VolumePROList);
+
 		// enter key
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
@@ -230,6 +241,8 @@ public class CLScreenTesting {
 			Date Waybill_Transaction_End_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(11));
 			SA.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
 					"" + pro + " waybill table Waybill_Transaction_End_TS " + System_Modify_TS + "  " + d);
+			if (VolumePROList.contains(pro))
+				SA.assertEquals(CheckWaybillRecord.get(22), "N", "" + pro + " waybill Volume_Exception_IN is wrong");
 		}
 
 		SA.assertAll();
@@ -390,6 +403,17 @@ public class CLScreenTesting {
 			Addpro.add(CurrentPro);
 		}
 
+		// add volume pro
+		ArrayList<String> VolumePRO = DataCommon.GetVolumeProNotInAnyTrailer();
+		ArrayList<String> VolumePROList = new ArrayList<String>();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = VolumePRO.get(i);
+			page.EnterPro(CurrentPro);
+			VolumePROList.add(CurrentPro);
+
+		}
+		Addpro.addAll(VolumePROList);
+
 		// enter key
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
@@ -437,6 +461,8 @@ public class CLScreenTesting {
 			Date Waybill_Transaction_End_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(11));
 			SA.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
 					"" + pro + " waybill table Waybill_Transaction_End_TS " + System_Modify_TS + "  " + d);
+			if (VolumePROList.contains(pro))
+				SA.assertEquals(CheckWaybillRecord.get(22), "N", "" + pro + " waybill Volume_Exception_IN is wrong");
 		}
 
 		SA.assertAll();
@@ -534,7 +560,8 @@ public class CLScreenTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong /n"
+				+ ProInfo + "/n" + DataCommon.GetProListLOBR(SCAC, TrailerNB));
 
 		// Check Plan Day and other fields prepopulate
 		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
@@ -561,7 +588,7 @@ public class CLScreenTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// leave on
-		page.HandleLOBRproAll("leaveON");
+		page.HandleLOBRproAllByKey("leaveON");
 		Date d = CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
@@ -632,7 +659,8 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2,
+				"cl screen pro grid is wrong /n" + ProInfo2 + "/n" + DataCommon.GetProList(SCAC, TrailerNB));
 		SA.assertAll();
 	}
 
@@ -679,10 +707,9 @@ public class CLScreenTesting {
 		// set date&time
 		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-		SA.assertAll();
 
-		// leave on
-		page.HandleLOBRproAll("Dock");
+		// dock
+		page.HandleLOBRproAllByKey("Dock");
 		Date d = CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
@@ -790,9 +817,9 @@ public class CLScreenTesting {
 		// set date&time
 		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-		SA.assertAll();
+
 		// all short
-		page.HandleLOBRproAll("ALLSHORT");
+		page.HandleLOBRproAllByKey("ALLSHORT");
 		Date d = CommonFunction.gettime("UTC");
 		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
@@ -1249,7 +1276,7 @@ public class CLScreenTesting {
 
 			Utility.takescreenshot(driver, FailureTestparameter);
 
-			page.ChangeStatusTo("cl");
+			page.SetStatus("cl");
 		}
 	}
 

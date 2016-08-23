@@ -3,9 +3,7 @@ package TestCase.LDDscreen;
 import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 
@@ -58,7 +56,6 @@ public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerT
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		SA.assertEquals(page.ShipmentCount2.getAttribute("value").replaceAll("_", ""), AmountPro,
@@ -73,36 +70,16 @@ public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerT
 		SA.assertEquals(page.ShipmentFlag.getText(), flag, " flag is wrong");
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
 
-		// check date&time field 1. ldd use equipment_status_ts 2.not ldd, a.
-		// eqpst>current-time use eqpst minute+1 b. eqpst<current time use
-		// current time
+		// Check date and time prepopulate
+
+		Date picker = page.GetDatePickerTime();
+		Date expect;
 		if (CurrentStatus.equalsIgnoreCase("LDD")) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
+			expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
 		} else {
-			if (MReqpst.before(CurrentTime)) {
-				LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-			} else if (MReqpst.after(CurrentTime)) {
-				LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-			}
+			expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		}
-
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE);
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour);
-		if (!CurrentStatus.equalsIgnoreCase("LDD") && MReqpst.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne);
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute);
-		}
+		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);

@@ -4,10 +4,8 @@ import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
@@ -16,7 +14,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,7 +36,6 @@ public class LDDTesting {
 
 	private WebDriver driver;
 	private EqpStatusPageS page;
-	private Actions builer;
 
 	@BeforeClass
 	@Parameters({ "browser" })
@@ -60,7 +56,7 @@ public class LDDTesting {
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
-		builer = new Actions(driver);
+
 	}
 
 	@Test(priority = 1, dataProvider = "lddscreen", dataProviderClass = DataForUSLDDLifeTest.class)
@@ -69,34 +65,12 @@ public class LDDTesting {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SAssert.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
+		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// ENTER DESTINATION
 		String[] dest = { "270", "112", "841", "198", "135" };
@@ -178,36 +152,14 @@ public class LDDTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
-		// check date&time field should a. eqpst>current-time use eqpst minute+1
-		// b. eqpst<current time use current time
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SAssert.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SAssert.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SAssert.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
+		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check lobr pro gtrid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
@@ -270,8 +222,6 @@ public class LDDTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		SA.assertEquals(page.ShipmentCount2.getAttribute("value").replaceAll("_", ""), AmountPro,
@@ -286,25 +236,10 @@ public class LDDTesting {
 		SA.assertEquals(page.ShipmentFlag.getText(), flag, " flag is wrong");
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
 
-		// check date&time field 1. ldd use equipment_status_ts
-		LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
+		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
@@ -392,8 +327,6 @@ public class LDDTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		SA.assertEquals(page.ShipmentCount2.getAttribute("value").replaceAll("_", ""), AmountPro,
@@ -407,26 +340,11 @@ public class LDDTesting {
 		SA.assertEquals(page.HeadloadCube.getAttribute("value"), headloadCube, "ship weight is wrong");
 		SA.assertEquals(page.ShipmentFlag.getText(), flag, " flag is wrong");
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
-		// check date&time field 1. ldd use equipment_status_ts
 
-		LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
+		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
@@ -490,7 +408,6 @@ public class LDDTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		SA.assertEquals(page.ShipmentCount2.getAttribute("value").replaceAll("_", ""), AmountPro,
@@ -504,33 +421,11 @@ public class LDDTesting {
 		SA.assertEquals(page.HeadloadCube.getAttribute("value"), headloadCube, "ship weight is wrong");
 		SA.assertEquals(page.ShipmentFlag.getText(), flag, " flag is wrong");
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
-		// check date&time field 1. ldd use equipment_status_ts 2.not ldd, a.
-		// eqpst>current-time use eqpst minute+1 b. eqpst<current time use
-		// current time
 
-		if (MReqpst.before(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
-		} else if (MReqpst.after(CurrentTime)) {
-			LocalTime = CommonFunction.getLocalTime(terminalcd, MReqpst);
-		}
-
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
-		cal.setTime(LocalTime);
-		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-		String hour = String.format("%02d", hourOfDay);
-		int minute = cal.get(Calendar.MINUTE);
-		String Minute = String.format("%02d", minute);
-		String MinutePlusOne = String.format("%02d", minute + 1);
-		String DATE = dateFormat.format(cal.getTime());
-
-		SA.assertEquals(page.DateInput.getAttribute("value"), DATE, "TIME DARE IS WRONG");
-		SA.assertEquals(page.HourInput.getAttribute("value"), hour, "TIME HOR IS WRONG");
-		if (MReqpst.after(CurrentTime)) {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), MinutePlusOne, "TIME MINUTE IS WRONG");
-		} else {
-			SA.assertEquals(page.MinuteInput.getAttribute("value"), Minute, "TIME MINUTE IS WRONG");
-		}
+		// Check date and time prepopulate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
+		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
@@ -593,7 +488,7 @@ public class LDDTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.ChangeStatusTo("LDD");
+			page.SetStatus("LDD");
 		}
 	}
 
