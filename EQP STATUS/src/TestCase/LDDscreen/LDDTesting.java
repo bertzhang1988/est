@@ -72,32 +72,21 @@ public class LDDTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
-		// ENTER DESTINATION
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String destination = dest[ran];
-		page.SetDestination(destination);
+		// change destination
+		String destination = page.ChangeDestiantion();
 
 		// enter shipcount
-		int Ran3 = (int) (Math.random() * 998) + 1;
-		String ShipCount = Integer.toString(Ran3);
-		page.SetShipCount(ShipCount);
+		String ShipCount = page.ChangeShipCount();
 
 		// enter shipweight
-		int Ran4 = (int) (Math.random() * 27000) + 1000;
-		String Shipweight = Integer.toString(Ran4);
-		page.SetShipWeight(Shipweight);
+		String Shipweight = page.ChangeShipWeight();
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
 
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
-		//
+		String NewSeal = page.ChangeSeal();
+
 		// add comment
 		String Comment = "Seal to " + NewSeal;
 		page.AddComment(Comment);
@@ -166,24 +155,16 @@ public class LDDTesting {
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
-		try {
-			if (page.LeftoverCheckAllPRO.isDisplayed()) {
-				page.LeftoverCheckAllPRO.click();
-			}
-		} catch (Exception e) {
 
-		}
+		// handle lobr pro
 		String[] handleLobrPro = { "headload", "leaveON", "allshort", "dock" };
 		int ran1 = new Random().nextInt(handleLobrPro.length);
 		page.HandleLOBRproAll(handleLobrPro[ran1]);
@@ -248,13 +229,7 @@ public class LDDTesting {
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (Desti.equalsIgnoreCase(changeDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		// navigate to headload screen
 		(new WebDriverWait(driver, 30))
@@ -265,12 +240,9 @@ public class LDDTesting {
 		// driver.switchTo().activeElement(), "the cursor is not in YES
 		// button");
 
-		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
-			Seal = NewSeal;
-		}
+		// change seal
+		Seal = page.ChangeSeal();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -351,18 +323,16 @@ public class LDDTesting {
 		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
 
 		// add comment
 		String Comment = "Seal to " + NewSeal;
 		page.AddComment(Comment);
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -432,9 +402,7 @@ public class LDDTesting {
 		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -76,20 +75,15 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// ENTER SEAL
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		// check the hl screen
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -107,18 +101,15 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
-		// input cube if there is no cube value before
+
+		/// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
 
+		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 
 		// change destination
@@ -189,20 +180,14 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// ENTER SEAL
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -219,18 +204,17 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
+
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
-		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+
+		// enter seal
+		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
+			page.ChangeSeal();
 		}
+
 		// change destination
 		page.SetDestination(changeDesti);
 		(new WebDriverWait(driver, 50))
@@ -299,24 +283,17 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		// enter cube
+		String NewCube = page.ChangeCube();
+
 		// ENTER SEAL
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), NewCube, "screenHLcube is wrong");
@@ -330,12 +307,11 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		// Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);
 
 		page.SetCube(NewCube);
+
 		// change seal
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")
 				|| page.SealField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		page.SetDestination(changeDesti);
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));

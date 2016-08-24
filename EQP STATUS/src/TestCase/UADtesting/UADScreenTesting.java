@@ -76,7 +76,7 @@ public class UADScreenTesting {
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000,
-					"equipment status table" + i + "  " + TS + "  " + d);
+					"equipment status Table" + i + "  " + TS + "  " + d);
 		}
 		SA.assertAll();
 	}

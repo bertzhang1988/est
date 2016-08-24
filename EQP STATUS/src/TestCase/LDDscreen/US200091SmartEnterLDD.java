@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -69,31 +68,22 @@ public class US200091SmartEnterLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		// ENTER DESTINATION IF IT IS BLANK
-		if (page.DestinationField.getAttribute("value").equalsIgnoreCase("___")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			String changeDesti = dest[ran];
-			destination = changeDesti;
-			page.SetDestination(destination);
-		}
+
+		// change destination
+		destination = page.ChangeDestiantion();
 
 		// enter shipcount
-		int Ran3 = (int) (Math.random() * 998) + 1;
-		String ShipCount = Integer.toString(Ran3);
-		page.SetShipCount(ShipCount);
+		String ShipCount = page.ChangeShipCount();
+
 		// enter shipweight
-		int Ran4 = (int) (Math.random() * 27000) + 1000;
-		String Shipweight = Integer.toString(Ran4);
-		page.SetShipWeight(Shipweight);
+		String Shipweight = page.ChangeShipWeight();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -142,17 +132,14 @@ public class US200091SmartEnterLDD {
 		SAssert.assertFalse(page.ShipmentCount2.isEnabled(), "shipment count is not disbaled");
 
 		// enter shipweight
-		int Ran4 = (int) (Math.random() * 27000) + 1000;
-		String Shipweight = Integer.toString(Ran4);
-		page.SetShipWeight(Shipweight);
+		String Shipweight = page.ChangeShipWeight();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -195,20 +182,15 @@ public class US200091SmartEnterLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (destination.equalsIgnoreCase(changeDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		(new WebDriverWait(driver, 150))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
@@ -219,10 +201,9 @@ public class US200091SmartEnterLDD {
 		// driver.switchTo().activeElement(), "the cursor is not in YES
 		// button");
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -282,30 +263,20 @@ public class US200091SmartEnterLDD {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (destination.equalsIgnoreCase(changeDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
-		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
+		String changeDesti = page.ChangeDestiantion();
 
 		// Check date and time prepopulate
+		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
 		Date picker = page.GetDatePickerTime();
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
 		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// enter seal if blank
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
@@ -349,16 +320,12 @@ public class US200091SmartEnterLDD {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// enter shipcount
-		int Ran3 = (int) (Math.random() * 98) + 1;
-		String ShipCount = Integer.toString(Ran3);
-		page.SetShipCount(ShipCount);
+		String ShipCount = page.ChangeShipCount();
+
 		// check time
-		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
 
 		// Check date and time prepopulate
@@ -367,13 +334,10 @@ public class US200091SmartEnterLDD {
 		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// enter shipweight
-		int Ran4 = (int) (Math.random() * 27000) + 1000;
-		String Shipweight = Integer.toString(Ran4);
-		page.SetShipWeight(Shipweight);
+		String Shipweight = page.ChangeShipWeight();
+
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -422,9 +386,7 @@ public class US200091SmartEnterLDD {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// enter shipweight
-		int Ran4 = (int) (Math.random() * 27000) + 1000;
-		String Shipweight = Integer.toString(Ran4);
-		page.SetShipWeight(Shipweight);
+		String Shipweight = page.ChangeShipWeight();
 
 		// check time
 		SAssert.assertTrue(page.DateInput.isEnabled(), "Date$time field is not enabled");
@@ -435,13 +397,11 @@ public class US200091SmartEnterLDD {
 		SAssert.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// enter seal
-		int Ran2 = (int) (Math.random() * 999998999) + 1000;
-		String NewSeal = Integer.toString(Ran2);
-		page.SetSealLDD(NewSeal);
+		String NewSeal = page.ChangeSeal();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());

@@ -653,6 +653,27 @@ public class EqpStatusPageS {
 		return NewCube;
 	}
 
+	public String ChangeSeal() throws InterruptedException {
+		int Ran2 = (int) (Math.random() * 999998999) + 1000;
+		String NewSeal = Integer.toString(Ran2);
+		this.SetSealLDD(NewSeal);
+		return NewSeal;
+	}
+
+	public String ChangeShipCount() throws InterruptedException {
+		int Ran3 = (int) (Math.random() * 998) + 1;
+		String ShipCount = Integer.toString(Ran3);
+		this.SetShipCount(ShipCount);
+		return ShipCount;
+	}
+
+	public String ChangeShipWeight() throws InterruptedException {
+		int Ran4 = (int) (Math.random() * 27000) + 1000;
+		String Shipweight = Integer.toString(Ran4);
+		this.SetShipWeight(Shipweight);
+		return Shipweight;
+	}
+
 	public String UpdateCityRoute() throws InterruptedException {
 		int length = (int) ((Math.random() * 9) + 1);
 		String CityRoute = RandomStringUtils.randomAlphanumeric(length);

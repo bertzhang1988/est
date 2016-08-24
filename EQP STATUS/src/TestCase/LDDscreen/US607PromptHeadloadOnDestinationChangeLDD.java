@@ -6,13 +6,11 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,7 +32,6 @@ import Page.EqpStatusPageS;
 public class US607PromptHeadloadOnDestinationChangeLDD {
 	private WebDriver driver;
 	private EqpStatusPageS page;
-	private Actions builder;
 
 	@BeforeClass
 	@Parameters({ "browser" })
@@ -55,7 +52,6 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
-		builder = new Actions(driver);
 
 	}
 
@@ -76,20 +72,14 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		// check the screen navigate to hl
 
@@ -111,18 +101,15 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
+
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		// change destination
 		page.SetDestination(changeDesti);
@@ -175,20 +162,15 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		// check the hl screen
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -206,18 +188,15 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
+
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		// change destination
 		page.SetDestination(changeDesti);
@@ -287,26 +266,16 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		// enter cube
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeCube();
 		}
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -323,18 +292,14 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
+
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
 
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		// change destination
 		page.SetDestination(changeDesti);
@@ -392,24 +357,15 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 
 		// enter cube
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeCube();
 		}
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -426,17 +382,13 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
+
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 
 		// change destination
@@ -509,22 +461,14 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		page.EnterTrailer(SCAC, TrailerNB);
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		// enter cube
+		String NewCube = page.ChangeCube();
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), NewCube, "screenHLcube is wrong");
@@ -541,11 +485,11 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		// change seal
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")
 				|| page.SealField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
+
 		page.SetDestination(changeDesti);
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), NewCube, "screenHLcube is wrong");
@@ -606,24 +550,18 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
+
 		// enter seal
 		if (page.SealField.getAttribute("value").replace("_", "").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+
+		// enter cube
+		String NewCube = page.ChangeCube();
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
@@ -638,13 +576,13 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 
 		// change seal
 		page.SetCube(NewCube);
+
 		if (page.SealField.getAttribute("value").equalsIgnoreCase("__________")
 				|| page.SealField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran2 = (int) (Math.random() * 999998999) + 1000;
-			String NewSeal = Integer.toString(Ran2);
-			page.SetSealLDD(NewSeal);
+			page.ChangeSeal();
 		}
 		page.SetDestination(changeDesti);
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");

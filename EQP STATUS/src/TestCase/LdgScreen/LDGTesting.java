@@ -74,12 +74,10 @@ public class LDGTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		SA.assertEquals(picker, expect, "ldg screen prepopulate time is wrong ");
 
-		// ENTER DESTINATION
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		page.SetDestination(changeDesti);
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
 
+		// set date&time
 		page.SetDatePicker(page.GetDatePickerTime(), -23);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
@@ -140,10 +138,8 @@ public class LDGTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
 
-		// change cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		// enter cube
+		String NewCube = page.ChangeCube();
 
 		// click submit
 		page.SubmitButton1.click();
@@ -199,13 +195,7 @@ public class LDGTesting {
 		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
 
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(Desti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
@@ -274,19 +264,10 @@ public class LDGTesting {
 
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
-			int Ran = (int) (Math.random() * 99) + 1;
-			String NewCube = Integer.toString(Ran);
-			cube = NewCube;
-			page.SetCube(cube);
+			page.ChangeCube();
 		}
 		// change destination
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
-		page.SetDestination(changeDesti);
+		String changeDesti = page.ChangeDestiantion();
 
 		// screen navigate to headload
 		(new WebDriverWait(driver, 50))
@@ -403,20 +384,12 @@ public class LDGTesting {
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 
-		// ENTER DESTINATION IF IT IS BLANK
-		String changeDesti = null;
-		String desti = page.DestinationField.getAttribute("value");
-		if (desti.equalsIgnoreCase("___") || desti.equalsIgnoreCase("")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			changeDesti = dest[ran];
-			page.SetDestination(changeDesti);
-		}
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -518,20 +491,11 @@ public class LDGTesting {
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 
-		// ENTER DESTINATION IF IT IS BLANK
-		String changeDesti = null;
-		String desti = page.DestinationField.getAttribute("value");
-		if (desti.equalsIgnoreCase("___") || desti.equalsIgnoreCase("")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			changeDesti = dest[ran];
-			page.SetDestination(changeDesti);
-		}
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
 
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), 1);
@@ -645,19 +609,12 @@ public class LDGTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
-		// ENTER DESTINATION IF IT IS BLANK
-		String changeDesti = null;
-		String desti = page.DestinationField.getAttribute("value");
-		if (desti.equalsIgnoreCase("___") || desti.equalsIgnoreCase("")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			changeDesti = dest[ran];
-			page.SetDestination(changeDesti);
-		}
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), 1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -781,19 +738,12 @@ public class LDGTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
-		// ENTER DESTINATION IF IT IS BLANK
-		String changeDesti = null;
-		String desti = page.DestinationField.getAttribute("value");
-		if (desti.equalsIgnoreCase("___") || desti.equalsIgnoreCase("")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			changeDesti = dest[ran];
-			page.SetDestination(changeDesti);
-		}
+
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), 1);
@@ -895,11 +845,8 @@ public class LDGTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		SAssert.assertEquals(picker, expect, "ldg screen prepopulate time is wrong ");
 
-		// ENTER DESTINATION
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		page.SetDestination(changeDesti);
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
 
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -1);
@@ -914,10 +861,8 @@ public class LDGTesting {
 			ADDPRO.add(CurrentPro);
 		}
 
-		// change cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		// enter cube
+		page.ChangeCube();
 
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -1017,7 +962,6 @@ public class LDGTesting {
 
 		// enter hld
 		String[] dest = { "153", "881", "615", "422", "211" };
-
 		int ran = new Random().nextInt(dest.length);
 		String hldesti = dest[ran];
 		page.SetHLDest(hldesti);
@@ -1089,7 +1033,6 @@ public class LDGTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		Date LocalTime = null;
 
 		// check destination and cube prepopulate
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), destination, "destiantion display IS WRONG");
@@ -1100,11 +1043,8 @@ public class LDGTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		SAssert.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
 
-		// ENTER DESTINATION
-		String[] dest = { "270", "112", "841", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		page.SetDestination(changeDesti);
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
 
 		// add pro
 		ArrayList<String> GetProNotOnAnyTrailer = DataCommon.GetProNotInAnyTrailer();
@@ -1116,10 +1056,8 @@ public class LDGTesting {
 			ADDPRO.add(CurrentPro);
 		}
 
-		// change cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		// enter cube
+		page.ChangeCube();
 
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -1189,19 +1127,12 @@ public class LDGTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
 		SAssert.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
 
-		// ENTER DESTINATION IF IT IS BLANK
-		String changeDesti = null;
-		String desti = page.DestinationField.getAttribute("value");
-		if (desti.equalsIgnoreCase("___") || desti.equalsIgnoreCase("")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
-			int ran = new Random().nextInt(dest.length);
-			changeDesti = dest[ran];
-			page.SetDestination(changeDesti);
-		}
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
+
 		// enter cube
-		int Ran = (int) (Math.random() * 99) + 1;
-		String NewCube = Integer.toString(Ran);
-		page.SetCube(NewCube);
+		String NewCube = page.ChangeCube();
+
 		// handle the left pro
 		String[] handleLobrPro = { "headload", "leaveON", "allshort", "dock" };
 		int ran = new Random().nextInt(handleLobrPro.length);
@@ -1257,7 +1188,7 @@ public class LDGTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-			page.ChangeStatusTo("ldg");
+			page.SetStatus("ldg");
 		}
 	}
 
