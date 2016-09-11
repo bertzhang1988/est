@@ -67,14 +67,19 @@ public class OFDScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date d1 = CommonFunction.gettime("utc");
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
 		// check preppopulate
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
 
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -111,12 +116,18 @@ public class OFDScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date d1 = CommonFunction.gettime("utc");
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -153,14 +164,20 @@ public class OFDScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date d1 = CommonFunction.gettime("utc");
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
-		// alter time
-		int TimeGap = (int) ((d1.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
+
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);// alter time
+		int TimeGap = (int) ((CurrentTime.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
 		if (TimeGap > 24) {
 			page.SetDatePicker2(page.GetDatePickerTime(), -23, -59);
 		} else if (TimeGap < 24) {
@@ -201,14 +218,20 @@ public class OFDScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
-		Date d1 = CommonFunction.gettime("utc");
+		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, d1, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "prepopulate time is wrong ");
+		// update cityRoute
+		String NewCityRoute = page.UpdateCityRoute();
+
+		// enter plan date
+		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		Date PlanDate = page.SetPlanDate(Localtime, 2);
 		// alter time
-		int TimeGap = (int) ((d1.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
+		int TimeGap = (int) ((CurrentTime.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
 		if (TimeGap > 24) {
 			page.SetDatePicker2(page.GetDatePickerTime(), -23, -59);
 		} else if (TimeGap < 24) {

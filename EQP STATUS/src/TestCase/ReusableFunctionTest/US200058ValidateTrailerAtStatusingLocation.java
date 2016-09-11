@@ -19,7 +19,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Data.DataForUS200058;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
 
@@ -52,7 +51,7 @@ public class US200058ValidateTrailerAtStatusingLocation {
 
 	}
 
-	@Test(priority = 1, dataProvider = "2000.58", dataProviderClass = DataForUS200058.class)
+	@Test(priority = 1, dataProvider = "2000.58", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidStatusLocation(String terminalcd, String SCAC, String TrailerNB)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		Actions builder = new Actions(driver);
@@ -75,7 +74,7 @@ public class US200058ValidateTrailerAtStatusingLocation {
 
 	}
 
-	@Test(priority = 2, dataProvider = "2000.58", dataProviderClass = DataForUS200058.class)
+	@Test(priority = 2, dataProvider = "2000.58", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidStatusLocation(String terminalcd, String SCAC, String TrailerNB)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);

@@ -83,7 +83,7 @@ public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457Sho
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "  prolist information is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "  prolist information is wrong");
 		SA.assertAll();
 	}
 

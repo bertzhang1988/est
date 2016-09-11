@@ -20,6 +20,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -419,10 +420,8 @@ public class EqpStatusPageS {
 
 	public void SetStatus(String status) throws InterruptedException {
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(this.StatusTrailerButton));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.elementToBeClickable(this.StatusTrailerButton));
 		this.StatusTrailerButton.click();
-		(new WebDriverWait(driver, 20)).until(
-				ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@label='Set Status To']/div/div/span")));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.SetStatusToField));
 		ChangeStatusTo(status);
 	}
 
@@ -435,12 +434,26 @@ public class EqpStatusPageS {
 
 	public void ChangeStatusTo(String status) throws InterruptedException {
 		Actions builder = new Actions(driver);
+		try {
+			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.SetStatusToField));
+		} catch (StaleElementReferenceException e) {
+			(new WebDriverWait(driver, 20)).until(
+					ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@label='Set Status To']/div/div/span")));
+			this.SetStatusToField = driver.findElement(By.xpath(".//*[@label='Set Status To']/div/div/span"));
+			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(this.SetStatusToField));
+		}
+		Thread.sleep(1000);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(this.SetStatusToField));
 		this.SetStatusToField.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(this.StatusList));
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(this.SetStatusToInput));
 		this.SetStatusToInput.click();
-		// this.SetStatusToInput.sendKeys(status);
-		// Thread.sleep(1000);
+
+		if (driver instanceof InternetExplorerDriver) {
+			this.SetStatusToInput.sendKeys(status);
+			Thread.sleep(1000);
+		}
+
 		String FullStatusName = null;
 
 		if (status.equalsIgnoreCase("ldd")) {
@@ -1035,15 +1048,21 @@ public class EqpStatusPageS {
 
 	public LinkedHashSet<ArrayList<String>> GetProListInInquiryScreen(WebElement ProGrid) throws InterruptedException {
 		int line = ProGrid.findElements(By.xpath("div")).size();
+		int BaseRow;
+		if (ProGrid == TIQProGrid) {
+			BaseRow = 36;
+		} else {
+			BaseRow = 27;
+		}
 		LinkedHashSet<ArrayList<String>> ProInfo = new LinkedHashSet<ArrayList<String>>();
 		for (int i = 1; i <= line; i++) {
 			String[] Proline1 = ProGrid.findElement(By.xpath("div[" + i + "]")).getText().split("\\n");
 			ArrayList<String> e1 = new ArrayList<String>(Arrays.asList(Proline1));
 			ProInfo.add(e1);
 		}
-		if (line >= 27) {
+		if (line >= BaseRow) {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			int additional = 27;
+			int additional = BaseRow;
 			do {
 				jse.executeScript("arguments[0].scrollIntoView(true);",
 						ProGrid.findElement(By.xpath("div[" + additional + "]")));
@@ -1054,7 +1073,7 @@ public class EqpStatusPageS {
 					ArrayList<String> e1 = new ArrayList<String>(Arrays.asList(Proline1));
 					ProInfo.add(e1);
 				}
-			} while (additional > 27);
+			} while (additional > BaseRow);
 		}
 		return ProInfo;
 	}

@@ -27,7 +27,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import Data.DataForUS200001AndUS200002AndUS200041;
 import Data.DataForUS200004;
 import Data.DataForUS439;
 import Function.CommonFunction;
@@ -35,6 +34,7 @@ import Function.ConfigRd;
 import Function.DataCommon;
 import Function.Utility;
 import Page.EqpStatusPageS;
+import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
 public class LoadToEnrScreenTesting {
 	private WebDriver driver;
@@ -67,7 +67,7 @@ public class LoadToEnrScreenTesting {
 		driver.close();
 	}
 
-	@Test(priority = 8, dataProvider = "2000.41", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 8, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
@@ -75,7 +75,7 @@ public class LoadToEnrScreenTesting {
 
 	}
 
-	@Test(priority = 7, dataProvider = "2000.41", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 7, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
 		(new WebDriverWait(driver, 10))
@@ -347,7 +347,7 @@ public class LoadToEnrScreenTesting {
 		System.out.println((d2.getTime() - d.getTime()) / 1000);
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LENRProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), " pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), " pro grid is wrong");
 		// check right grid is as same as left grid
 		ArrayList<String> AddproBatch = new ArrayList<String>();
 		Iterator<ArrayList<String>> pr = ProInfo.iterator();

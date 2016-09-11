@@ -83,7 +83,7 @@ public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerT
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 		SA.assertAll();
 	}
 

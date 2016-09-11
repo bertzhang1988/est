@@ -40,6 +40,26 @@ public class DataForTrailerInquiryScreen {
 			Query = DataCommon.query44;
 		} else if (m.getName().contains("clTrailerWithPro")) {
 			Query = DataCommon.query46;
+		} else if (m.getName().contains("cltgTrailerWithPro")) {
+			Query = DataCommon.query47;
+		} else if (m.getName().contains("borTrailerWithPro")) {
+			Query = DataCommon.query53;
+		} else if (m.getName().contains("mtyTrailerWithPro")) {
+			Query = DataCommon.query54;
+		} else if (m.getName().contains("cpuTrailerWithPro")) {
+			Query = DataCommon.query55;
+		} else if (m.getName().contains("ofdTrailerWithPro")) {
+			Query = DataCommon.query56;
+		} else if (m.getName().contains("uadTrailerWithPro")) {
+			Query = DataCommon.query57;
+		} else if (m.getName().contains("enrTrailerWithPro")) {
+			Query = DataCommon.query58;
+		} else if (m.getName().contains("arrTrailerWithPro")) {
+			Query = DataCommon.query59;
+		} else if (m.getName().contains("arvTrailerWithPro")) {
+			Query = DataCommon.query60;
+		} else if (m.getName().contains("sptTrailerWithPro")) {
+			Query = DataCommon.query61;
 		}
 		String query2 = "select Equipment_Sub_Type_NM from eqp.Equipment_Sub_Type_vw where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ?";
 		String query3 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill_vw] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service_vw] ss,[EQP].[Shipment_Service_Sub_Type_vw] ssst"
@@ -58,9 +78,13 @@ public class DataForTrailerInquiryScreen {
 			String TrailerNB = rs1.getString("Equipment_Unit_NB");
 			a1.add(SCAC);
 			a1.add(TrailerNB);
-
-			String Statusing_Facility_CD = rs1.getString("Statusing_Facility_CD");
 			String Equipment_Status_Type_CD = rs1.getString("Equipment_Status_Type_CD");
+
+			String Statusing_Facility_CD;
+			if (Equipment_Status_Type_CD.equalsIgnoreCase("ENR"))
+				Statusing_Facility_CD = rs1.getString("Dispatch_Dest_Facility_CD");
+			else
+				Statusing_Facility_CD = rs1.getString("Statusing_Facility_CD");
 			Timestamp Equipment_Status_TS = rs1.getTimestamp("Equipment_Status_TS");
 			String StatusTime = DataForInQuiryScreen
 					.ConvertStatusTime(CommonFunction.getLocalTime(Statusing_Facility_CD, Equipment_Status_TS));
@@ -108,8 +132,6 @@ public class DataForTrailerInquiryScreen {
 			}
 			if (rs2 != null)
 				rs2.close();
-			if (stat2 != null)
-				stat2.close();
 
 			// get services
 			stat3.setString(1, SCAC);
@@ -123,14 +145,12 @@ public class DataForTrailerInquiryScreen {
 			}
 			String SERV;
 			if (Services.size() != 0) {
-				SERV = Services.toString().replaceAll("[\\[\\] ]", "");
+				SERV = Services.toString().replaceAll("[\\[\\]]", "");
 			} else {
 				SERV = null;
 			}
 			if (rs3 != null)
 				rs3.close();
-			if (stat3 != null)
-				stat3.close();
 
 			if (SCAC.equalsIgnoreCase("RDWY"))
 				SCAC = "";
@@ -154,6 +174,10 @@ public class DataForTrailerInquiryScreen {
 			a1.add(Equipment_Status_TS);
 			b1.add(a1.toArray(new Object[4]));
 		}
+		if (stat2 != null)
+			stat2.close();
+		if (stat3 != null)
+			stat3.close();
 		if (rs1 != null)
 			rs1.close();
 		if (stat != null)

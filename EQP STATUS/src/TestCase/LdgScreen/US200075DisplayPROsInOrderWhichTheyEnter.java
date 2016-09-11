@@ -64,7 +64,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		}
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), " pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), " pro grid is wrong");
 		SA.assertAll();
 
 	}
@@ -96,7 +96,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), " pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), " pro grid is wrong");
 		// check right grid is as same as left grid
 		ArrayList<String> AddproBatch = new ArrayList<String>();
 		Iterator<ArrayList<String>> pr = ProInfo.iterator();
@@ -170,7 +170,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), " pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), " pro grid is wrong");
 		// check right grid is as same as left grid
 		ArrayList<String> AddproBatch = new ArrayList<String>();
 		Iterator<ArrayList<String>> pr = ProInfo.iterator();

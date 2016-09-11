@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="multiple screen, some test method use static parameter" thread-count="1"  parallel="false" >
-<parameter name="browser" value="chrome" />
+<suite name="multiple screen, some test method use static parameter" thread-count="1"  >
+<parameter name="browser" value="ie" />
   <test name="test reusable function">
-   <parameter name="status" value="cltg"/>
+   <parameter name="status" value="ofd"/>
       <classes>
        <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
 	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>    

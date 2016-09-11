@@ -16,6 +16,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -73,9 +74,11 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MReqpst);
 		SAssert.assertEquals(picker, expect, " 3 button lobr screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SAssert.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SAssert.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SAssert.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SAssert.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -99,7 +102,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		// page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
@@ -109,8 +112,8 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		(new WebDriverWait(driver, 80)).until(
 				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -165,7 +168,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
 
 		SAssert.assertAll();
 	}
@@ -205,7 +208,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		// page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
@@ -218,8 +221,8 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		(new WebDriverWait(driver, 80)).until(
 				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
@@ -274,7 +277,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
 
 		SAssert.assertAll();
 	}
@@ -314,7 +317,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// alter time
-		// page.SetDatePicker(page.GetDatePickerTime(), 1);
+		page.SetDatePicker(page.GetDatePickerTime(), -1);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// handle the left pro
 		page.HandleLOBRproAll("leaveON");
@@ -331,7 +334,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -398,7 +401,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SAssert.assertEquals(ProInfo1, DataCommon.GetProListCL(SCAC, TrailerNB), "pro grid is wrong");
 
 		SAssert.assertAll();
 	}
@@ -407,4 +410,10 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 	public void SetBackToLDG() throws InterruptedException {
 		page.SetStatus("CL");
 	}
+
+	@AfterClass
+	public void TearDown() {
+		driver.quit();
+	}
+
 }

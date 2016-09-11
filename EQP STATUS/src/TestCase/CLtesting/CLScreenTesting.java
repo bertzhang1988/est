@@ -72,9 +72,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -146,9 +148,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -183,6 +187,14 @@ public class CLScreenTesting {
 			Addpro.add(CurrentPro);
 		}
 
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = PRO3.get(i);
+			page.EnterPro(CurrentPro);
+			Addpro.add(CurrentPro);
+		}
+
 		// add volume pro
 		ArrayList<String> VolumePRO = DataCommon.GetVolumeProNotInAnyTrailer();
 		ArrayList<String> VolumePROList = new ArrayList<String>();
@@ -192,6 +204,7 @@ public class CLScreenTesting {
 			VolumePROList.add(CurrentPro);
 
 		}
+
 		Addpro.addAll(VolumePROList);
 
 		// enter key
@@ -231,9 +244,12 @@ public class CLScreenTesting {
 			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
 			SA.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + " waybill SCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + " waybill trailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(3), "CL", "" + pro + " waybill Source_Modify_ID is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd,
+					"" + pro + "Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -264,9 +280,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -307,6 +325,9 @@ public class CLScreenTesting {
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
+		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		(new WebDriverWait(driver, 80))
+				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
@@ -335,9 +356,12 @@ public class CLScreenTesting {
 			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
 			SA.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + " waybill SCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + " waybill trailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(3), "CL", "" + pro + " waybill Source_Modify_ID is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd,
+					"" + pro + "Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -366,9 +390,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -399,6 +425,14 @@ public class CLScreenTesting {
 		ArrayList<String> Addpro = new ArrayList<String>();
 		for (int i = 0; i < 3; i++) {
 			String CurrentPro = PRO.get(i);
+			page.EnterPro(CurrentPro);
+			Addpro.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			Addpro.add(CurrentPro);
 		}
@@ -451,9 +485,12 @@ public class CLScreenTesting {
 			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
 			SA.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + " waybill SCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + " waybill trailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(3), "CL", "" + pro + " waybill Source_Modify_ID is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd,
+					"" + pro + " Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -483,9 +520,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -563,9 +602,11 @@ public class CLScreenTesting {
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong /n"
 				+ ProInfo + "/n" + DataCommon.GetProListLOBR(SCAC, TrailerNB));
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -659,8 +700,8 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2,
-				"cl screen pro grid is wrong /n" + ProInfo2 + "/n" + DataCommon.GetProList(SCAC, TrailerNB));
+		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2,
+				"cl screen pro grid is wrong /n" + ProInfo2 + "/n" + DataCommon.GetProListCL(SCAC, TrailerNB));
 		SA.assertAll();
 	}
 
@@ -669,7 +710,7 @@ public class CLScreenTesting {
 			String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -684,9 +725,11 @@ public class CLScreenTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -769,7 +812,7 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
 
 		SA.assertAll();
 	}
@@ -794,9 +837,11 @@ public class CLScreenTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -879,7 +924,7 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
+		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
 
 		SA.assertAll();
 
@@ -899,9 +944,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -974,6 +1021,7 @@ public class CLScreenTesting {
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd, "Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -1001,9 +1049,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -1034,6 +1084,14 @@ public class CLScreenTesting {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 2; j++) {
 			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
@@ -1073,9 +1131,11 @@ public class CLScreenTesting {
 			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
 			SA.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + " waybill SCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + " waybill trailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(3), "CL", "" + pro + " waybill Source_Modify_ID is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd, "Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -1103,9 +1163,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -1178,9 +1240,11 @@ public class CLScreenTesting {
 		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -1211,6 +1275,14 @@ public class CLScreenTesting {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 2; j++) {
 			String CurrentPro = GetProNotOnAnyTrailer.get(j);
+			page.EnterPro(CurrentPro);
+			ADDPRO.add(CurrentPro);
+		}
+
+		// add no waybill record pro
+		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
+		for (int i = 0; i < 2; i++) {
+			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
 		}
@@ -1250,9 +1322,11 @@ public class CLScreenTesting {
 			ArrayList<Object> CheckWaybillRecord = DataCommon.GetWaybillInformationOfPro(pro);
 			SA.assertEquals(CheckWaybillRecord.get(0), SCAC, "" + pro + " waybill SCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(1), TrailerNB, "" + pro + " waybill trailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(3), "CL", "" + pro + " waybill Source_Modify_ID is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(17), SCAC, "" + pro + " waybill  toSCAC is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(13), terminalcd, "" + pro + " waybill from terminal is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(18), TrailerNB, "" + pro + " waybill totrailernb is wrong");
+			SA.assertEquals(CheckWaybillRecord.get(19), terminalcd, "Manifest_Destination_Fclty_CD is wrong");
 			SA.assertEquals(CheckWaybillRecord.get(20), "LOADING", "" + pro + " waybill TRANSACTION TYPE is wrong");
 			Date System_Modify_TS = CommonFunction.SETtime((Date) CheckWaybillRecord.get(9));
 			SA.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
@@ -1275,7 +1349,7 @@ public class CLScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
-
+			driver.navigate().refresh();
 			page.SetStatus("cl");
 		}
 	}

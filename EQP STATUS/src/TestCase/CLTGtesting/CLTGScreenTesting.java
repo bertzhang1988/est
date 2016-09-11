@@ -70,8 +70,11 @@ public class CLTGScreenTesting {
 		Date pick = page.GetDatePickerTime();
 		SA.assertEquals(pick, expect, "cltg screen date and time prepopulate is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), PlanD, "Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -119,8 +122,11 @@ public class CLTGScreenTesting {
 		Date pick = page.GetDatePickerTime();
 		SA.assertEquals(pick, expect, "cltg screen date and time prepopulate is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), PlanD, "Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -188,8 +194,11 @@ public class CLTGScreenTesting {
 		Date pick = page.GetDatePickerTime();
 		SA.assertEquals(pick, expect, "cltg screen date and time prepopulate is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), PlanD, "Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -288,7 +297,7 @@ public class CLTGScreenTesting {
 		}
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
 		SA.assertAll();
 	}
 
@@ -312,9 +321,11 @@ public class CLTGScreenTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -397,7 +408,7 @@ public class CLTGScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
 
 		SA.assertAll();
 	}
@@ -422,9 +433,11 @@ public class CLTGScreenTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
 
-		// Check Plan Day and other fields prepopulate
-		SA.assertEquals(page.GetPlanDatePickerTime(), CommonFunction.SETtime(PlanD),
-				"Plan date prepopulate time is wrong ");
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
@@ -507,7 +520,7 @@ public class CLTGScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo2, DataCommon.GetProList(SCAC, TrailerNB), "cl screen pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListLD(SCAC, TrailerNB), "cl screen pro grid is wrong");
 
 		SA.assertAll();
 

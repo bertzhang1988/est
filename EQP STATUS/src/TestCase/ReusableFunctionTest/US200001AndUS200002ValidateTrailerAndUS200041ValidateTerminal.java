@@ -18,7 +18,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Data.DataForUS200001AndUS200002AndUS200041;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
 
@@ -51,7 +50,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 		builder = new Actions(driver);
 	}
 
-	@Test(priority = 2, dataProvider = "2000.41", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 2, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
@@ -59,7 +58,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 
 	}
 
-	@Test(priority = 1, dataProvider = "2000.41", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 1, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
 		(new WebDriverWait(driver, 10))
@@ -68,7 +67,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 		Thread.sleep(500);
 	}
 
-	@Test(priority = 3, dataProvider = "2000.02", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 3, dataProvider = "2000.02", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyMaintenanceTrailer(String terminalcd, String SCAC, String TrailerNB)
 			throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
@@ -94,7 +93,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 		Thread.sleep(500);
 	}
 
-	@Test(priority = 4, dataProvider = "2000.01retired", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 4, dataProvider = "2000.01retired", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyRetiredTrailer(String TrailerNB) throws AWTException, InterruptedException {
 		if (page.TrailerField.isDisplayed()) {
 			page.TrailerField.click();
@@ -112,7 +111,7 @@ public class US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal {
 		Thread.sleep(500);
 	}
 
-	@Test(priority = 5, dataProvider = "2000.01NotDb", dataProviderClass = DataForUS200001AndUS200002AndUS200041.class)
+	@Test(priority = 5, dataProvider = "2000.01NotDb", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyNotExistTrailer(String TrailerNB) throws AWTException, InterruptedException {
 		if (page.TrailerField.isDisplayed()) {
 			page.TrailerField.click();

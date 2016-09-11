@@ -161,7 +161,7 @@ public class US494Open4BlobrLdgWhenPorsNotInLoading {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -272,7 +272,7 @@ public class US494Open4BlobrLdgWhenPorsNotInLoading {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -386,7 +386,7 @@ public class US494Open4BlobrLdgWhenPorsNotInLoading {
 
 		// check ldg pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo2, DataCommon.GetProList(SCAC, TrailerNB), " ldg pro grid is wrong");
+		SAssert.assertEquals(ProInfo2, DataCommon.GetProListLD(SCAC, TrailerNB), " ldg pro grid is wrong");
 
 		SAssert.assertAll();
 	}
@@ -512,7 +512,7 @@ public class US494Open4BlobrLdgWhenPorsNotInLoading {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SAssert.assertEquals(ProInfo1, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		SAssert.assertAll();
 	}

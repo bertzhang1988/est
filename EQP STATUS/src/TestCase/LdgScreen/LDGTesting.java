@@ -136,7 +136,7 @@ public class LDGTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		// enter cube
 		String NewCube = page.ChangeCube();
@@ -192,7 +192,7 @@ public class LDGTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		// change destination
 		String changeDesti = page.ChangeDestiantion();
@@ -260,7 +260,7 @@ public class LDGTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		// input cube if there is no cube value before
 		if (page.CubeField.getAttribute("value").equalsIgnoreCase("")) {
@@ -355,7 +355,7 @@ public class LDGTesting {
 		// check pro grid in ldg screen again
 
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SA.assertEquals(ProInfo1, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		SA.assertAll();
 
@@ -464,7 +464,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -579,7 +579,7 @@ public class LDGTesting {
 
 		// check ldg pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo2, DataCommon.GetProList(SCAC, TrailerNB), " ldg pro grid is wrong");
+		SAssert.assertEquals(ProInfo2, DataCommon.GetProListLD(SCAC, TrailerNB), " ldg pro grid is wrong");
 
 		// CHECK THE PRO IS IN SAME ORDER BEFORE LOBR
 		ArrayList<String> prolistafterlobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
@@ -706,7 +706,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SAssert.assertEquals(ProInfo1, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 
 		// CHECK THE PRO IS IN SAME ORDER BEFORE LOBR
 		ArrayList<String> prolistafterlobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
@@ -822,7 +822,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -1021,7 +1021,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProList(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -1175,7 +1175,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo1, DataCommon.GetProList(SCAC, TrailerNB), "pro grid is wrong");
+		SAssert.assertEquals(ProInfo1, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 		SAssert.assertAll();
 	}
 

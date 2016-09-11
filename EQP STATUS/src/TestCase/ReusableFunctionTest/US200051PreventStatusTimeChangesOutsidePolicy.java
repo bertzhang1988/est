@@ -3,13 +3,12 @@ package TestCase.ReusableFunctionTest;
 import java.awt.AWTException;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,18 +17,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import Function.CommonFunction;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
 
-public class US200057EvaluateStatusTransitions {
+public class US200051PreventStatusTimeChangesOutsidePolicy {
 	private WebDriver driver;
 	private EqpStatusPageS page;
 	public static String SetToStatus;
 
 	@BeforeClass
 	@Parameters({ "browser", "status" })
-	public void SetUp(@Optional("chrome") String browser, @Optional("cltg") String status)
+	public void SetUp(@Optional("chrome") String browser, @Optional("cl") String status)
 			throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
@@ -51,32 +52,28 @@ public class US200057EvaluateStatusTransitions {
 
 	}
 
-	@Test(priority = 1, dataProvider = "2000.57", dataProviderClass = DataForReusableFunction.class)
-	public void VerifyInvalidStatusTransition(String terminalcd, String SCAC, String TrailerNB, String CurrentStatus)
+	@Test(priority = 1, dataProvider = "2000.51", dataProviderClass = DataForReusableFunction.class)
+	public void VerifyInvalidStatusStatusTimeChanges(String terminalcd, String SCAC, String TrailerNB,
+			String CurrentStatus, Date Mrst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
-		Actions builder = new Actions(driver);
+		SoftAssert SA = new SoftAssert();
+
 		page.SetLocation(terminalcd);
-		if (page.TrailerField.isDisplayed()) {
-			page.TrailerField.click();
-		}
-		// this.TrailerInputField.click();
-		page.TrailerInputField.clear();
-		page.TrailerInputField.sendKeys(TrailerNB);
-		builder.sendKeys(Keys.TAB).build().perform();
-		String SCACTrailer = page.SCACTrailer(SCAC, TrailerNB);
-		try {
-			(new WebDriverWait(driver, 3))
-					.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SCACTrailer)));
-			driver.findElement(By.linkText(SCACTrailer)).click();
-		} catch (Exception e) {
-		}
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"This trailer is currently in " + CurrentStatus + " status. Changing to " + SetToStatus.toUpperCase()
-						+ " status is not allowed."));
-		// ( new WebDriverWait(driver,
-		// 5)).until(ExpectedConditions.visibilityOf(page.ErrorAndWarning("This
-		// trailer is currently in "+CurrentStatus+" status. Changing to
-		// "+SetToStatus.toUpperCase()+" status is not allowed.")));
+		page.EnterTrailer(SCAC, TrailerNB);
+
+		// set date&time
+		page.SetDatePicker(page.GetDatePickerTime(), -100);
+
+		// Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd,
+		// page.GetDatePickerTime());
+		Date CurrentTime = CommonFunction.gettime("UTC");
+		ArrayList<Object> TimeRange = CommonFunction.GetValidStatusTimeRange(CurrentTime, Mrst, SetToStatus,
+				terminalcd);
+
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(page.ErrorAndWarningField));
+
+		SA.assertEquals(page.ErrorAndWarningField.getText(),
+				"Status time must be between " + TimeRange.get(3) + " and " + TimeRange.get(2));
 	}
 
 	@AfterClass

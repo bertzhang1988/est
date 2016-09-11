@@ -141,8 +141,8 @@ public class DataForInQuiryScreen {
 		PreparedStatement stat2 = conn3.prepareStatement(query9);
 		PreparedStatement stat3 = conn3.prepareStatement(query11);
 		stat.setString(1, status);
-		String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT" };
-		String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR" };
+		String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT", "CPU" };
+		String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR", "CLTG" };
 		ResultSet rs3 = stat.executeQuery();
 		while (rs3.next()) {
 			String SCAC = rs3.getString("Standard_Carrier_Alpha_CD");
@@ -238,7 +238,7 @@ public class DataForInQuiryScreen {
 
 		String query10 = " select wb.pro_nb,ssst.[Shipment_Service_Sub_Type_NM], ss.[Shipment_Service_Type_NM] from [EQP].[Waybill_vw] wb left join [EQP].[Waybill_Service_vw] wbs on wb.[Pro_NB]=wbs.pro_nb"
 				+ " left join [EQP].[Shipment_Service_vw] ss on wbs.[Service_CD]=ss.[Service_CD] left join [EQP].[Shipment_Service_Sub_Type_vw] ssst on ss.[Shipment_Service_Sub_Type_NM]=ssst.[Shipment_Service_Sub_Type_NM]"
-				+ " where wb.pro_nb= ? and ss.[Shipment_Service_Type_NM]= ?  order by ssst.[Display_Sequence_NB] desc";
+				+ " where wb.pro_nb= ? and ss.[Shipment_Service_Type_NM]= ?  order by ssst.[Display_Sequence_NB] ";
 
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		LinkedHashSet<ArrayList<String>> b3 = new LinkedHashSet<ArrayList<String>>();

@@ -224,7 +224,7 @@ public class LDDTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 
@@ -320,7 +320,7 @@ public class LDDTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter cube
 		String NewCube = page.ChangeCube();
@@ -399,7 +399,7 @@ public class LDDTesting {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB), "prolist information is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter seal
 		String NewSeal = page.ChangeSeal();

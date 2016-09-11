@@ -24,11 +24,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import Data.DataForUS200068AndUS445;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
 import Page.EqpStatusPageS;
+import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
 public class NegativeScenarioLDG {
 
@@ -65,7 +65,7 @@ public class NegativeScenarioLDG {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	}
 
-	@Test(priority = 2, dataProvider = "2000.68", dataProviderClass = DataForUS200068AndUS445.class)
+	@Test(priority = 2, dataProvider = "2000.68", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidDestination(String Destination) throws AWTException {
 		page.HeadloadDestination.clear();
 		page.HeadloadDestination.sendKeys(Destination);
@@ -74,7 +74,7 @@ public class NegativeScenarioLDG {
 				"Invalid Headload Destination, please enter valid Destination."));
 	}
 
-	@Test(priority = 3, dataProvider = "2000.68", dataProviderClass = DataForUS200068AndUS445.class)
+	@Test(priority = 3, dataProvider = "2000.68", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidDestination(String Destination) throws AWTException {
 		page.HeadloadDestination.clear();
 		page.HeadloadDestination.sendKeys(Destination);

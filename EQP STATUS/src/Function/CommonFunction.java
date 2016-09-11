@@ -131,6 +131,30 @@ public class CommonFunction {
 		return cal.getTime();
 	}
 
+	public static Date getPrepopulatePlanDay(String terminalcd, Date CurrentTime, Date Planned_Delivery_DT)
+			throws ClassNotFoundException, SQLException {
+		Calendar cal = Calendar.getInstance();
+		if (Planned_Delivery_DT == null) {
+			Planned_Delivery_DT = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+			cal.setTime(Planned_Delivery_DT);
+			int day_of_week = cal.get(Calendar.DAY_OF_WEEK);
+			if (day_of_week == 1) {
+				cal.add(Calendar.DAY_OF_WEEK, 1);
+			} else if (day_of_week == 7) {
+				cal.add(Calendar.DAY_OF_WEEK, 2);
+			}
+			cal.set(Calendar.HOUR_OF_DAY, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
+
+		} else {
+			cal.setTime(Planned_Delivery_DT);
+		}
+
+		return cal.getTime();
+	}
+
 	public static Date getLocalTime(String terminal, Date Utctime) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn2 = DataConnection.getConnection();
@@ -209,6 +233,46 @@ public class CommonFunction {
 		ConvertedTime = cal.getTime();
 		return ConvertedTime;
 
+	}
+
+	public static ArrayList<Object> GetValidStatusTimeRange(Date CurrentTime, Date LastStatusTime, String ToStatus,
+			String Terminal) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn2 = DataConnection.getConnection();
+		String query2 = " Select future_dating_hours_qt,Past_Dating_Hours_QT from EQP.Equipment_Status_Type where Equipment_Status_Type_CD = ?";
+		PreparedStatement stat = conn2.prepareStatement(query2, ResultSet.TYPE_SCROLL_SENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		stat.setString(1, ToStatus);
+		ResultSet rs = stat.executeQuery();
+		rs.absolute(1);
+		int Future = rs.getInt("future_dating_hours_qt");
+		int Past = rs.getInt("Past_Dating_Hours_QT");
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn2 != null)
+			conn2.close();
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(getLocalTime(Terminal, CurrentTime));
+		cal.add(Calendar.HOUR_OF_DAY, Future);
+		cal.add(Calendar.MINUTE, 59);
+		Date Max = cal.getTime();
+		cal.setTime(getLocalTime(Terminal, CurrentTime));
+		cal.add(Calendar.HOUR_OF_DAY, -Past);
+		Date Min = cal.getTime();
+		Date LocalStatusTime = getLocalTime(Terminal, LastStatusTime);
+		if (Min.before(LocalStatusTime)) {
+			Min = LocalStatusTime;
+		}
+		SimpleDateFormat Message = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		ArrayList<Object> TimeRange = new ArrayList<Object>();
+		TimeRange.add(Max);
+		TimeRange.add(Min);
+		TimeRange.add(Message.format(Max));
+		TimeRange.add(Message.format(Min));
+		return TimeRange;
 	}
 
 	public static String addHyphenToPro(String PRONB) {

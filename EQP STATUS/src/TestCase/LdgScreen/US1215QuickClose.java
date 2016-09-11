@@ -104,7 +104,7 @@ public class US1215QuickClose {
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB),
+		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB),
 				" quick close screen prolist information is wrong");
 
 		// enter seal if it is empty
@@ -254,7 +254,7 @@ public class US1215QuickClose {
 
 		// CHECK PRO GRID IN QC SCREEN
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo, DataCommon.GetProList(SCAC, TrailerNB),
+		SAssert.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB),
 				" quick close screen prolist information is wrong");
 
 		// enter seal if it is empty

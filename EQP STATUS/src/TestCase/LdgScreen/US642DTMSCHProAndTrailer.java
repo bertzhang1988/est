@@ -180,7 +180,7 @@ public class US642DTMSCHProAndTrailer {
 
 		// check ldg pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(ProInfo2, DataCommon.GetProList(SCAC, TrailerNB), " ldg pro grid is wrong");
+		SAssert.assertEquals(ProInfo2, DataCommon.GetProListLD(SCAC, TrailerNB), " ldg pro grid is wrong");
 
 		// CHECK THE PRO IS IN SAME ORDER BEFORE LOBR
 		ArrayList<String> prolistafterlobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);

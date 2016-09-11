@@ -20,7 +20,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Data.DataForUS200068AndUS445;
 import Function.ConfigRd;
 import Page.EqpStatusPageS;
 
@@ -53,14 +52,14 @@ public class US200068AndUS445ValidateDestinationFacilityValid {
 
 	}
 
-	@Test(priority = 1, dataProvider = "2000.682", dataProviderClass = DataForUS200068AndUS445.class)
+	@Test(priority = 1, dataProvider = "2000.682", dataProviderClass = DataForReusableFunction.class)
 	public void EnterTrailerInLdgNoShipments(String terminalcd, String SCAC, String TrailerNB)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 	}
 
-	@Test(priority = 3, dataProvider = "2000.68", dataProviderClass = DataForUS200068AndUS445.class)
+	@Test(priority = 3, dataProvider = "2000.68", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidDestination(String Destination) throws AWTException {
 		page.DestinationField.clear();
 		page.DestinationField.sendKeys(Destination);
@@ -72,7 +71,7 @@ public class US200068AndUS445ValidateDestinationFacilityValid {
 				"Invalid Destination, please enter valid Destination."));
 	}
 
-	@Test(priority = 2, dataProvider = "2000.68", dataProviderClass = DataForUS200068AndUS445.class)
+	@Test(priority = 2, dataProvider = "2000.68", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidDestination(String Destination) throws AWTException {
 		page.DestinationField.clear();
 		page.DestinationField.sendKeys(Destination);
