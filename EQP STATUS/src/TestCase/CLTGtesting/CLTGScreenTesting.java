@@ -85,7 +85,7 @@ public class CLTGScreenTesting {
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataCommon.GetProListCLTG(SCAC, TrailerNB);
 		SA.assertEquals(ProInfo, ExpectedProInformation,
 				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
@@ -137,7 +137,7 @@ public class CLTGScreenTesting {
 		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataCommon.GetProListCLTG(SCAC, TrailerNB);
 		SA.assertEquals(ProInfo, ExpectedProInformation,
 				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");

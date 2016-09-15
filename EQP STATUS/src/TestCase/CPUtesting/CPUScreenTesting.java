@@ -71,7 +71,7 @@ public class CPUScreenTesting {
 		Date picker = page.GetDatePickerTime();
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
-
+		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -103,6 +103,17 @@ public class CPUScreenTesting {
 				SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
+
+		// 507.08
+		if (OldEqpStatusRecord.get(2) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
+					"Equipment_Dest_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(15) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
+					"Equipment_Origin_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(22) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "SCity_Route_NM not retain");
+
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		SA.assertEquals(NewEqp.get(0), Eqp.get(0), " eqp Mainframe_User_ID is wrong");
@@ -118,10 +129,10 @@ public class CPUScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, -59);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
-
+		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50))
@@ -145,6 +156,17 @@ public class CPUScreenTesting {
 				SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
+
+		// 507.08
+		if (OldEqpStatusRecord.get(2) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
+					"Equipment_Dest_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(15) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
+					"Equipment_Origin_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(22) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "SCity_Route_NM not retain");
+
 		SA.assertAll();
 	}
 
@@ -161,7 +183,7 @@ public class CPUScreenTesting {
 		Date picker = page.GetDatePickerTime();
 		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
 		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
-
+		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// alter time
 		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -193,6 +215,17 @@ public class CPUScreenTesting {
 				SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
+
+		// 507.08
+		if (OldEqpStatusRecord.get(2) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
+					"Equipment_Dest_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(15) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
+					"Equipment_Origin_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(22) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "SCity_Route_NM not retain");
+
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
@@ -208,10 +241,10 @@ public class CPUScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, -59);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 6);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
-
+		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50))
@@ -235,6 +268,17 @@ public class CPUScreenTesting {
 				SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
 			}
 		}
+
+		// 507.08
+		if (OldEqpStatusRecord.get(2) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
+					"Equipment_Dest_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(15) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
+					"Equipment_Origin_Facility_CD not retain");
+		if (OldEqpStatusRecord.get(22) != null)
+			SA.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "SCity_Route_NM not retain");
+
 		SA.assertAll();
 	}
 

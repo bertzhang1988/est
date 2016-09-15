@@ -455,7 +455,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		page.hlCancelButton.click();// click cancel
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 		// input cube if there is no cube value before
@@ -488,7 +488,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus

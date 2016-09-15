@@ -60,7 +60,7 @@ public class US100002InquiryScreen {
 		page = new EqpStatusPageS(driver);
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
-		page.SetTrailerInquiryScreen();
+		page.SetTerminalInquiryScreen();
 		builder = new Actions(driver);
 
 	}

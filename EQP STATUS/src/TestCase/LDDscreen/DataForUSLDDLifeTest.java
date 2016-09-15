@@ -30,6 +30,8 @@ public class DataForUSLDDLifeTest {
 			Query = DataCommon.query8;
 		} else if (m.getName().equalsIgnoreCase("NonLDDtrailerHasProSetldg")) {
 			Query = DataCommon.query7;
+		} else if (m.getName().contains("ToLDDtrailerHasProWithInvalidWeight")) {
+			Query = DataCommon.query64;
 		}
 
 		ArrayList<Object[]> b1 = new ArrayList<Object[]>();

@@ -61,7 +61,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -88,11 +88,13 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		Sassert.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(1), OldEqpStatusRecord.get(1), "Statusing_Facility_CD is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(3), "AUTUAD", "Source_Create_ID is wrong");
-		// orig and desti is keep
+		// orig and desti retain
 		Sassert.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
 				"equipment_dest_facility_cd is wrong");
 		Sassert.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
 				"equipment_origin_facility_CD is wrong");
+		// city route retain
+		Sassert.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "city_route_nm is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -111,7 +113,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 					"Waybill table Standard_Carrier_Alpha_CD is wrong " + CurrentPro);
 			Sassert.assertEquals(AfterADDWb.get(1), TrailerNB,
 					"Waybill table Equipment_Unit_NB is wrong " + CurrentPro);
-			Sassert.assertEquals(AfterADDWb.get(3), "LH.LDG", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
+			Sassert.assertEquals(AfterADDWb.get(3), "CL", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
 			for (int i = 9; i <= 9; i++) {
 				Date f = CommonFunction.SETtime((Date) AfterADDWb.get(i));
 				Sassert.assertTrue(Math.abs(f.getTime() - d.getTime()) < 120000,
@@ -170,7 +172,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -196,14 +198,20 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 
 		// eqps table
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(fromSCAC, fromTrailerNb);
-		Sassert.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
-		Sassert.assertEquals(NewEqpStatusRecord.get(1), OldEqpStatusRecord.get(1), "Statusing_Facility_CD is wrong");
-		Sassert.assertEquals(NewEqpStatusRecord.get(3), "AUTUAD", "Source_Create_ID is wrong");
-		// orig and desti keep
+		Sassert.assertEquals(NewEqpStatusRecord.get(0), "UAD",
+				"Equipment_Status_Type_CD is wrong" + fromSCAC + fromTrailerNb);
+		Sassert.assertEquals(NewEqpStatusRecord.get(1), OldEqpStatusRecord.get(1),
+				"Statusing_Facility_CD is wrong" + fromSCAC + fromTrailerNb);
+		Sassert.assertEquals(NewEqpStatusRecord.get(3), "AUTUAD",
+				"Source_Create_ID is wrong" + fromSCAC + fromTrailerNb);
+		// orig and desti retain
 		Sassert.assertEquals(NewEqpStatusRecord.get(2), OldEqpStatusRecord.get(2),
-				"equipment_dest_facility_cd is wrong");
+				"equipment_dest_facility_cd is wrong" + fromSCAC + fromTrailerNb);
 		Sassert.assertEquals(NewEqpStatusRecord.get(15), OldEqpStatusRecord.get(15),
-				"equipment_origin_facility_CD is wrong");
+				"equipment_origin_facility_CD is wrong" + fromSCAC + fromTrailerNb);
+		// city route retain
+		Sassert.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22),
+				"city_route_nm is wrong" + fromSCAC + fromTrailerNb);
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -221,7 +229,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 					"Waybill table Standard_Carrier_Alpha_CD is wrong " + CurrentPro);
 			Sassert.assertEquals(AfterADDWb.get(1), TrailerNB,
 					"Waybill table Equipment_Unit_NB is wrong " + CurrentPro);
-			Sassert.assertEquals(AfterADDWb.get(3), "LH.LDG", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
+			Sassert.assertEquals(AfterADDWb.get(3), "CL", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
 			for (int i = 9; i <= 9; i++) {
 				Date f = CommonFunction.SETtime((Date) AfterADDWb.get(i));
 				Sassert.assertTrue(Math.abs(f.getTime() - d.getTime()) < 120000,
@@ -280,7 +288,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -314,7 +322,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 					"Waybill table Standard_Carrier_Alpha_CD is wrong " + CurrentPro);
 			Sassert.assertEquals(AfterADDWb.get(1), TrailerNB,
 					"Waybill table Equipment_Unit_NB is wrong " + CurrentPro);
-			Sassert.assertEquals(AfterADDWb.get(3), "LH.LDG", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
+			Sassert.assertEquals(AfterADDWb.get(3), "CL", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
 			Date f = CommonFunction.SETtime((Date) AfterADDWb.get(9));
 			Sassert.assertTrue(Math.abs(f.getTime() - d.getTime()) < 120000,
 					"waybill table system_modify_ts " + f + "  " + d + "  " + "   " + CurrentPro);
@@ -371,7 +379,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -405,7 +413,7 @@ public class US51212AutoSetUnloadingTrailerFromCL {
 					"Waybill table Standard_Carrier_Alpha_CD is wrong " + CurrentPro);
 			Sassert.assertEquals(AfterADDWb.get(1), TrailerNB,
 					"Waybill table Equipment_Unit_NB is wrong " + CurrentPro);
-			Sassert.assertEquals(AfterADDWb.get(3), "LH.LDG", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
+			Sassert.assertEquals(AfterADDWb.get(3), "CL", "Waybill table Source_Modify_ID is wrong " + CurrentPro);
 			Date f = CommonFunction.SETtime((Date) AfterADDWb.get(9));
 			Sassert.assertTrue(Math.abs(f.getTime() - d.getTime()) < 120000,
 					"waybill table system_modify_ts " + f + "  " + d + "  " + "   " + CurrentPro);

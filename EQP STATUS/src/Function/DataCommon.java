@@ -804,6 +804,19 @@ public class DataCommon {
 			+ " and (sc.Shipment_Is_Cntry_Mismatch_IN = 'Y' AND f.Country_Abbreviated_NM = 'CAN' AND wdc.Pro_NB not in (Select wdc2.Pro_NB FROM EQP.Waybill_Delivery_Codeword wdc2 Where wdc.Pro_NB = wdc2.Pro_NB AND wdc2.Delivery_Codeword_CD in ('PARS','RCOD','RA49','SZCU','RCSA','CL')))"
 			+ " group by neqps.Statusing_Facility_CD,neqps.Standard_Carrier_Alpha_CD,neqps.Equipment_Unit_NB,neqps.Equipment_Status_Type_CD,f.Country_Abbreviated_NM order by newid()";
 
+	// can transition to ldd in ldd or ldg with pro has invalid weight
+	public static String query64 =
+
+			"select top 10 neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_Type_CD],neqps.Equipment_Status_TS,neqps.[Statusing_Facility_CD],neqps.Actual_Capacity_Consumed_PC,nEqps.Equipment_Dest_Facility_CD,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) AS AmountWeight,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC"
+					+ " from  [EQP].[Equipment_vw] eqp,[EQP].[Equipment_Availability_vw] eqpa,[EQP].[Equipment_Status_Type_Transition_vw] eqpst,EQP.Waybill_vw WB,(select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Status_TS,Equipment_Dest_Facility_CD,Actual_Capacity_Consumed_PC,Seal_NB,Headload_Dest_Facility_CD,Headload_Capacity_Consumed_PC"
+					+ " from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Actual_Capacity_Consumed_PC,eqps.Equipment_Dest_Facility_CD,eqps.Seal_NB,EQPS.Equipment_Status_TS,eqps.Headload_Dest_Facility_CD,eqps.Headload_Capacity_Consumed_PC,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
+					+ " where neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] and eqp.[Emergency_Repair_Due_IN]='n' and  eqp.Equipment_Type_NM in ('trailer','STRAIGHT TRUCK') and Neqps.Equipment_Dest_Facility_CD is not null"
+					+ " and eqpa.[Standard_Carrier_Alpha_CD]=eqp.[Standard_Carrier_Alpha_CD] and eqpa.[Equipment_Unit_NB]=eqp.[Equipment_Unit_NB]  and neqps.[Equipment_Status_Type_CD]=eqpst.[From_Equipment_Status_Type_CD] and eqpst.[To_Equipment_Status_Type_CD]='ldd' and neqps.[Equipment_Status_Type_CD]  in ('ldd','ldg')  "
+					+ " and [Equipment_Avbl_Status_NM]='available' and  neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] "
+					+ " and eqpa.M204_Occurrence_NB=(Select min(ea1.M204_Occurrence_NB) from EQP.Equipment_Availability_vw ea1  where ea1.Standard_Carrier_Alpha_CD=eqpa.Standard_Carrier_Alpha_CD and ea1.Equipment_unit_NB= eqpa.Equipment_Unit_NB)"
+					+ " and nEqps.Equipment_Unit_NB=wb.Equipment_Unit_NB  and nEqps.Standard_Carrier_Alpha_CD=wb.Standard_Carrier_Alpha_CD and (wb.Total_Actual_Weight_QT IN ( 0, 1) or wb.Total_Actual_Weight_QT is null)"
+					+ " group by neqps.Statusing_Facility_CD,neqps.Standard_Carrier_Alpha_CD,neqps.Actual_Capacity_Consumed_PC,neqps.Equipment_Unit_NB,neqps.Equipment_Status_Type_CD,neqps.Equipment_Dest_Facility_CD,neqps.Seal_NB,neqps.Equipment_Status_TS,neqps.Headload_Dest_Facility_CD,neqps.Headload_Capacity_Consumed_PC order by newid()";
+
 	public static LinkedHashSet<ArrayList<String>> GetProListLD(String SCAC, String TrailerNB)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1642,6 +1655,31 @@ public class DataCommon {
 		String query4 = " select wb.pro_nb from eqp.Waybill_vw wb where wb.Standard_Carrier_Alpha_CD ='" + SCAC
 				+ "'  and wb.Equipment_Unit_NB='" + TrailerNB
 				+ "' and wb.Waybill_Transaction_Type_NM <> 'LOADING' order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
+		ArrayList<String> d = new ArrayList<String>();
+		ResultSet rs = stat.executeQuery(query4);
+		while (rs.next()) {
+			String pro = rs.getString("PRO_NB");
+			d.add(pro);
+		}
+		if (rs != null)
+			rs.close();
+		if (stat != null)
+			stat.close();
+		if (conn4 != null)
+			conn4.close();
+
+		return d;
+
+	}
+
+	public static ArrayList<String> GetProHasInvalidWeightOnTrailer(String SCAC, String TrailerNB)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn4 = DataConnection.getConnection();
+		Statement stat = conn4.createStatement();
+		String query4 = " select wb.pro_nb from eqp.Waybill_vw wb where wb.Standard_Carrier_Alpha_CD ='" + SCAC
+				+ "'  and wb.Equipment_Unit_NB='" + TrailerNB
+				+ "' and (wb.Total_Actual_Weight_QT IN ( 0, 1) or wb.Total_Actual_Weight_QT is null) order by wb.Headload_IN desc,wb.Waybill_Transaction_End_TS,wb.pro_nb";
 		ArrayList<String> d = new ArrayList<String>();
 		ResultSet rs = stat.executeQuery(query4);
 		while (rs.next()) {

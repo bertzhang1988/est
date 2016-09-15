@@ -223,7 +223,7 @@ public class LDDTesting {
 		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
@@ -319,7 +319,7 @@ public class LDDTesting {
 		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter cube
@@ -398,7 +398,7 @@ public class LDDTesting {
 		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 
 		// enter seal

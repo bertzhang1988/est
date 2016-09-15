@@ -1179,6 +1179,49 @@ public class LDGTesting {
 		SAssert.assertAll();
 	}
 
+	@Test(priority = 16, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class, description = "can transit to ldg not in ldg and ldd with pro, lobr, enter a hl destination as same as destination ", groups = {
+			"ldg uc" })
+	public void SetTrailerToLDGWithProEnterHLDestinationSameAsDestionationIn4Blobr(String terminalcd, String SCAC,
+			String TrailerNB, Date MReqpst)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
+		SoftAssert SAssert = new SoftAssert();
+		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("UTC");
+		page.EnterTrailer(SCAC, TrailerNB);
+
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+
+		// check date&time pre populate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MReqpst);
+		SAssert.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
+
+		// check lobr pro grid
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
+		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
+		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+
+		// change destination
+		String changeDesti = page.ChangeDestiantion();
+
+		// enter cube
+		String NewCube = page.ChangeCube();
+
+		// enter hldestination same as destination
+		page.SetHLDest(page.DestinationField.getAttribute("value"));
+
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ErrorAndWarningField));
+		SAssert.assertEquals(page.ErrorAndWarningField.getText(),
+				"The trailer destination and headload destination must be different.");
+		page.hlCancelButton.click();
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+
+		SAssert.assertAll();
+	}
+
 	@AfterMethod(groups = { "ldg uc" })
 	public void getbackldg(ITestResult result) throws InterruptedException {
 		if (result.getStatus() == ITestResult.FAILURE) {

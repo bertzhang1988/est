@@ -96,7 +96,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		page.hlCancelButton.click();// click cancel
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -129,7 +129,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -185,7 +185,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		// navigate back to ldd screen
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -216,7 +216,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqpststus
@@ -289,7 +289,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		page.hlCancelButton.click();// click cancel
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -319,7 +319,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
@@ -379,7 +379,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		page.hlCancelButton.click();// click cancel
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -409,7 +409,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
@@ -476,7 +476,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "screen desti is wrong");
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar-spinner")));
 		// Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);
@@ -502,7 +502,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
@@ -570,7 +570,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "screen desti is wrong");
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -597,7 +597,7 @@ public class US607PromptHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus

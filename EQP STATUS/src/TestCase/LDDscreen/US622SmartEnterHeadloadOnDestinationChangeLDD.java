@@ -98,7 +98,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		// navigate back to ldd screen
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -130,7 +130,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		Thread.sleep(3000);
@@ -201,7 +201,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		page.hlCancelButton.click();// click cancel
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
@@ -232,7 +232,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
@@ -301,7 +301,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "screen desti is wrong");
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar-spinner")));
 		// Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);
@@ -327,7 +327,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListSecondForm));
+		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus

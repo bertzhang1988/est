@@ -241,7 +241,7 @@ public class EqpStatusPageS {
 	public WebElement SealField;
 
 	@FindBy(how = How.XPATH, using = ".//div[@label='Current PROs on trailer']/div/div/div[2]/div[2]/div")
-	public WebElement ProListSecondForm;
+	public WebElement ProListLDDForm;
 
 	@FindBy(how = How.XPATH, using = "//span[contains(text(), 'Comments ')]")
 	public WebElement CommentButton;
@@ -761,11 +761,13 @@ public class EqpStatusPageS {
 		}
 
 		if (handle.equalsIgnoreCase("headload")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
+			String originDestiantion = this.DestinationField.getAttribute("value");
+			String[] dest = { "270", "112", "841", "198", "135", "851" };
+			String hldesti = null;
+			do {
+				hldesti = dest[new Random().nextInt(dest.length)];
+			} while (hldesti.equalsIgnoreCase(originDestiantion));
 
-			int ran = new Random().nextInt(dest.length);
-			String changeDesti = dest[ran];
-			String hldesti = changeDesti;
 			this.HeadloadDestination.clear();
 			this.HeadloadDestination.sendKeys(hldesti);
 			builder.sendKeys(Keys.TAB).build().perform();
@@ -804,11 +806,13 @@ public class EqpStatusPageS {
 		}
 
 		if (handle.equalsIgnoreCase("headload")) {
-			String[] dest = { "270", "112", "841", "198", "135" };
+			String[] dest = { "270", "112", "841", "198", "135", "851" };
+			String originDestiantion = this.DestinationField.getAttribute("value");
+			String hldesti = null;
+			do {
+				hldesti = dest[new Random().nextInt(dest.length)];
+			} while (hldesti.equalsIgnoreCase(originDestiantion));
 
-			int ran = new Random().nextInt(dest.length);
-			String changeDesti = dest[ran];
-			String hldesti = changeDesti;
 			this.HeadloadDestination.clear();
 			this.HeadloadDestination.sendKeys(hldesti);
 			builder.sendKeys(Keys.TAB).build().perform();

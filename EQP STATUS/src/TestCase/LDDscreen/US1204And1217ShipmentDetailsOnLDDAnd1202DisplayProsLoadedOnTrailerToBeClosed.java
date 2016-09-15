@@ -82,7 +82,7 @@ public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerT
 		SA.assertEquals(picker, expect, "ldd screen prepopulate time is wrong ");
 
 		// check pro grid
-		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListSecondForm);
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), "prolist information is wrong");
 		SA.assertAll();
 	}
