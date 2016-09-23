@@ -211,6 +211,7 @@ public class DataForInQuiryScreen {
 				String Equipment_Sub_Type_NM = rs4.getString("Equipment_Sub_Type_NM");
 				e.add(Equipment_Sub_Type_NM);
 			}
+			rs4.close();
 			long diff = d.getTime() - Equipment_Status_TS.getTime();
 			long diffHours = diff / (60 * 60 * 1000);
 			String Hrs = Long.toString(diffHours);
@@ -229,6 +230,7 @@ public class DataForInQuiryScreen {
 				s.add(ServiceName);
 				s.removeAll(Collections.singleton(null));
 			}
+			rs5.close();
 			String SERV;
 			if (s.size() != 0) {
 				SERV = s.toString().replaceAll("[\\[\\] ]", "");
@@ -254,6 +256,8 @@ public class DataForInQuiryScreen {
 			a3.removeAll(Collections.singleton(null));
 			b3.add(a3);
 		}
+		stat2.close();
+		stat3.close();
 		if (rs3 != null)
 			rs3.close();
 		if (stat != null)
@@ -518,6 +522,8 @@ public class DataForInQuiryScreen {
 				String Equipment_Sub_Type_NM = rs4.getString("Equipment_Sub_Type_NM");
 				e.add(Equipment_Sub_Type_NM);
 			}
+			if (rs4 != null)
+				rs4.close();
 			long diff = d.getTime() - Equipment_Status_TS.getTime();
 			long diffHours = diff / (60 * 60 * 1000);
 			String Hrs = Long.toString(diffHours);
@@ -536,6 +542,8 @@ public class DataForInQuiryScreen {
 				s.add(ServiceName);
 				s.removeAll(Collections.singleton(null));
 			}
+			if (rs5 != null)
+				rs5.close();
 			String SERV;
 			if (s.size() != 0) {
 				SERV = s.toString().replaceAll("[\\[\\] ]", "");
@@ -562,6 +570,10 @@ public class DataForInQuiryScreen {
 		}
 		if (rs3 != null)
 			rs3.close();
+		if (stat != null)
+			stat.close();
+		if (stat2 != null)
+			stat2.close();
 		if (stat != null)
 			stat.close();
 		if (conn3 != null)
