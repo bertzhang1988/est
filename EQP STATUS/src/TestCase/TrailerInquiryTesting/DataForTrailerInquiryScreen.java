@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,12 +66,21 @@ public class DataForTrailerInquiryScreen {
 		String query3 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill_vw] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service_vw] ss,[EQP].[Shipment_Service_Sub_Type_vw] ssst"
 				+ " where wb.[Pro_NB]=wbs.[Pro_NB]  and wbs.[Service_CD]=ss.[Service_CD] and ss.[Shipment_Service_Sub_Type_NM]=ssst.[Shipment_Service_Sub_Type_NM]"
 				+ " and wb.Standard_Carrier_Alpha_CD= ? and  wb.Equipment_Unit_NB=?  and ss.[Shipment_Service_Type_NM]='SERV' order by ssst.[Display_Sequence_NB] ";
+		String query4 = "SELECT ESTGM.Equipment_Status_Type_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr_VW AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='INQUIRY_NO_TABULATE'";
 		PreparedStatement stat = conn1.prepareStatement(Query);
 		PreparedStatement stat2 = conn1.prepareStatement(query2);
 		PreparedStatement stat3 = conn1.prepareStatement(query3);
 		ArrayList<Object[]> b1 = new ArrayList<Object[]>();
 		String[] UseCityRouteAsDesti = { "CL", "CLTG", "OFD", "SPT", "CPU" };
-		String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR", "CLTG" };
+		// String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR"};
+		ArrayList<String> NonTabulatedStatus = new ArrayList<String>();
+		Statement st5 = conn1.createStatement();
+		ResultSet rs5 = st5.executeQuery(query4);
+		while (rs5.next()) {
+			NonTabulatedStatus.add(rs5.getString("Equipment_Status_Type_CD"));
+		}
+		rs5.close();
+		st5.close();
 		ResultSet rs1 = stat.executeQuery();
 		while (rs1.next()) {
 			ArrayList<Object> a1 = new ArrayList<Object>();
@@ -102,7 +112,7 @@ public class DataForTrailerInquiryScreen {
 			}
 			String Bills;
 			String WGT;
-			if (Arrays.asList(NonTabulated).contains(Equipment_Status_Type_CD)) {
+			if (NonTabulatedStatus.contains(Equipment_Status_Type_CD)) {
 				Bills = rs1.getString("Observed_Shipment_QT");
 				WGT = rs1.getString("Observed_Weight_QT");
 			} else {

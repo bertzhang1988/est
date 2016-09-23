@@ -31,8 +31,8 @@ public class DataForInQuiryScreen {
 		Connection conn1 = DataConnection.getConnection();
 		Statement stat = null;
 		stat = conn1.createStatement();
-		String query11 = " select  top 5 *  from EQP.facility_status_vw fs1, eqp.facility ef where fs1.facility_Status_Effective_DT=(select max(fs2.Facility_Status_Effective_DT) from EQP.facility_status_vw fs2 where fs1.Company_CD=fs2.Company_CD AND  fs1.Facility_CD=fs2.Facility_CD and fs1.company_cd in ('002','185')) "
-				+ " and (ltrim(fs1.facility_status_nm) in ('active','open 2wk') and  fs1.closed_in<>'y'  and ef.Facility_Type_NM   in ('port','railhead','terminal','rex salvage store','relay','breakbulk') ) and fs1.company_cd in ('002','185') and fs1.Company_CD=ef.Company_CD AND  fs1.Facility_CD=ef.Facility_CD  order by newid()";
+		String query11 = " select  top 20 *  from EQP.facility_status_vw fs1, eqp.facility ef where fs1.facility_Status_Effective_DT=(select max(fs2.Facility_Status_Effective_DT) from EQP.facility_status_vw fs2 where fs1.Company_CD=fs2.Company_CD AND  fs1.Facility_CD=fs2.Facility_CD and fs1.company_cd in ('002','185')) "
+				+ " and (ltrim(fs1.facility_status_nm) in ('active','open 2wk') and  fs1.closed_in<>'y'  and ef.Facility_Type_NM   in ('port','railhead','terminal','rex salvage store','relay','breakbulk') ) and fs1.company_cd in ('002','185') and fs1.Company_CD=ef.Company_CD AND  fs1.Facility_CD=ef.Facility_CD and fs1.Facility_CD  not in ('370') order by newid()";
 		ArrayList<String[]> b1 = new ArrayList<String[]>();
 		ResultSet rs1 = stat.executeQuery(query11);
 		while (rs1.next()) {
@@ -55,23 +55,48 @@ public class DataForInQuiryScreen {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn3 = DataConnection.getConnection();
 		Statement stat = conn3.createStatement();
-		String query3 = "Select neqps.Equipment_Status_Type_CD,count(case when EQP.equipment_Exterior_Length_QT<35 THEN 1  END) AS PUP,count(case when EQP.equipment_Exterior_Length_QT>=35 THEN 1  END) AS VAN"
-				+ " From (select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Dest_Facility_CD,Dispatch_Dest_Facility_CD from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Equipment_Dest_Facility_CD,eqps.Dispatch_Dest_Facility_CD,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc,eqps.M204_EQPSTAT_DTTMSP_TS) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
-				+ " , EQP.Equipment_vw eQP,[EQP].[Equipment_Availability_vw] eqpa WHERE  eqp.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and eqp.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] AND eqp.Equipment_Type_NM in ('trailer','STRAIGHT TRUCK')"
-				+ " and [Equipment_Avbl_Status_NM]='available' and  Neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and Neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB] "
+		String query3 = "select neqpss.Equipment_Status_Type_CD,count(case when neqpss.equipment_Exterior_Length_QT<35 THEN 1  END ) AS PUP,count(case when neqpss.equipment_Exterior_Length_QT>=35 THEN 1  END) AS VAN, sum(neqpss.Observed_Shipment_QT) as NTBLTAmountShipByStatus, sum(neqpss.AmountShip) as AmountShipByStatus from"
+				+ " (Select neqps.Equipment_Status_Type_CD,neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD],neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM ,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) as AmountWeight,Observed_Shipment_QT,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM"
+				+ " From (select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Dest_Facility_CD,City_Route_NM,[Equipment_Status_TS],[Equipment_Origin_Facility_CD],Observed_Shipment_QT,Dispatch_Dest_Facility_CD from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Equipment_Dest_Facility_CD,eqps.City_Route_NM,eqps.[Equipment_Status_TS],eqps.[Equipment_Origin_Facility_CD],eqps.Observed_Shipment_QT,eqps.Observed_Weight_QT,eqps.Dispatch_Dest_Facility_CD,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc,eqps.M204_EQPSTAT_DTTMSP_TS) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
+				+ " inner join EQP.Equipment_vw eqp on eqp.[Standard_Carrier_Alpha_CD]=neqps.[Standard_Carrier_Alpha_CD] and eqp.[Equipment_Unit_NB]=neqps.[Equipment_Unit_NB]"
+				+ " inner join [EQP].[Equipment_Availability_vw] eqpa on Neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and Neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB]"
+				+ " left join eqp.waybill_vw wb on Neqps.[Standard_Carrier_Alpha_CD]=wb.[Standard_Carrier_Alpha_CD] and Neqps.[Equipment_Unit_NB]=wb.[Equipment_Unit_NB]"
+				+ " WHERE  eqp.Equipment_Type_NM in ('trailer','STRAIGHT TRUCK') and [Equipment_Avbl_Status_NM]='available' AND Neqps.Equipment_Status_Type_CD IN (SELECT EQUIPMENT_STATUS_TYPE_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='TRAILERINQUIRY')"
 				+ " AND  eqpa.M204_Occurrence_NB=(Select min(ea1.M204_Occurrence_NB) from EQP.Equipment_Availability_vw ea1  where ea1.Standard_Carrier_Alpha_CD=eqpa.Standard_Carrier_Alpha_CD and ea1.Equipment_unit_NB= eqpa.Equipment_Unit_NB) "
 				+ " AND ((neqps.Statusing_Facility_CD = '" + terminal
-				+ "' and neqps.Equipment_Status_Type_CD <> 'ENR') or (neqps.Dispatch_Dest_Facility_CD = '" + terminal
-				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR')) AND Neqps.Equipment_Status_Type_CD IN (SELECT EQUIPMENT_STATUS_TYPE_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='TRAILERINQUIRY')  group by neqps.Equipment_Status_Type_CD Order by neqps.Equipment_Status_Type_CD";
+				+ "' and neqps.Equipment_Status_Type_CD <> 'ENR') or (Neqps.Dispatch_Dest_Facility_CD = '" + terminal
+				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR'))"
+				+ " group by neqps.Equipment_Status_Type_CD,neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT) neqpss"
+				+ " group by neqpss.Equipment_Status_Type_CD Order by neqpss.Equipment_Status_Type_CD ";
+
+		String query4 = "SELECT ESTGM.Equipment_Status_Type_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr_VW AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='INQUIRY_NO_TABULATE'";
+		ArrayList<String> NonTabulatedStatus = new ArrayList<String>();
+		Statement st5 = conn3.createStatement();
+		ResultSet rs5 = st5.executeQuery(query4);
+		while (rs5.next()) {
+			NonTabulatedStatus.add(rs5.getString("Equipment_Status_Type_CD"));
+		}
+		rs5.close();
+		st5.close();
 		ArrayList<ArrayList<String>> b3 = new ArrayList<ArrayList<String>>();
 		ResultSet rs3 = stat.executeQuery(query3);
 		while (rs3.next()) {
 			String Equipment_Status_Type_CD = rs3.getString("Equipment_Status_Type_CD");
+			String Status = CommonFunction.GetFullNameOfStatus(Equipment_Status_Type_CD);
+			String BILLS;
+			if (NonTabulatedStatus.contains(Equipment_Status_Type_CD)) {
+				BILLS = rs3.getString("NTBLTAmountShipByStatus");
+			} else {
+				BILLS = rs3.getString("AmountShipByStatus");
+			}
+			if (BILLS == null || BILLS.equals("0"))
+				BILLS = "";
 			String Pup = rs3.getString("PUP");
 			String Van = rs3.getString("VAN");
 			String schedule = String.valueOf((float) Integer.parseInt(Pup) / 2 + Integer.parseInt(Van));
 			ArrayList<String> a3 = new ArrayList<String>();
-			a3.add(Equipment_Status_Type_CD);
+			a3.add(Equipment_Status_Type_CD + " - " + Status);
+			a3.add(BILLS);
 			a3.add(schedule);
 			a3.add(Pup);
 			a3.add(Van);
@@ -97,12 +122,12 @@ public class DataForInQuiryScreen {
 				+ terminal + "' and neqps.Equipment_Status_Type_CD <> 'ENR') or (neqps.Dispatch_Dest_Facility_CD = '"
 				+ terminal
 				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR'))  AND Neqps.Equipment_Status_Type_CD IN (SELECT EQUIPMENT_STATUS_TYPE_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='TRAILERINQUIRY') Order by neqps.Equipment_Status_Type_CD";
-
 		ArrayList<String> d = new ArrayList<String>();
 		ResultSet rs = stat.executeQuery(query2);
 		while (rs.next()) {
 			String Equipment_Status_Type_CD = rs.getString("Equipment_Status_Type_CD");
-			d.add(Equipment_Status_Type_CD);
+			String Status = CommonFunction.GetFullNameOfStatus(Equipment_Status_Type_CD);
+			d.add(Equipment_Status_Type_CD + " - " + Status);
 		}
 		if (rs != null)
 			rs.close();
@@ -131,6 +156,7 @@ public class DataForInQuiryScreen {
 				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR'))   "
 				+ " group by neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT order by CASE neqps.Standard_Carrier_Alpha_CD WHEN 'rdwy' THEN 0  else 1 end, neqps.Standard_Carrier_Alpha_CD asc,neqps.[Equipment_Unit_NB] * 1 asc";
 
+		String query4 = "SELECT ESTGM.Equipment_Status_Type_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr_VW AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='INQUIRY_NO_TABULATE'";
 		String query9 = "select Equipment_Sub_Type_NM from eqp.Equipment_Sub_Type_vw where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ?";
 		String query11 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill_vw] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service_vw] ss,[EQP].[Shipment_Service_Sub_Type_vw] ssst"
 				+ " where wb.[Pro_NB]=wbs.[Pro_NB]  and wbs.[Service_CD]=ss.[Service_CD] and ss.[Shipment_Service_Sub_Type_NM]=ssst.[Shipment_Service_Sub_Type_NM]"
@@ -142,7 +168,15 @@ public class DataForInQuiryScreen {
 		PreparedStatement stat3 = conn3.prepareStatement(query11);
 		stat.setString(1, status);
 		String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT", "CPU" };
-		String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR", "CLTG" };
+		// String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR" };
+		ArrayList<String> NonTabulatedStatus = new ArrayList<String>();
+		Statement st6 = conn3.createStatement();
+		ResultSet rs6 = st6.executeQuery(query4);
+		while (rs6.next()) {
+			NonTabulatedStatus.add(rs6.getString("Equipment_Status_Type_CD"));
+		}
+		rs6.close();
+		st6.close();
 		ResultSet rs3 = stat.executeQuery();
 		while (rs3.next()) {
 			String SCAC = rs3.getString("Standard_Carrier_Alpha_CD");
@@ -158,7 +192,7 @@ public class DataForInQuiryScreen {
 			}
 			String Bills;
 			String WGT;
-			if (Arrays.asList(NonTabulated).contains(status)) {
+			if (NonTabulatedStatus.contains(status)) {
 				Bills = rs3.getString("Observed_Shipment_QT");
 				WGT = rs3.getString("Observed_Weight_QT");
 			} else {

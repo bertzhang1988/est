@@ -487,13 +487,13 @@ public class EqpStatusPageS {
 
 	public void SetLocation(String terminalcd) throws AWTException, InterruptedException {
 		Actions builder = new Actions(driver);
-		r = new Robot();
 		this.TerminalField.click();
 		this.TerminalField.clear();
 		this.TerminalField.sendKeys(terminalcd);
+		this.TerminalField.click();
 		// r.keyPress(KeyEvent..VK_TAB);
 		// r.keyRelease(KeyEvent.VK_TAB);
-		builder.sendKeys(Keys.TAB).build().perform();
+		builder.sendKeys(this.TerminalField, Keys.TAB).build().perform();
 		// this.Title.click();
 		Thread.sleep(1500);
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
@@ -1011,12 +1011,10 @@ public class EqpStatusPageS {
 	}
 
 	public LinkedHashSet<ArrayList<String>> GetProList(WebElement ProGrid) {
+		int baseRow = 31;
 		int line = ProGrid.findElements(By.xpath("div")).size();
-		// Set<ArrayList<String>> ProInfo= new HashSet<ArrayList<String>>(); //
-		// dont sort the pro list
-		LinkedHashSet<ArrayList<String>> ProInfo = new LinkedHashSet<ArrayList<String>>(); // sort
-																							// the
-																							// prolist
+		LinkedHashSet<ArrayList<String>> ProInfo = new LinkedHashSet<ArrayList<String>>();
+
 		for (int i = 1; i <= line; i++) {
 			String[] Proline1 = ArrayUtils
 					.remove(ProGrid.findElement(By.xpath("div[" + i + "]")).getText().split("\\n"), 0);
@@ -1025,7 +1023,7 @@ public class EqpStatusPageS {
 			ArrayList<String> e1 = new ArrayList<String>(Arrays.asList(Proline1));
 			ProInfo.add(e1);
 		}
-		if (line >= 31) {
+		if (line >= baseRow) {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			int additional = 31;
 			do {
@@ -1038,7 +1036,7 @@ public class EqpStatusPageS {
 					ArrayList<String> e1 = new ArrayList<String>(Arrays.asList(Proline1));
 					ProInfo.add(e1);
 				}
-			} while (additional > 31);
+			} while (additional > baseRow);
 			int Rest = ProGrid.findElements(By.xpath("div")).size();
 			for (int j = 1; j <= Rest; j++) {
 				String[] Proline1 = ArrayUtils

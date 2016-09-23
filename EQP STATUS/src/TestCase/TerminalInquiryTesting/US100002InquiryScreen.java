@@ -89,7 +89,8 @@ public class US100002InquiryScreen {
 			}
 			System.out.println("time of initial inquiry at facility level: " + terminal + "   "
 					+ (d2.getTime() - d.getTime() - 500) / 1000.0);
-			Assert.assertEquals(StatusList, ExpectedStatusList, "  " + ExpectedStatusList + " " + StatusList);
+			Assert.assertEquals(StatusList, ExpectedStatusList,
+					"\nexpected: " + ExpectedStatusList + " \nactual: " + StatusList + "\n");
 		} else {
 			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
@@ -115,17 +116,21 @@ public class US100002InquiryScreen {
 			for (int i = 1; i <= CountStatus; i++) {
 				String StatusName = page.IQStatusList
 						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status']")).getText();
-				String Schedules = page.IQStatusList
+				String Bills = page.IQStatusList
 						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status-stat']/div[1]/span"))
 						.getText();
-				String PUPS = page.IQStatusList
+				String Schedules = page.IQStatusList
 						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status-stat']/div[2]/span"))
 						.getText();
-				String VANS = page.IQStatusList
+				String PUPS = page.IQStatusList
 						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status-stat']/div[3]/span"))
+						.getText();
+				String VANS = page.IQStatusList
+						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status-stat']/div[4]/span"))
 						.getText();
 				ArrayList<String> A = new ArrayList<String>();
 				A.add(StatusName);
+				A.add(Bills);
 				A.add(Schedules);
 				A.add(PUPS);
 				A.add(VANS);
@@ -133,7 +138,8 @@ public class US100002InquiryScreen {
 			}
 			System.out.println("time of initial inquiry at facility level: " + terminal + "   "
 					+ (d2.getTime() - d.getTime() - 500) / 1000.0);
-			Assert.assertEquals(ExpectedStatusList, StatusList, "  " + ExpectedStatusList + " " + StatusList);
+			Assert.assertEquals(ExpectedStatusList, StatusList,
+					"\nexpected: " + ExpectedStatusList + "\nactual: " + StatusList + "\n");
 		} else {
 			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
@@ -157,6 +163,7 @@ public class US100002InquiryScreen {
 			for (int i = 1; i <= CountStatus; i++) {
 				String StatusName = page.IQStatusList
 						.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status']")).getText();
+				StatusName = CommonFunction.GetAbbreNameOfStatus(StatusName);
 				page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
 				Date d1 = CommonFunction.gettime("UTC");
 				WebElement TrailerGrid = page.IQStatusList.findElement(

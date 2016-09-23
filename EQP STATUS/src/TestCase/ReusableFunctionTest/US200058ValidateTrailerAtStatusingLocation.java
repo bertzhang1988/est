@@ -69,8 +69,9 @@ public class US200058ValidateTrailerAtStatusingLocation {
 			driver.findElement(By.linkText(SCACTrailer)).click();
 		} catch (Exception e) {
 		}
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"This trailer is located at #" + terminalcd + ""));
+		if (!terminalcd.equals("326"))
+			(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+					"This trailer is located at #" + terminalcd + ""));
 
 	}
 

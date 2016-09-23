@@ -15,6 +15,16 @@ import java.util.TimeZone;
 
 public class CommonFunction {
 
+	static String[][] Statuslist = { { "ARR", "LH Arrived Relay", "ARR - LH Arrived Relay" },
+			{ "ARV", "LH Arrived Dest", "ARV - LH Arrived Dest" },
+			{ "BOR", "Bad Order Requested", "BOR - Bad Order Requested" },
+			{ "CL", "City Loading", "CL - City Loading" }, { "CLTG", "City Closed", "CLTG - City Closed" },
+			{ "CPU", "City Pickup", "CPU - City Pickup" }, { "ENR", "Enroute", "ENR - Enroute" },
+			{ "LDD", "Linehaul Closed", "LDD - Linehaul Closed" },
+			{ "LDG", "Linehaul Loading", "LDG - Linehaul Loading" }, { "MTY", "Empty", "MTY - Empty" },
+			{ "OFD", "Out for Delivery", "OFD - Out for Delivery" }, { "SPT", "Spotted", "SPT - Spotted" },
+			{ "UAD", "Unloading", "UAD - Unloading" } };
+
 	public static int CheckProPattern(String pronumber) {
 		String ProNumberPattern = "(\\d{9}.)";
 		if (pronumber.matches(ProNumberPattern)) {
@@ -45,6 +55,27 @@ public class CommonFunction {
 			return 1;
 		}
 
+	}
+
+	public static String GetFullNameOfStatus(String Status) {
+		String FullName = null;
+		for (String[] list : Statuslist) {
+			if (Status.equalsIgnoreCase(list[0]))
+				FullName = list[1];
+		}
+
+		return FullName;
+	}
+
+	public static String GetAbbreNameOfStatus(String Status) {
+
+		String AbbrevateName = null;
+		for (String[] list : Statuslist) {
+			if (Status.equalsIgnoreCase(list[2]))
+				AbbrevateName = list[0];
+		}
+
+		return AbbrevateName;
 	}
 
 	public static int CheckCubePattern(String Cube) {
