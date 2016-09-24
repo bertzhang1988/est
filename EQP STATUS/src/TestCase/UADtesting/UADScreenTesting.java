@@ -70,7 +70,7 @@ public class UADScreenTesting {
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", " Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
