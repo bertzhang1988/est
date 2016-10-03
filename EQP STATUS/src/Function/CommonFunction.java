@@ -23,7 +23,7 @@ public class CommonFunction {
 			{ "LDD", "Linehaul Closed", "LDD - Linehaul Closed" },
 			{ "LDG", "Linehaul Loading", "LDG - Linehaul Loading" }, { "MTY", "Empty", "MTY - Empty" },
 			{ "OFD", "Out for Delivery", "OFD - Out for Delivery" }, { "SPT", "Spotted", "SPT - Spotted" },
-			{ "UAD", "Unloading", "UAD - Unloading" } };
+			{ "UAD", "Unloading", "UAD - Unloading" }, { "STOR", "Storage", "STOR - Storage" } };
 
 	public static int CheckProPattern(String pronumber) {
 		String ProNumberPattern = "(\\d{9}.)";

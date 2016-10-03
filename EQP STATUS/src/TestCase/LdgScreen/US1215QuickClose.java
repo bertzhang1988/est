@@ -11,6 +11,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -24,6 +25,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS1215;
+import Data.DataForUS439;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
@@ -289,4 +291,122 @@ public class US1215QuickClose {
 		SAssert.assertAll();
 	}
 
+	@Test(priority = 3, dataProvider = "ldgscreen", dataProviderClass = DataForUSLDGLifeTest.class)
+	public void VerifyMasterRevenueValidationToLDGTrailerWithoutPro(String terminalcd, String SCAC, String TrailerNB,
+			Date MRST) throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
+		page.SetLocation(terminalcd);
+		page.EnterTrailer(SCAC, TrailerNB);
+
+		// ADD MR PRO
+		ArrayList<String> MRprolist = DataForUS439.Getpro1("mr", SCAC, TrailerNB);
+		for (int i = 0; i < 2; i++) {
+			page.RemoveProButton.click();
+			String pro = MRprolist.get(i);
+			page.EnterPro(pro);
+			int NEW = page.AddProForm.findElements(By.xpath("div")).size();
+			// change cube
+			int Ran = (int) (Math.random() * 99) + 1;
+			String NewCube = Integer.toString(Ran);
+			page.SetCube(NewCube);
+			page.SubmitAndCloseOutButton.click();
+			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
+			try {
+				(new WebDriverWait(driver, 20))
+						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
+			} catch (Exception e) {
+				System.out.println("mr pro is not working as expectation" + pro);
+			}
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+					"Remove invalid pros and choose Submit & Close Out again"));
+			// wait other error message gone
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			page.CheckAllAddProButton.click();
+			page.RemoveProButton.click();
+		}
+
+		// ADD SU PRO
+		ArrayList<String> SUprolist = DataForUS439.Getpro1("SU", SCAC, TrailerNB);
+		for (int i = 0; i < 2; i++) {
+			page.RemoveProButton.click();
+			String pro = SUprolist.get(i);
+			page.EnterPro(pro);
+			int NEW = page.AddProForm.findElements(By.xpath("div")).size();
+			// change cube
+			int Ran = (int) (Math.random() * 99) + 1;
+			String NewCube = Integer.toString(Ran);
+			page.SetCube(NewCube);
+			page.SubmitAndCloseOutButton.click();
+			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
+			try {
+				(new WebDriverWait(driver, 20))
+						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
+			} catch (Exception e) {
+				System.out.println("su pro is not working as expectation" + pro);
+			}
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+					"Remove invalid pros and choose Submit & Close Out again"));
+			// wait other error message gone
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			page.CheckAllAddProButton.click();
+			page.RemoveProButton.click();
+		}
+
+		// ADD VO PRO
+		ArrayList<String> VOprolist = DataForUS439.Getpro1("VO", SCAC, TrailerNB);
+		for (int i = 0; i < 2; i++) {
+			page.RemoveProButton.click();
+			String pro = VOprolist.get(i);
+			page.EnterPro(pro);
+			int NEW = page.AddProForm.findElements(By.xpath("div")).size();
+			// change cube
+			int Ran = (int) (Math.random() * 99) + 1;
+			String NewCube = Integer.toString(Ran);
+			page.SetCube(NewCube);
+			page.SubmitAndCloseOutButton.click();
+			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
+			try {
+				(new WebDriverWait(driver, 20))
+						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
+			} catch (Exception e) {
+				System.out.println("vo pro is not working as expectation" + pro);
+			}
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+					"Remove invalid pros and choose Submit & Close Out again"));
+			// wait other error message gone
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			page.CheckAllAddProButton.click();
+			page.RemoveProButton.click();
+		}
+
+		// ADD PRO already delivered.
+		ArrayList<String> Dprolist = DataForUS439.Getpro1("", SCAC, TrailerNB);
+		for (int i = 0; i < 2; i++) {
+			page.RemoveProButton.click();
+			String pro = Dprolist.get(i);
+			page.EnterPro(pro);
+			int NEW = page.AddProForm.findElements(By.xpath("div")).size();
+			// change cube
+			int Ran = (int) (Math.random() * 99) + 1;
+			String NewCube = Integer.toString(Ran);
+			page.SetCube(NewCube);
+			page.SubmitAndCloseOutButton.click();
+			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
+			try {
+				(new WebDriverWait(driver, 20))
+						.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
+			} catch (Exception e) {
+				System.out.println("already delivered pro is not working as expectation" + pro);
+			}
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+					"Remove invalid pros and choose Submit & Close Out again"));
+			// wait other error message gone
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			page.CheckAllAddProButton.click();
+			page.RemoveProButton.click();
+		}
+	}
 }

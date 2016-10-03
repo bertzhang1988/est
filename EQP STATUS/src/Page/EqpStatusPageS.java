@@ -474,6 +474,8 @@ public class EqpStatusPageS {
 			FullStatusName = "OFD - Out for Delivery";
 		} else if (status.equalsIgnoreCase("uad")) {
 			FullStatusName = "UAD - Unloading";
+		} else if (status.equalsIgnoreCase("STOR")) {
+			FullStatusName = "STOR - Storage";
 		}
 		(new WebDriverWait(driver, 2))
 				.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(FullStatusName)));

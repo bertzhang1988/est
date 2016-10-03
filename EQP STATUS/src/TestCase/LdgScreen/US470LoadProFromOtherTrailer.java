@@ -48,8 +48,6 @@ public class US470LoadProFromOtherTrailer {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 1; j++) {
 			String CurrentPro = PROInformation.get(j).get(0);
-			String FromSCAC = PROInformation.get(j).get(1);
-			String FromTrailerNB = PROInformation.get(j).get(2);
 			page.EnterPro(CurrentPro);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW1+"]/div/div/div/div")).click();
@@ -58,7 +56,6 @@ public class US470LoadProFromOtherTrailer {
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
-			Date today = CommonFunction.getDay(d);
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 			(new WebDriverWait(driver, 80))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
@@ -140,8 +137,6 @@ public class US470LoadProFromOtherTrailer {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 1; j++) {
 			String CurrentPro = PROInformation.get(j).get(0);
-			String FromSCAC = PROInformation.get(j).get(1);
-			String FromTrailerNB = PROInformation.get(j).get(2);
 			page.EnterPro(CurrentPro);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW1+"]/div/div/div/div")).click();
@@ -152,8 +147,8 @@ public class US470LoadProFromOtherTrailer {
 			// click submit
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
-			Date today = CommonFunction.getDay(d);
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+			(new WebDriverWait(driver, 50))
+					.until(ExpectedConditions.textToBePresentInElement(page.AlertMessage, "Verification"));
 			(new WebDriverWait(driver, 80))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			(new WebDriverWait(driver, 50))
@@ -234,8 +229,6 @@ public class US470LoadProFromOtherTrailer {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 1; j++) {
 			String CurrentPro = PROInformation.get(j).get(0);
-			String FromSCAC = PROInformation.get(j).get(1);
-			String FromTrailerNB = PROInformation.get(j).get(2);
 			page.EnterPro(CurrentPro);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW1+"]/div/div/div/div")).click();
@@ -244,7 +237,6 @@ public class US470LoadProFromOtherTrailer {
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
-			Date today = CommonFunction.getDay(d);
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 			(new WebDriverWait(driver, 80))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
@@ -326,8 +318,6 @@ public class US470LoadProFromOtherTrailer {
 		page.RemoveProButton.click();
 		for (int j = 0; j < 1; j++) {
 			String CurrentPro = PROInformation.get(j).get(0);
-			String FromSCAC = PROInformation.get(j).get(1);
-			String FromTrailerNB = PROInformation.get(j).get(2);
 			page.EnterPro(CurrentPro);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
 			// page.AddProCheckBoxList.findElement(By.xpath("div["+NEW1+"]/div/div/div/div")).click();
@@ -336,7 +326,7 @@ public class US470LoadProFromOtherTrailer {
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
-			Date today = CommonFunction.getDay(d);
+
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 			(new WebDriverWait(driver, 80))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));

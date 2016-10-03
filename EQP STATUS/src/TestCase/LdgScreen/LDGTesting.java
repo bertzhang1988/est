@@ -85,7 +85,7 @@ public class LDGTesting {
 		page.SubmitButton1.click();
 
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
 		(new WebDriverWait(driver, 50))
@@ -144,7 +144,7 @@ public class LDGTesting {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
 		(new WebDriverWait(driver, 50))
@@ -203,7 +203,6 @@ public class LDGTesting {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
@@ -752,7 +751,6 @@ public class LDGTesting {
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80))
@@ -822,7 +820,7 @@ public class LDGTesting {
 
 		// check pro grid in ldg screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
-		SAssert.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo1, "pro grid is wrong");
+		SAssert.assertEquals(ProInfo1, DataCommon.GetProListLD(SCAC, TrailerNB), "pro grid is wrong");
 		SAssert.assertAll();
 	}
 
@@ -1231,6 +1229,7 @@ public class LDGTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
+			driver.navigate().refresh();
 			page.SetStatus("ldg");
 		}
 	}

@@ -104,7 +104,6 @@ public class CLScreenTesting {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 50))
@@ -552,7 +551,7 @@ public class CLScreenTesting {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 50))
@@ -700,8 +699,8 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2,
-				"cl screen pro grid is wrong /n" + ProInfo2 + "/n" + DataCommon.GetProListCL(SCAC, TrailerNB));
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB),
+				"cl screen pro grid is wrong \n" + ProInfo2 + "\n" + DataCommon.GetProListCL(SCAC, TrailerNB));
 		SA.assertAll();
 	}
 
@@ -812,7 +811,7 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB), "cl screen pro grid is wrong");
 
 		SA.assertAll();
 	}
@@ -924,7 +923,7 @@ public class CLScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProListCL(SCAC, TrailerNB), ProInfo2, "pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB), "pro grid is wrong");
 
 		SA.assertAll();
 
@@ -1195,7 +1194,7 @@ public class CLScreenTesting {
 		// click submit
 		page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,

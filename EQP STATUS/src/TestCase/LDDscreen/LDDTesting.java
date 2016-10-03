@@ -134,7 +134,7 @@ public class LDDTesting {
 
 	}
 
-	@Test(priority = 2, dataProvider = "lddscreen", dataProviderClass = DataForUSLDDLifeTest.class, description = "non ldd and non ldg")
+	@Test(priority = 2, dataProvider = "lddscreen", dataProviderClass = DataForUSLDDLifeTest.class, description = "non ldd and non ldg, two button lobr")
 	public void NonLDDtrailerHasProSetldg(String terminalcd, String SCAC, String TrailerNB, Date MReqpst)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException, ParseException {
 		SoftAssert SAssert = new SoftAssert();
@@ -154,18 +154,16 @@ public class LDDTesting {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SAssert.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), " lobr pro grid is wrong");
 
-		// change destination
-		String changeDesti = page.ChangeDestiantion();
-
-		// enter cube
-		String NewCube = page.ChangeCube();
-
-		// alter time
+		// alter time, for this case the this time did nothing
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
+		// page.LobrCancelButton.click();
+		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		// get status information
+		ArrayList<Object> oldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// handle lobr pro
-		String[] handleLobrPro = { "headload", "leaveON", "allshort", "dock" };
+		String[] handleLobrPro = { "allshort", "dock" };
 		int ran1 = new Random().nextInt(handleLobrPro.length);
 		page.HandleLOBRproAll(handleLobrPro[ran1]);
 		Date d = CommonFunction.gettime("UTC");
@@ -173,25 +171,43 @@ public class LDDTesting {
 		// Assert.assertEquals(page.LeftoverBillForm.findElements(By.xpath("div")).size(),
 		// 0);
 		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
-		for (int i = 5; i <= 8; i++) {
-			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
-			if (i == 7) {
-				SAssert.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
-						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
-			} else {
-				SAssert.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
-			}
+		SAssert.assertEquals(NewEqpStatusRecord, oldEqpStatusRecord, "status changed");
+		Thread.sleep(3000);
+		// CHECK WAYBILL
+		for (String RemovedPro : ProOnTrailer) {
+			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(0) == null, "waybill scac is wrong  " + RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(1) == null, "waybill equipment_unit_nb is wrong  " + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(3), "LOBR", "waybill source_modify_id is wrong  " + RemovedPro);
+			// SA.assertEquals(AfterRemoveWb.get(7),BeforeRemoveWb.get(7),""+RemovedPro+"
+			// Create_TS is wrong");
+			// SA.assertEquals(AfterRemoveWb.get(8),BeforeRemoveWb.get(8),""+RemovedPro+"
+			// System_Insert_TS is wrong");
+			Date f = CommonFunction.SETtime((Date) AfterRemoveWb.get(9));
+			SAssert.assertTrue(Math.abs(f.getTime() - d.getTime()) < 120000,
+					"waybill table waybill system_modify_ts  " + f + "  " + d + "  " + "   " + RemovedPro);
+			// SA.assertEquals(AfterRemoveWb.get(12),BeforeRemoveWb.get(12),"waybill
+			// table record_key is wrong "+RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(13) == null, "waybill  From_Facility_CD is wrong" + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(14), terminalcd, "waybill To_Facility_CD is wrong" + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(15), SCAC,
+					"waybill  From_Standard_Carrier_Alpha_CD is wrong" + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(16), TrailerNB,
+					"waybill  From_Equipment_Unit_NB is wrong" + RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(17) == null,
+					"waybill  To_Standard_Carrier_Alpha_CD is wrong" + RemovedPro);
+			SAssert.assertTrue(AfterRemoveWb.get(18) == null, "waybill  To_Equipment_Unit_NB is wrong" + RemovedPro);
+			SAssert.assertEquals(AfterRemoveWb.get(20), "UNLOADING",
+					"waybill  Waybill_Transaction_Type_NM is wrong" + RemovedPro);
+			Date f1 = CommonFunction.SETtime((Date) AfterRemoveWb.get(11));
+			SAssert.assertTrue(Math.abs(f1.getTime() - d.getTime()) < 120000,
+					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
 		SAssert.assertAll();
 	}

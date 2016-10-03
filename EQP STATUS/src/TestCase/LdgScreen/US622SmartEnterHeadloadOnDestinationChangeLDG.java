@@ -126,11 +126,12 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 36);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.AddProForm));
+		Thread.sleep(8000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd
@@ -237,14 +238,14 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AddProForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-
+		Thread.sleep(5000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd IS WRONG"); // equipment_dest_facility_cd
@@ -316,12 +317,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		// repull the trailer
 		page.EnterTrailer(SCAC, TrailerNB);
 		// change destination
-		String[] dest = { "851", "112", "841", "270", "198", "135" };
-		int ran = new Random().nextInt(dest.length);
-		String changeDesti = dest[ran];
-		while (changeDesti.equalsIgnoreCase(OrgiDesti)) {
-			changeDesti = dest[new Random().nextInt(dest.length)];
-		}
+		String changeDesti = page.ChangeDestiantion();
 		page.SetDestination(changeDesti);
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
@@ -347,12 +343,12 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AddProForm));
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd
@@ -484,13 +480,14 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		Thread.sleep(5000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd

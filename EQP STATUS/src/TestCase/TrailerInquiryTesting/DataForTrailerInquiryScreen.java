@@ -61,6 +61,8 @@ public class DataForTrailerInquiryScreen {
 			Query = DataCommon.query60;
 		} else if (m.getName().contains("sptTrailerWithPro")) {
 			Query = DataCommon.query61;
+		} else if (m.getName().contains("storTrailerWithoutPro")) {
+			Query = DataCommon.query68;
 		}
 		String query2 = "select Equipment_Sub_Type_NM from eqp.Equipment_Sub_Type_vw where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ?";
 		String query3 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill_vw] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service_vw] ss,[EQP].[Shipment_Service_Sub_Type_vw] ssst"
@@ -90,16 +92,14 @@ public class DataForTrailerInquiryScreen {
 			a1.add(TrailerNB);
 			String Equipment_Status_Type_CD = rs1.getString("Equipment_Status_Type_CD");
 
-			String Statusing_Facility_CD;
-			if (Equipment_Status_Type_CD.equalsIgnoreCase("ENR"))
-				Statusing_Facility_CD = rs1.getString("Dispatch_Dest_Facility_CD");
-			else
-				Statusing_Facility_CD = rs1.getString("Statusing_Facility_CD");
+			String Statusing_Facility_CD = rs1.getString("Statusing_Facility_CD");
 			Timestamp Equipment_Status_TS = rs1.getTimestamp("Equipment_Status_TS");
+
 			String StatusTime = DataForInQuiryScreen
 					.ConvertStatusTime(CommonFunction.getLocalTime(Statusing_Facility_CD, Equipment_Status_TS));
 			String equipment_origin_facility_CD = rs1.getString("equipment_origin_facility_CD");
-
+			if (Equipment_Status_Type_CD.equalsIgnoreCase("ENR"))
+				Statusing_Facility_CD = rs1.getString("Dispatch_Dest_Facility_CD");
 			String Dest;
 			if (Arrays.asList(UseCityRouteAsDesti).contains(Equipment_Status_Type_CD)) {
 				String City_Route_NM = rs1.getString("City_Route_NM");

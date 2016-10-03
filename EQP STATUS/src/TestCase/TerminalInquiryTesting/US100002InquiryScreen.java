@@ -174,13 +174,16 @@ public class US100002InquiryScreen {
 				Date d2 = CommonFunction.gettime("UTC");
 				// (new WebDriverWait(driver,
 				// 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
-
 				int TrailerLine = TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']")).size();
 				List<ArrayList<String>> TrailerInformation = new ArrayList<ArrayList<String>>();
 				for (int j = 1; j <= TrailerLine; j++) {
 					String[] OneTrailerInoformation = TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']"))
 							.get(j - 1).getText().split("\\n");
 					ArrayList<String> e = new ArrayList<String>(Arrays.asList(OneTrailerInoformation));
+
+					/* dont check Hrs for ENR trailer */
+					if (StatusName.equalsIgnoreCase("enr"))
+						e.remove(e.size() - 1);
 					TrailerInformation.add(e);
 				}
 
@@ -328,6 +331,7 @@ public class US100002InquiryScreen {
 					wait.until(ExpectedConditions.visibilityOf(page.FileterField));
 				}
 				jse.executeScript("arguments[0].scrollIntoView(true);", page.TrailerLengthFileterButton);
+				Thread.sleep(500);
 				page.TrailerLengthFileterField.findElement(By.cssSelector("button[label='Unselect All']")).click();// unselect
 																													// all
 				List<WebElement> AllLengthItem = page.TrailerLengthFileterField
@@ -348,6 +352,7 @@ public class US100002InquiryScreen {
 				for (int i = 1; i <= CountStatus; i++) {
 					String StatusName = page.IQStatusList
 							.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status']")).getText();
+					StatusName = CommonFunction.GetAbbreNameOfStatus(StatusName);
 					jse.executeScript("arguments[0].scrollIntoView(false);",
 							page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")));
 					page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
@@ -366,6 +371,9 @@ public class US100002InquiryScreen {
 						String[] OneTrailerInoformation = TrailerGrid
 								.findElements(By.xpath("div[@class='ui-grid-row']")).get(j - 1).getText().split("\\n");
 						ArrayList<String> e = new ArrayList<String>(Arrays.asList(OneTrailerInoformation));
+						/* dont check Hrs for ENR trailer */
+						if (StatusName.equalsIgnoreCase("enr"))
+							e.remove(e.size() - 1);
 						TrailerInformation.add(e);
 					}
 					LinkedHashSet<ArrayList<String>> ExpectedTrailerInformation = DataForInQuiryScreen
@@ -383,6 +391,7 @@ public class US100002InquiryScreen {
 				wait.until(ExpectedConditions.visibilityOf(page.FileterField));
 			}
 			jse.executeScript("arguments[0].scrollIntoView(true);", page.TrailerLengthFileterButton);
+			Thread.sleep(500);
 			page.TrailerLengthFileterField.findElement(By.cssSelector("button[label='Unselect All']")).click();
 
 			// check sub type filter
@@ -392,6 +401,8 @@ public class US100002InquiryScreen {
 					page.FilterButton.click();
 					wait.until(ExpectedConditions.visibilityOf(page.FileterField));
 				}
+				jse.executeScript("arguments[0].scrollIntoView(true);", page.SubTypeFileterField);
+				Thread.sleep(500);
 				page.SubTypeFileterField.findElement(By.cssSelector("button[label='Unselect All']")).click();
 				List<WebElement> AllLengthItem = page.SubTypeFileterField.findElements(By.tagName("yrc-checkbox"));
 				int Ran = (int) (Math.random() * (AllLengthItem.size() - 1)) + 1;
@@ -411,6 +422,7 @@ public class US100002InquiryScreen {
 				for (int i = 1; i <= CountStatus; i++) {
 					String StatusName = page.IQStatusList
 							.findElement(By.xpath("div[" + i + "]//div[@class='trailer-inquiry-status']")).getText();
+					StatusName = CommonFunction.GetAbbreNameOfStatus(StatusName);
 					jse.executeScript("arguments[0].scrollIntoView(false);",
 							page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")));
 					page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
@@ -430,6 +442,9 @@ public class US100002InquiryScreen {
 						String[] OneTrailerInoformation = TrailerGrid
 								.findElements(By.xpath("div[@class='ui-grid-row']")).get(j - 1).getText().split("\\n");
 						ArrayList<String> e = new ArrayList<String>(Arrays.asList(OneTrailerInoformation));
+						/* dont check Hrs for ENR trailer */
+						if (StatusName.equalsIgnoreCase("enr"))
+							e.remove(e.size() - 1);
 						TrailerInformation.add(e);
 					}
 					LinkedHashSet<ArrayList<String>> ExpectedTrailerInformation = DataForInQuiryScreen
@@ -446,6 +461,7 @@ public class US100002InquiryScreen {
 				page.FilterButton.click();
 				wait.until(ExpectedConditions.visibilityOf(page.FileterField));
 			}
+			Thread.sleep(500);
 			page.SubTypeFileterField.findElement(By.cssSelector("button[label='Unselect All']")).click();
 		} else {
 			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(

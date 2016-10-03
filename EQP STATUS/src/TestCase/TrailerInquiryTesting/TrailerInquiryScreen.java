@@ -68,13 +68,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -95,13 +95,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -122,13 +122,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -149,13 +149,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -176,13 +176,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -203,13 +203,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -230,13 +230,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -257,13 +257,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -284,13 +284,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -311,13 +311,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -338,13 +338,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -365,13 +365,13 @@ public class TrailerInquiryScreen {
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 
@@ -382,7 +382,7 @@ public class TrailerInquiryScreen {
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date d = CommonFunction.gettime("UTC");
 
-		// get hours
+		// get hours HRS for enr just show blank
 
 		if (!TrailerInformation.get(2).equalsIgnoreCase("enr")) {
 			long diff = d.getTime() - Mrst.getTime();
@@ -390,17 +390,45 @@ public class TrailerInquiryScreen {
 			String Hrs = Long.toString(diffHours);
 			TrailerInformation.add(Hrs);
 		}
-		// check trailer grid
+		// check trailer grid (FOR ENR STATUS TIME STILL USE STATUSING LOCATION,
+		// TERMINAL USE DISPATCH DESTINATION)
 		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
 		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
 		SA.assertEquals(TrailerGrid, TrailerInformation,
-				"trailer grid is wrong\n" + TrailerGrid + "\n" + TrailerInformation + "\n");
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
-				"Pro grid is wrong \n" + GetProGrid + "\n" + ExpectedProGrid + "\n");
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
+		SA.assertAll();
+	}
+
+	@Test(priority = 14, dataProvider = "TrailerInquiry", dataProviderClass = DataForTrailerInquiryScreen.class)
+	public void storTrailerWithoutPro(String SCAC, String TrailerNB, ArrayList<String> TrailerInformation, Date Mrst)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+		SoftAssert SA = new SoftAssert();
+		page.EnterTrailer(SCAC, TrailerNB);
+		Date d = CommonFunction.gettime("UTC");
+
+		// get hours
+		long diff = d.getTime() - Mrst.getTime();
+		long diffHours = diff / (60 * 60 * 1000);
+		String Hrs = Long.toString(diffHours);
+		TrailerInformation.add(Hrs);
+
+		// check trailer grid
+		String[] Trailerline1 = page.TIQtrailerGrid.getText().split("\\n");
+		ArrayList<String> TrailerGrid = new ArrayList<String>(Arrays.asList(Trailerline1));
+		SA.assertEquals(TrailerGrid, TrailerInformation,
+				"trailer grid is wrong\nACTUAL:" + TrailerGrid + "\nEXPECT:" + TrailerInformation + "\n");
+
+		// check pro grid
+		LinkedHashSet<ArrayList<String>> GetProGrid = page.GetProListInInquiryScreen(page.TIQProGrid);
+		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
+		SA.assertEquals(GetProGrid, ExpectedProGrid,
+				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
 		SA.assertAll();
 	}
 

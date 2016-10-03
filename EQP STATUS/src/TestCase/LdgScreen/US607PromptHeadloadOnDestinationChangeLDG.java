@@ -127,7 +127,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -202,11 +202,12 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 55);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.AddProForm));
+		Thread.sleep(5000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd
@@ -415,7 +416,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
@@ -526,13 +527,14 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AddProForm));
 		(new WebDriverWait(driver, 50))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		Thread.sleep(5000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd
@@ -642,7 +644,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -769,7 +771,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -891,11 +893,12 @@ public class US607PromptHeadloadOnDestinationChangeLDG {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -3);
+		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
 		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		Thread.sleep(5000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd

@@ -25,14 +25,16 @@ import Function.DataConnection;
 
 public class DataForInQuiryScreen {
 
+	static String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT", "CPU" };
+
 	@DataProvider(name = "1000.02")
 	public static Iterator<String[]> CreateData(Method m) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn1 = DataConnection.getConnection();
 		Statement stat = null;
 		stat = conn1.createStatement();
-		String query11 = " select  top 20 *  from EQP.facility_status_vw fs1, eqp.facility ef where fs1.facility_Status_Effective_DT=(select max(fs2.Facility_Status_Effective_DT) from EQP.facility_status_vw fs2 where fs1.Company_CD=fs2.Company_CD AND  fs1.Facility_CD=fs2.Facility_CD and fs1.company_cd in ('002','185')) "
-				+ " and (ltrim(fs1.facility_status_nm) in ('active','open 2wk') and  fs1.closed_in<>'y'  and ef.Facility_Type_NM   in ('port','railhead','terminal','rex salvage store','relay','breakbulk') ) and fs1.company_cd in ('002','185') and fs1.Company_CD=ef.Company_CD AND  fs1.Facility_CD=ef.Facility_CD and fs1.Facility_CD  not in ('370') order by newid()";
+		String query11 = " select  top 10 *  from EQP.facility_status_vw fs1, eqp.facility ef where fs1.facility_Status_Effective_DT=(select max(fs2.Facility_Status_Effective_DT) from EQP.facility_status_vw fs2 where fs1.Company_CD=fs2.Company_CD AND  fs1.Facility_CD=fs2.Facility_CD and fs1.company_cd in ('002','185')) "
+				+ " and (ltrim(fs1.facility_status_nm) in ('active','open 2wk') and  fs1.closed_in<>'y'  and ef.Facility_Type_NM   in ('port','railhead','terminal','rex salvage store','relay','breakbulk') ) and fs1.company_cd in ('002','185') and fs1.Company_CD=ef.Company_CD AND  fs1.Facility_CD=ef.Facility_CD and fs1.Facility_CD in ('x12') order by newid()";
 		ArrayList<String[]> b1 = new ArrayList<String[]>();
 		ResultSet rs1 = stat.executeQuery(query11);
 		while (rs1.next()) {
@@ -144,7 +146,7 @@ public class DataForInQuiryScreen {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn3 = DataConnection.getConnection();
 
-		String query3 = "Select  neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD],neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM ,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) as AmountWeight,Observed_Shipment_QT,Observed_Weight_QT,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM"
+		String query3 = "Select  neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD],neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM ,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) as AmountWeight,Observed_Shipment_QT,Observed_Weight_QT,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Statusing_Facility_CD"
 				+ " From (select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Dest_Facility_CD,City_Route_NM,[Equipment_Status_TS],[Equipment_Origin_Facility_CD],Observed_Shipment_QT,Observed_Weight_QT,Dispatch_Dest_Facility_CD from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Equipment_Dest_Facility_CD,eqps.City_Route_NM,eqps.[Equipment_Status_TS],eqps.[Equipment_Origin_Facility_CD],eqps.Observed_Shipment_QT,eqps.Observed_Weight_QT,eqps.Dispatch_Dest_Facility_CD,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc,eqps.M204_EQPSTAT_DTTMSP_TS) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
 				+ " inner join EQP.Equipment_vw eqp on eqp.[Standard_Carrier_Alpha_CD]=neqps.[Standard_Carrier_Alpha_CD] and eqp.[Equipment_Unit_NB]=neqps.[Equipment_Unit_NB]"
 				+ " inner join [EQP].[Equipment_Availability_vw] eqpa on Neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and Neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB]"
@@ -154,7 +156,7 @@ public class DataForInQuiryScreen {
 				+ " AND ((neqps.Statusing_Facility_CD = '" + terminal
 				+ "' and neqps.Equipment_Status_Type_CD <> 'ENR') or (Neqps.Dispatch_Dest_Facility_CD = '" + terminal
 				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR'))   "
-				+ " group by neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT order by CASE neqps.Standard_Carrier_Alpha_CD WHEN 'rdwy' THEN 0  else 1 end, neqps.Standard_Carrier_Alpha_CD asc,neqps.[Equipment_Unit_NB] * 1 asc";
+				+ " group by neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT,neqps.Statusing_Facility_CD order by CASE neqps.Standard_Carrier_Alpha_CD WHEN 'rdwy' THEN 0  else 1 end, neqps.Standard_Carrier_Alpha_CD asc,neqps.[Equipment_Unit_NB] * 1 asc";
 
 		String query4 = "SELECT ESTGM.Equipment_Status_Type_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr_VW AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='INQUIRY_NO_TABULATE'";
 		String query9 = "select Equipment_Sub_Type_NM from eqp.Equipment_Sub_Type_vw where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ?";
@@ -167,7 +169,7 @@ public class DataForInQuiryScreen {
 		PreparedStatement stat2 = conn3.prepareStatement(query9);
 		PreparedStatement stat3 = conn3.prepareStatement(query11);
 		stat.setString(1, status);
-		String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT", "CPU" };
+
 		// String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR" };
 		ArrayList<String> NonTabulatedStatus = new ArrayList<String>();
 		Statement st6 = conn3.createStatement();
@@ -182,6 +184,8 @@ public class DataForInQuiryScreen {
 			String SCAC = rs3.getString("Standard_Carrier_Alpha_CD");
 			String TrailerNB = rs3.getString("Equipment_Unit_NB");
 			Timestamp Equipment_Status_TS = rs3.getTimestamp("Equipment_Status_TS");
+			if (status.equalsIgnoreCase("enr"))
+				terminal = rs3.getString("Statusing_Facility_CD");
 			String StatusTime = ConvertStatusTime(CommonFunction.getLocalTime(terminal, Equipment_Status_TS));
 			String Orig = rs3.getString("Equipment_Origin_Facility_CD");
 			String Dest;
@@ -215,6 +219,9 @@ public class DataForInQuiryScreen {
 			long diff = d.getTime() - Equipment_Status_TS.getTime();
 			long diffHours = diff / (60 * 60 * 1000);
 			String Hrs = Long.toString(diffHours);
+			/* dont check Hrs for ENR trailer */
+			if (status.equalsIgnoreCase("enr"))
+				Hrs = null;
 			String SubType;
 			if (e.size() != 0) {
 				SubType = e.toString().replaceAll("[\\[\\]]", "").replaceAll(", ", ",");
@@ -391,7 +398,7 @@ public class DataForInQuiryScreen {
 		if (Length.size() == 0)
 			bb = " OR EQP.Equipment_Exterior_Length_QT is null ";
 
-		String query3 = "Select  neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD],neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM ,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) as AmountWeight,Observed_Shipment_QT,Observed_Weight_QT,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,ESBT.Equipment_Sub_Type_NM"
+		String query3 = "Select  neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD],neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM ,COUNT(wb.pro_nb) AS AmountShip,sum(wb.Total_Actual_Weight_QT) as AmountWeight,Observed_Shipment_QT,Observed_Weight_QT,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,ESBT.Equipment_Sub_Type_NM,neqps.Statusing_Facility_CD"
 				+ " From (select [Standard_Carrier_Alpha_CD],[Equipment_Unit_NB],[Equipment_Status_Type_CD],[Statusing_Facility_CD],Equipment_Dest_Facility_CD,City_Route_NM,[Equipment_Status_TS],[Equipment_Origin_Facility_CD],Observed_Shipment_QT,Observed_Weight_QT,Dispatch_Dest_Facility_CD from (select  eqps.[Standard_Carrier_Alpha_CD],eqps.[Equipment_Unit_NB],eqps.[Equipment_Status_Type_CD],eqps.[Statusing_Facility_CD],eqps.Equipment_Dest_Facility_CD,eqps.City_Route_NM,eqps.[Equipment_Status_TS],eqps.[Equipment_Origin_Facility_CD],eqps.Observed_Shipment_QT,eqps.Observed_Weight_QT,eqps.Dispatch_Dest_Facility_CD,rank() OVER (PARTITION BY [eqps].[Standard_Carrier_Alpha_CD],[eqps].[Equipment_Unit_NB] ORDER BY eqps.Equipment_Status_TS desc, eqps.Equipment_Status_system_TS desc,eqps.M204_EQPSTAT_DTTMSP_TS) as num1 from [EQP].[Equipment_Status_vw] eqps) as eqq where eqq.num1=1) Neqps	"
 				+ " inner join EQP.Equipment_vw eqp on eqp.[Standard_Carrier_Alpha_CD]=neqps.[Standard_Carrier_Alpha_CD] and eqp.[Equipment_Unit_NB]=neqps.[Equipment_Unit_NB]"
 				+ " inner join [EQP].[Equipment_Availability_vw] eqpa on Neqps.[Standard_Carrier_Alpha_CD]=eqpa.[Standard_Carrier_Alpha_CD] and Neqps.[Equipment_Unit_NB]=eqpa.[Equipment_Unit_NB]"
@@ -404,8 +411,8 @@ public class DataForInQuiryScreen {
 				+ "' and Neqps.Equipment_Status_Type_CD = 'ENR'))  "
 				+ "  AND (EQP.equipment_Exterior_Length_QT IN ( ?,?,?,?,? ) OR EQP.equipment_Exterior_Length_QT< ? or EQP.equipment_Exterior_Length_QT >= ? "
 				+ bb + " )   and (ESBT.Equipment_Sub_Type_NM in ( ?,?,?,?,?,?,?,? )    " + aa + " )"
-				+ " group by neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT,ESBT.Equipment_Sub_Type_NM order by CASE neqps.Standard_Carrier_Alpha_CD WHEN 'rdwy' THEN 0  else 1 end, neqps.Standard_Carrier_Alpha_CD asc,neqps.[Equipment_Unit_NB] * 1 asc";
-
+				+ " group by neqps.[Standard_Carrier_Alpha_CD],neqps.[Equipment_Unit_NB],neqps.[Equipment_Status_TS],neqps.[Equipment_Origin_Facility_CD] ,neqps.Equipment_Dest_Facility_CD,neqps.City_Route_NM,EQP.equipment_Exterior_Length_QT,eqp.Primary_Use_NM,neqps.Observed_Shipment_QT,neqps.Observed_Weight_QT,ESBT.Equipment_Sub_Type_NM,neqps.Statusing_Facility_CD order by CASE neqps.Standard_Carrier_Alpha_CD WHEN 'rdwy' THEN 0  else 1 end, neqps.Standard_Carrier_Alpha_CD asc,neqps.[Equipment_Unit_NB] * 1 asc";
+		String query4 = "SELECT ESTGM.Equipment_Status_Type_CD FROM EQP.Equip_Stat_Typ_Grp_Mbr_VW AS ESTGM WHERE ESTGM.Equipment_Status_Type_Grp_NM='INQUIRY_NO_TABULATE'";
 		String query9 = "select Equipment_Sub_Type_NM from eqp.Equipment_Sub_Type_vw where Standard_Carrier_Alpha_CD= ? and Equipment_Unit_NB= ?";
 
 		String query11 = " select distinct ss.[Shipment_Service_Sub_Type_NM],ssst.[Display_Sequence_NB] from [EQP].[Waybill_vw] wb,[EQP].[Waybill_Service] wbs,[EQP].[Shipment_Service_vw] ss,[EQP].[Shipment_Service_Sub_Type_vw] ssst"
@@ -486,13 +493,23 @@ public class DataForInQuiryScreen {
 
 		stat.setString(7, L2);
 		stat.setString(8, L3);
-		String[] UseCityRoute = { "CL", "CLTG", "OFD", "SPT" };
-		String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR", "CLTG" };
+
+		// String[] NonTabulated = { "ARV", "LDD", "ENR", "ARR" };
+		ArrayList<String> NonTabulatedStatus = new ArrayList<String>();
+		Statement st6 = conn3.createStatement();
+		ResultSet rs6 = st6.executeQuery(query4);
+		while (rs6.next()) {
+			NonTabulatedStatus.add(rs6.getString("Equipment_Status_Type_CD"));
+		}
+		rs6.close();
+		st6.close();
 		ResultSet rs3 = stat.executeQuery();
 		while (rs3.next()) {
 			String SCAC = rs3.getString("Standard_Carrier_Alpha_CD");
 			String TrailerNB = rs3.getString("Equipment_Unit_NB");
 			Timestamp Equipment_Status_TS = rs3.getTimestamp("Equipment_Status_TS");
+			if (status.equalsIgnoreCase("enr"))
+				terminal = rs3.getString("Statusing_Facility_CD");
 			String StatusTime = ConvertStatusTime(CommonFunction.getLocalTime(terminal, Equipment_Status_TS));
 			String Orig = rs3.getString("Equipment_Origin_Facility_CD");
 			String Dest;
@@ -503,7 +520,7 @@ public class DataForInQuiryScreen {
 			}
 			String Bills;
 			String WGT;
-			if (Arrays.asList(NonTabulated).contains(status)) {
+			if (NonTabulatedStatus.contains(status)) {
 				Bills = rs3.getString("Observed_Shipment_QT");
 				WGT = rs3.getString("Observed_Weight_QT");
 			} else {
@@ -527,6 +544,9 @@ public class DataForInQuiryScreen {
 			long diff = d.getTime() - Equipment_Status_TS.getTime();
 			long diffHours = diff / (60 * 60 * 1000);
 			String Hrs = Long.toString(diffHours);
+			/* dont check Hrs for ENR trailer */
+			if (status.equalsIgnoreCase("enr"))
+				Hrs = null;
 			String SubType;
 			if (e.size() != 0) {
 				SubType = e.toString().replaceAll("[\\[\\]]", "").replaceAll(", ", ",");
