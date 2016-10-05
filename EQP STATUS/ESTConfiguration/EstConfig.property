@@ -30,4 +30,8 @@ Qapassword=EquipProd1
 
 proddb=jdbc:sqlserver://ywsqlopslstr:5000/Ops
 
+AD_ID=UYR27B0
+
+M_ID=UYR27B0
+
 ASDGrowlMessage=Additional Shipments have been ASD'd to this trailer. You must disposition these PROs on LOBR before proceeding with the next updates.

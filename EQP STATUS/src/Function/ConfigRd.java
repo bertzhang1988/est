@@ -56,6 +56,16 @@ public class ConfigRd {
 		return path;
 	}
 
+	public String GetAD_ID() {
+		String path = pro.getProperty("AD_ID");
+		return path;
+	}
+
+	public String GetM_ID() {
+		String path = pro.getProperty("M_ID");
+		return path;
+	}
+
 	public String GetGrowlMessage(String GrowlMessage) {
 		String path = pro.getProperty(GrowlMessage);
 		return path;

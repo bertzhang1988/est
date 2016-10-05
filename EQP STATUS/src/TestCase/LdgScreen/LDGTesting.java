@@ -37,11 +37,12 @@ public class LDGTesting {
 
 	private WebDriver driver;
 	private EqpStatusPageS page;
+	private ConfigRd Conf;
 
 	@BeforeClass(groups = { "ldg uc" })
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException, IOException {
-		ConfigRd Conf = new ConfigRd();
+		Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
 			driver = new ChromeDriver();
@@ -217,8 +218,8 @@ public class LDGTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -230,7 +231,7 @@ public class LDGTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -896,8 +897,8 @@ public class LDGTesting {
 			}
 		}
 
-		SAssert.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 
 		// check added pro
 		Thread.sleep(5000);
@@ -918,7 +919,7 @@ public class LDGTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SAssert.assertAll();
 	}
 

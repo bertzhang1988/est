@@ -47,9 +47,6 @@ public class EqpStatusPageS {
 
 	}
 
-	public String AD_ID = "UYR27B0";
-	public String M_ID = "UYR27B0";
-
 	/* Common */
 
 	@FindBy(how = How.LINK_TEXT, using = "STATUS TRAILER")

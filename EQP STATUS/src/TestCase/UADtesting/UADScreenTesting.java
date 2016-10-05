@@ -32,11 +32,12 @@ public class UADScreenTesting {
 
 	private WebDriver driver;
 	private EqpStatusPageS page;
+	private ConfigRd Conf;
 
 	@BeforeClass
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
+		Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
 			driver = new ChromeDriver();
@@ -102,8 +103,8 @@ public class UADScreenTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000,
@@ -202,8 +203,8 @@ public class UADScreenTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -248,8 +249,8 @@ public class UADScreenTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -261,7 +262,7 @@ public class UADScreenTesting {
 		}
 
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -296,8 +297,8 @@ public class UADScreenTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -344,8 +345,8 @@ public class UADScreenTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "UAD", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -357,7 +358,7 @@ public class UADScreenTesting {
 		}
 
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 

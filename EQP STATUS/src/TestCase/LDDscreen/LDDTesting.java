@@ -36,11 +36,12 @@ public class LDDTesting {
 
 	private WebDriver driver;
 	private EqpStatusPageS page;
+	private ConfigRd Conf;
 
 	@BeforeClass
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
+		Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
 			driver = new ChromeDriver();
@@ -114,8 +115,8 @@ public class LDDTesting {
 		SAssert.assertEquals(NewEqpStatusRecord.get(9), ShipCount, "Observed_Shipment_QT is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(10), Shipweight, "Observed_Weight_QT is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -128,7 +129,7 @@ public class LDDTesting {
 
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SAssert.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SAssert.assertAll();
 
@@ -367,8 +368,8 @@ public class LDDTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDD", "Source_Modify_ID is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			if (i == 5) {
 				Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
@@ -381,7 +382,7 @@ public class LDDTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SA.assertAll();
 	}
@@ -445,8 +446,8 @@ public class LDDTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDD", "Source_Modify_ID is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -458,7 +459,7 @@ public class LDDTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SA.assertAll();
 	}

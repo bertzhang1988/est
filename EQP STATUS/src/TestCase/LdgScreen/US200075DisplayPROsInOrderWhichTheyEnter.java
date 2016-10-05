@@ -33,6 +33,7 @@ import Page.EqpStatusPageS;
 public class US200075DisplayPROsInOrderWhichTheyEnter {
 	private WebDriver driver;
 	private EqpStatusPageS page;
+	private ConfigRd Conf;
 
 	@Test(priority = 1, dataProvider = "2000.75", dataProviderClass = DataForUS200075.class, groups = { "ldg uc" })
 	public void AddSinglePro(String terminalcd, String SCAC, String TrailerNB)
@@ -116,11 +117,11 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			SA.assertEquals(NewEqpStatusRecord.get(i), OldEqpStatusRecord.get(i),
 					i + "  " + NewEqpStatusRecord.get(i) + "  " + OldEqpStatusRecord.get(i));
 		}
-		SA.assertEquals(NewEqpStatusRecord.get(16), page.AD_ID, "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), page.M_ID, "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), page.M_ID, " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -186,7 +187,7 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	@BeforeClass(groups = { "ldg uc" })
 	@Parameters({ "browser" })
 	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
+		Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
 			driver = new ChromeDriver();
