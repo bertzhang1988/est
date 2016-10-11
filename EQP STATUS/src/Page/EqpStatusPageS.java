@@ -34,6 +34,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import Function.CommonFunction;
 import Function.DataCommon;
 
 public class EqpStatusPageS {
@@ -984,11 +985,21 @@ public class EqpStatusPageS {
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		Date PlanDay = cal.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		String DATE = dateFormat.format(PlanDay);
 		this.SetPlanDay(DATE);
 		builder.sendKeys(Keys.TAB).build().perform();
-		return PlanDay;
+		// get returned convert plandate in bdd add 08:00 in est time then
+		// convert to utc
+		cal.set(Calendar.HOUR_OF_DAY, 8);
+		Date ReturnedPlanDate = null;
+		try {
+			ReturnedPlanDate = CommonFunction.ConvertUtcTime("112", cal.getTime());
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		return ReturnedPlanDate;
 
 	}
 

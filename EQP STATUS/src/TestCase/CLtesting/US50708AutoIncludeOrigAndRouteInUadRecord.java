@@ -14,6 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -51,7 +52,7 @@ public class US50708AutoIncludeOrigAndRouteInUadRecord {
 		page.SetStatus("cl");
 	}
 
-	// @AfterClass
+	@AfterClass
 	public void Close() {
 		driver.close();
 	}

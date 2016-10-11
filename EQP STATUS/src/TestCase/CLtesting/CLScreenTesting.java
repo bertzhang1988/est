@@ -98,7 +98,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -173,7 +173,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("interline");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -300,12 +300,11 @@ public class CLScreenTesting {
 		// enter plan date
 		Date Localtime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
 		Date PlanDate = page.SetPlanDate(Localtime, 2);
-
 		// select city route type
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -321,7 +320,6 @@ public class CLScreenTesting {
 		// enter key
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
@@ -415,7 +413,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -450,7 +448,6 @@ public class CLScreenTesting {
 		// enter key
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
@@ -545,7 +542,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -624,7 +621,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// leave on
@@ -747,13 +744,13 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("cartage");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// dock
 		page.HandleLOBRproAllByKey("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		wait.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
@@ -859,7 +856,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// all short
@@ -969,7 +966,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, -2, 0);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -1045,7 +1042,7 @@ public class CLScreenTesting {
 
 		// Check date and time prepopulate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
 		SA.assertEquals(picker, expect, "CL screen prepopulate time is wrong ");
 
 		// Check Plan Day
@@ -1074,7 +1071,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -1188,15 +1185,16 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
 		page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
-				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
+		// (new WebDriverWait(driver,
+		// 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		// "Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
 		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to Quick Close - CLTG"));
 		(new WebDriverWait(driver, 50))
@@ -1265,7 +1263,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro

@@ -30,7 +30,7 @@ public class US200051PreventStatusTimeChangesOutsidePolicy {
 
 	@BeforeClass
 	@Parameters({ "browser", "status" })
-	public void SetUp(@Optional("chrome") String browser, @Optional("cl") String status)
+	public void SetUp(@Optional("chrome") String browser, @Optional("ldg") String status)
 			throws AWTException, InterruptedException {
 		ConfigRd Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
@@ -74,6 +74,7 @@ public class US200051PreventStatusTimeChangesOutsidePolicy {
 
 		SA.assertEquals(page.ErrorAndWarningField.getText(),
 				"Status time must be between " + TimeRange.get(3) + " and " + TimeRange.get(2));
+		SA.assertAll();
 	}
 
 	@AfterClass

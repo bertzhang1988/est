@@ -256,7 +256,7 @@ public class AddVariousTypeOfProForTrailer {
 		// add pro not in any trailer
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 0; i++) {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
@@ -272,7 +272,7 @@ public class AddVariousTypeOfProForTrailer {
 
 		// add no waybill record pro
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 90; i++) {
+		for (int i = 0; i < 15; i++) {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);

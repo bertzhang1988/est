@@ -108,14 +108,20 @@ public class CommonFunction {
 		}
 	}
 
-	public static Date getDay(Date t) throws ParseException {
+	public static Date getDay(Date t) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		// dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-		Date today = dateFormat.parse(dateFormat.format(t));
+		Date today = null;
+		try {
+			today = dateFormat.parse(dateFormat.format(t));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return today;
 	}
 
-	public static String getTommorrow() throws ParseException {
+	public static String getTommorrow() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_YEAR, 1);
@@ -174,14 +180,15 @@ public class CommonFunction {
 			} else if (day_of_week == 7) {
 				cal.add(Calendar.DAY_OF_WEEK, 2);
 			}
-			cal.set(Calendar.HOUR_OF_DAY, 0);
-			cal.set(Calendar.MINUTE, 0);
-			cal.set(Calendar.SECOND, 0);
-			cal.set(Calendar.MILLISECOND, 0);
 
 		} else {
+			Planned_Delivery_DT = CommonFunction.getLocalTime(terminalcd, Planned_Delivery_DT);
 			cal.setTime(Planned_Delivery_DT);
 		}
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 
 		return cal.getTime();
 	}
@@ -288,7 +295,8 @@ public class CommonFunction {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(getLocalTime(Terminal, CurrentTime));
 		cal.add(Calendar.HOUR_OF_DAY, Future);
-		cal.add(Calendar.MINUTE, 59);
+		if (Future == 0)
+			cal.add(Calendar.MINUTE, 10);
 		Date Max = cal.getTime();
 		cal.setTime(getLocalTime(Terminal, CurrentTime));
 		cal.add(Calendar.HOUR_OF_DAY, -Past);

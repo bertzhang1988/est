@@ -29,6 +29,7 @@ import Function.ConfigRd;
 import Function.DataCommon;
 import Function.Utility;
 import Page.EqpStatusPageS;
+import TestCase.CLtesting.DataForCLScreenTesting;
 
 public class CLTGScreenTesting {
 
@@ -143,7 +144,7 @@ public class CLTGScreenTesting {
 				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -178,15 +179,13 @@ public class CLTGScreenTesting {
 	}
 
 	@Test(priority = 3, dataProvider = "cltg screen 1", dataProviderClass = DataForCLTGScreenTesting.class)
-	public void ToCLTGHasPro3BlobrLeaveOn(String terminalcd, String SCAC, String TrailerNB, String CityR, String CityRT,
+	public void ToCLTGHasProSetToCLTG(String terminalcd, String SCAC, String TrailerNB, String CityR, String CityRT,
 			String AmountPro, String AmountWeight, String flag, String serv, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("utc");
 		page.EnterTrailer(SCAC, TrailerNB);
-		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 
 		// check date time prepopulate
@@ -202,15 +201,89 @@ public class CLTGScreenTesting {
 		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
 				"City Route prepopulate is wrong ");
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
+		SA.assertEquals(page.ShipmentCount2.getAttribute("value"), AmountPro, "Ship Count prepopulate is wrong ");
+		SA.assertEquals(page.ShipmentWeight2.getAttribute("value").replaceAll("_", ""), AmountWeight,
+				"Ship Weight prepopulate time is wrong ");
+		SA.assertEquals(page.ShipmentFlag.getText(), flag, "shipments flag is wrong ");
+		SA.assertEquals(page.ServiceFlag.getText(), serv, "serv is wrong");
+
+		// check pro grid
+		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListLDDForm);
+		LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataCommon.GetProListCLTG(SCAC, TrailerNB);
+		SA.assertEquals(ProInfo, ExpectedProInformation,
+				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
+
+		// set date&time
+		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
+
+		// click submit
+		page.SubmitButton.click();
+		Date d = CommonFunction.gettime("UTC");
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CLTG"));
+		(new WebDriverWait(driver, 50))
+				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+
+		// check eqps
+		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
+		SA.assertEquals(NewEqpStatusRecord.get(0), "CLTG", "Equipment_Status_Type_CD is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(3), "CLTG", "Source_Create_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(21), CityRT, "City_Route_Type_NM is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(22), OldEqpStatusRecord.get(22), "City_Route_NM is wrong");
+		int[] TimeElement = { 5, 6, 7, 8, 20 };
+		for (int i : TimeElement) {
+			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
+			if (i == 7) {
+				SA.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 60000,
+						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
+			} else if (i == 20) {
+				SA.assertEquals(TS, PlanD, "Planned_Delivery_DT is wrong");
+			} else {
+				SA.assertTrue(Math.abs(TS.getTime() - d.getTime()) < 120000, i + "  " + TS + "  " + d);
+			}
+		}
+		SA.assertAll();
+	}
+
+	@Test(priority = 4, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class)
+	public void CLTrailerWithProNotInLoading3BlobrLeaveOn(String terminalcd, String SCAC, String TrailerNB,
+			String CityR, String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
+			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
+		SoftAssert SA = new SoftAssert();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		page.SetStatus("cltg");
+		page.SetLocation(terminalcd);
+		Date CurrentTime = CommonFunction.gettime("utc");
+		page.EnterTrailer(SCAC, TrailerNB);
+		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+
+		// check lobr date&time pre populate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
+		SA.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
+
+		// Check Plan Day
+		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
+
+		// Check other fields prepopulate
+		SA.assertEquals(page.CityRoute.getAttribute("value").replaceAll("_", ""), CityR,
+				"City Route prepopulate is wrong ");
+		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
-		LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataCommon.GetProListLOBR(SCAC, TrailerNB);
+		LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataCommon.GetProNotInLoadingListLOBR(SCAC,
+				TrailerNB);
 		SA.assertEquals(ProInfo, ExpectedProInformation,
 				"3 button lobr screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
 
 		// get pro list before handle lobr
-		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		ArrayList<String> prolistbeforelobr = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
 		// update cityRoute
 		String NewCityRoute = page.UpdateCityRoute();
@@ -223,7 +296,7 @@ public class CLTGScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// leave on
@@ -297,29 +370,32 @@ public class CLTGScreenTesting {
 		}
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB), "cl screen pro grid is wrong");
 		SA.assertAll();
 	}
 
-	@Test(priority = 4, dataProvider = "cltg screen 1", dataProviderClass = DataForCLTGScreenTesting.class)
-	public void ToCLTGHasPro3BlobrDock(String terminalcd, String SCAC, String TrailerNB, String CityR, String CityRT,
-			String AmountPro, String AmountWeight, String flag, String serv, Date PlanD, Date MRSts)
+	@Test(priority = 5, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class)
+	public void CLTrailerWithProNotInLoading3BlobrDock(String terminalcd, String SCAC, String TrailerNB, String CityR,
+			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		page.SetStatus("cltg");
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
-		// check date&time prepopulate
-		Date Picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
-		SA.assertEquals(Picker, expect, "3 Button lobr screen date&time is not showing correct");
+		// check lobr date&time pre populate
+		Date picker = page.GetDatePickerTime();
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
+		SA.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProNotInLoadingListLOBR(SCAC, TrailerNB),
+				"3 button lobr screen pro grid is wrong");
 
 		// Check Plan Day
 		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
@@ -331,7 +407,7 @@ public class CLTGScreenTesting {
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
 
 		// get pro list before handle lobr
-		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		ArrayList<String> prolistbeforelobr = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
 		// update cityRoute
 		String NewCityRoute = page.UpdateCityRoute();
@@ -344,7 +420,7 @@ public class CLTGScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("cartage");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		SA.assertAll();
 		// Dock
@@ -408,30 +484,33 @@ public class CLTGScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(DataCommon.GetProListLD(SCAC, TrailerNB), ProInfo2, "cl screen pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB), "cl screen pro grid is wrong");
 
 		SA.assertAll();
 	}
 
-	@Test(priority = 5, dataProvider = "cltg screen 1", dataProviderClass = DataForCLTGScreenTesting.class)
-	public void ToCLTGHasPro3BlobrAllShort(String terminalcd, String SCAC, String TrailerNB, String CityR,
-			String CityRT, String AmountPro, String AmountWeight, String flag, String serv, Date PlanD, Date MRSts)
+	@Test(priority = 6, dataProvider = "ClScreen1", dataProviderClass = DataForCLScreenTesting.class)
+	public void CLTrailerWithProNotInLoading3BlobrAllShort(String terminalcd, String SCAC, String TrailerNB,
+			String CityR, String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		page.SetStatus("cltg");
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 		wait.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check date&time prepopulate
 		Date Picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeStatusChange(terminalcd, CurrentTime, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
 		SA.assertEquals(Picker, expect, "3 Button lobr screen date&time is not showing correct");
 
 		// check pro grid
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
-		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "3 button lobr screen pro grid is wrong");
+		SA.assertEquals(ProInfo, DataCommon.GetProNotInLoadingListLOBR(SCAC, TrailerNB),
+				"3 button lobr screen pro grid is wrong");
 
 		// Check Plan Day
 		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
@@ -443,7 +522,7 @@ public class CLTGScreenTesting {
 		SA.assertEquals(page.CityRouteTypeField.getText(), CityRT, "City Route Type prepopulate is wrong ");
 
 		// get pro list before handle lobr
-		ArrayList<String> prolistbeforelobr = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		ArrayList<String> prolistbeforelobr = DataCommon.GetProNotInLoadingOnTrailer(SCAC, TrailerNB);
 
 		// update cityRoute
 		String NewCityRoute = page.UpdateCityRoute();
@@ -456,7 +535,7 @@ public class CLTGScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// all short
@@ -520,7 +599,7 @@ public class CLTGScreenTesting {
 
 		// check pro grid prepopulate
 		LinkedHashSet<ArrayList<String>> ProInfo2 = page.GetProList(page.ProListForm);
-		SA.assertEquals(ProInfo2, DataCommon.GetProListLD(SCAC, TrailerNB), "cl screen pro grid is wrong");
+		SA.assertEquals(ProInfo2, DataCommon.GetProListCL(SCAC, TrailerNB), "cl screen pro grid is wrong");
 
 		SA.assertAll();
 

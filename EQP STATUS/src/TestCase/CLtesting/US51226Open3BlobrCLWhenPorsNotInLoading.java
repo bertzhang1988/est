@@ -102,13 +102,12 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		(new WebDriverWait(driver, 80)).until(
 				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
@@ -208,7 +207,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
@@ -317,7 +316,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// alter time
-		page.SetDatePicker(page.GetDatePickerTime(), -1);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// handle the left pro
 		page.HandleLOBRproAll("leaveON");
@@ -399,7 +398,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 			f2 = f1;
 		}
 
-		// check pro grid in ldg screen again
+		// check pro grid in cl screen again
 		LinkedHashSet<ArrayList<String>> ProInfo1 = page.GetProList(page.ProListForm);
 		SAssert.assertEquals(ProInfo1, DataCommon.GetProListCL(SCAC, TrailerNB), "pro grid is wrong");
 

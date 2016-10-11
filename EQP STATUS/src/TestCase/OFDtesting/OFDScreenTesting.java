@@ -95,7 +95,7 @@ public class OFDScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// press enter key
@@ -167,7 +167,7 @@ public class OFDScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker2(Localtime, 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// press enter key

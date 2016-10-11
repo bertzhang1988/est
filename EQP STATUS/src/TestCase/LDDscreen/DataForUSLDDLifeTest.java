@@ -77,6 +77,8 @@ public class DataForUSLDDLifeTest {
 			query = DataCommon.query6;
 		} else if (m.getName().equalsIgnoreCase("")) {
 			query = DataCommon.query35;
+		} else if (m.getName().equalsIgnoreCase("LDDTrailerHasProCheckProHyperlink")) {
+			query = DataCommon.query5;
 		}
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		ArrayList<Object[]> b = new ArrayList<Object[]>();
