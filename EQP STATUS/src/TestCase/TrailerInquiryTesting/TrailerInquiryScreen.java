@@ -7,12 +7,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -21,6 +26,7 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.ConfigRd;
+import Function.DataCommon;
 import Page.EqpStatusPageS;
 import TestCase.TerminalInquiryTesting.DataForInQuiryScreen;
 
@@ -75,6 +81,28 @@ public class TrailerInquiryScreen {
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
 				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
+
+		// Check pro hyperlink
+		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		String CurrentWindowHandle = driver.getWindowHandle();
+		for (String Pro : Prolist) {
+			page.TIQProGrid.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
+			Set<String> WindowHandles = driver.getWindowHandles();
+			for (String windowHandle : WindowHandles) {
+				if (!windowHandle.equalsIgnoreCase(CurrentWindowHandle)) {
+					driver.switchTo().window(windowHandle);
+				}
+			}
+			String GetTitleOfWindow = driver.getTitle();
+			String GetShp501Url = driver.getCurrentUrl();
+			SA.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry", Pro + " does not kick off the SHP501");
+			SA.assertEquals(GetShp501Url, "http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
+					Pro + " SHP501 URL IS WRONG");
+			driver.close();
+			driver.switchTo().window(CurrentWindowHandle);
+		}
+
 		SA.assertAll();
 	}
 
@@ -183,6 +211,26 @@ public class TrailerInquiryScreen {
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
 				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
+		// Check pro hyperlink
+		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		String CurrentWindowHandle = driver.getWindowHandle();
+		for (String Pro : Prolist) {
+			page.TIQProGrid.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
+			Set<String> WindowHandles = driver.getWindowHandles();
+			for (String windowHandle : WindowHandles) {
+				if (!windowHandle.equalsIgnoreCase(CurrentWindowHandle)) {
+					driver.switchTo().window(windowHandle);
+				}
+			}
+			String GetTitleOfWindow = driver.getTitle();
+			String GetShp501Url = driver.getCurrentUrl();
+			SA.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry", Pro + " does not kick off the SHP501");
+			SA.assertEquals(GetShp501Url, "http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
+					Pro + " SHP501 URL IS WRONG");
+			driver.close();
+			driver.switchTo().window(CurrentWindowHandle);
+		}
 		SA.assertAll();
 	}
 
@@ -210,6 +258,27 @@ public class TrailerInquiryScreen {
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
 				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
+
+		// Check pro hyperlink
+		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		String CurrentWindowHandle = driver.getWindowHandle();
+		for (String Pro : Prolist) {
+			page.TIQProGrid.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
+			Set<String> WindowHandles = driver.getWindowHandles();
+			for (String windowHandle : WindowHandles) {
+				if (!windowHandle.equalsIgnoreCase(CurrentWindowHandle)) {
+					driver.switchTo().window(windowHandle);
+				}
+			}
+			String GetTitleOfWindow = driver.getTitle();
+			String GetShp501Url = driver.getCurrentUrl();
+			SA.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry", Pro + " does not kick off the SHP501");
+			SA.assertEquals(GetShp501Url, "http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
+					Pro + " SHP501 URL IS WRONG");
+			driver.close();
+			driver.switchTo().window(CurrentWindowHandle);
+		}
 		SA.assertAll();
 	}
 
@@ -402,6 +471,27 @@ public class TrailerInquiryScreen {
 		LinkedHashSet<ArrayList<String>> ExpectedProGrid = DataForInQuiryScreen.GetProListInQuiry(SCAC, TrailerNB);
 		SA.assertEquals(GetProGrid, ExpectedProGrid,
 				"Pro grid is wrong \nActual :" + GetProGrid + "\nExpected :" + ExpectedProGrid + "\n");
+
+		// Check pro hyperlink
+		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
+		String CurrentWindowHandle = driver.getWindowHandle();
+		for (String Pro : Prolist) {
+			page.TIQProGrid.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
+			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
+			Set<String> WindowHandles = driver.getWindowHandles();
+			for (String windowHandle : WindowHandles) {
+				if (!windowHandle.equalsIgnoreCase(CurrentWindowHandle)) {
+					driver.switchTo().window(windowHandle);
+				}
+			}
+			String GetTitleOfWindow = driver.getTitle();
+			String GetShp501Url = driver.getCurrentUrl();
+			SA.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry", Pro + " does not kick off the SHP501");
+			SA.assertEquals(GetShp501Url, "http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
+					Pro + " SHP501 URL IS WRONG");
+			driver.close();
+			driver.switchTo().window(CurrentWindowHandle);
+		}
 		SA.assertAll();
 	}
 
@@ -432,7 +522,7 @@ public class TrailerInquiryScreen {
 		SA.assertAll();
 	}
 
-	// @AfterClass
+	@AfterClass
 	public void Close() {
 		driver.close();
 	}

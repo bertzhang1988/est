@@ -966,7 +966,7 @@ public class CLScreenTesting {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, -2, 0);
+		page.SetDatePicker2(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -1000,6 +1000,9 @@ public class CLScreenTesting {
 		for (int i : TimeElement) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
+				// for cltg record, if we set date time widget in future, it add
+				// one minute to cl record, if we set date time widget in past
+				// then it add one minute to current ts
 				SA.assertTrue(Math.abs(TS.getTime() - AlterTime.getTime()) < 180000,
 						"equipment_status_ts " + "  " + TS + "  " + AlterTime);
 			} else if (i == 20) {

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -35,6 +36,7 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.ConfigRd;
+import Function.DataCommon;
 import Page.EqpStatusPageS;
 
 public class US100002InquiryScreen {
@@ -273,6 +275,32 @@ public class US100002InquiryScreen {
 					LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataForInQuiryScreen
 							.GetProListInQuiry(SCAC, trailerNb);
 					Sassert.assertEquals(ProInformation, ExpectedProInformation, StatusName + " " + SCACTrailer);
+					// Check pro hyperlink
+					ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, trailerNb);
+					String CurrentWindowHandle = driver.getWindowHandle();
+					int times = 0;
+					for (String Pro : Prolist) {
+						times++;
+						if (times == 2)
+							break;
+						ProGridForEachTrailer.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
+						(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
+						Set<String> WindowHandles = driver.getWindowHandles();
+						for (String windowHandle : WindowHandles) {
+							if (!windowHandle.equalsIgnoreCase(CurrentWindowHandle)) {
+								driver.switchTo().window(windowHandle);
+							}
+						}
+						String GetTitleOfWindow = driver.getTitle();
+						String GetShp501Url = driver.getCurrentUrl();
+						Sassert.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry",
+								Pro + " does not kick off the SHP501");
+						Sassert.assertEquals(GetShp501Url,
+								"http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
+								Pro + " SHP501 URL IS WRONG");
+						driver.close();
+						driver.switchTo().window(CurrentWindowHandle);
+					}
 					jse.executeScript("arguments[0].scrollIntoView(false);", PlusSign.get(j - 1));
 					PlusSign.get(j - 1).click();
 					(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(ProGridForEachTrailer));

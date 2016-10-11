@@ -75,7 +75,11 @@ public class US2000130ProHyperlinkToSHP501 {
 		// Check pro hyperlink
 		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		String CurrentWindowHandle = driver.getWindowHandle();
+		int times = 0;
 		for (String Pro : Prolist) {
+			times++;
+			if (times == 5)
+				break;
 			page.ProListForm.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
 			Set<String> WindowHandles = driver.getWindowHandles();
@@ -112,7 +116,11 @@ public class US2000130ProHyperlinkToSHP501 {
 		// Check pro hyperlink
 		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		String CurrentWindowHandle = driver.getWindowHandle();
+		int times = 0;
 		for (String Pro : Prolist) {
+			times++;
+			if (times == 5)
+				break;
 			page.ProListLDDForm.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
 			Set<String> WindowHandles = driver.getWindowHandles();
@@ -150,7 +158,11 @@ public class US2000130ProHyperlinkToSHP501 {
 		// Check pro hyperlink
 		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		String CurrentWindowHandle = driver.getWindowHandle();
+		int times = 0;
 		for (String Pro : Prolist) {
+			times++;
+			if (times == 5)
+				break;
 			page.ProListForm.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
 			Set<String> WindowHandles = driver.getWindowHandles();
@@ -189,7 +201,11 @@ public class US2000130ProHyperlinkToSHP501 {
 		// Check pro hyperlink
 		ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		String CurrentWindowHandle = driver.getWindowHandle();
+		int times = 0;
 		for (String Pro : Prolist) {
+			times++;
+			if (times == 5)
+				break;
 			page.ProListLDDForm.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
 			Set<String> WindowHandles = driver.getWindowHandles();
