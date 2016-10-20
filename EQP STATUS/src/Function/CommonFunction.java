@@ -115,7 +115,6 @@ public class CommonFunction {
 		try {
 			today = dateFormat.parse(dateFormat.format(t));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return today;
@@ -162,6 +161,28 @@ public class CommonFunction {
 		// IN LOCAL TIME
 		Calendar cal = Calendar.getInstance();
 		Date LocalTime = CommonFunction.getLocalTime(terminalcd, LastStatusTime);
+		cal.setTime(LocalTime);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return cal.getTime();
+	}
+
+	public static Date getPrepopulateTimeMayNewRecordCreate(String terminalcd, Date CurrentTime, Date LastStatusTime,
+			Date PlanD) throws ClassNotFoundException, SQLException {
+		// check date&time field STATUS IS DIFFERENT should a. eqpst after
+		// current-time use eqpst minute+1 b. eqpst before current time use
+		// current time
+
+		// if the planD is null then EST will
+		// insert a new record,date&time should display (default) the current
+		// local time
+		Calendar cal = Calendar.getInstance();
+		Date LocalTime = null;
+		if (PlanD != null) {
+			LocalTime = CommonFunction.getLocalTime(terminalcd, LastStatusTime);
+		} else {
+			LocalTime = CommonFunction.getLocalTime(terminalcd, CurrentTime);
+		}
 		cal.setTime(LocalTime);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);

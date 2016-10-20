@@ -18,7 +18,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -42,7 +41,6 @@ import Page.EqpStatusPageS;
 public class US100002InquiryScreen {
 	private WebDriver driver;
 	private EqpStatusPageS page;
-	private Actions builder;
 
 	@BeforeClass
 	@Parameters({ "browser" })
@@ -63,7 +61,6 @@ public class US100002InquiryScreen {
 		driver.get(Conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetTerminalInquiryScreen();
-		builder = new Actions(driver);
 
 	}
 
@@ -212,7 +209,7 @@ public class US100002InquiryScreen {
 		page.IQTerminalInput.clear();
 		page.IQTerminalInput.sendKeys(terminal);
 		page.SearchButton.click();
-		Date d = CommonFunction.gettime("UTC");
+
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
 			(new WebDriverWait(driver, 20))
@@ -238,7 +235,7 @@ public class US100002InquiryScreen {
 				if (TrailerLine > 20) {
 					TrailerLine = 20;
 				}
-				List<ArrayList<String>> TrailerInformation = new ArrayList<ArrayList<String>>();
+
 				for (int j = 1; j <= TrailerLine; j++) {
 
 					List<WebElement> PlusSign = PlusSignColumn.findElements(By.tagName("i"));
@@ -270,19 +267,17 @@ public class US100002InquiryScreen {
 					WebElement ProGridForEachTrailer = TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']"))
 							.get(j - 1).findElement(By.xpath(
 									"div[@class='expandableRow']/div[@config='row.entity.subGridConfig']//div[@class='ui-grid-canvas']"));
-					LinkedHashSet<ArrayList<String>> ProInformation = page
-							.GetProListInInquiryScreen(ProGridForEachTrailer);
-					LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataForInQuiryScreen
-							.GetProListInQuiry(SCAC, trailerNb);
-					Sassert.assertEquals(ProInformation, ExpectedProInformation, StatusName + " " + SCACTrailer);
+
 					// Check pro hyperlink
 					ArrayList<String> Prolist = DataCommon.GetProOnTrailer(SCAC, trailerNb);
 					String CurrentWindowHandle = driver.getWindowHandle();
 					int times = 0;
 					for (String Pro : Prolist) {
-						times++;
+						times = times + 1;// check only the first
 						if (times == 2)
 							break;
+						jse.executeScript("arguments[0].scrollIntoView(false);",
+								ProGridForEachTrailer.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))));
 						ProGridForEachTrailer.findElement(By.linkText(CommonFunction.addHyphenToPro(Pro))).click();
 						(new WebDriverWait(driver, 50)).until(ExpectedConditions.numberOfWindowsToBe(2));
 						Set<String> WindowHandles = driver.getWindowHandles();
@@ -294,13 +289,24 @@ public class US100002InquiryScreen {
 						String GetTitleOfWindow = driver.getTitle();
 						String GetShp501Url = driver.getCurrentUrl();
 						Sassert.assertEquals(GetTitleOfWindow, "SHP501 - Shipment Inquiry",
-								Pro + " does not kick off the SHP501");
+								StatusName + " " + SCACTrailer + " " + Pro + " does not kick off the SHP501");
 						Sassert.assertEquals(GetShp501Url,
 								"http://tmssit1.yrcw.com/webapps/tms/shp501.html?nxtData=" + Pro + "",
-								Pro + " SHP501 URL IS WRONG");
+								StatusName + " " + SCACTrailer + " " + Pro + " SHP501 URL IS WRONG");
 						driver.close();
 						driver.switchTo().window(CurrentWindowHandle);
 					}
+
+					// check pro grid
+					LinkedHashSet<ArrayList<String>> ProInformation = page
+							.GetProListInInquiryScreen(ProGridForEachTrailer);
+					LinkedHashSet<ArrayList<String>> ExpectedProInformation = DataForInQuiryScreen
+							.GetProListInQuiry(SCAC, trailerNb);
+					Sassert.assertEquals(ProInformation, ExpectedProInformation,
+							StatusName + " " + SCACTrailer + "\n trailer grid is wrong\n ACTUAL:" + ProInformation
+									+ "\n EXPECT:" + ExpectedProInformation + "\n");
+
+					// close pro grid
 					jse.executeScript("arguments[0].scrollIntoView(false);", PlusSign.get(j - 1));
 					PlusSign.get(j - 1).click();
 					(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(ProGridForEachTrailer));

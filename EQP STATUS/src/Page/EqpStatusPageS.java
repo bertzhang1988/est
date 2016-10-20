@@ -513,7 +513,7 @@ public class EqpStatusPageS {
 
 	public void EnterTrailer(String SCAC, String TrailerNB) throws AWTException, InterruptedException {
 		Actions builder = new Actions(driver);
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(2, TimeUnit.SECONDS).pollingEvery(100,
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(5, TimeUnit.SECONDS).pollingEvery(100,
 				TimeUnit.MILLISECONDS);
 		if (TrailerField.isDisplayed()) {
 			this.TrailerField.click();

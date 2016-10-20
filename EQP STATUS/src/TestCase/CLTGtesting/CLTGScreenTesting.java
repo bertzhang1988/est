@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -193,8 +194,14 @@ public class CLTGScreenTesting {
 		Date pick = page.GetDatePickerTime();
 		SA.assertEquals(pick, expect, "cltg screen date and time prepopulate is wrong");
 
-		// Check Plan Day
-		Date expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		// Check Plan Day for cltg screen, since the plan date field is
+		// disabled, so if plan date is null, the screen show blank
+		Date expectPlanDay;
+		if (PlanD != null) {
+			expectPlanDay = CommonFunction.getPrepopulatePlanDay(terminalcd, CurrentTime, PlanD);
+		} else {
+			expectPlanDay = PlanD;
+		}
 		SA.assertEquals(page.GetPlanDatePickerTime(), expectPlanDay, "Plan date prepopulate time is wrong ");
 
 		// Check other fields prepopulate
@@ -254,7 +261,6 @@ public class CLTGScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		page.SetStatus("cltg");
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("utc");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -262,8 +268,9 @@ public class CLTGScreenTesting {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
+
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeMayNewRecordCreate(terminalcd, CurrentTime, MRSts, PlanD);
 		SA.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
 
 		// Check Plan Day
@@ -380,7 +387,6 @@ public class CLTGScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		page.SetStatus("cltg");
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -389,7 +395,7 @@ public class CLTGScreenTesting {
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeMayNewRecordCreate(terminalcd, CurrentTime, MRSts, PlanD);
 		SA.assertEquals(picker, expect, "lobr screen prepopulate time is wrong ");
 
 		// check pro grid
@@ -495,7 +501,6 @@ public class CLTGScreenTesting {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		page.SetStatus("cltg");
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -504,7 +509,7 @@ public class CLTGScreenTesting {
 
 		// check date&time prepopulate
 		Date Picker = page.GetDatePickerTime();
-		Date expect = CommonFunction.getPrepopulateTimeNoStatusChange(terminalcd, MRSts);
+		Date expect = CommonFunction.getPrepopulateTimeMayNewRecordCreate(terminalcd, CurrentTime, MRSts, PlanD);
 		SA.assertEquals(Picker, expect, "3 Button lobr screen date&time is not showing correct");
 
 		// check pro grid
@@ -605,7 +610,7 @@ public class CLTGScreenTesting {
 
 	}
 
-	@Test(priority = 6, dataProvider = "cltg screen 2", dataProviderClass = DataForCLTGScreenTesting.class)
+	@Test(priority = 7, dataProvider = "cltg screen 2", dataProviderClass = DataForCLTGScreenTesting.class)
 	public void ToCLTGNoProSetToCLTG(String terminalcd, String SCAC, String TrailerNB, String CityR, String CityRT,
 			String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
@@ -623,7 +628,7 @@ public class CLTGScreenTesting {
 	}
 
 	@AfterMethod
-	public void getbackldg(ITestResult result) throws InterruptedException {
+	public void getback(ITestResult result) throws InterruptedException {
 		if (result.getStatus() == ITestResult.FAILURE) {
 
 			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
@@ -633,6 +638,12 @@ public class CLTGScreenTesting {
 			Utility.takescreenshot(driver, FailureTestparameter);
 			page.SetStatus("cltg");
 		}
+	}
+
+	@BeforeMethod
+	public void SetBackCLTG() throws InterruptedException {
+		if (!page.SetStatusToField.getText().contains("CLTG"))
+			page.ChangeStatusTo("cltg");
 	}
 
 	@AfterTest
