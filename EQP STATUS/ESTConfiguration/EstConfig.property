@@ -16,7 +16,7 @@ Devuser=estdev
 
 Devpassword=equipment
 
-Sitdb=jdbc:sqlserver://ywsqlopsstg01v\\ads:51128;databaseName=ops_s1
+Sitdb=jdbc:sqlserver://ywsqlopsstg01v\\ads:49247;databaseName=ops_s1
  
 Situser=estsit
 

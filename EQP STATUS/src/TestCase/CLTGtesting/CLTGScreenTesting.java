@@ -636,6 +636,7 @@ public class CLTGScreenTesting {
 			String FailureTestparameter = result.getName() + Testparameter;
 
 			Utility.takescreenshot(driver, FailureTestparameter);
+			driver.navigate().refresh();
 			page.SetStatus("cltg");
 		}
 	}
