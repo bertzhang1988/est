@@ -4,10 +4,10 @@
  <test name="test ldd">
  <parameter name="browser" value="ie"/>
     <classes>
-	   <class name="LDDscreen.LDDTesting"></class>
-	   <class name="LDDscreen.US200091SmartEnterLDD"></class>
-	   <class name="LDDscreen.US607PromptHeadloadOnDestinationChangeLDD"></class>
-	   <class name="LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD"></class>
+	   <class name="TestCase.LDDscreen.LDDTesting"></class>
+	   <class name="TestCase.LDDscreen.US200091SmartEnterLDD"></class>
+	   <class name="TestCase.LDDscreen.US607PromptHeadloadOnDestinationChangeLDD"></class>
+	   <class name="TestCase.LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD"></class>
     </classes>
   </test>
  </suite>

@@ -70,7 +70,7 @@
 						<suiteXmlFile>src/TestCase/CLtesting/CLtest.xml</suiteXmlFile>
 						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunctionPerStatus2.xml</suiteXmlFile>
 						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunction.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/LReusableFunctionTest/testCommonFunctionPerStatus.xml</suiteXmlFile>
+						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunctionPerStatus.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<properties>
 						<property>
