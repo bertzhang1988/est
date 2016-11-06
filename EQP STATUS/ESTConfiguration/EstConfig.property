@@ -2,7 +2,7 @@ ChromeDriverPath=.//BrowserDriver//chromedriver.exe
 
 IEdriverPath=.//BrowserDriver\\IEDriverServer.exe
 
-PhantomJSDriverPath=C:\\Users\\uyr27b0\\Desktop\\selenium\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe
+PhantomJSDriverPath=.//BrowserDriver\\phantomjs.exe
 
 EqpsDevURL=https://spadev.yrcw.com/webapps/yrc-equipstatus/
 
@@ -10,7 +10,7 @@ EqpsSitURL=https://spasit1.yrcw.com/webapps/yrc-equipstatus/
 
 EqpsQaURL=https://spastg.yrcw.com/webapps/yrc-equipstatus/ 
 
-Devdb=jdbc:sqlserver://ywsqldccdev01v\\ads:53465;databaseName=ops_s1
+Devdb=jdbc:sqlserver://ywsqlopsdev01v\\ads:53465;databaseName=ops_s1
 
 Devuser=estdev
 
