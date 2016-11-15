@@ -10,7 +10,7 @@ EqpsSitURL=https://spasit1.yrcw.com/webapps/yrc-equipstatus/
 
 EqpsQaURL=https://spastg.yrcw.com/webapps/yrc-equipstatus/ 
 
-Devdb=jdbc:sqlserver://ywsqlopsdev01v\\ads:53465;databaseName=ops_s1
+Devdb=jdbc:sqlserver://ywsqldccdev01v\\ads:53465;databaseName=ops_1
 
 Devuser=estdev
 
