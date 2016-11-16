@@ -28,7 +28,11 @@ Qauser=svcEQP
 
 Qapassword=EquipProd1
 
-proddb=jdbc:sqlserver://ywsqlopslstr:5000/Ops
+Proddb=jdbc:sqlserver://ywsqlopslstr:5000/Ops
+
+Produser=svcEQP
+
+Prodpassword=EquipProd1
 
 AD_ID=UYR27B0
 

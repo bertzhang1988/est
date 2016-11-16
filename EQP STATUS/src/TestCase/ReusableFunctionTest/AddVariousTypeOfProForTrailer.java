@@ -256,7 +256,7 @@ public class AddVariousTypeOfProForTrailer {
 		// add pro not in any trailer
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		ArrayList<String> ADDPRO = new ArrayList<String>();
-		for (int i = 0; i < 0; i++) {
+		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
@@ -447,7 +447,7 @@ public class AddVariousTypeOfProForTrailer {
 			SAssert.assertTrue(Math.abs(System_Modify_TS.getTime() - d.getTime()) < 120000,
 					" waybill table System_Modify_TS " + System_Modify_TS + "  " + d);
 			Date Waybill_Transaction_End_TS = CommonFunction.SETtime((Date) NewWbAndWbtRecord.get(11));
-			SAssert.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 120000,
+			SAssert.assertTrue(Math.abs(Waybill_Transaction_End_TS.getTime() - d.getTime()) < 180000,
 					" waybill table Waybill_Transaction_End_TS is wrong " + CurrentPro + "  "
 							+ Waybill_Transaction_End_TS + "  " + d);
 		}
@@ -607,7 +607,7 @@ public class AddVariousTypeOfProForTrailer {
 		ArrayList<String> Addpro = new ArrayList<String>();
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
 		page.RemoveProButton.click();
-		for (int i = 0; i < 40; i++) {
+		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			System.out.println(CurrentPro);
@@ -625,7 +625,7 @@ public class AddVariousTypeOfProForTrailer {
 
 		// add no waybill record pro
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 0; i++) {
+		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			Addpro.add(CurrentPro);
