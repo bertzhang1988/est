@@ -260,6 +260,7 @@ public class AddVariousTypeOfProForTrailer {
 			String CurrentPro = PRO.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
+			System.out.println(CurrentPro);
 		}
 
 		// add pro from other trailer
@@ -272,10 +273,11 @@ public class AddVariousTypeOfProForTrailer {
 
 		// add no waybill record pro
 		ArrayList<String> PRO3 = DataCommon.GenerateProNotInDB();
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 10; i++) {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			ADDPRO.add(CurrentPro);
+			System.out.println(CurrentPro);
 		}
 
 		// add dt mismatch pro record pro
@@ -629,6 +631,7 @@ public class AddVariousTypeOfProForTrailer {
 			String CurrentPro = PRO3.get(i);
 			page.EnterPro(CurrentPro);
 			Addpro.add(CurrentPro);
+			System.out.println(CurrentPro);
 		}
 
 		// add dt mismatch pro record pro

@@ -783,15 +783,15 @@ public class EqpStatusPageS {
 			// Thread.sleep(2000);
 		} else if (handle.equalsIgnoreCase("allshort")) {
 			this.ALLSHORTButton.click();
-			(new WebDriverWait(driver, 50))
+			(new WebDriverWait(driver, 65))
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 50))
+			(new WebDriverWait(driver, 65))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		} else if (handle.equalsIgnoreCase("dock")) {
 			this.DOCKButton.click();
-			(new WebDriverWait(driver, 50))
+			(new WebDriverWait(driver, 65))
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 50))
+			(new WebDriverWait(driver, 65))
 					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		}
 	}

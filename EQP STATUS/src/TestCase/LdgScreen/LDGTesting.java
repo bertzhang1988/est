@@ -270,10 +270,10 @@ public class LDGTesting {
 		String changeDesti = page.ChangeDestiantion();
 
 		// screen navigate to headload
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check headload screen
 		SA.assertEquals(page.HeadloadDestination.getAttribute("value").replaceAll("_", ""), OrgiDesti,
@@ -298,9 +298,9 @@ public class LDGTesting {
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer
 		// "+SCAC+TrailerNB+" updated to LDG"));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// (new WebDriverWait(driver,
 		// 150)).until(ExpectedConditions.visibilityOf(page.AddProForm));
@@ -396,11 +396,11 @@ public class LDGTesting {
 		// handle the left pro
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 80))
+		(new WebDriverWait(driver, 165)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 180))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 165)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 165))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -508,13 +508,13 @@ public class LDGTesting {
 		String headloadCube = page.HeadloadCube.getAttribute("value");
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 165)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
+		(new WebDriverWait(driver, 180))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 165)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 165))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		Thread.sleep(3000);
 		// check eqps new record
@@ -626,13 +626,13 @@ public class LDGTesting {
 		// page.LobrSubmitButton));
 		// page.LobrSubmitButton.click();
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -756,8 +756,8 @@ public class LDGTesting {
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -877,7 +877,7 @@ public class LDGTesting {
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
@@ -988,8 +988,8 @@ public class LDGTesting {
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
+		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		(new WebDriverWait(driver, 65))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check screen
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti,
