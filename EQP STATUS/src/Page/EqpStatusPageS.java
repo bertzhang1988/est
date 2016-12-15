@@ -513,8 +513,8 @@ public class EqpStatusPageS {
 
 	public void EnterTrailer(String SCAC, String TrailerNB) throws AWTException, InterruptedException {
 		Actions builder = new Actions(driver);
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(5, TimeUnit.SECONDS).pollingEvery(100,
-				TimeUnit.MILLISECONDS);
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(5, TimeUnit.SECONDS).pollingEvery(10,
+				TimeUnit.MICROSECONDS);
 		if (TrailerField.isDisplayed()) {
 			this.TrailerField.click();
 		}
@@ -535,8 +535,7 @@ public class EqpStatusPageS {
 			wait.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));
 			// TimeoutException
 		} catch (Exception e) {
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SCACTrailer)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(SCACTrailer)));
 			driver.findElement(By.linkText(SCACTrailer)).click();
 		}
 		wait.until(ExpectedConditions.textToBePresentInElement(this.TrailerField, SCACTrailer));

@@ -10,17 +10,25 @@ EqpsSitURL=https://spasit1.yrcw.com/webapps/yrc-equipstatus/
 
 EqpsQaURL=https://spastg.yrcw.com/webapps/yrc-equipstatus/ 
 
+EqpsSitaURL=https://spasita.yrcw.com/webapps/yrc-equipstatus/
+
 Devdb=jdbc:sqlserver://ywsqldccdev01v\\ads:53465;databaseName=ops_1
 
 Devuser=estdev
 
 Devpassword=equipment
 
-Sitdb=jdbc:sqlserver://ywsqlopsstg01v\\ads:49247;databaseName=ops_s1
+Sitdb=jdbc:sqlserver://ywsqlopssit01v\\ads:49247;databaseName=ops_s1
  
 Situser=estsit
 
 Sitpassword=equipment
+
+Sitadb=jdbc:sqlserver://ywsqlopsstg01v\\ads:49247;databaseName=ops_sa
+ 
+Sitauser=svcCPDdev
+
+Sitapassword=vedDPCcvs
 
 Qadb=jdbc:sqlserver://ywsqlopsqalstr\\ads:5000;databaseName=ops
 

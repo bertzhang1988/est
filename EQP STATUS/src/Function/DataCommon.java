@@ -1575,9 +1575,9 @@ public class DataCommon {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn2 = DataConnection.getConnection();
 		Statement stat = conn2.createStatement();
-		String query3 = " SELECT w.Pro_NB FROM EQP.Waybill_vw w, EQP.Waybill_Service_VW WBS WHERE (w.Shipment_Correction_Type_CD <> 'VO' or w.Shipment_Correction_Type_CD is null)"
+		String query3 = " SELECT w.Pro_NB FROM EQP.Waybill_vw w, EQP.Waybill_Service_VW WBS,EQP.Shipment_Characteristic sc WHERE (w.Shipment_Correction_Type_CD <> 'VO' or w.Shipment_Correction_Type_CD is null) AND w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY"
 				+ " AND ((w.Shipment_Purpose_CD <> 'MR' and  w.Shipment_Purpose_CD <> 'SU') or w.Shipment_Purpose_CD is null) AND w.Equipment_Unit_NB  Is Null  AND w.Standard_Carrier_Alpha_CD is Null"
-				+ " AND w.To_Equipment_Unit_NB is Null AND w.To_Standard_Carrier_Alpha_CD is Null AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' and w.pro_nb=wbs.pro_nb and WBS.SERVICE_CD not in ('pois','food') order by NEWID()";
+				+ " AND w.To_Equipment_Unit_NB is Null AND w.To_Standard_Carrier_Alpha_CD is Null AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' and w.pro_nb=wbs.pro_nb and WBS.SERVICE_CD not in ('pois','food') AND sc.Shipment_Is_In_Bond_IN !='Y' order by NEWID()";
 		ArrayList<String> c = new ArrayList<String>();
 		ResultSet rs = stat.executeQuery(query3);
 		while (rs.next()) {
@@ -1598,9 +1598,9 @@ public class DataCommon {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn2 = DataConnection.getConnection();
 		Statement stat = conn2.createStatement();
-		String query3 = " SELECT w.Pro_NB FROM EQP.Waybill_vw w, EQP.Waybill_Service_VW WBS WHERE (w.Shipment_Correction_Type_CD <> 'VO' or w.Shipment_Correction_Type_CD is null)"
+		String query3 = " SELECT w.Pro_NB FROM EQP.Waybill_vw w, EQP.Waybill_Service_VW WBS,EQP.Shipment_Characteristic sc WHERE (w.Shipment_Correction_Type_CD <> 'VO' or w.Shipment_Correction_Type_CD is null) AND w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY"
 				+ " AND ((w.Shipment_Purpose_CD <> 'MR' and  w.Shipment_Purpose_CD <> 'SU') or w.Shipment_Purpose_CD is null) AND w.Equipment_Unit_NB  Is Null  AND w.Standard_Carrier_Alpha_CD is Null and w.Total_Actual_Weight_QT > 5000"
-				+ " AND w.To_Equipment_Unit_NB is Null AND w.To_Standard_Carrier_Alpha_CD is Null AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' and w.pro_nb=wbs.pro_nb and WBS.SERVICE_CD not in ('pois','food') order by NEWID()";
+				+ " AND w.To_Equipment_Unit_NB is Null AND w.To_Standard_Carrier_Alpha_CD is Null AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' and w.pro_nb=wbs.pro_nb and WBS.SERVICE_CD not in ('pois','food') AND sc.Shipment_Is_In_Bond_IN !='Y' order by NEWID()";
 		ArrayList<String> c = new ArrayList<String>();
 		ResultSet rs = stat.executeQuery(query3);
 		while (rs.next()) {
@@ -1622,10 +1622,10 @@ public class DataCommon {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn3 = DataConnection.getConnection();
 		Statement stat = conn3.createStatement();
-		String query3 = " SELECT WBS.PRO_NB,WBS.SERVICE_CD FROM EQP.Waybill_vw W RIGHT JOIN EQP.Waybill_Service_vw WBS ON W.PRO_NB=WBS.PRO_NB "
+		String query3 = " SELECT WBS.PRO_NB,WBS.SERVICE_CD FROM EQP.Waybill_vw W RIGHT JOIN EQP.Waybill_Service_vw WBS ON W.PRO_NB=WBS.PRO_NB INNER JOIN EQP.Shipment_Characteristic sc ON w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY"
 				+ " WHERE WBS.SERVICE_CD='" + ProType + "' and (w.Equipment_Unit_NB<>'" + TrailerNB
 				+ "' or w.Standard_Carrier_Alpha_CD <>'" + SCAC + "')"
-				+ " AND ((w.Shipment_Purpose_CD <> 'MR' and  w.Shipment_Purpose_CD <> 'SU') or w.Shipment_Purpose_CD is null) AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' order by newid() ";
+				+ " AND ((w.Shipment_Purpose_CD <> 'MR' and  w.Shipment_Purpose_CD <> 'SU') or w.Shipment_Purpose_CD is null) AND w.Delivery_DT Is Null AND w.Delivery_TS Is Null AND w.Create_TS > '2015-09-30' AND sc.Shipment_Is_In_Bond_IN !='Y' order by newid() ";
 		ArrayList<String> c = new ArrayList<String>();
 		ResultSet rs3 = stat.executeQuery(query3);
 		while (rs3.next()) {
@@ -1809,12 +1809,12 @@ public class DataCommon {
 		Connection conn4 = DataConnection.getConnection();
 		Statement stat = conn4.createStatement();
 
-		String query4 = "SELECT w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN FROM EQP.Waybill w , SHIP.Shipment_Characteristic sc  where w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY "
+		String query4 = "SELECT w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN FROM EQP.Waybill w , EQP.Shipment_Characteristic sc  where w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY "
 				+ " AND sc.Shipment_Is_In_Bond_IN = 'Y' " + " AND  W.Equipment_Unit_NB='" + TrailerNB
 				+ "' AND W.Standard_Carrier_Alpha_CD='" + SCAC
 				+ "' GROUP BY w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN;";
 
-		String query5 = "SELECT w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN,wdc.Delivery_Codeword_CD FROM EQP.Waybill w , SHIP.Shipment_Characteristic sc , EQP.Waybill_Delivery_Codeword wdc where w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY  AND w.Pro_NB = wdc.Pro_NB "
+		String query5 = "SELECT w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN,wdc.Delivery_Codeword_CD FROM EQP.Waybill w , EQP.Shipment_Characteristic sc , EQP.Waybill_Delivery_Codeword wdc where w.Shipment_Characteristic_KEY = sc.Shipment_Characteristic_KEY  AND w.Pro_NB = wdc.Pro_NB "
 				+ " AND ( (sc.Shipment_Is_Cntry_Mismatch_IN = 'Y'  AND wdc.Pro_NB not in (Select wdc2.Pro_NB FROM EQP.Waybill_Delivery_Codeword wdc2 Where wdc.Pro_NB = wdc2.Pro_NB AND wdc2.Delivery_Codeword_CD in ('PARS','RCOD','RA49','SZCU','RCSA','CL'))))"
 				+ " AND W.Equipment_Unit_NB='" + TrailerNB + "' AND W.Standard_Carrier_Alpha_CD='" + SCAC
 				+ "' GROUP BY w.Pro_NB, sc.Shipment_Is_In_Bond_IN, sc.Shipment_Is_Cntry_Mismatch_IN,wdc.Delivery_Codeword_CD;";

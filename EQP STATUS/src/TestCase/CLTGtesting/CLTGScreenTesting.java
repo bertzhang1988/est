@@ -260,7 +260,7 @@ public class CLTGScreenTesting {
 			String CityR, String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 230);
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("utc");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -386,7 +386,7 @@ public class CLTGScreenTesting {
 			String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 230);
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
@@ -500,7 +500,7 @@ public class CLTGScreenTesting {
 			String CityR, String CityRT, String AmountPro, String AmountWeight, Date PlanD, Date MRSts)
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		SoftAssert SA = new SoftAssert();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 230);
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);

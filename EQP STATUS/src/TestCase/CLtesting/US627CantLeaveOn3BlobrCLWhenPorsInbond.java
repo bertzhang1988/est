@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashSet;
 
@@ -16,6 +17,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -27,6 +29,7 @@ import org.testng.asserts.SoftAssert;
 import Function.CommonFunction;
 import Function.ConfigRd;
 import Function.DataCommon;
+import Function.Utility;
 import Page.EqpStatusPageS;
 
 public class US627CantLeaveOn3BlobrCLWhenPorsInbond {
@@ -98,7 +101,7 @@ public class US627CantLeaveOn3BlobrCLWhenPorsInbond {
 				" is INBOND and cannot be delivered, must DOCK PRO."));
 		for (String inbondPRO : InbondPro) {
 			SAssert.assertTrue(page.ErrorAndWarningField.getText()
-					.contains(inbondPRO + " is INBOND and cannot be delivered, must DOCK PRO."));
+					.contains(inbondPRO + " is INBOND and cannot be delivered, must DOCK PRO."),"the error message is not showing for pro:" +inbondPRO);
 
 		}
 		(new WebDriverWait(driver, 80))
@@ -152,7 +155,7 @@ public class US627CantLeaveOn3BlobrCLWhenPorsInbond {
 				" is INBOND and cannot be delivered, must DOCK PRO."));
 		for (String inbondPRO : InbondPro) {
 			SAssert.assertTrue(page.ErrorAndWarningField.getText()
-					.contains(inbondPRO + " is INBOND and cannot be delivered, must DOCK PRO."));
+					.contains(inbondPRO + " is INBOND and cannot be delivered, must DOCK PRO."),"the error message is not showing for pro:" +inbondPRO);
 
 		}
 		(new WebDriverWait(driver, 80))
@@ -165,8 +168,17 @@ public class US627CantLeaveOn3BlobrCLWhenPorsInbond {
 	}
 
 	@AfterMethod
-	public void SetBackToLDG() throws InterruptedException {
-		page.SetStatus("CL");
+	public void getbackCL(ITestResult result) throws InterruptedException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+
+			String Testparameter = Arrays.toString(Arrays.copyOf(result.getParameters(), 3)).replaceAll("[^\\d.a-zA-Z]",
+					"");
+			String FailureTestparameter = result.getName() + Testparameter;
+
+			Utility.takescreenshot(driver, FailureTestparameter);
+			driver.navigate().refresh();
+			page.SetStatus("cl");
+		}
 	}
 
 	@AfterClass
