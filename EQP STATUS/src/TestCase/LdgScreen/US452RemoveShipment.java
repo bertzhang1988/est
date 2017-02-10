@@ -36,7 +36,7 @@ public class US452RemoveShipment {
 
 	@BeforeClass
 	@Parameters({ "browser" })
-	public void SetUp(@Optional("ie") String browser) throws AWTException, InterruptedException {
+	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
 		Conf = new ConfigRd();
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
