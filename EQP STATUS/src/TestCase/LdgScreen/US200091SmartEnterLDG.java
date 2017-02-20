@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -10,48 +9,32 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200091;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US200091SmartEnterLDG {
-	private WebDriver driver;
+public class US200091SmartEnterLDG extends SetupBrowser {
 	private EqpStatusPageS page;
 	private Actions builer;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass(groups = { "ldg uc" })
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 		builer = new Actions(driver);
@@ -90,14 +73,11 @@ public class US200091SmartEnterLDG {
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -153,11 +133,9 @@ public class US200091SmartEnterLDG {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -183,8 +161,7 @@ public class US200091SmartEnterLDG {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// change destination
 		String[] dest = { "270", "112", "841", "198", "135" };
@@ -204,9 +181,8 @@ public class US200091SmartEnterLDG {
 		page.HandleLOBRproAll(handleLobrPro[0]);
 		Date d1 = CommonFunction.gettime("UTC");
 		// page.LobrSubmitButton.click();
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Thread.sleep(5000);
 
 		ArrayList<String> PRO = DataCommon.GetProNotInAnyTrailer();
@@ -223,14 +199,12 @@ public class US200091SmartEnterLDG {
 		page.AddProField.click();
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
@@ -275,8 +249,7 @@ public class US200091SmartEnterLDG {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// change destination
 		String[] dest = { "270", "112", "841", "198", "135" };
@@ -294,12 +267,10 @@ public class US200091SmartEnterLDG {
 		int ran1 = new Random().nextInt(handleLobrPro.length);
 		page.HandleLOBRproAll(handleLobrPro[ran1]);
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		builer.sendKeys(Keys.ENTER).build().perform();
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -344,11 +315,9 @@ public class US200091SmartEnterLDG {
 		// enter key
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -398,13 +367,10 @@ public class US200091SmartEnterLDG {
 
 		// enter key
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "No updates entered."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "No updates entered."));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord, OldEqpStatusRecord, "eqps change");
@@ -446,13 +412,11 @@ public class US200091SmartEnterLDG {
 		// enter key
 		builer.sendKeys(page.AddProField, Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -506,8 +470,7 @@ public class US200091SmartEnterLDG {
 		}
 		destination = changeDesti;
 		page.SetDestination(destination);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// alter time
 		page.SetDatePicker(page.GetDatePickerTime(), -3);
@@ -516,8 +479,7 @@ public class US200091SmartEnterLDG {
 		// page.YesButton.click();
 		builer.sendKeys(Keys.ENTER).build().perform();
 		Date d1 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 		(new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
@@ -541,7 +503,7 @@ public class US200091SmartEnterLDG {
 																												// the
 																												// alert
 																												// gone
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Thread.sleep(10000);
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -578,10 +540,5 @@ public class US200091SmartEnterLDG {
 					" waybill table Waybill_Transaction_End_TS " + Waybill_Transaction_End_TS + "  " + d);
 		}
 		SAssert.assertAll();
-	}
-
-	@AfterClass(groups = { "ldg uc" })
-	public void Close() {
-		driver.close();
 	}
 }

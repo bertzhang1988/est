@@ -1,26 +1,17 @@
 package TestCase.ReusableFunctionTest;
 
 import java.awt.AWTException;
-import java.io.File;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import Function.ConfigRd;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US200070DisplayUpdatablesStatusInDropDownBox {
-	private WebDriver driver = null;
-	EqpStatusPageS page;
+public class US200070DisplayUpdatablesStatusInDropDownBox extends SetupBrowser {
+
+	private EqpStatusPageS page;
 
 	@Test(dataProvider = "status")
 	public void VerifyStatusClickable(String status) throws InterruptedException {
@@ -28,29 +19,12 @@ public class US200070DisplayUpdatablesStatusInDropDownBox {
 
 	}
 
-	@BeforeTest
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
-		driver.manage().window().maximize();
-	}
+	@BeforeClass
+	public void SetUp() throws AWTException, InterruptedException {
 
-	@AfterTest
-	public void TearDown() {
-		driver.quit();
+		page = new EqpStatusPageS(driver);
+		driver.get(conf.GetURL());
+		driver.manage().window().maximize();
 	}
 
 	@AfterMethod

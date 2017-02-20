@@ -1,53 +1,34 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200006;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US200006FoodAndPoisWarning {
-
-	private WebDriver driver;
+public class US200006FoodAndPoisWarning extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
@@ -72,11 +53,9 @@ public class US200006FoodAndPoisWarning {
 			// (new WebDriverWait(driver,
 			// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
 			// loaded."));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			// check waybill
 			ArrayList<Object> AfterLOADWb = DataCommon.GetWaybillInformationOfPro(CurrentPro);
 			SAssert.assertEquals(AfterLOADWb.get(0), SCAC,
@@ -111,11 +90,9 @@ public class US200006FoodAndPoisWarning {
 			// (new WebDriverWait(driver,
 			// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
 			// loaded."));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			// check waybill
 			ArrayList<Object> AfterLOADWb = DataCommon.GetWaybillInformationOfPro(CurrentPro);
 			SAssert.assertEquals(AfterLOADWb.get(0), SCAC,
@@ -156,11 +133,9 @@ public class US200006FoodAndPoisWarning {
 		// (new WebDriverWait(driver,
 		// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"pro(s)
 		// loaded."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 0; pro < Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro);
 			// check waybill
@@ -199,13 +174,10 @@ public class US200006FoodAndPoisWarning {
 
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 0; pro < Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro);
 			// check waybill
@@ -244,7 +216,7 @@ public class US200006FoodAndPoisWarning {
 			page.SetCube(NewCube);
 
 			page.SubmitButton1.click();
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(
+			w1.until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is POISON. Food already on trailer."));
 			// check waybill
@@ -271,10 +243,9 @@ public class US200006FoodAndPoisWarning {
 			Addpro.add(pro);
 		}
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There was an error while adding all your pros to the trailer."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
@@ -338,10 +309,9 @@ public class US200006FoodAndPoisWarning {
 			Addpro.add(pro);
 		}
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There was an error while adding all your pros to the trailer."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
@@ -378,7 +348,7 @@ public class US200006FoodAndPoisWarning {
 			page.SetCube(NewCube);
 
 			page.SubmitButton1.click();
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(
+			w1.until(ExpectedConditions.textToBePresentInElement(
 					page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div")),
 					"Bill is POISON. Food already on trailer."));
 			// check waybill
@@ -405,10 +375,9 @@ public class US200006FoodAndPoisWarning {
 			Addpro.add(pro);
 		}
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There was an error while adding all your pros to the trailer."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
@@ -472,10 +441,9 @@ public class US200006FoodAndPoisWarning {
 			Addpro.add(pro);
 		}
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There was an error while adding all your pros to the trailer."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
@@ -490,10 +458,5 @@ public class US200006FoodAndPoisWarning {
 					"Waybill table Standard_Carrier_Alpha_CD and Equipment_Unit_NBis wrong  " + CurrentPro);
 		}
 		SAssert.assertAll();
-	}
-
-	@AfterClass
-	public void TearDown() {
-		driver.quit();
 	}
 }

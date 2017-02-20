@@ -1,57 +1,39 @@
 package TestCase.ReusableFunctionTest;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS1229;
 import Function.CommonFunction;
-import Function.ConfigRd;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
-	private WebDriver driver;
-	private EqpStatusPageS page;
-	private Actions builer;
+public class US1229NoDummyCloseForTrailerHasProAnd619621624 extends SetupBrowser {
 
-	@BeforeTest
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
+
+	@BeforeClass
+	public void SetUp() throws AWTException, InterruptedException {
+
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
-		builer = new Actions(driver);
+
 	}
 
 	// @Test(priority=1,dataProvider =
@@ -91,9 +73,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 150))
 				.until(ExpectedConditions.textToBePresentInElement(page.UpdatedTrailerNum, newnumber));
 		Thread.sleep(2000);
@@ -150,9 +131,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 150))
 				.until(ExpectedConditions.textToBePresentInElement(page.UpdatedTrailerNum, newnumber));
 		Thread.sleep(2000);
@@ -209,9 +189,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 150))
 				.until(ExpectedConditions.textToBePresentInElement(page.UpdatedTrailerNum, newnumber));
 		Thread.sleep(2000);
@@ -237,9 +216,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -265,9 +243,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		(new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 		page.LobrSubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), destination);
 		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
@@ -293,9 +270,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -320,9 +296,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		(new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 		page.LobrSubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), destination);
 		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
@@ -347,9 +322,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -376,9 +350,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		(new WebDriverWait(driver, 260)).until(ExpectedConditions.invisibilityOfElementLocated(By.name("abandon")));
 		page.LobrSubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), destination);
 		SAssert.assertFalse(page.DateInput.isEnabled(), "date&time field is not disabled");
@@ -405,9 +378,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<Object> OldEqpStatusRecord = DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -422,9 +394,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		}
 		page.LobrCancelButton.click();
 
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, "terminal display wrong");
 		SAssert.assertEquals(page.SCACField.getAttribute("value"), null, "scac is not clear");
@@ -444,9 +415,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<Object> OldEqpStatusRecord = DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -461,9 +431,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		}
 		page.LobrCancelButton.click();
 
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, "terminal display wrong");
 		SAssert.assertEquals(page.SCACField.getAttribute("value"), null, "scac is not clear");
@@ -483,9 +452,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<Object> OldEqpStatusRecord = DataForUS1229.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertTrue(page.ErrorAndWarningField.getText().contains(
 				"Trailer has PROs. Shipments must be processed from trailer or loaded to trailer before it can be closed."));
 
@@ -500,9 +468,8 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		}
 		page.LobrCancelButton.click();
 
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check screen
 		SAssert.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, "terminal display wrong");
 		SAssert.assertEquals(page.SCACField.getAttribute("value"), null, "scac is not clear");
@@ -514,8 +481,4 @@ public class US1229NoDummyCloseForTrailerHasProAnd619621624 {
 		SAssert.assertAll();
 	}
 
-	@AfterTest
-	public void Close() {
-		driver.close();
-	}
 }

@@ -1,60 +1,37 @@
 package TestCase.CLtesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS51212;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US50708AutoIncludeOrigAndRouteInUadRecord {
-	private WebDriver driver;
+public class US50708AutoIncludeOrigAndRouteInUadRecord extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("cl");
-	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
 	}
 
 	@Test(priority = 1, dataProvider = "512.12DT", dataProviderClass = DataForUS51212.class)
@@ -81,11 +58,10 @@ public class US50708AutoIncludeOrigAndRouteInUadRecord {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> CLNewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(CLNewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
@@ -116,12 +92,10 @@ public class US50708AutoIncludeOrigAndRouteInUadRecord {
 		Date AlterTime2 = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d2 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> UADNewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(UADNewEqpStatusRecord.get(0), "UAD", "Equipment_Status_Type_CD is wrong");

@@ -1,7 +1,6 @@
 package TestCase.BORtesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -11,53 +10,33 @@ import java.util.LinkedHashSet;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Function.Utility;
 import Page.EqpStatusPageS;
 
-public class BORScreenTesting {
+public class BORScreenTesting extends SetupBrowser {
 
-	private WebDriver driver;
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-		// driver=new FirefoxDriver();
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("bor");
 
@@ -83,22 +62,19 @@ public class BORScreenTesting {
 
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "BOR", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -118,8 +94,7 @@ public class BORScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 
 		// check pre populate
 		SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, " bor two button lobr terminal is wrong");
@@ -139,13 +114,11 @@ public class BORScreenTesting {
 
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
 				"Set Trailer Status Bad Order Requested"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -201,8 +174,7 @@ public class BORScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		// check pre populate
 		SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, " bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),
@@ -218,13 +190,11 @@ public class BORScreenTesting {
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
 				"Set Trailer Status Bad Order Requested"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -285,14 +255,11 @@ public class BORScreenTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -317,8 +284,7 @@ public class BORScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		// check pre populate
 		SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, " bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),
@@ -333,13 +299,11 @@ public class BORScreenTesting {
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
 				"Set Trailer Status Bad Order Requested"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -394,8 +358,7 @@ public class BORScreenTesting {
 		SoftAssert SA = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
 		// check pre populate
 		SA.assertEquals(page.TerminalField.getAttribute("value"), terminalcd, " bor two button lobr terminal is wrong");
 		SA.assertEquals(page.TrailerField.getText(), page.SCACTrailer(SCAC, TrailerNB),
@@ -411,13 +374,11 @@ public class BORScreenTesting {
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen,
 				"Set Trailer Status Bad Order Requested"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -484,21 +445,18 @@ public class BORScreenTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "BOR", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -510,7 +468,7 @@ public class BORScreenTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -527,14 +485,11 @@ public class BORScreenTesting {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "BOR", "Equipment_Status_Type_CD is wrong");
@@ -563,10 +518,5 @@ public class BORScreenTesting {
 			Utility.takescreenshot(driver, FailureTestparameter);
 			page.SetStatus("BOR");
 		}
-	}
-
-	@AfterClass
-	public void TearDown() {
-		driver.quit();
 	}
 }

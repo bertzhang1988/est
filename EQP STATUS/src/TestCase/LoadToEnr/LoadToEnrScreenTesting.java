@@ -1,7 +1,6 @@
 package TestCase.LoadToEnr;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,66 +10,44 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200004;
 import Data.DataForUS439;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Function.Utility;
 import Page.EqpStatusPageS;
 import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
-public class LoadToEnrScreenTesting {
-	private WebDriver driver;
+public class LoadToEnrScreenTesting extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-		// driver=new FirefoxDriver();
+	public void SetUp() throws AWTException, InterruptedException {
+
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetToLoadEnrScreen();
-	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
 	}
 
 	@Test(priority = 8, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyInvalidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"The terminal number is invalid. Please enter another terminal number."));
 
 	}
@@ -78,9 +55,8 @@ public class LoadToEnrScreenTesting {
 	@Test(priority = 7, dataProvider = "2000.41", dataProviderClass = DataForReusableFunction.class)
 	public void VerifyValidTerminal(String terminalcd) throws AWTException, InterruptedException {
 		page.SetLocation(terminalcd);
-		(new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("html/body/div[1]/div"),
-						"The terminal number is invalid. Please enter another terminal number."));
+		w1.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("html/body/div[1]/div"),
+				"The terminal number is invalid. Please enter another terminal number."));
 		Thread.sleep(500);
 	}
 
@@ -152,7 +128,6 @@ public class LoadToEnrScreenTesting {
 	public void VerifyMasterRevenueVlidation(String terminalcd, String SCAC, String TrailerNB, String destination,
 			String Cube, String StatusType, Date Mrst)
 			throws InterruptedException, AWTException, ClassNotFoundException, SQLException {
-		SoftAssert SAssert = new SoftAssert();
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 
@@ -171,8 +146,7 @@ public class LoadToEnrScreenTesting {
 			} catch (Exception e) {
 				System.out.println("mr pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.RemoveProButton.click();
 		}
 
@@ -191,8 +165,7 @@ public class LoadToEnrScreenTesting {
 			} catch (Exception e) {
 				System.out.println("su pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.RemoveProButton.click();
 		}
 
@@ -211,8 +184,7 @@ public class LoadToEnrScreenTesting {
 			} catch (Exception e) {
 				System.out.println("vo pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.RemoveProButton.click();
 		}
 
@@ -231,8 +203,7 @@ public class LoadToEnrScreenTesting {
 			} catch (Exception e) {
 				System.out.println("already delivered pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.RemoveProButton.click();
 		}
 	}
@@ -253,10 +224,9 @@ public class LoadToEnrScreenTesting {
 			Addpro.add(pro);
 		}
 		page.SubmitButton.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
@@ -291,10 +261,9 @@ public class LoadToEnrScreenTesting {
 			Addpro.add(pro);
 		}
 		page.SubmitButton.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"There are no valid Pro(s) in the list."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		for (int pro = 1; pro <= Addpro.size(); pro++) {
 			String CurrentPro = Addpro.get(pro - 1);
 			String CurrentProH = page.addHyphenToPro(CurrentPro);
@@ -336,14 +305,11 @@ public class LoadToEnrScreenTesting {
 
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Date d2 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		System.out.println((d2.getTime() - d.getTime()) / 1000);
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LENRProListForm);
@@ -371,10 +337,5 @@ public class LoadToEnrScreenTesting {
 			Utility.takescreenshot(driver, FailureTestparameter);
 			page.SetToLoadEnrScreen();
 		}
-	}
-
-	@AfterClass()
-	public void TearDown() {
-		driver.quit();
 	}
 }

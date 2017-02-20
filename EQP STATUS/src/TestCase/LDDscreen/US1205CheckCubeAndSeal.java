@@ -1,52 +1,32 @@
 package TestCase.LDDscreen;
 
 import java.awt.AWTException;
-import java.io.File;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Data.DataForUS1205;
 import Function.CommonFunction;
-import Function.ConfigRd;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US1205CheckCubeAndSeal {
-	private WebDriver driver;
+public class US1205CheckCubeAndSeal extends SetupBrowser {
 	private EqpStatusPageS page;
 	private Actions builder;
+	private WebDriverWait w1;
 
-	@Parameters({ "browser" })
 	@BeforeClass
-	public void SetUp(@Optional("ie") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
 		builder = new Actions(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 10);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 
@@ -64,10 +44,10 @@ public class US1205CheckCubeAndSeal {
 			Thread.sleep(500);
 			int result = CommonFunction.CheckCubePattern(cube);
 			if (result == 2) {
-				(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(
+				w1.until(ExpectedConditions.visibilityOfElementLocated(
 						By.xpath("//*[contains(text(), 'Invalid Cube. Cube must be between 1 and 100.')]")));
 			} else {
-				(new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(
 						By.xpath("//*[contains(text(), 'Invalid Cube. Cube must be between 1 and 100.')]")));
 			}
 			page.CubeField.clear();
@@ -91,8 +71,7 @@ public class US1205CheckCubeAndSeal {
 			Thread.sleep(500);
 			String countpattern = "[\\d]+";
 			if (!countnum.matches(countpattern) || countnum.equalsIgnoreCase("0")) {
-				(new WebDriverWait(driver, 10))
-						.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, ""));
+				w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, ""));
 			} else {
 				Assert.assertEquals("disabled", page.ShipmentCount2.getAttribute("disabled"));
 				break;
@@ -114,7 +93,7 @@ public class US1205CheckCubeAndSeal {
 			Thread.sleep(500);
 			int result = sealnum.length();
 			if (result < 4) {
-				(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				w1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 						"//*[contains(text(), 'Invalid Seal Number. The Seal Number must be at least 4 characters.')]")));
 			} else {
 				Assert.assertFalse(page.CheckErrorAndWarningMessageDisplay(
@@ -122,10 +101,4 @@ public class US1205CheckCubeAndSeal {
 			}
 		}
 	}
-
-	@AfterTest
-	public void TearDown() {
-		driver.quit();
-	}
-
 }

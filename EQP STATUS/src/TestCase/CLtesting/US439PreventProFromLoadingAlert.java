@@ -1,52 +1,35 @@
 package TestCase.CLtesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Data.DataForUS439;
 import Function.CommonFunction;
-import Function.ConfigRd;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US439PreventProFromLoadingAlert {
+public class US439PreventProFromLoadingAlert extends SetupBrowser {
 
-	private WebDriver driver;
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 20);
+		w2 = new WebDriverWait(driver, 50);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("CL");
 	}
@@ -108,10 +91,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -126,10 +107,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -145,10 +124,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -164,10 +141,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -202,13 +177,11 @@ public class US439PreventProFromLoadingAlert {
 			page.SubmitButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
 			} catch (Exception e) {
 				System.out.println("mr pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -224,13 +197,11 @@ public class US439PreventProFromLoadingAlert {
 			page.SubmitButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
 			} catch (Exception e) {
 				System.out.println("su pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -246,13 +217,11 @@ public class US439PreventProFromLoadingAlert {
 			page.SubmitButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
 			} catch (Exception e) {
 				System.out.println("vo pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -268,13 +237,11 @@ public class US439PreventProFromLoadingAlert {
 			page.SubmitButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
 			} catch (Exception e) {
 				System.out.println("already delivered pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -291,10 +258,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "Shipment is INBOND, can not be loaded."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "Shipment is INBOND, can not be loaded."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -310,10 +275,8 @@ public class US439PreventProFromLoadingAlert {
 
 		page.SubmitButton.click();
 		WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(Message, "Shipment is INBOND, can not be loaded."));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(Message, "Shipment is INBOND, can not be loaded."));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 	}
@@ -323,6 +286,5 @@ public class US439PreventProFromLoadingAlert {
 		page.CheckAllAddProButton.click();
 		page.RemoveProButton.click();
 		page.CheckAllAddProButton.click();
-		driver.quit();
 	}
 }

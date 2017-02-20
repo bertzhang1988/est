@@ -1,7 +1,6 @@
 package TestCase.CLTGtesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,51 +8,35 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Function.Utility;
 import Page.EqpStatusPageS;
 import TestCase.CLtesting.DataForCLScreenTesting;
 
-public class CLTGScreenTesting {
+public class CLTGScreenTesting extends SetupBrowser {
 
-	private WebDriver driver;
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
-	@BeforeTest
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	@BeforeClass
+	public void SetUp() throws AWTException, InterruptedException {
+
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("cltg");
 	}
@@ -94,13 +77,10 @@ public class CLTGScreenTesting {
 
 		// click submit
 		page.SubmitButton.click();
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "No updates entered."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "No updates entered."));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -151,11 +131,10 @@ public class CLTGScreenTesting {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CLTG"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -227,11 +206,10 @@ public class CLTGScreenTesting {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CLTG"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -618,7 +596,7 @@ public class CLTGScreenTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"No PROs Loaded, Cannot Close."));
 
 		// check eqps
@@ -645,10 +623,5 @@ public class CLTGScreenTesting {
 	public void SetBackCLTG() throws InterruptedException {
 		if (!page.SetStatusToField.getText().contains("CLTG"))
 			page.ChangeStatusTo("cltg");
-	}
-
-	@AfterTest
-	public void TearDown() {
-		driver.quit();
 	}
 }

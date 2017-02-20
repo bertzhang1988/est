@@ -1,7 +1,6 @@
 package TestCase.ReusableFunctionTest;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,30 +12,25 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS1215;
 import Data.DataForUS200091;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 import TestCase.CLtesting.DataForCLScreenTesting;
 
-public class AddVariousTypeOfProForTrailer {
-	private WebDriver driver;
+public class AddVariousTypeOfProForTrailer extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@Test(priority = 1, dataProvider = "12.15", dataProviderClass = DataForUS1215.class, description = "non ldg without pro, add pro through quick close", groups = {
 			"ldg uc" })
@@ -125,8 +119,7 @@ public class AddVariousTypeOfProForTrailer {
 		// click submit and close out button
 		page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Date d2 = CommonFunction.gettime("UTC");
 		// navigate to quick close screen
 		// (new WebDriverWait(driver,
@@ -219,14 +212,12 @@ public class AddVariousTypeOfProForTrailer {
 		}
 		page.qcCloseTrailerButton.click();
 		Date d1 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		(new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w1.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
 		(new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		ArrayList<Object> NewEqpStatusRecord1 = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -302,15 +293,12 @@ public class AddVariousTypeOfProForTrailer {
 		page.SubmitButton.click();
 		// page.SubmitAndCloseOutButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Thread.sleep(20000);
 		Date d2 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w1.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
@@ -410,14 +398,11 @@ public class AddVariousTypeOfProForTrailer {
 		// click new submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 180))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Date d2 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w1.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -516,14 +501,11 @@ public class AddVariousTypeOfProForTrailer {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded"));
 		Date d2 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w1.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -658,13 +640,11 @@ public class AddVariousTypeOfProForTrailer {
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to CL"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w1.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		Date d2 = CommonFunction.gettime("UTC");
 
 		// check eqps
@@ -713,31 +693,14 @@ public class AddVariousTypeOfProForTrailer {
 	}
 
 	@BeforeClass(groups = { "ldg uc" })
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 80);
+		w2 = new WebDriverWait(driver, 180);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("cl");
 
-	}
-
-	// @AfterClass( groups = { "ldg uc" })
-	public void Close() {
-		driver.close();
 	}
 
 }

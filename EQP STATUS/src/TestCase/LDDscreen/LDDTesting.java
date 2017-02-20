@@ -1,7 +1,6 @@
 package TestCase.LDDscreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -11,50 +10,32 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Function.Utility;
 import Page.EqpStatusPageS;
 
-public class LDDTesting {
-
-	private WebDriver driver;
+public class LDDTesting extends SetupBrowser {
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 
@@ -97,14 +78,11 @@ public class LDDTesting {
 		// click enter
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDD", "Equipment_Status_Type_CD is wrong");
@@ -115,8 +93,8 @@ public class LDDTesting {
 		SAssert.assertEquals(NewEqpStatusRecord.get(9), ShipCount, "Observed_Shipment_QT is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(10), Shipweight, "Observed_Weight_QT is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -129,7 +107,7 @@ public class LDDTesting {
 
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SAssert.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SAssert.assertAll();
 
@@ -142,9 +120,8 @@ public class LDDTesting {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// Check date and time prepopulate
 		Date picker = page.GetDatePickerTime();
@@ -171,10 +148,8 @@ public class LDDTesting {
 
 		// Assert.assertEquals(page.LeftoverBillForm.findElements(By.xpath("div")).size(),
 		// 0);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -353,14 +328,11 @@ public class LDDTesting {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// CHECK EQPS
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "LDD", "Equipment_Status_Type_CD is wrong");
@@ -368,8 +340,8 @@ public class LDDTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDD", "Source_Modify_ID is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(4), NewCube, "Actual_Capacity_Consumed_PC is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			if (i == 5) {
 				Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
@@ -382,7 +354,7 @@ public class LDDTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SA.assertAll();
 	}
@@ -432,22 +404,19 @@ public class LDDTesting {
 		// click submit
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "LDD", "Equipment_Status_Type_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(19), "LH.LDD", "Source_Modify_ID is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(11), NewSeal, "Seal_NB is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -459,7 +428,7 @@ public class LDDTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertEquals(NewEqp.get(1), Comment, " eqp Equipment_Comment_TX is wrong");
 		SA.assertAll();
 	}
@@ -475,11 +444,6 @@ public class LDDTesting {
 			Utility.takescreenshot(driver, FailureTestparameter);
 			page.SetStatus("LDD");
 		}
-	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
 	}
 
 }

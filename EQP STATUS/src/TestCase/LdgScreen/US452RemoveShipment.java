@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -9,48 +8,30 @@ import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS452;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US452RemoveShipment {
-	private WebDriver driver;
+public class US452RemoveShipment extends SetupBrowser {
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 180);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 
@@ -76,8 +57,7 @@ public class US452RemoveShipment {
 			page.DockProButton.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 			Thread.sleep(2000);
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
 			// check waybill
@@ -114,18 +94,16 @@ public class US452RemoveShipment {
 		String NewCube = Integer.toString(Ran);
 		page.SetCube(NewCube);
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// CHECK EQPS
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 
 		SAssert.assertAll();
 	}
@@ -139,7 +117,7 @@ public class US452RemoveShipment {
 		// dock all pro
 		page.ProListCheckAllProUncheck.click();
 		page.DockProButton.click();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// add pro
 		ArrayList<String> GetPro = DataCommon.GetProNotInAnyTrailer();
 		page.RemoveProButton.click();
@@ -154,14 +132,11 @@ public class US452RemoveShipment {
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
-			(new WebDriverWait(driver, 150))
-					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
+			w2.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
 			int NEW2 = page.ProListForm.findElements(By.xpath("div")).size();
 			Assert.assertEquals(page.ProListForm.findElement(By.xpath("div[" + NEW2 + "]/div/div[2]")).getText(),
 					CurrentProH);
@@ -205,7 +180,7 @@ public class US452RemoveShipment {
 		page.ProListCheckAllProUncheck.click();
 		page.DockProButton.click();
 		Thread.sleep(4000);
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// page.ProListCheckAllPro.click();
 		page.RemoveProButton.click();
 		for (int j = 0; j < GetPro.size(); j++) {
@@ -220,14 +195,11 @@ public class US452RemoveShipment {
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
-			(new WebDriverWait(driver, 150))
-					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
+			w2.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
 			int NEW2 = page.ProListForm.findElements(By.xpath("div")).size();
 			Assert.assertEquals(page.ProListForm.findElement(By.xpath("div[" + NEW2 + "]/div/div[2]")).getText(),
 					CurrentProH);
@@ -279,11 +251,9 @@ public class US452RemoveShipment {
 			page.SetCube(NewCube);
 		}
 		page.SubmitButton.click();
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.EnterTrailer(SCAC, TrailerNB);
 		ArrayList<String> GetProAlreadyOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		for (int j = 0; j < GetProAlreadyOnTrailer.size(); j++) {
@@ -296,8 +266,7 @@ public class US452RemoveShipment {
 			page.DockProButton.click();
 			Date d = CommonFunction.gettime("UTC");
 			Date today = CommonFunction.getDay(d);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 			Thread.sleep(8000);
 			ArrayList<Object> AfterRemoveWb = DataCommon.GetWaybillInformationOfPro(RemovedPro);
 			// check waybill transaction
@@ -328,10 +297,5 @@ public class US452RemoveShipment {
 					"waybill table Waybill_Transaction_End_TS  " + f1 + "  " + d + "  " + "   " + RemovedPro);
 		}
 		SAssert.assertAll();
-	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
 	}
 }

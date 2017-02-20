@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,44 +8,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS461AndUS465AndUS457;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457ShowLoadedShipmentOnGrid {
-
-	private WebDriver driver;
+public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457ShowLoadedShipmentOnGrid extends SetupBrowser{
 	private EqpStatusPageS page;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
@@ -97,10 +75,5 @@ public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457Sho
 		page.EnterTrailer(SCAC, TrailerNB);
 		// (new WebDriverWait(driver,
 		// 10)).until(ExpectedConditions.invisibilityOfElementLocated(page.ErrorAndWarningField));
-	}
-
-	// @AfterClass
-	public void TearDown() {
-		driver.quit();
 	}
 }

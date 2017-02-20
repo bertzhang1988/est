@@ -1,7 +1,6 @@
 package TestCase.CLtesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -10,49 +9,30 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US51226Open3BlobrCLWhenPorsNotInLoading {
+public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
 
-	private WebDriver driver;
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
 
 	@BeforeClass()
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException, IOException {
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException, IOException {
 
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("CL");
 	}
@@ -65,9 +45,8 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		page.SetLocation(terminalcd);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -108,11 +87,9 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		// handle the left pro
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(
-				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -181,9 +158,8 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -214,14 +190,12 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		page.HandleLOBRproAll("allshort");
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(
-				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "CL", "Equipment_Status_Type_CD is wrong");
@@ -290,9 +264,8 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -326,14 +299,12 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 		// page.LobrSubmitButton));
 		// page.LobrSubmitButton.click();
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80)).until(
-				ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status City Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -409,10 +380,4 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading {
 	public void SetBackToLDG() throws InterruptedException {
 		page.SetStatus("CL");
 	}
-
-	@AfterClass
-	public void TearDown() {
-		driver.quit();
-	}
-
 }

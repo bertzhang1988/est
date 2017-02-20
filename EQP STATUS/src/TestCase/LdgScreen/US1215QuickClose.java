@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -10,58 +9,32 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS1215;
 import Data.DataForUS439;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US1215QuickClose {
-	private WebDriver driver;
+public class US1215QuickClose extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
 
 	@BeforeClass(groups = { "ldg uc" })
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-
-		// driver=new FirefoxDriver();
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 
-	}
-
-	@AfterClass(groups = { "ldg uc" })
-	public void Close() {
-		driver.close();
 	}
 
 	@Test(priority = 1, dataProvider = "12.15", dataProviderClass = DataForUS1215.class, description = "ldg trailer with pro quick close", groups = {
@@ -86,9 +59,8 @@ public class US1215QuickClose {
 		page.SubmitAndCloseOutButton.click();
 
 		// navigate to quick close screen
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Date CurrentTime = CommonFunction.gettime("UTC");
 
 		// check quick close screen
@@ -117,16 +89,13 @@ public class US1215QuickClose {
 		}
 		page.qcCloseTrailerButton.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SA.assertEquals(NewEqpStatusRecord.get(0), "LDD", "Equipment_Status_Type_CD is wrong");
@@ -200,9 +169,8 @@ public class US1215QuickClose {
 		Date d = CommonFunction.gettime("UTC");
 
 		// navigate to quick close screen
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status to Closed"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		Date CurrentTime2 = CommonFunction.gettime("UTC");
 
@@ -267,16 +235,13 @@ public class US1215QuickClose {
 		}
 		page.qcCloseTrailerButton.click();
 		Date d1 = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
 		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
 		(new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		ArrayList<Object> NewEqpStatusRecord1 = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord1.get(0), "LDD", "Equipment_Status_Type_CD is wrong");
 		SAssert.assertEquals(NewEqpStatusRecord1.get(1), terminalcd, "Statusing_Facility_CD is wrong");
@@ -311,16 +276,14 @@ public class US1215QuickClose {
 			page.SubmitAndCloseOutButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add master bill."));
 			} catch (Exception e) {
 				System.out.println("mr pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+			w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 					"Remove invalid pros and choose Submit & Close Out again"));
 			// wait other error message gone
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -339,16 +302,14 @@ public class US1215QuickClose {
 			page.SubmitAndCloseOutButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add supplemental bill."));
 			} catch (Exception e) {
 				System.out.println("su pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+			w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 					"Remove invalid pros and choose Submit & Close Out again"));
 			// wait other error message gone
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -367,16 +328,14 @@ public class US1215QuickClose {
 			page.SubmitAndCloseOutButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "Cannot add voided PRO."));
 			} catch (Exception e) {
 				System.out.println("vo pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+			w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 					"Remove invalid pros and choose Submit & Close Out again"));
 			// wait other error message gone
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}
@@ -395,16 +354,14 @@ public class US1215QuickClose {
 			page.SubmitAndCloseOutButton.click();
 			WebElement Message = page.AddProForm.findElement(By.xpath("div[" + NEW + "]/div/div[3]/div"));
 			try {
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
+				w1.until(ExpectedConditions.textToBePresentInElement(Message, "PRO already delivered."));
 			} catch (Exception e) {
 				System.out.println("already delivered pro is not working as expectation" + pro);
 			}
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+			w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 					"Remove invalid pros and choose Submit & Close Out again"));
 			// wait other error message gone
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div[2]")));
 			page.CheckAllAddProButton.click();
 			page.RemoveProButton.click();
 		}

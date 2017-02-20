@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -10,30 +9,23 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200075;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US200075DisplayPROsInOrderWhichTheyEnter {
-	private WebDriver driver;
+public class US200075DisplayPROsInOrderWhichTheyEnter extends SetupBrowser {
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@Test(priority = 1, dataProvider = "2000.75", dataProviderClass = DataForUS200075.class, groups = { "ldg uc" })
 	public void AddSinglePro(String terminalcd, String SCAC, String TrailerNB)
@@ -51,14 +43,11 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			int Ran = (int) (Math.random() * 99) + 1;
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton1.click();
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
+			w1.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
 			int NEW2 = page.ProListForm.findElements(By.xpath("div")).size();
 			Assert.assertEquals(page.ProListForm.findElement(By.xpath("div[" + NEW2 + "]/div/div[2]/div")).getText(),
 					CurrentProH);
@@ -90,11 +79,9 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLD(SCAC, TrailerNB), " pro grid is wrong");
@@ -117,11 +104,11 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			SA.assertEquals(NewEqpStatusRecord.get(i), OldEqpStatusRecord.get(i),
 					i + "  " + NewEqpStatusRecord.get(i) + "  " + OldEqpStatusRecord.get(i));
 		}
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -144,11 +131,9 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 		page.SetCube(Integer.toString(Ran));
 
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		page.EnterTrailer(SCAC, TrailerNB);
 		page.RemoveProButton.click();
 		PRO = DataCommon.GetProNotInAnyTrailer();
@@ -163,11 +148,9 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 			Addpro.add(CurrentPro);
 		}
 		page.SubmitButton1.click();
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		page.EnterTrailer(SCAC, TrailerNB);
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.ProListForm);
@@ -185,29 +168,12 @@ public class US200075DisplayPROsInOrderWhichTheyEnter {
 	}
 
 	@BeforeClass(groups = { "ldg uc" })
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
-
-	@AfterClass(groups = { "ldg uc" })
-	public void Close() {
-		driver.close();
-	}
-
 }

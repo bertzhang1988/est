@@ -1,7 +1,6 @@
 package TestCase.TerminalInquiryTesting;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,49 +15,31 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US100002InquiryScreen {
-	private WebDriver driver;
+public class US100002InquiryScreen extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 20);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetTerminalInquiryScreen();
 
@@ -75,9 +56,8 @@ public class US100002InquiryScreen {
 		Date d = CommonFunction.gettime("UTC");
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.visibilityOf(page.IQStatusList));
 			Date d2 = CommonFunction.gettime("UTC");
 			int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 			ArrayList<String> StatusList = new ArrayList<String>();
@@ -91,7 +71,7 @@ public class US100002InquiryScreen {
 			Assert.assertEquals(StatusList, ExpectedStatusList,
 					"\nexpected: " + ExpectedStatusList + " \nactual: " + StatusList + "\n");
 		} else {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
 	}
@@ -106,9 +86,8 @@ public class US100002InquiryScreen {
 		Date d = CommonFunction.gettime("UTC");
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.visibilityOf(page.IQStatusList));
 			Date d2 = CommonFunction.gettime("UTC");
 			int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 			ArrayList<ArrayList<String>> StatusList = new ArrayList<ArrayList<String>>();
@@ -140,7 +119,7 @@ public class US100002InquiryScreen {
 			Assert.assertEquals(ExpectedStatusList, StatusList,
 					"\nexpected: " + ExpectedStatusList + "\nactual: " + StatusList + "\n");
 		} else {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
 	}
@@ -155,9 +134,8 @@ public class US100002InquiryScreen {
 		Date d = CommonFunction.gettime("UTC");
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.visibilityOf(page.IQStatusList));
 			int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 			for (int i = 1; i <= CountStatus; i++) {
 				String StatusName = page.IQStatusList
@@ -167,9 +145,8 @@ public class US100002InquiryScreen {
 				Date d1 = CommonFunction.gettime("UTC");
 				WebElement TrailerGrid = page.IQStatusList.findElement(
 						By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
-				(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+				w1.until(ExpectedConditions.visibilityOf(TrailerGrid));
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 				Date d2 = CommonFunction.gettime("UTC");
 				// (new WebDriverWait(driver,
 				// 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
@@ -194,7 +171,7 @@ public class US100002InquiryScreen {
 						+ (d2.getTime() - d1.getTime()) / 1000.0);
 			}
 		} else {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
 		Sassert.assertAll();
@@ -212,9 +189,8 @@ public class US100002InquiryScreen {
 
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.visibilityOf(page.IQStatusList));
 			int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 			for (int i = 1; i <= CountStatus; i++) {
 				String StatusName = page.IQStatusList
@@ -224,10 +200,9 @@ public class US100002InquiryScreen {
 						By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
 				WebElement PlusSignColumn = page.IQStatusList.findElement(
 						By.xpath("//div[@class='ui-grid-contents-wrapper']/div[2]//div[@class='ui-grid-canvas']"));
-				(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));
+				w1.until(ExpectedConditions.visibilityOf(TrailerGrid));
 				Thread.sleep(1000);
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 				// (new WebDriverWait(driver,
 				// 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
 
@@ -261,8 +236,7 @@ public class US100002InquiryScreen {
 							.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']/child::div["
 									+ (j)
 									+ "]/div[@class='expandableRow']/div[@config='row.entity.subGridConfig']//div[@class='ui-grid-canvas']")));
-					(new WebDriverWait(driver, 20))
-							.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+					w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 					Date d2 = CommonFunction.gettime("UTC");
 					WebElement ProGridForEachTrailer = TrailerGrid.findElements(By.xpath("div[@class='ui-grid-row']"))
 							.get(j - 1).findElement(By.xpath(
@@ -309,7 +283,7 @@ public class US100002InquiryScreen {
 					// close pro grid
 					jse.executeScript("arguments[0].scrollIntoView(false);", PlusSign.get(j - 1));
 					PlusSign.get(j - 1).click();
-					(new WebDriverWait(driver, 20)).until(ExpectedConditions.stalenessOf(ProGridForEachTrailer));
+					w1.until(ExpectedConditions.stalenessOf(ProGridForEachTrailer));
 					System.out.println("time of pro detail under specific trailer: " + terminal + " " + StatusName
 							+ "  " + SCACTrailer + "  " + (d2.getTime() - d1.getTime()) / 1000.0);
 				}
@@ -321,7 +295,7 @@ public class US100002InquiryScreen {
 				page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
 			}
 		} else {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
 		Sassert.assertAll();
@@ -339,8 +313,7 @@ public class US100002InquiryScreen {
 		page.SearchButton.click();
 		if (ExpectedStatusList.size() != 0) {
 			Thread.sleep(500);
-			(new WebDriverWait(driver, 20))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.IQStatusList));
 			if (!page.FileterField.isDisplayed()) {
 				page.FilterButton.click();
@@ -380,8 +353,7 @@ public class US100002InquiryScreen {
 				page.ApplyButton.click();
 				Date d = CommonFunction.gettime("UTC");
 				Thread.sleep(500);
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 				int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 				for (int i = 1; i <= CountStatus; i++) {
 					String StatusName = page.IQStatusList
@@ -391,11 +363,10 @@ public class US100002InquiryScreen {
 							page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")));
 					page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
 					Thread.sleep(500);
-					(new WebDriverWait(driver, 20))
-							.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+					w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 					WebElement TrailerGrid = page.IQStatusList.findElement(
 							By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
-					(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));
+					w1.until(ExpectedConditions.visibilityOf(TrailerGrid));
 					// (new WebDriverWait(driver,
 					// 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
 
@@ -450,8 +421,7 @@ public class US100002InquiryScreen {
 				page.ApplyButton.click();
 				Date d = CommonFunction.gettime("UTC");
 				Thread.sleep(500);
-				(new WebDriverWait(driver, 20))
-						.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 				int CountStatus = page.IQStatusList.findElements(By.xpath("div")).size();
 				for (int i = 1; i <= CountStatus; i++) {
 					String StatusName = page.IQStatusList
@@ -461,11 +431,10 @@ public class US100002InquiryScreen {
 							page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")));
 					page.IQStatusList.findElement(By.xpath("div[" + i + "]//div[@class='panel-heading']")).click();
 					Thread.sleep(500);
-					(new WebDriverWait(driver, 20))
-							.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+					w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 					WebElement TrailerGrid = page.IQStatusList.findElement(
 							By.xpath("//div[@class='ui-grid-contents-wrapper']/div[3]//div[@class='ui-grid-canvas']"));
-					(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(TrailerGrid));
+					w1.until(ExpectedConditions.visibilityOf(TrailerGrid));
 
 					// (new WebDriverWait(driver,
 					// 20)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']//div[@class='ui-grid-canvas']/div")));
@@ -498,7 +467,7 @@ public class US100002InquiryScreen {
 			Thread.sleep(500);
 			page.SubTypeFileterField.findElement(By.cssSelector("button[label='Unselect All']")).click();
 		} else {
-			(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(
 					By.xpath(".//div[@class='trailer-inquiry-content']//div[@class='panel-group']")));
 		}
 		Sassert.assertAll();
@@ -510,9 +479,5 @@ public class US100002InquiryScreen {
 			driver.navigate().refresh();
 	}
 
-	@AfterClass
-	public void Close() {
-		driver.close();
-	}
 
 }

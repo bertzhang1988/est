@@ -1,7 +1,6 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -12,51 +11,31 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Function.Utility;
 import Page.EqpStatusPageS;
 
-public class LDGTesting {
-
-	private WebDriver driver;
+public class LDGTesting extends SetupBrowser {
 	private EqpStatusPageS page;
-	private ConfigRd Conf;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass(groups = { "ldg uc" })
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException, IOException {
-		Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
-
+	public void SetUp() throws AWTException, InterruptedException, IOException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 180);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
@@ -87,10 +66,9 @@ public class LDGTesting {
 
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		Thread.sleep(5000);
 		// check new record of eqps
@@ -146,10 +124,9 @@ public class LDGTesting {
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		Thread.sleep(2000);
 		// check eqps update only modify_ts update
@@ -204,13 +181,11 @@ public class LDGTesting {
 		// click submit
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Trailer " + page.SCACTrailer(SCAC, TrailerNB) + " updated to LDG"));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 
 		// check eqps new record create
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -218,8 +193,8 @@ public class LDGTesting {
 		SA.assertEquals(NewEqpStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(1), terminalcd, "Statusing_Facility_CD is wrong");
 		SA.assertEquals(NewEqpStatusRecord.get(3), "LH.LDG", "Source_Create_ID is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SA.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SA.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 		for (int i = 5; i <= 8; i++) {
 			Date TS = CommonFunction.SETtime((Date) NewEqpStatusRecord.get(i));
 			if (i == 7) {
@@ -231,7 +206,7 @@ public class LDGTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SA.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SA.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SA.assertAll();
 	}
 
@@ -270,10 +245,9 @@ public class LDGTesting {
 		String changeDesti = page.ChangeDestiantion();
 
 		// screen navigate to headload
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w2.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check headload screen
 		SA.assertEquals(page.HeadloadDestination.getAttribute("value").replaceAll("_", ""), OrgiDesti,
@@ -298,9 +272,8 @@ public class LDGTesting {
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer
 		// "+SCAC+TrailerNB+" updated to LDG"));
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// (new WebDriverWait(driver,
 		// 150)).until(ExpectedConditions.visibilityOf(page.AddProForm));
@@ -370,9 +343,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -396,12 +368,10 @@ public class LDGTesting {
 		// handle the left pro
 		page.HandleLOBRproAll("Dock");
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 165)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-		(new WebDriverWait(driver, 180))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 165)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 165))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -477,9 +447,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -508,14 +477,12 @@ public class LDGTesting {
 		String headloadCube = page.HeadloadCube.getAttribute("value");
 		Date d = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 165)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 180))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 165)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 165))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		Thread.sleep(3000);
 		// check eqps new record
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -596,9 +563,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -626,14 +592,12 @@ public class LDGTesting {
 		// page.LobrSubmitButton));
 		// page.LobrSubmitButton.click();
 
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -725,9 +689,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check lobr date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -754,11 +717,9 @@ public class LDGTesting {
 
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEqpStatusRecord.get(0), "LDG", "Equipment_Status_Type_CD is wrong");
@@ -866,19 +827,16 @@ public class LDGTesting {
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		Date today = CommonFunction.getDay(d);
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// Thread.sleep(3000);
 		// System.out.println(page.ErrorAndWarningField.getText());
 		// (new WebDriverWait(driver,
 		// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer
 		// "+SCAC+TrailerNB+" updated to LDG"));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
 
@@ -897,8 +855,8 @@ public class LDGTesting {
 			}
 		}
 
-		SAssert.assertEquals(NewEqpStatusRecord.get(16), Conf.GetAD_ID(), "modify_id is wrong");
-		SAssert.assertEquals(NewEqpStatusRecord.get(17), Conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(16), conf.GetAD_ID(), "modify_id is wrong");
+		SAssert.assertEquals(NewEqpStatusRecord.get(17), conf.GetM_ID(), "eqps Mainframe_User_ID is wrong");
 
 		// check added pro
 		Thread.sleep(5000);
@@ -919,7 +877,7 @@ public class LDGTesting {
 		}
 		// check eqp
 		ArrayList<Object> NewEqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
-		SAssert.assertEquals(NewEqp.get(0), Conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
+		SAssert.assertEquals(NewEqp.get(0), conf.GetM_ID(), " eqp Mainframe_User_ID is wrong");
 		SAssert.assertAll();
 	}
 
@@ -932,9 +890,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
@@ -986,11 +943,9 @@ public class LDGTesting {
 
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 65)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
-		(new WebDriverWait(driver, 65))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 		// check screen
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti,
 				"loading screen destination is wrong");
@@ -1061,19 +1016,16 @@ public class LDGTesting {
 		page.SubmitButton1.click();
 		Date d = CommonFunction.gettime("UTC");
 		Date today = CommonFunction.getDay(d);
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w2.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// Thread.sleep(3000);
 		// System.out.println(page.ErrorAndWarningField.getText());
 		// (new WebDriverWait(driver,
 		// 80)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,"Trailer
 		// "+SCAC+TrailerNB+" updated to LDG"));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
-		(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField, "pro(s) loaded."));
+		w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+		w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div/div")));
 
 		// check eqps
 
@@ -1117,9 +1069,8 @@ public class LDGTesting {
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check time prepopulate
 		Date picker = page.GetDatePickerTime();
@@ -1142,12 +1093,11 @@ public class LDGTesting {
 		// page.LobrSubmitButton));
 		// page.LobrSubmitButton.click();
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
+		w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
 		// (new WebDriverWait(driver,
 		// 50)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-		(new WebDriverWait(driver, 80))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w2.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -1188,9 +1138,8 @@ public class LDGTesting {
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		page.EnterTrailer(SCAC, TrailerNB);
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 
 		// check date&time pre populate
 		Date picker = page.GetDatePickerTime();
@@ -1211,12 +1160,11 @@ public class LDGTesting {
 		// enter hldestination same as destination
 		page.SetHLDest(page.DestinationField.getAttribute("value"));
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ErrorAndWarningField));
+		w1.until(ExpectedConditions.visibilityOf(page.ErrorAndWarningField));
 		SAssert.assertEquals(page.ErrorAndWarningField.getText(),
 				"The trailer destination and headload destination must be different.");
 		page.hlCancelButton.click();
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Loading"));
 
 		SAssert.assertAll();
 	}
@@ -1233,10 +1181,5 @@ public class LDGTesting {
 			driver.navigate().refresh();
 			page.SetStatus("ldg");
 		}
-	}
-
-	@AfterClass(groups = { "ldg uc" })
-	public void TearDown() {
-		driver.quit();
 	}
 }

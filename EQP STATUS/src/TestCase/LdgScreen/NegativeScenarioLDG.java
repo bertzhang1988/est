@@ -12,44 +12,29 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
-public class NegativeScenarioLDG {
-
-	private WebDriver driver;
+public class NegativeScenarioLDG extends SetupBrowser {
 	private EqpStatusPageS page;
 	private Actions builder;
+	private WebDriverWait w1;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException, IOException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		}
-		// driver=new FirefoxDriver();
+	public void SetUp() throws AWTException, InterruptedException, IOException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 		builder = new Actions(driver);
@@ -60,9 +45,8 @@ public class NegativeScenarioLDG {
 			throws AWTException, InterruptedException, ClassNotFoundException, SQLException {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 	}
 
 	@Test(priority = 2, dataProvider = "2000.68", dataProviderClass = DataForReusableFunction.class)
@@ -70,7 +54,7 @@ public class NegativeScenarioLDG {
 		page.HeadloadDestination.clear();
 		page.HeadloadDestination.sendKeys(Destination);
 		builder.sendKeys(Keys.TAB).build().perform();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Invalid Headload Destination, please enter valid Destination."));
 	}
 
@@ -79,7 +63,7 @@ public class NegativeScenarioLDG {
 		page.HeadloadDestination.clear();
 		page.HeadloadDestination.sendKeys(Destination);
 		builder.sendKeys(Keys.TAB).build().perform();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(
 				By.xpath("//*[contains(text(), 'Invalid Headload Destination, please enter valid Destination.')]")));
 	}
 
@@ -89,9 +73,8 @@ public class NegativeScenarioLDG {
 		page.SetStatus("ldg");
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		String[] Cube = { "00011", "1 1", "00", "   1", "33", "88", "100", "1030", "7000", "abc" };
 		for (int i = 0; i < Cube.length; i++) {
 			String cube = Cube[i];
@@ -99,10 +82,10 @@ public class NegativeScenarioLDG {
 			Thread.sleep(500);
 			int result = CommonFunction.CheckCubePattern(cube);
 			if (result == 2) {
-				(new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(
+				w1.until(ExpectedConditions.visibilityOfElementLocated(
 						By.xpath("//*[contains(text(), 'Invalid Headload Cube. Value must be between 1 and 100.')]")));
 			} else {
-				(new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(
+				w1.until(ExpectedConditions.invisibilityOfElementLocated(
 						By.xpath("//*[contains(text(), 'Invalid Headload Cube. Value must be between 1 and 100.')]")));
 			}
 			page.HeadloadCube.clear();
@@ -118,9 +101,8 @@ public class NegativeScenarioLDG {
 		page.EnterTrailer(SCAC, TrailerNB);
 		Date CurrentTime = CommonFunction.gettime("UTC");
 		Date LocalTime = null;
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Leftover Bill Review"));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		// check date&time field should a. eqpst>current-time use eqpst minute+1
 		// b. eqpst<current time use current time
 		if (MReqpst.before(CurrentTime)) {
@@ -174,7 +156,7 @@ public class NegativeScenarioLDG {
 		} catch (Exception e) {
 		}
 		page.HEADLOADButton.click();
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
+		w1.until(ExpectedConditions.textToBePresentInElement(page.ErrorAndWarningField,
 				"Required field(s) missing or has incorrect values. Please enter required data and re-submit"));
 		// check eqps
 		ArrayList<Object> NewEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);

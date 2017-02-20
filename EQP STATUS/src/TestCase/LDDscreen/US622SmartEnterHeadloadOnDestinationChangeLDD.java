@@ -1,7 +1,6 @@
 package TestCase.LDDscreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -9,60 +8,38 @@ import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS607;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US622SmartEnterHeadloadOnDestinationChangeLDD {
-	private WebDriver driver;
+public class US622SmartEnterHeadloadOnDestinationChangeLDD extends SetupBrowser {
 	private EqpStatusPageS page;
 	private Actions builder;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("ie") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 150);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 		builder = new Actions(driver);
 	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
-	}
-
 	@AfterMethod
 	public void setback() throws InterruptedException {
 		page.SetStatus("ldd");
@@ -85,10 +62,9 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		String changeDesti = page.ChangeDestiantion();
 
 		// check the hl screen
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), cube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
@@ -96,10 +72,9 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), cube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
 		// navigate back to ldd screen
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
+		w1.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
 		/// input cube if there is no cube value before
@@ -115,10 +90,9 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		// change destination
 		page.SetDestination(changeDesti);
 		// chcek hl screen
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), cube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
@@ -130,9 +104,8 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		Thread.sleep(3000);
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -189,20 +162,18 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		// change destination
 		String changeDesti = page.ChangeDestiantion();
 
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), cube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "screen desti is wrong");
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), cube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Set Trailer Status Closed"));
+		w1.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		Assert.assertEquals(page.DestinationField.getAttribute("value"), OrgiDesti);
 
 		// input cube if there is no cube value before
@@ -217,10 +188,9 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 
 		// change destination
 		page.SetDestination(changeDesti);
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
+		w1.until(ExpectedConditions.textToBePresentInElement(page.TitleOfScreen, "Mark PROs as Headload"));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar")));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), cube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
@@ -232,9 +202,8 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd
@@ -294,16 +263,15 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		// change destination
 		String changeDesti = page.ChangeDestiantion();
 
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), NewCube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
 		SAssert.assertEquals(page.DestinationField.getAttribute("value"), changeDesti, "screen desti is wrong");
 		SAssert.assertEquals(page.CubeField.getAttribute("value"), NewCube, "screen cube is wrong");
 		page.hlCancelButton.click();// click cancel
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar-spinner")));
+		w2.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-bar-spinner")));
 		// Assert.assertEquals(page.DestinationField.getAttribute("value"),OrgiDesti);
 
 		page.SetCube(NewCube);
@@ -314,7 +282,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 			page.ChangeSeal();
 		}
 		page.SetDestination(changeDesti);
-		(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
+		w1.until(ExpectedConditions.visibilityOf(page.HeadloadProForm));
 		SAssert.assertEquals(page.HeadloadDestination.getAttribute("value"), OrgiDesti, "screenHldestination is wrong");
 		SAssert.assertEquals(page.HLCubeField.getAttribute("value"), NewCube, "screenHLcube is wrong");
 		SAssert.assertEquals(page.ManifestToField.getText(), OrgiDesti, "screen manifest dest is wrong");
@@ -327,9 +295,8 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDD {
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
-		(new WebDriverWait(driver, 150)).until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
-		(new WebDriverWait(driver, 50))
-				.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+		w2.until(ExpectedConditions.visibilityOf(page.ProListLDDForm));
+		w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 		// check eqpststus
 		ArrayList<Object> NewEQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		SAssert.assertEquals(NewEQPStatusRecord.get(2), changeDesti, "equipment_dest_facility_cd is wrong"); // equipment_dest_facility_cd

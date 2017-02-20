@@ -1,35 +1,28 @@
 package TestCase.LdgScreen;
 
 import java.awt.AWTException;
-import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS470;
 import Function.CommonFunction;
-import Function.ConfigRd;
 import Function.DataCommon;
+import Function.SetupBrowser;
 import Page.EqpStatusPageS;
 
-public class US470LoadProFromOtherTrailer {
-	private WebDriver driver;
+public class US470LoadProFromOtherTrailer extends SetupBrowser {
 	private EqpStatusPageS page;
+	private WebDriverWait w1;
+	private WebDriverWait w2;
 
 	@Test(priority = 1, dataProvider = "4.70", dataProviderClass = DataForUS470.class)
 	public void NoProTrailerPullProFromTrailerInOtherTerminal(String terminalcd, String SCAC, String TrailerNB,
@@ -56,16 +49,12 @@ public class US470LoadProFromOtherTrailer {
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
 			(new WebDriverWait(driver, 150))
 					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
@@ -147,17 +136,12 @@ public class US470LoadProFromOtherTrailer {
 			// click submit
 			page.SubmitButton.click();
 			Date d = CommonFunction.gettime("UTC");
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.textToBePresentInElement(page.AlertMessage, "Verification"));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.textToBePresentInElement(page.AlertMessage, "Verification"));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
 			(new WebDriverWait(driver, 150))
 					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
@@ -237,16 +221,12 @@ public class US470LoadProFromOtherTrailer {
 			page.SetCube(Integer.toString(Ran));
 			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
 			(new WebDriverWait(driver, 150))
 					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
@@ -327,16 +307,12 @@ public class US470LoadProFromOtherTrailer {
 			page.SubmitButton1.click();
 			Date d = CommonFunction.gettime("UTC");
 
-			(new WebDriverWait(driver, 50)).until(ExpectedConditions.visibilityOf(page.AlertMessage));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
-			(new WebDriverWait(driver, 50))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
-			(new WebDriverWait(driver, 80)).until(ExpectedConditions.visibilityOf(page.TrailerInputField));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
-			(new WebDriverWait(driver, 80))
-					.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.visibilityOf(page.AlertMessage));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
+			w1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[4]/div/div")));
+			w2.until(ExpectedConditions.visibilityOf(page.TrailerInputField));
+			w2.until(ExpectedConditions.textToBePresentInElementValue(page.TrailerInputField, ""));
+			w2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("html/body/div[1]/div")));
 			page.EnterTrailer(SCAC, TrailerNB);
 			(new WebDriverWait(driver, 150))
 					.until(ExpectedConditions.textToBePresentInElement(page.ProListForm, CurrentProH));
@@ -391,29 +367,12 @@ public class US470LoadProFromOtherTrailer {
 	}
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) throws AWTException, InterruptedException {
-		ConfigRd Conf = new ConfigRd();
-		if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", Conf.GetChromePath());
-			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.setProperty("webdriver.ie.driver", Conf.GetIEPath());
-			driver = new InternetExplorerDriver();
-		} else if (browser.equalsIgnoreCase("hl")) {
-			File file = new File(Conf.GetPhantomJSDriverPath());
-			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-			driver = new PhantomJSDriver();
-		}
+	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(Conf.GetURL());
+		w1 = new WebDriverWait(driver, 50);
+		w2 = new WebDriverWait(driver, 80);
+		driver.get(conf.GetURL());
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
-
-	@AfterClass
-	public void Close() {
-		driver.close();
-	}
-
 }
