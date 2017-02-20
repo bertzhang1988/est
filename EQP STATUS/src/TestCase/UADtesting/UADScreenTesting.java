@@ -159,7 +159,7 @@ public class UADScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -1, 0);
+		page.SetDatePicker(page.GetDatePickerTime(), -1, 0);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		page.SubmitButton.click();
@@ -205,7 +205,7 @@ public class UADScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -3, -59);
+		page.SetDatePicker(page.GetDatePickerTime(), -3, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -250,7 +250,7 @@ public class UADScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -4, -59);
+		page.SetDatePicker(page.GetDatePickerTime(), -4, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		builder.sendKeys(Keys.ENTER).build().perform();
@@ -296,7 +296,7 @@ public class UADScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "UAD screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -4, -59);
+		page.SetDatePicker(page.GetDatePickerTime(), -4, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		builder.sendKeys(Keys.ENTER).build().perform();

@@ -81,7 +81,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
@@ -183,7 +183,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// handle the left pro
@@ -289,7 +289,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// alter time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// handle the left pro
 		page.HandleLOBRproAll("leaveON");

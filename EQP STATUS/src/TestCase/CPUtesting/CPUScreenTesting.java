@@ -57,7 +57,7 @@ public class CPUScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		page.SubmitButton.click();
@@ -110,7 +110,7 @@ public class CPUScreenTesting extends SetupBrowser {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
@@ -163,7 +163,7 @@ public class CPUScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "cpu screen prepopulate time is wrong ");
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<Object> Eqp = DataCommon.CheckEquipment(SCAC, TrailerNB);
 		page.SubmitButton.click();
@@ -216,7 +216,7 @@ public class CPUScreenTesting extends SetupBrowser {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 6);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 6);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		ArrayList<Object> OldEqpStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);

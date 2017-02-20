@@ -78,7 +78,7 @@ public class OFDScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// alter time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// press enter key
@@ -147,7 +147,7 @@ public class OFDScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// alter time
-		page.SetDatePicker2(Localtime, 0, 5);
+		page.SetDatePicker(Localtime, 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// press enter key
@@ -215,11 +215,11 @@ public class OFDScreenTesting extends SetupBrowser {
 
 		int TimeGap = (int) ((CurrentTime.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
 		if (TimeGap > 24) {
-			page.SetDatePicker2(CurrentTime, -23, -59);
+			page.SetDatePicker(CurrentTime, -23, -59);
 		} else if (TimeGap < 24 && TimeGap > 0) {
-			page.SetDatePicker2(MRSts, 0, 1);
+			page.SetDatePicker(MRSts, 0, 1);
 		} else if (TimeGap > 0) {
-			page.SetDatePicker2(CurrentTime, 0, 59);
+			page.SetDatePicker(CurrentTime, 0, 59);
 		}
 
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
@@ -281,11 +281,11 @@ public class OFDScreenTesting extends SetupBrowser {
 
 		int TimeGap = (int) ((CurrentTime.getTime() - MRSts.getTime()) / (1000 * 60 * 60));
 		if (TimeGap > 24) {
-			page.SetDatePicker2(CurrentTime, -23, -59);
+			page.SetDatePicker(CurrentTime, -23, -59);
 		} else if (TimeGap < 24 && TimeGap > 0) {
-			page.SetDatePicker2(MRSts, 0, 1);
+			page.SetDatePicker(MRSts, 0, 1);
 		} else if (TimeGap > 0) {
-			page.SetDatePicker2(CurrentTime, 0, 59);
+			page.SetDatePicker(CurrentTime, 0, 59);
 		}
 
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());

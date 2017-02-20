@@ -913,7 +913,7 @@ public class EqpStatusPageS {
 		this.HourInput.sendKeys(Hour);
 	}
 
-	public void SetHour1(String Hour) {
+	public void SetHours(String Hour) {
 		Actions builder = new Actions(driver);
 		this.HourInput.clear();
 		String firstKey = Hour.substring(0, 1);
@@ -948,12 +948,12 @@ public class EqpStatusPageS {
 		String Minute = String.format("%02d", minute);
 		String DATE = dateFormat.format(cal.getTime());
 		this.SetDate(DATE);
-		this.SetHour1(hour);
+		this.SetHours(hour);
 		this.SetMinute(Minute);
 		builder.sendKeys(Keys.TAB).build().perform();
 	}
 
-	public void SetDatePicker2(Date SetDate, int AlterHour, int AlterMinute) {
+	public void SetDatePicker(Date SetDate, int AlterHour, int AlterMinute) {
 		Actions builder = new Actions(driver);
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -968,7 +968,7 @@ public class EqpStatusPageS {
 		String Minute = String.format("%02d", minute);
 		String DATE = dateFormat.format(cal.getTime());
 		this.SetDate(DATE);
-		this.SetHour1(hour);
+		this.SetHours(hour);
 		this.SetMinute(Minute);
 		builder.sendKeys(Keys.TAB).build().perform();
 	}

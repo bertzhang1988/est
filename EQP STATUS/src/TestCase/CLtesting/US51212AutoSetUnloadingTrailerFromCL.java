@@ -55,7 +55,7 @@ public class US51212AutoSetUnloadingTrailerFromCL extends SetupBrowser {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -163,7 +163,7 @@ public class US51212AutoSetUnloadingTrailerFromCL extends SetupBrowser {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -276,7 +276,7 @@ public class US51212AutoSetUnloadingTrailerFromCL extends SetupBrowser {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();
@@ -364,7 +364,7 @@ public class US51212AutoSetUnloadingTrailerFromCL extends SetupBrowser {
 		page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 
 		// add pro
 		page.RemoveProButton.click();

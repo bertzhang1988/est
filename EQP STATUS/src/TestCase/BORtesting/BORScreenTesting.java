@@ -57,7 +57,7 @@ public class BORScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "bor screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, -5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, -5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		page.SubmitButton.click();
@@ -106,7 +106,7 @@ public class BORScreenTesting extends SetupBrowser {
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "pro grid is wrong");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// page.LobrCancelButton.click();
@@ -185,7 +185,7 @@ public class BORScreenTesting extends SetupBrowser {
 
 		// page.LobrCancelButton.click();
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, -59);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
@@ -251,7 +251,7 @@ public class BORScreenTesting extends SetupBrowser {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, -9);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, -9);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");
@@ -293,7 +293,7 @@ public class BORScreenTesting extends SetupBrowser {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "pro grid is wrong");
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 9);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 9);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// page.LobrCancelButton.click();
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
@@ -369,7 +369,7 @@ public class BORScreenTesting extends SetupBrowser {
 
 		// page.LobrCancelButton.click();
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
 		page.HandleLOBRproAll("allshort");
@@ -441,7 +441,7 @@ public class BORScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "bor screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 20);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 20);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -481,7 +481,7 @@ public class BORScreenTesting extends SetupBrowser {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 16);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 16);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 		Date d = CommonFunction.gettime("UTC");

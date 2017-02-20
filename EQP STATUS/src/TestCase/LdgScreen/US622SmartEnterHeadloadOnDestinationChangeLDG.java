@@ -103,7 +103,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG extends SetupBrowser 
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 36);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 36);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
@@ -211,7 +211,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG extends SetupBrowser 
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
@@ -312,7 +312,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG extends SetupBrowser 
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");
@@ -444,7 +444,7 @@ public class US622SmartEnterHeadloadOnDestinationChangeLDG extends SetupBrowser 
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 34);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();// PRESS ENTER KEY
 		Date d = CommonFunction.gettime("UTC");

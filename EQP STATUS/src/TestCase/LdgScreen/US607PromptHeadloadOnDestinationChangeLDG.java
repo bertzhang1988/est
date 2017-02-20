@@ -101,7 +101,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -176,7 +176,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 55);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 55);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
@@ -380,7 +380,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
@@ -486,7 +486,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");
@@ -597,7 +597,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -718,7 +718,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.NoButton.click();// click no
 		Date d = CommonFunction.gettime("UTC");
@@ -835,7 +835,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		ArrayList<Object> EQPStatusRecord = DataCommon.CheckEQPStatusUpdate(SCAC, TrailerNB);
 		ArrayList<ArrayList<Object>> WbtRecord = DataCommon.CheckWaybillUpdateForHL(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 45);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 45);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.YesButton.click();// click yes
 		Date d = CommonFunction.gettime("UTC");

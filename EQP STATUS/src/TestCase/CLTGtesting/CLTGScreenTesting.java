@@ -125,7 +125,7 @@ public class CLTGScreenTesting extends SetupBrowser {
 				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
 
 		// set date&time
-		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		page.SetDatePicker(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -200,7 +200,7 @@ public class CLTGScreenTesting extends SetupBrowser {
 				"cltg screen pro grid is wrong\n" + ExpectedProInformation + "\n" + ProInfo + "\n");
 
 		// set date&time
-		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		page.SetDatePicker(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -281,7 +281,7 @@ public class CLTGScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		page.SetDatePicker(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// leave on
@@ -404,7 +404,7 @@ public class CLTGScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("cartage");
 
 		// set date&time
-		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		page.SetDatePicker(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		SA.assertAll();
 		// Dock
@@ -518,7 +518,7 @@ public class CLTGScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker2(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
+		page.SetDatePicker(CommonFunction.getLocalTime(terminalcd, CurrentTime), 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// all short

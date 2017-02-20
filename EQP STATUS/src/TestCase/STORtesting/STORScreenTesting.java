@@ -57,7 +57,7 @@ public class STORScreenTesting extends SetupBrowser {
 		SA.assertEquals(picker, expect, "STOR screen prepopulate time is wrong ");
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -1, -34);
+		page.SetDatePicker(page.GetDatePickerTime(), -1, -34);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d = CommonFunction.gettime("UTC");
@@ -95,7 +95,7 @@ public class STORScreenTesting extends SetupBrowser {
 		page.SetLocation(terminalcd);
 		page.EnterTrailer(SCAC, TrailerNB);
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -1, -59);
+		page.SetDatePicker(page.GetDatePickerTime(), -1, -59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		builder.sendKeys(Keys.ENTER).build().perform();
 
@@ -142,7 +142,7 @@ public class STORScreenTesting extends SetupBrowser {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "pro grid is wrong");
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 59);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 59);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// page.LobrCancelButton.click();
 		ArrayList<String> ProOnTrailer = DataCommon.GetProOnTrailer(SCAC, TrailerNB);
@@ -216,7 +216,7 @@ public class STORScreenTesting extends SetupBrowser {
 		LinkedHashSet<ArrayList<String>> ProInfo = page.GetProList(page.LeftoverBillForm);
 		SA.assertEquals(ProInfo, DataCommon.GetProListLOBR(SCAC, TrailerNB), "pro grid is wrong");
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), -1, 0);
+		page.SetDatePicker(page.GetDatePickerTime(), -1, 0);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		// page.LobrCancelButton.click();
 		// page.LobrCancelButton.click();

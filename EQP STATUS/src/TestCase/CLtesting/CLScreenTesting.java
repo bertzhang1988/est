@@ -82,7 +82,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -156,7 +156,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("interline");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -285,7 +285,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -392,7 +392,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -519,7 +519,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -597,7 +597,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("appt");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// leave on
@@ -720,7 +720,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("cartage");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// dock
@@ -832,7 +832,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("INTERLINE");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// all short
@@ -942,7 +942,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -1049,7 +1049,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro
@@ -1162,7 +1162,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -1239,7 +1239,7 @@ public class CLScreenTesting extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(Localtime, 0, 10);
+		page.SetDatePicker(Localtime, 0, 10);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// add pro

@@ -52,7 +52,7 @@ public class US50708AutoIncludeOrigAndRouteInUadRecord extends SetupBrowser {
 		String SetCityRtype = page.SetCityRouteType("trap");
 
 		// set date&time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 5);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 5);
 		Date AlterTime = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 
 		// click submit
@@ -88,7 +88,7 @@ public class US50708AutoIncludeOrigAndRouteInUadRecord extends SetupBrowser {
 		page.EnterTrailer(SCAC, TrailerNB);
 
 		// alter time
-		page.SetDatePicker2(page.GetDatePickerTime(), 0, 10);
+		page.SetDatePicker(page.GetDatePickerTime(), 0, 10);
 		Date AlterTime2 = CommonFunction.ConvertUtcTime(terminalcd, page.GetDatePickerTime());
 		page.SubmitButton.click();
 		Date d2 = CommonFunction.gettime("UTC");
