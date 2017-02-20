@@ -12,11 +12,11 @@ EqpsQaURL=https://spastg.yrcw.com/webapps/yrc-equipstatus/
 
 EqpsSitaURL=https://spasita.yrcw.com/webapps/yrc-equipstatus/
 
-Devdb=jdbc:sqlserver://ywsqldccdev01v\\ads:53465;databaseName=ops_1
+Devdb=jdbc:sqlserver://ywsqlopsdev01v\\ads:53465;databaseName=ops_1
 
-Devuser=estdev
+Devuser=svcEQPdev
 
-Devpassword=equipment
+Devpassword=Equip001
 
 Sitdb=jdbc:sqlserver://ywsqlopsstg01v\\ads:49247;databaseName=ops_s1
  
