@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ALL SUITE" verbose="2">
+
+	<suite-files>
+		<suite-file path="CLtest.xml" />
+		<suite-file path="Lddtest.xml" />
+		<suite-file path="Ldgtest1.xml" />
+		<suite-file path="Ldgtest2.xml" />
+		<suite-file path="LDGCrossBrowser.xml" />
+		<suite-file path="testCommonFunction.xml" />
+		<suite-file path="testCommonFunctionPerStatus.xml" />
+		<suite-file path="testngCrossBrowser.xml" />
+	</suite-files>
+
+</suite> <!-- Suite -->

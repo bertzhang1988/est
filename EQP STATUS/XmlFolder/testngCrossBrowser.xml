@@ -4,7 +4,7 @@
   <test name="ChromeTest">
   <parameter name="browser" value="Chrome"/>
     <classes>
-	   <class name="CPUtesting.LoadToEnrScreenTesting"></class>
+	   <class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class>
 
     </classes>
   </test>
@@ -12,7 +12,7 @@
   <test name="IETest">
   <parameter name="browser" value="ie"/>
     <classes>  
-	   <class name="CPUtesting.LoadToEnrScreenTesting"></class> 
+	   <class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class> 
     </classes>
   </test>
  </suite>

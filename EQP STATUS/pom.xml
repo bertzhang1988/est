@@ -4,7 +4,9 @@
 	<groupId>sqa.SeleniumTest</groupId>
 	<artifactId>EQPSTATUS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<properties>
+		<xmlfilePath>XmlFolder/testALL.xml</xmlfilePath>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
@@ -77,14 +79,7 @@
 				<inherited>true</inherited>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/TestCase/LdgScreen/LdgTesting1.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/LdgScreen/LdgTesting2.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/LdgScreen/LDGtestngCrossBrowser.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/LDDScreen/LddTesting.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/CLtesting/CLtest.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunctionPerStatus2.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunction.xml</suiteXmlFile>
-						<suiteXmlFile>src/TestCase/ReusableFunctionTest/testCommonFunctionPerStatus.xml</suiteXmlFile>
+						<suiteXmlFile>${xmlfilePath}</suiteXmlFile>
 					</suiteXmlFiles>
 					<properties>
 						<property>
