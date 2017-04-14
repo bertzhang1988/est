@@ -13,10 +13,10 @@ import org.testng.annotations.Test;
 
 import Data.DataForUS1205;
 import Function.CommonFunction;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1205CheckCubeAndSeal extends SetupBrowser {
+public class US1205CheckCubeAndSeal extends Setup {
 	private EqpStatusPageS page;
 	private Actions builder;
 	private WebDriverWait w1;
@@ -26,7 +26,7 @@ public class US1205CheckCubeAndSeal extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		builder = new Actions(driver);
 		w1 = new WebDriverWait(driver, 10);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 

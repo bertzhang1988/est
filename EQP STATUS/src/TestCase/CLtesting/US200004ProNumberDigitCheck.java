@@ -16,16 +16,15 @@ import org.testng.asserts.SoftAssert;
 
 import Data.DataForUS200004;
 import Function.CommonFunction;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US200004ProNumberDigitCheck extends SetupBrowser {
+public class US200004ProNumberDigitCheck extends Setup {
 	private EqpStatusPageS page;
 
 	@BeforeClass
 	public void SetUp() throws AWTException, InterruptedException {
-		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		page = new EqpStatusPageS(driver); 
 		driver.manage().window().maximize();
 		page.SetStatus("cl");
 	}

@@ -15,16 +15,16 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS461AndUS465AndUS457;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457ShowLoadedShipmentOnGrid extends SetupBrowser{
+public class US461PrepopValuesLoadingTrailerAndUS465SummarizeBillsWeightUS457ShowLoadedShipmentOnGrid extends Setup{
 	private EqpStatusPageS page;
 
 	@BeforeClass
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}

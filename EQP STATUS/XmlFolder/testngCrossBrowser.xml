@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="two screen, two browser" thread-count="2"  parallel="tests" >
-  <test name="ChromeTest">
-  <parameter name="browser" value="Chrome"/>
-    <classes>
-	   <class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class>
+<suite name="two screen, two browser" thread-count="2" parallel="tests">
+	<test name="ChromeTest">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="env" value="sit" />
+		<classes>
+			<class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class>
 
-    </classes>
-  </test>
-  
-  <test name="IETest">
-  <parameter name="browser" value="ie"/>
-    <classes>  
-	   <class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class> 
-    </classes>
-  </test>
- </suite>
+		</classes>
+	</test>
+
+	<test name="IETest">
+		<parameter name="browser" value="ie" />
+		<parameter name="env" value="sit" />
+		<classes>
+			<class name="TestCase.LoadToEnr.LoadToEnrScreenTesting"></class>
+		</classes>
+	</test>
+</suite>
 

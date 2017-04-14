@@ -1,80 +1,112 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="multiple screen, some test method use static parameter" thread-count="1"  parallel="false">
-<parameter name="browser" value="chrome" />
-   <test name="test MTY">
-   <parameter name="status" value="mty"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class> 
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>   
-      </classes>
-   </test>
- <test name="test BOR">
- <parameter name="status" value="bor"/>
-     <classes>
-   <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
-   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
-     </classes> 
- </test>
-  <test name="test UAD">
- <parameter name="status" value="uad"/>
-     <classes>
- <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
- <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
- <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
-     </classes> 
- </test>
-  <test name="test LDD">
-   <parameter name="status" value="ldd"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>    
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
-      </classes>
-   </test>
-    <test name="test LDG">
-   <parameter name="status" value="ldg"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class> 
-      </classes>
-   </test>
-    <test name="test CPU">
-   <parameter name="status" value="cpu"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
-      </classes>
-   </test>
- <test name="test OFD">
-   <parameter name="status" value="ofd"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
-      </classes>
-   </test>
- <test name="test CL">
-   <parameter name="status" value="cl"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>  
-      </classes>
-   </test>
- <test name="test CLTG">
-   <parameter name="status" value="cltg"/>
-      <classes>
-       <class name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
-	   <class name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>  
-	   <class name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class> 
-	   <class name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class>  
-      </classes>
-   </test>
+<suite name="multiple screen, some test method use static parameter"
+	thread-count="1" parallel="false">
+	<parameter name="browser" value="chrome" />
+	<parameter name="env" value="sit" />
+	<test name="test MTY">
+		<parameter name="status" value="mty" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test BOR">
+		<parameter name="status" value="bor" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test UAD">
+		<parameter name="status" value="uad" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test LDD">
+		<parameter name="status" value="ldd" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class>
+		</classes>
+	</test>
+	<test name="test LDG">
+		<parameter name="status" value="ldg" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class>
+		</classes>
+	</test>
+	<test name="test CPU">
+		<parameter name="status" value="cpu" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test OFD">
+		<parameter name="status" value="ofd" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test CL">
+		<parameter name="status" value="cl" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+		</classes>
+	</test>
+	<test name="test CLTG">
+		<parameter name="status" value="cltg" />
+		<classes>
+			<class
+				name="TestCase.ReusableFunctionTest.US200057EvaluateStatusTransitions"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200058ValidateTrailerAtStatusingLocation"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200001AndUS200002ValidateTrailerAndUS200041ValidateTerminal"></class>
+			<class
+				name="TestCase.ReusableFunctionTest.US200068AndUS445ValidateDestinationFacilityValid"></class>
+		</classes>
+	</test>
 </suite>
 

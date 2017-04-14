@@ -23,12 +23,12 @@ import Data.DataForUS200004;
 import Data.DataForUS439;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Function.Utility;
 import Page.EqpStatusPageS;
 import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
-public class LoadToEnrScreenTesting extends SetupBrowser {
+public class LoadToEnrScreenTesting extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 	private WebDriverWait w2;
@@ -39,7 +39,7 @@ public class LoadToEnrScreenTesting extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetToLoadEnrScreen();
 	}

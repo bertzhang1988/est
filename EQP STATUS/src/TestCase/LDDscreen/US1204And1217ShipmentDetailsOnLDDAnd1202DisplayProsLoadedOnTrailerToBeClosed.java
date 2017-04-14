@@ -13,16 +13,16 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerToBeClosed extends SetupBrowser {
+public class US1204And1217ShipmentDetailsOnLDDAnd1202DisplayProsLoadedOnTrailerToBeClosed extends Setup {
 	private EqpStatusPageS page;
 
 	@BeforeClass
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 	}

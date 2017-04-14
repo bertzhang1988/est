@@ -15,10 +15,10 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS200006;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US200006FoodAndPoisWarning extends SetupBrowser {
+public class US200006FoodAndPoisWarning extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 	private WebDriverWait w2;
@@ -28,7 +28,7 @@ public class US200006FoodAndPoisWarning extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}

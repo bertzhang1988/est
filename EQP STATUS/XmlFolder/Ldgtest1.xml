@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ldg testing" parallel="none" verbose="2" >
- <test name="test ldg 1" >
- <parameter name="browser" value="chrome"/>
-  
-    <classes>
-	   <class name="TestCase.LdgScreen.US458CheckShipmentAlreadyLoadedOnTrailer"></class>
-	   <class name="TestCase.LdgScreen.US452RemoveShipment"></class>
-	   <class name="TestCase.LdgScreen.US439PreventProFromLoadingAlert"></class>
-	   <class name="TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter"></class>
-	   <class name="TestCase.LdgScreen.US200006FoodAndPoisWarning"></class>
-	   <class name="TestCase.LdgScreen.US200004ProNumberDigitCheck"></class> 
+<suite name="ldg testing" parallel="none" verbose="2">
+	<test name="test ldg 1">
+		<parameter name="browser" value="chrome" />
+		<parameter name="env" value="sit" />
+		<classes>
+			<class name="TestCase.LdgScreen.US458CheckShipmentAlreadyLoadedOnTrailer"></class>
+			<class name="TestCase.LdgScreen.US452RemoveShipment"></class>
+			<class name="TestCase.LdgScreen.US439PreventProFromLoadingAlert"></class>
+			<class name="TestCase.LdgScreen.US200075DisplayPROsInOrderWhichTheyEnter"></class>
+			<class name="TestCase.LdgScreen.US200006FoodAndPoisWarning"></class>
+			<class name="TestCase.LdgScreen.US200004ProNumberDigitCheck"></class>
 
-    </classes>
-  </test>
- </suite>
+		</classes>
+	</test>
+</suite>
 

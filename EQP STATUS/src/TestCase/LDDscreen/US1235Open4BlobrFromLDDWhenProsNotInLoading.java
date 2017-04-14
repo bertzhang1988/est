@@ -18,11 +18,11 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 import TestCase.LdgScreen.DataForUSLDGLifeTest;
 
-public class US1235Open4BlobrFromLDDWhenProsNotInLoading extends SetupBrowser {
+public class US1235Open4BlobrFromLDDWhenProsNotInLoading extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 	private WebDriverWait w2;
@@ -32,7 +32,7 @@ public class US1235Open4BlobrFromLDDWhenProsNotInLoading extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 	}

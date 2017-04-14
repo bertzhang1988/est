@@ -6,7 +6,11 @@ import java.util.Properties;
 
 public class ConfigRd {
 
-	Properties pro;
+	private Properties pro;
+	private String URL;
+	private String DBurl;
+	private String DBuser;
+	private String DBpassword;
 
 	public ConfigRd() {
 		try {
@@ -18,6 +22,54 @@ public class ConfigRd {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}
+	}
+
+	public ConfigRd(String environment) {
+		try {
+			File src = new File("./ESTConfiguration/EstConfig.property");
+			FileInputStream fis = new FileInputStream(src);
+			pro = new Properties();
+			pro.load(fis);
+			fis.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (environment.equalsIgnoreCase("sit")) {
+
+			URL = pro.getProperty("EqpsSitURL");
+			DBurl = pro.getProperty("Sitdb");
+			DBuser = pro.getProperty("Situser");
+			DBpassword = pro.getProperty("Sitpassword");
+
+		} else if (environment.equalsIgnoreCase("dev")) {
+
+			URL = pro.getProperty("EqpsDevURL");
+			DBurl = pro.getProperty("Devdb");
+			DBuser = pro.getProperty("Devuser");
+			DBpassword = pro.getProperty("Devpassword");
+
+		} else if (environment.equalsIgnoreCase("sita")) {
+
+			URL = pro.getProperty("EqpsSitaURL");
+			DBurl = pro.getProperty("Sitadb");
+			DBuser = pro.getProperty("Sitauser");
+			DBpassword = pro.getProperty("Sitapassword");
+
+		} else if (environment.equalsIgnoreCase("qa")) {
+
+			URL = pro.getProperty("EqpsQaURL");
+			DBurl = pro.getProperty("Qadb");
+			DBuser = pro.getProperty("Qauser");
+			DBpassword = pro.getProperty("Qapassword");
+
+		} else if (environment.equalsIgnoreCase("prod")) {
+
+			URL = pro.getProperty("EqpsProdURL");
+			DBurl = pro.getProperty("Proddb");
+			DBuser = pro.getProperty("Produser");
+			DBpassword = pro.getProperty("Prodpassword");
 		}
 	}
 
@@ -37,22 +89,22 @@ public class ConfigRd {
 	}
 
 	public String GetURL() {
-		String path = pro.getProperty("EqpsSitURL");
+		String path = URL;
 		return path;
 	}
 
 	public String GetDatabase() {
-		String path = pro.getProperty("Sitdb");
+		String path = DBurl;
 		return path;
 	}
 
 	public String GetDbUserName() {
-		String path = pro.getProperty("Situser");
+		String path = DBuser;
 		return path;
 	}
 
 	public String GetDbPassword() {
-		String path = pro.getProperty("Sitpassword");
+		String path = DBpassword;
 		return path;
 	}
 

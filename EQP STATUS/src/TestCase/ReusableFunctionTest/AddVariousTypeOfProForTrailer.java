@@ -23,11 +23,11 @@ import Data.DataForUS1215;
 import Data.DataForUS200091;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 import TestCase.CLtesting.DataForCLScreenTesting;
 
-public class AddVariousTypeOfProForTrailer extends SetupBrowser {
+public class AddVariousTypeOfProForTrailer extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 	private WebDriverWait w2;
@@ -697,7 +697,7 @@ public class AddVariousTypeOfProForTrailer extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 80);
 		w2 = new WebDriverWait(driver, 180);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("cl");
 

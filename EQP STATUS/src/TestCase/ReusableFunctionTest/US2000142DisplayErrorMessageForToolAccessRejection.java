@@ -17,10 +17,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Function.ConfigRd;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US2000142DisplayErrorMessageForToolAccessRejection extends SetupBrowser {
+public class US2000142DisplayErrorMessageForToolAccessRejection extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 
@@ -29,7 +29,7 @@ public class US2000142DisplayErrorMessageForToolAccessRejection extends SetupBro
 
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 150);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 
 	}

@@ -13,11 +13,11 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 import TestCase.TerminalInquiryTesting.DataForInQuiryScreen;
 
-public class TrailerInquiryScreen extends SetupBrowser{
+public class TrailerInquiryScreen extends Setup{
 
 	private EqpStatusPageS page;
 	private Actions builder;
@@ -26,7 +26,7 @@ public class TrailerInquiryScreen extends SetupBrowser{
 	public void SetUp() throws AWTException, InterruptedException {
 		
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetTrailerInquiryScreen();
 		builder = new Actions(driver);

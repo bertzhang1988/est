@@ -19,10 +19,10 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
+public class US51226Open3BlobrCLWhenPorsNotInLoading extends Setup {
 
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
@@ -32,7 +32,7 @@ public class US51226Open3BlobrCLWhenPorsNotInLoading extends SetupBrowser {
 
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("CL");
 	}

@@ -21,11 +21,11 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 import TestCase.ReusableFunctionTest.DataForReusableFunction;
 
-public class NegativeScenarioLDG extends SetupBrowser {
+public class NegativeScenarioLDG extends Setup {
 	private EqpStatusPageS page;
 	private Actions builder;
 	private WebDriverWait w1;
@@ -34,7 +34,7 @@ public class NegativeScenarioLDG extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException, IOException {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 		builder = new Actions(driver);

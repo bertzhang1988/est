@@ -4,6 +4,7 @@
   
   <test name="ChromeTest">
   <parameter name="browser" value="Chrome"/>
+  	<parameter name="env" value="sit" />
     <classes>
 	   <class name="TestCase.LdgScreen.LDGTesting"></class>
 	   <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG"></class>
@@ -14,6 +15,7 @@
   
   <test name="IETest">
   <parameter name="browser" value="IE" />
+  	<parameter name="env" value="sit" />
     <classes>  
 	   <class name="TestCase.LdgScreen.LDGTesting"></class>
 	   <class name="TestCase.LdgScreen.US607PromptHeadloadOnDestinationChangeLDG"></class>

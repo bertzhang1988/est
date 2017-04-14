@@ -16,10 +16,10 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS200091;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US2000141AlertUserIfMidusFailsForAnyReason extends SetupBrowser {
+public class US2000141AlertUserIfMidusFailsForAnyReason extends Setup {
 
 	private EqpStatusPageS page;
 
@@ -27,7 +27,7 @@ public class US2000141AlertUserIfMidusFailsForAnyReason extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException {
 
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 

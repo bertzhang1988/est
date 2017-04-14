@@ -11,10 +11,10 @@ import org.testng.annotations.Test;
 
 import Data.DataForUS1212AND1211;
 import Function.CommonFunction;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer extends SetupBrowser {
+public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 
@@ -39,7 +39,7 @@ public class US1212and1211andUS1222SummarizeSeriviceAndFlagOnTrailer extends Set
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 20);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 

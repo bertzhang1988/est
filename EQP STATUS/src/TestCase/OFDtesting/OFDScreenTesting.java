@@ -20,11 +20,11 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Function.Utility;
 import Page.EqpStatusPageS;
 
-public class OFDScreenTesting extends SetupBrowser {
+public class OFDScreenTesting extends Setup {
 
 	private EqpStatusPageS page;
 	private Actions builder;
@@ -37,7 +37,7 @@ public class OFDScreenTesting extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("OFD");
 		builder = new Actions(driver);

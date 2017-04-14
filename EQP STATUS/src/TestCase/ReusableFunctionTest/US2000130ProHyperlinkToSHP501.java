@@ -18,21 +18,21 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 import TestCase.CLTGtesting.DataForCLTGScreenTesting;
 import TestCase.CLtesting.DataForCLScreenTesting;
 import TestCase.LDDscreen.DataForUSLDDLifeTest;
 import TestCase.LdgScreen.DataForUSLDGLifeTest;
 
-public class US2000130ProHyperlinkToSHP501 extends SetupBrowser {
+public class US2000130ProHyperlinkToSHP501 extends Setup {
 
 	private EqpStatusPageS page;
 
 	@BeforeClass()
 	public void SetUp() throws AWTException, InterruptedException, IOException {
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 
 	}

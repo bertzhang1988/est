@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="ldd testing" parallel="false" verbose="2">
- <test name="test ldd">
- <parameter name="browser" value="ie"/>
-    <classes>
-	   <class name="TestCase.LDDscreen.LDDTesting"></class>
-	   <class name="TestCase.LDDscreen.US200091SmartEnterLDD"></class>
-	   <class name="TestCase.LDDscreen.US607PromptHeadloadOnDestinationChangeLDD"></class>
-	   <class name="TestCase.LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD"></class>
-    </classes>
-  </test>
- </suite>
+	<test name="test ldd">
+		<parameter name="browser" value="ie" />
+		<parameter name="env" value="sit" />
+		<classes>
+			<class name="TestCase.LDDscreen.LDDTesting"></class>
+			<class name="TestCase.LDDscreen.US200091SmartEnterLDD"></class>
+			<class name="TestCase.LDDscreen.US607PromptHeadloadOnDestinationChangeLDD"></class>
+			<class
+				name="TestCase.LDDscreen.US622SmartEnterHeadloadOnDestinationChangeLDD"></class>
+		</classes>
+	</test>
+</suite>
 

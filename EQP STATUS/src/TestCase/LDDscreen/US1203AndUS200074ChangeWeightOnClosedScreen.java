@@ -11,10 +11,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import Data.DataForUS1203;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1203AndUS200074ChangeWeightOnClosedScreen extends SetupBrowser {
+public class US1203AndUS200074ChangeWeightOnClosedScreen extends Setup {
 
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
@@ -23,7 +23,7 @@ public class US1203AndUS200074ChangeWeightOnClosedScreen extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 10);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 

@@ -7,10 +7,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US2000135DisplayFrequentAskQuestion extends SetupBrowser {
+public class US2000135DisplayFrequentAskQuestion extends Setup {
 
 	private EqpStatusPageS page;
 
@@ -18,7 +18,7 @@ public class US2000135DisplayFrequentAskQuestion extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException {
 
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 	}
 

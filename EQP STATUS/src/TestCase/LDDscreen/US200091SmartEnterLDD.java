@@ -20,10 +20,10 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS200091;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US200091SmartEnterLDD extends SetupBrowser {
+public class US200091SmartEnterLDD extends Setup {
 	private EqpStatusPageS page;
 	private Actions builer;
 	private WebDriverWait w1;
@@ -34,7 +34,7 @@ public class US200091SmartEnterLDD extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 180);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldd");
 		builer = new Actions(driver);

@@ -20,10 +20,10 @@ import Data.DataForUS1215;
 import Data.DataForUS439;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1215QuickClose extends SetupBrowser {
+public class US1215QuickClose extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 
@@ -31,7 +31,7 @@ public class US1215QuickClose extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 

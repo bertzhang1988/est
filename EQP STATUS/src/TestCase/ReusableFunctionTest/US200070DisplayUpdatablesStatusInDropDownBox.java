@@ -6,10 +6,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US200070DisplayUpdatablesStatusInDropDownBox extends SetupBrowser {
+public class US200070DisplayUpdatablesStatusInDropDownBox extends Setup {
 
 	private EqpStatusPageS page;
 
@@ -23,7 +23,7 @@ public class US200070DisplayUpdatablesStatusInDropDownBox extends SetupBrowser {
 	public void SetUp() throws AWTException, InterruptedException {
 
 		page = new EqpStatusPageS(driver);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 	}
 

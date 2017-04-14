@@ -15,10 +15,10 @@ import org.testng.annotations.Test;
 
 import Data.DataForUS439;
 import Function.CommonFunction;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US439PreventProFromLoadingAlert extends SetupBrowser {
+public class US439PreventProFromLoadingAlert extends Setup {
 
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
@@ -29,7 +29,7 @@ public class US439PreventProFromLoadingAlert extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 20);
 		w2 = new WebDriverWait(driver, 50);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("CL");
 	}

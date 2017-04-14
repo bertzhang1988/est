@@ -17,10 +17,10 @@ import org.testng.asserts.SoftAssert;
 
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Page.EqpStatusPageS;
 
-public class US1234DisplayWarningMessageForProInvalidWeight extends SetupBrowser {
+public class US1234DisplayWarningMessageForProInvalidWeight extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 
@@ -28,7 +28,7 @@ public class US1234DisplayWarningMessageForProInvalidWeight extends SetupBrowser
 	public void SetUp() throws AWTException, InterruptedException {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 20);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 
 	}

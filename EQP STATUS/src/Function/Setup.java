@@ -11,26 +11,27 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-public class SetupBrowser {
+public class Setup {
 
 	protected WebDriver driver;
-	protected ConfigRd conf;
+	protected static ConfigRd conf;
 
 	@BeforeClass
-	@Parameters({ "browser" })
-	public void SetUp(@Optional("chrome") String browser) {
-		conf = new ConfigRd();
+	@Parameters({ "browser", "env" })
+	public void SetUp(@Optional("chrome") String browser, @Optional("sit") String environment) {
+		conf = new ConfigRd(environment);
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", conf.GetChromePath());
 			driver = new ChromeDriver();
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", conf.GetIEPath());
 			driver = new InternetExplorerDriver();
-		}else if(browser.equalsIgnoreCase("hl")){
+		} else if (browser.equalsIgnoreCase("hl")) {
 			File file = new File(conf.GetPhantomJSDriverPath());
 			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
 			driver = new PhantomJSDriver();
 		}
+		driver.get(conf.GetURL());
 	}
 
 	@AfterClass

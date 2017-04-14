@@ -21,11 +21,11 @@ import org.testng.asserts.SoftAssert;
 import Data.DataForUS607;
 import Function.CommonFunction;
 import Function.DataCommon;
-import Function.SetupBrowser;
+import Function.Setup;
 import Function.Utility;
 import Page.EqpStatusPageS;
 
-public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
+public class US607PromptHeadloadOnDestinationChangeLDG extends Setup {
 	private EqpStatusPageS page;
 	private WebDriverWait w1;
 	private WebDriverWait w2;
@@ -35,7 +35,7 @@ public class US607PromptHeadloadOnDestinationChangeLDG extends SetupBrowser {
 		page = new EqpStatusPageS(driver);
 		w1 = new WebDriverWait(driver, 50);
 		w2 = new WebDriverWait(driver, 80);
-		driver.get(conf.GetURL());
+		  
 		driver.manage().window().maximize();
 		page.SetStatus("ldg");
 	}
